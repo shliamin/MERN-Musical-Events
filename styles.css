@@ -89,6 +89,38 @@ hr {
   opacity: 1;
 }
 
+.updatebtn {
+  background-color: #FFC106;
+  color: white;
+  padding: 12px 20px;
+  margin: 0px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 8px;
+}
+
+.updatebtn:hover {
+  opacity: 1;
+}
+
+.deletebtn {
+  background-color: #C82332;
+  color: white;
+  padding: 12px 20px;
+  margin: 0px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 8px;
+}
+
+.deletebtn:hover {
+  opacity: 1;
+}
+
 /* Add a blue text color to links */
 a {
   color: dodgerblue;
