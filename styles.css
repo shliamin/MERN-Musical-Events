@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #EFF2F5;
+  background-color: #EFF2F5 !important;
 }
 
 * {
@@ -10,7 +10,16 @@ body {
 /* Add padding to containers */
 .container {
   padding: 16px;
+  /*background-color: white;*/
+  background-color: #EFF2F5;
+}
+
+.input_form{
+  padding: 16px;
   background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  margin: 40px 0 0;
+  border-radius: 8px;
 }
 
 /* Full-width input fields */
