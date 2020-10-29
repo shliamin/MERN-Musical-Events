@@ -1,39 +1,280 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Index</title>
+    <title>Kontaktformular Studierendenservice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "stylesheet" href = "styles.css" />
-    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel = "stylesheet" href = "styles.css"/>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="cards">
-      <a href="login.html" style="text-decoration: none;">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(images/login.jpeg)">
-          Login-Screen
+    <!-- Login -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-10 col-lg-6">
+          <div class="input_form">
+            <form action="kontakt_form.ruby">
+              <h1>Login</h1>
+              <hr>
+              <label for="Username"><b>Username:</b></label>
+              <input type="text" placeholder="Write your username" name="username" id="username" required>
+              <label for="psw"><b>Password:</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+              <button type="submit" class="loginbtn">Login</button>
+            </form>
+          </div>
         </div>
-      </a>
-      <a href="main_screen.html" style="text-decoration: none;">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(images/main_screen.jpeg)">
-          Main-Screen
-        </div>
-      </a>
-      <a href="add_new_address.html" style="text-decoration: none;">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(images/new.jpeg)">
-          „Add New Address“-Screen
-        </div>
-      </a>
-      <a href="update_delete.html" style="text-decoration: none;">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(images/delete.jpeg)">
-          „Update/Delete Address“-Screen
-        </div>
-      </a>
-    </div>
-    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(images/uni.jpeg);">
-      <div class="container_banner">
-        <h1>Grundgerüst für das „AdViz“ – Frontend (Teil 1) - Beleg 1</h1>
-        <p>Actimel: Dhimal Sameer (569076) & Shliamin Efim (573270)</p>
       </div>
     </div>
+    <!-- Main Screen -->
+    <div class="content">
+      <div class="cards_main_page">
+        <div class="card" style="background-image: url(images/girl.jpeg)">
+          Anne X
+        </div>
+        <div class="card" style="background-image: url(images/boy1.jpeg)">
+          Bob Y
+        </div>
+        <div class="card" style="background-image: url(images/boy2.jpeg)">
+          Carl Z
+        </div>
+      </div>
+      <div id="map" style='width: 700px;'></div>
+      <script>
+        // TO MAKE THE MAP APPEAR YOU MUST
+        // ADD YOUR ACCESS TOKEN FROM
+        // https://account.mapbox.com
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [13.4,52.5], // starting position [lng, lat]
+        zoom: 11 // starting zoom
+        });
+        var size = 200;
+
+        // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
+        // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
+        var pulsingDot = {
+        width: size,
+        height: size,
+        data: new Uint8Array(size * size * 4),
+
+        // get rendering context for the map canvas when layer is added to the map
+        onAdd: function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.width;
+        canvas.height = this.height;
+        this.context = canvas.getContext('2d');
+        },
+
+        // called once before every frame where the icon will be used
+        render: function () {
+        var duration = 1000;
+        var t = (performance.now() % duration) / duration;
+
+        var radius = (size / 2) * 0.3;
+        var outerRadius = (size / 2) * 0.7 * t + radius;
+        var context = this.context;
+
+        // draw outer circle
+        context.clearRect(0, 0, this.width, this.height);
+        context.beginPath();
+        context.arc(
+        this.width / 2,
+        this.height / 2,
+        outerRadius,
+        0,
+        Math.PI * 2
+        );
+        context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
+        context.fill();
+
+        // draw inner circle
+        context.beginPath();
+        context.arc(
+        this.width / 2,
+        this.height / 2,
+        radius,
+        0,
+        Math.PI * 2
+        );
+        context.fillStyle = 'rgba(255, 100, 100, 1)';
+        context.strokeStyle = 'white';
+        context.lineWidth = 2 + 4 * (1 - t);
+        context.fill();
+        context.stroke();
+
+        // update this image's data with data from the canvas
+        this.data = context.getImageData(
+        0,
+        0,
+        this.width,
+        this.height
+        ).data;
+
+        // continuously repaint the map, resulting in the smooth animation of the dot
+        map.triggerRepaint();
+
+        // return `true` to let the map know that the image was updated
+        return true;
+        }
+        };
+
+        map.on('load', function () {
+        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+
+        map.addSource('points', {
+        'type': 'geojson',
+        'data': {
+        'type': 'FeatureCollection',
+        'features': [
+        {
+        'type': 'Feature',
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [13.4,52.5]
+        }
+        }
+        ]
+        }
+        });
+        map.addLayer({
+        'id': 'points',
+        'type': 'symbol',
+        'source': 'points',
+        'layout': {
+        'icon-image': 'pulsing-dot'
+        }
+        });
+        });
+      </script>
+    </div>
+    <!-- Add new address -->
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xs-12 col-md-10 col-lg-6">
+            <div class="input_form">
+              <form action="kontakt_form.ruby">
+                <h1>Add new address</h1>
+                <hr>
+                <label for="Vorname"><b>Vorname:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                <label for="Name"><b>Name:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                <label for="Straße"><b>Straße:</b></label>
+                <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                <label for="PLZ"><b>PLZ:</b></label>
+                <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                <label for="Stadt"><b>Stadt:</b></label>
+                <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                <label for="Land"><b>Land:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="check1">
+                  <label class="form-check-label" for="check">Privat</label>
+                </div>
+                <button type="add" class="addbtn">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Edit / Delete new address -->
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xs-12 col-md-10 col-lg-6">
+            <div class="input_form">
+              <form action="kontakt_form.ruby">
+                <h1>Edit / Delete address</h1>
+                <hr>
+                <label for="Vorname"><b>Vorname:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                <label for="Name"><b>Name:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                <label for="Straße"><b>Straße:</b></label>
+                <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                <label for="PLZ"><b>PLZ:</b></label>
+                <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                <label for="Stadt"><b>Stadt:</b></label>
+                <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                <label for="Land"><b>Land:</b></label>
+                <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="check1">
+                  <label class="form-check-label" for="check">Privat</label>
+                </div>
+                <a href="#" class="btn btn-warning" role="button" aria-pressed="true">Update</a>
+                <a href="#" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!-- group -->
+    <!-- <script>
+      var dropdownDiv = document.createElement("div");
+      dropdownDiv.className = "btn-group";
+      var dropdownButton = document.createElement("button");
+      dropdownButton.setAttribute("type", "button");
+      dropdownButton.setAttribute("class", "btn btn-primary dropdown-toggle");
+      dropdownButton.setAttribute("data-toggle", "dropdown");
+      dropdownButton.setAttribute("aria-haspopup", "true");
+      dropdownButton.setAttribute("aria-expanded", "false");
+      dropdownButton.innerHTML = "Zu welcher Gruppe gehören Sie?";
+      var dropdownOptionsDiv = document.createElement("div");
+      dropdownOptionsDiv.className = "dropdown-menu";
+      var option1 = document.createElement("a");
+      option1.className = "dropdown-item";
+      option1.setAttribute("href", "#");
+      option1.innerHTML = "Ich interessiere mich für ein Studium, habe mich aber noch nicht beworben.";
+      var option2 = document.createElement("a");
+      option2.className = "dropdown-item";
+      option2.setAttribute("href", "#");
+      option2.innerHTML = "Ich habe mich bereits an der HTW Berlin beworben.";
+      var option3 = document.createElement("a");
+      option3.className = "dropdown-item";
+      option3.setAttribute("href", "#");
+      option3.innerHTML = "Ich studiere an der HTW Berlin.";
+      dropdownOptionsDiv.appendChild(option1);
+      dropdownOptionsDiv.appendChild(option2);
+      dropdownOptionsDiv.appendChild(option3);
+      dropdownDiv.appendChild(dropdownButton);
+      dropdownDiv.appendChild(dropdownOptionsDiv);
+      var groupDiv = document.getElementById("group");
+      groupDiv.appendChild(dropdownDiv);
+    </script> -->
+    <!-- studiengang -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/path/to/bootstrap-switch.js"></script>
   </body>
 </html>

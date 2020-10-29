@@ -186,6 +186,39 @@ a {
   text-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
 
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  margin: 16px 0px;
+}
+
+.banner h1 {
+  margin-left: 30px;
+  margin: 10;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  margin-left: 30px;
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+#map {
+  height: 50vh;
+  position: sticky;
+  top: 0;
+}
+
+.content{
+  display: flex;
+}
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
@@ -200,6 +233,7 @@ a {
     display: none;
   }
 }
+
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
@@ -249,38 +283,6 @@ a {
   }
 }
 
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  margin: 16px 0px;
-}
 
-.banner h1 {
-  margin-left: 30px;
-  margin: 10;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner p {
-  margin-left: 30px;
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-#map {
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
-
-.content{
-  display: flex;
-}
 
 
