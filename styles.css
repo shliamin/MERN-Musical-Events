@@ -17,7 +17,7 @@ body {
 .input_form{
   padding: 16px;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  box-shadow: 0 apx 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
   margin: 40px 0 0;
   border-radius: 8px;
 }
@@ -175,7 +175,7 @@ a {
 .card{
   background-size: cover;
   background-position: center;
-  height: 400px;
+  height: 300px;
   border-radius: 1px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   display: flex;
