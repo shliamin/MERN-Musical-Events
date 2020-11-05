@@ -171,10 +171,11 @@ a {
   flex-grow: 1;
 }
 
+
 .card{
   background-size: cover;
   background-position: center;
-  height: 250px;
+  height: 400px;
   border-radius: 1px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   display: flex;
