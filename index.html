@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
           <div class="col-xs-12 col-md-10 col-lg-6">
             <div class="input_form">
-              <form action="javascript:adminaLogin();">
+              <form action="javascript:login();">
                 <h1>Login</h1>
                 <hr>
                 <label class='control-label'>
@@ -313,9 +313,11 @@
       console.log(admina);
       console.log(normalo);
 
-      function adminaLogin(){
-        document.getElementById('loginform').style.display = 'none';
-        document.getElementById('mainscreen').style.display = 'block';
+      function login(){
+        if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
+          document.getElementById('loginform').style.display = 'none';
+          document.getElementById('mainscreen').style.display = 'block';
+        }
       }
 
       // This is for log out:
