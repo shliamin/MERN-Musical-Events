@@ -22,7 +22,7 @@ body {
   border-radius: 8px;
 }
 
-.input_form.required .control-label:before {
+.input_form .control-label:before {
    content:"*";
    color:red;
 }

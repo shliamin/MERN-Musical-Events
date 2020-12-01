@@ -22,27 +22,72 @@
   <body>
 
     <!-- Login -->
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xs-12 col-md-10 col-lg-6">
-          <div class="input_form required">
-            <form action="kontakt_form.ruby">
-              <h1>Login</h1>
-              <hr>
-              <label class='control-label'>
-              <label for="Username"><b>Username:</b></label>
-              </label>
-              <input type="text" placeholder="Write your username" name="username" id="username" required>
-              <label class='control-label'>
-              <label for="psw"><b>Password:</b></label>
-              </label>
-              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-              <button type="submit" class="loginbtn">Login</button>
-            </form>
+    <fieldset id = "loginform">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xs-12 col-md-10 col-lg-6">
+            <div class="input_form">
+              <form action="kontakt_form.ruby">
+                <h1>Login</h1>
+                <hr>
+                <label class='control-label'>
+                <label for="Username"><b>Username:</b></label>
+                </label>
+                <input type="text" placeholder="Write your username" name="username" id="username" required>
+                <label class='control-label'>
+                <label for="psw"><b>Password:</b></label>
+                </label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                <button type="submit" class="loginbtn">Login</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </fieldset>
+
+
+
+    <!-- js login -->
+
+    <script>
+    function Cred(username, password ) {
+      this.username = username;
+      this.password =password;
+    }
+      var admina = new Cred("admina", "admina");
+      admina.contactPrivate = "admina private contact";
+      admina.contactPublic = "admina public contact";
+      admina.createCreds = "true";
+      admina.showCreds = "true";
+      admina.editCreds = "true";
+      var normalo = new Cred("normalo", "normalo");
+      normalo.contactPrivate = "normalo private contact";
+      normalo.contactPublic = "normalo public contact";
+      normalo.createCreds = "false";
+      normalo.showCreds = "false";
+      normalo.editCreds = "false";
+
+      console.log(admina);
+      console.log(normalo);
+
+      function toggleFieldSet(){
+        document.getElementById('loginform').style.display = 'none';
+      }
+      toggleFieldSet();
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Main Screen -->
     <!-- <div class="content">
       <div class="cards_main_page">
