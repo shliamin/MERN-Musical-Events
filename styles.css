@@ -22,6 +22,11 @@ body {
   border-radius: 8px;
 }
 
+.input_form.required .control-label:before {
+   content:"*";
+   color:red;
+}
+
 .input_address_form{
   padding: 16px;
   background-color: white;
