@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
           <div class="col-xs-12 col-md-10 col-lg-6">
             <div class="input_form">
-              <form action="kontakt_form.ruby">
+              <form action="javascript:adminaLogin();">
                 <h1>Login</h1>
                 <hr>
                 <label class='control-label'>
@@ -38,7 +38,7 @@
                 <label for="psw"><b>Password:</b></label>
                 </label>
                 <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-                <button type="submit" class="loginbtn">Login</button>
+                <button type="submit" class="loginbtn" onclick="">Login</button>
               </form>
             </div>
           </div>
@@ -46,236 +46,232 @@
       </div>
     </fieldset>
 
-
-
-    <!-- js login -->
-
-    <script>
-    function Cred(username, password ) {
-      this.username = username;
-      this.password =password;
-    }
-      var admina = new Cred("admina", "admina");
-      admina.contactPrivate = "admina private contact";
-      admina.contactPublic = "admina public contact";
-      admina.createCreds = "true";
-      admina.showCreds = "true";
-      admina.editCreds = "true";
-      var normalo = new Cred("normalo", "normalo");
-      normalo.contactPrivate = "normalo private contact";
-      normalo.contactPublic = "normalo public contact";
-      normalo.createCreds = "false";
-      normalo.showCreds = "false";
-      normalo.editCreds = "false";
-
-      console.log(admina);
-      console.log(normalo);
-
-      function toggleFieldSet(){
-        document.getElementById('loginform').style.display = 'none';
-      }
-      toggleFieldSet();
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Main Screen -->
-    <!-- <div class="content">
-      <div class="cards_main_page">
-        <div class="card" style="background-image: url(images/girl.jpeg)">
-          Anne
+    <fieldset id = "mainscreen" style = "display: none">
+      <ul class="nav justify-content-end">
+        <li>
+          <h1>Hello, admina!</h1>
+        </li>
+        <li>
+          <button type="button" class="btn btn-warning" style = "margin: 5px">Show all contacts</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-warning" style = "margin: 5px">Show my contacts</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-warning" style = "margin: 5px">Add new contact</button>
+        </li>
+        <li class="nav-item">
+          <button id="logout" type="button" class="btn btn-danger" style = "margin: 5px" onclick="">Log out</button>
+        </li>
+      </ul>
+      <div class="content">
+        <div class="cards_main_page">
+          <div class="card" style="background-image: url(images/girl.jpeg)">
+            Anne
+          </div>
+          <div class="card" style="background-image: url(images/boy1.jpeg)">
+            Bob
+          </div>
+          <div class="card" style="background-image: url(images/girl.jpeg)">
+            Carl
+          </div>
         </div>
-        <div class="card" style="background-image: url(images/boy1.jpeg)">
-          Bob
-        </div>
-        <div class="card" style="background-image: url(images/girl.jpeg)">
-          Carl
-        </div>
+          <div id="map" style='width: 700px;'></div>
+          <!-- map -->
+        <script>
+          // TO MAKE THE MAP APPEAR YOU MUST
+          // ADD YOUR ACCESS TOKEN FROM
+          // https://account.mapbox.com
+          mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+          var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+          center: [13.4,52.5], // starting position [lng, lat]
+          zoom: 11 // starting zoom
+          });
+          var size = 200;
+
+          // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
+          // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
+          var pulsingDot = {
+          width: size,
+          height: size,
+          data: new Uint8Array(size * size * 4),
+
+          // get rendering context for the map canvas when layer is added to the map
+          onAdd: function () {
+          var canvas = document.createElement('canvas');
+          canvas.width = this.width;
+          canvas.height = this.height;
+          this.context = canvas.getContext('2d');
+          },
+
+          // called once before every frame where the icon will be used
+          render: function () {
+          var duration = 1000;
+          var t = (performance.now() % duration) / duration;
+
+          var radius = (size / 2) * 0.3;
+          var outerRadius = (size / 2) * 0.7 * t + radius;
+          var context = this.context;
+
+          // draw outer circle
+          context.clearRect(0, 0, this.width, this.height);
+          context.beginPath();
+          context.arc(
+          this.width / 2,
+          this.height / 2,
+          outerRadius,
+          0,
+          Math.PI * 2
+          );
+          context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
+          context.fill();
+
+          // draw inner circle
+          context.beginPath();
+          context.arc(
+          this.width / 2,
+          this.height / 2,
+          radius,
+          0,
+          Math.PI * 2
+          );
+          context.fillStyle = 'rgba(255, 100, 100, 1)';
+          context.strokeStyle = 'white';
+          context.lineWidth = 2 + 4 * (1 - t);
+          context.fill();
+          context.stroke();
+
+          // update this image's data with data from the canvas
+          this.data = context.getImageData(
+          0,
+          0,
+          this.width,
+          this.height
+          ).data;
+
+          // continuously repaint the map, resulting in the smooth animation of the dot
+          map.triggerRepaint();
+
+          // return `true` to let the map know that the image was updated
+          return true;
+          }
+          };
+
+          map.on('load', function () {
+          map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+
+          map.addSource('points', {
+          'type': 'geojson',
+          'data': {
+          'type': 'FeatureCollection',
+          'features': [
+          {
+          'type': 'Feature',
+          'geometry': {
+          'type': 'Point',
+          'coordinates': [13.4,52.5]
+          }
+          },
+          {
+          'type': 'Feature',
+          'geometry': {
+          'type': 'Point',
+          'coordinates': [13.45,52.5]
+          }
+          },
+          {
+          'type': 'Feature',
+          'geometry': {
+          'type': 'Point',
+          'coordinates': [13.35,52.5]
+          }
+          }
+          ]
+          }
+          });
+          map.addLayer({
+          'id': 'points',
+          'type': 'symbol',
+          'source': 'points',
+          'layout': {
+          'icon-image': 'pulsing-dot'
+          }
+          });
+          });
+        </script>
+        <!-- end of map -->
       </div>
-        <div id="map" style='width: 700px;'></div> -->
-        <!-- map -->
-      <script>
-        // TO MAKE THE MAP APPEAR YOU MUST
-        // ADD YOUR ACCESS TOKEN FROM
-        // https://account.mapbox.com
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
-        var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-        center: [13.4,52.5], // starting position [lng, lat]
-        zoom: 11 // starting zoom
-        });
-        var size = 200;
+    </fieldset>
 
-        // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
-        // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
-        var pulsingDot = {
-        width: size,
-        height: size,
-        data: new Uint8Array(size * size * 4),
-
-        // get rendering context for the map canvas when layer is added to the map
-        onAdd: function () {
-        var canvas = document.createElement('canvas');
-        canvas.width = this.width;
-        canvas.height = this.height;
-        this.context = canvas.getContext('2d');
-        },
-
-        // called once before every frame where the icon will be used
-        render: function () {
-        var duration = 1000;
-        var t = (performance.now() % duration) / duration;
-
-        var radius = (size / 2) * 0.3;
-        var outerRadius = (size / 2) * 0.7 * t + radius;
-        var context = this.context;
-
-        // draw outer circle
-        context.clearRect(0, 0, this.width, this.height);
-        context.beginPath();
-        context.arc(
-        this.width / 2,
-        this.height / 2,
-        outerRadius,
-        0,
-        Math.PI * 2
-        );
-        context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
-        context.fill();
-
-        // draw inner circle
-        context.beginPath();
-        context.arc(
-        this.width / 2,
-        this.height / 2,
-        radius,
-        0,
-        Math.PI * 2
-        );
-        context.fillStyle = 'rgba(255, 100, 100, 1)';
-        context.strokeStyle = 'white';
-        context.lineWidth = 2 + 4 * (1 - t);
-        context.fill();
-        context.stroke();
-
-        // update this image's data with data from the canvas
-        this.data = context.getImageData(
-        0,
-        0,
-        this.width,
-        this.height
-        ).data;
-
-        // continuously repaint the map, resulting in the smooth animation of the dot
-        map.triggerRepaint();
-
-        // return `true` to let the map know that the image was updated
-        return true;
-        }
-        };
-
-        map.on('load', function () {
-        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
-
-        map.addSource('points', {
-        'type': 'geojson',
-        'data': {
-        'type': 'FeatureCollection',
-        'features': [
-        {
-        'type': 'Feature',
-        'geometry': {
-        'type': 'Point',
-        'coordinates': [13.4,52.5]
-        }
-        }
-        ]
-        }
-        });
-        map.addLayer({
-        'id': 'points',
-        'type': 'symbol',
-        'source': 'points',
-        'layout': {
-        'icon-image': 'pulsing-dot'
-        }
-        });
-        });
-      </script>
-      <!-- end of map -->
-    <!-- </div> -->
-    <!-- Add new address -->
-<!--     <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xs-12 col-md-10 col-lg-6">
-            <div class="input_form">
-              <form action="kontakt_form.ruby">
-                <h1>Add new address</h1>
-                <hr>
-                <label for="Vorname"><b>Vorname:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
-                <label for="Name"><b>Name:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
-                <label for="Straße"><b>Straße:</b></label>
-                <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
-                <label for="PLZ"><b>PLZ:</b></label>
-                <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
-                <label for="Stadt"><b>Stadt:</b></label>
-                <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
-                <label for="Land"><b>Land:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="check1">
-                  <label class="form-check-label" for="check">Privat</label>
-                </div>
-                <button type="add" class="addbtn">Add</button>
-              </form>
+    <fieldset id = "addnewaddress" style = "display: none">
+      <!-- Add new address -->
+      <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-md-10 col-lg-6">
+              <div class="input_form">
+                <form action="kontakt_form.ruby">
+                  <h1>Add new address</h1>
+                  <hr>
+                  <label for="Vorname"><b>Vorname:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                  <label for="Name"><b>Name:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                  <label for="Straße"><b>Straße:</b></label>
+                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                  <label for="PLZ"><b>PLZ:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                  <label for="Stadt"><b>Stadt:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                  <label for="Land"><b>Land:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check">Privat</label>
+                  </div>
+                  <button type="add" class="addbtn">Add</button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-    </div> -->
-    <!-- Edit / Delete new address -->
-   <!--  <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xs-12 col-md-10 col-lg-6">
-            <div class="input_form">
-              <form action="kontakt_form.ruby">
-                <h1>Edit / Delete address</h1>
-                <hr>
-                <label for="Vorname"><b>Vorname:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
-                <label for="Name"><b>Name:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
-                <label for="Straße"><b>Straße:</b></label>
-                <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
-                <label for="PLZ"><b>PLZ:</b></label>
-                <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
-                <label for="Stadt"><b>Stadt:</b></label>
-                <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
-                <label for="Land"><b>Land:</b></label>
-                <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="check1">
-                  <label class="form-check-label" for="check">Privat</label>
-                </div>
-                <a href="#" class="btn btn-warning" role="button" aria-pressed="true">Update</a>
-                <a href="#" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
-              </form>
+      </div>
+    </fieldset>
+
+    <fieldset id = "edit/delete" style = "display: none">
+      <!-- Edit / Delete new address -->
+      <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-md-10 col-lg-6">
+              <div class="input_form">
+                <form action="kontakt_form.ruby">
+                  <h1>Edit / Delete address</h1>
+                  <hr>
+                  <label for="Vorname"><b>Vorname:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                  <label for="Name"><b>Name:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                  <label for="Straße"><b>Straße:</b></label>
+                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                  <label for="PLZ"><b>PLZ:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                  <label for="Stadt"><b>Stadt:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                  <label for="Land"><b>Land:</b></label>
+                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check">Privat</label>
+                  </div>
+                  <a href="#" class="btn btn-warning" role="button" aria-pressed="true">Update</a>
+                  <a href="#" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-    </div> -->
-
+      </div>
+    </fieldset>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -293,5 +289,42 @@
       crossorigin="anonymous"
     ></script>
     <script src="/path/to/bootstrap-switch.js"></script>
+
+     <!-- js login -->
+
+    <script>
+    function Cred(username, password ) {
+      this.username = username;
+      this.password = password;
+    }
+      var admina = new Cred("admina", "admina");
+      admina.contactPrivate = "admina private contact";
+      admina.contactPublic = "admina public contact";
+      admina.createCreds = "true";
+      admina.showCreds = "true";
+      admina.editCreds = "true";
+      var normalo = new Cred("normalo", "normalo");
+      normalo.contactPrivate = "normalo private contact";
+      normalo.contactPublic = "normalo public contact";
+      normalo.createCreds = "false";
+      normalo.showCreds = "false";
+      normalo.editCreds = "false";
+
+      console.log(admina);
+      console.log(normalo);
+
+      function adminaLogin(){
+        document.getElementById('loginform').style.display = 'none';
+        document.getElementById('mainscreen').style.display = 'block';
+      }
+
+      // This is for log out:
+      document.getElementById('logout').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('mainscreen').style.display = 'none';
+      }).call(document.getElementById('loginform').style.display = 'block', event);
+    });
+    </script>
+
   </body>
 </html>
