@@ -47,7 +47,7 @@
     </fieldset>
 
     <!-- Main Screen -->
-    <fieldset id = "mainscreen" style = "display: none">
+    <fieldset id = "mainscreen-admina" style = "display: none">
       <ul class="nav justify-content-end">
         <li>
           <h1>Hello, admina!</h1>
@@ -68,13 +68,12 @@
       <div class="content">
         <div class="cards_main_page">
           <div class="card" style="background-image: url(images/girl.jpeg)">
-            Anne
+            <div id="first_contact_admina">
+            </div>
           </div>
           <div class="card" style="background-image: url(images/boy1.jpeg)">
-            Bob
-          </div>
-          <div class="card" style="background-image: url(images/girl.jpeg)">
-            Carl
+            <div id="second_contact_admina">
+            </div>
           </div>
         </div>
           <div id="map" style='width: 700px;'></div>
@@ -180,13 +179,6 @@
           'geometry': {
           'type': 'Point',
           'coordinates': [13.45,52.5]
-          }
-          },
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [13.35,52.5]
           }
           }
           ]
@@ -313,24 +305,23 @@
       console.log(admina);
       console.log(normalo);
 
+      function getAdminaContacts(){
+        document.getElementById('first_contact_admina').innerHTML = admina.contactPublic;
+        document.getElementById('second_contact_admina').innerHTML = admina.contactPrivate;
+      }
+
       function login(){
-<<<<<<< HEAD
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
           document.getElementById('loginform').style.display = 'none';
-          document.getElementById('mainscreen').style.display = 'block';
+          document.getElementById('mainscreen-admina').style.display = 'block';
+          getAdminaContacts();
         }
-=======
-        if(document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
-        document.getElementById('loginform').style.display = 'none';
-        document.getElementById('mainscreen').style.display = 'block';
->>>>>>> f242ab8121cfe648c62bd60f215ade749f8806b0
-      }
       }
 
       // This is for log out:
       document.getElementById('logout').addEventListener("click", function(event) {
       (function(event) {
-          document.getElementById('mainscreen').style.display = 'none';
+          document.getElementById('mainscreen-admina').style.display = 'none';
       }).call(document.getElementById('loginform').style.display = 'block', event);
     });
     </script>
