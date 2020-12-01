@@ -373,7 +373,7 @@
         document.getElementById('first_contact_normalo').innerHTML = normalo.contactPublic;
         document.getElementById('second_contact_normalo').innerHTML = normalo.contactPrivate;
       }
-       
+
       function login(){
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
           document.getElementById('loginform').style.display = 'none';
@@ -384,6 +384,9 @@
           document.getElementById('loginform').style.display = 'none';
           document.getElementById('mainscreen-normalo').style.display = 'block';
           getNormaloContacts();
+      }
+      else{
+        alert("Who are you? Get the duck out of here. I don't know who you are. I've not called you.");
       }
       }
       // This is for log out for admina:
