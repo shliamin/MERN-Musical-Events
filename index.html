@@ -266,7 +266,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="kontakt_form.ruby">
+                <form action="javascript:savetomain();">
                   <h1>Add new address</h1>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check-normalo">
@@ -317,7 +317,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="kontakt_form.ruby">
+                <form>
                   <h1>Edit / Delete address</h1>
                   <hr>
                   <label for="Vorname"><b>Vorname:</b></label>
@@ -457,6 +457,11 @@
           document.getElementById('mainscreen-admina').style.display = 'block';
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
+
+      function savetomain(){
+        document.getElementById('addnewaddress').style.display = 'none';
+        document.getElementById('mainscreen-admina').style.display = 'block';
+      }
 
       function editAndDeleteAdmina(){
         document.getElementById('mainscreen-admina').style.display = 'none';
