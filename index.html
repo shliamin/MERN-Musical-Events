@@ -174,25 +174,27 @@
           <h1>Hello, admina!</h1>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Show all contacts</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id="show_all_contacts" onclick="">Show all contacts</button>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Show my contacts</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id="show-my-contacts-admina" onclick="">Show my contacts</button>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Add new contact</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id ="new_contact_for_admina" onclick="">Add new contact</button>
         </li>
         <li class="nav-item">
           <button id="logout-admina" type="button" class="btn btn-danger" style = "margin: 5px" onclick="">Log out</button>
         </li>
       </ul>
       <div class="content">
-        <div class="cards_main_page">
+        <div class="cards_main_page" id="list_of_addresses" >
           <div class="card" style="background-image: url(images/girl.jpeg)">
+            <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
             <div id="first_contact_admina">
             </div>
           </div>
           <div class="card" style="background-image: url(images/boy1.jpeg)">
+            <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
             <div id="second_contact_admina">
             </div>
           </div>
@@ -232,10 +234,12 @@
       <div class="content">
         <div class="cards_main_page">
           <div class="card" style="background-image: url(images/girl.jpeg)">
+            <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
             <div id="first_contact_normalo">
             </div>
           </div>
           <div class="card" style="background-image: url(images/boy1.jpeg)">
+            <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
             <div id="second_contact_normalo">
             </div>
           </div>
@@ -256,6 +260,7 @@
 
 
     <fieldset id = "addnewaddress" style = "display: none">
+      <button type="button" class="btn btn-warning" id="go_back_from_add" onclick="">Go Back</button>
       <!-- Add new address -->
       <div class="container">
           <div class="row justify-content-center">
@@ -263,6 +268,10 @@
               <div class="input_form">
                 <form action="kontakt_form.ruby">
                   <h1>Add new address</h1>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check-normalo">
+                    <label class="form-check-label" for="check">as normalo</label>
+                  </div>
                   <hr>
                   <label for="Vorname"><b>Vorname:</b></label>
                   <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
@@ -289,6 +298,8 @@
     </fieldset>
 
     <fieldset id = "edit/delete" style = "display: none">
+      <!-- <script> if(getElementById("username").value == "admina")</script> -->
+      <button type="button" class="btn btn-warning" id="go_back_from_edit-delete_to_admina" onclick="">Go Back</button>
       <!-- Edit / Delete new address -->
       <div class="container">
           <div class="row justify-content-center">
@@ -363,6 +374,14 @@
       console.log(admina);
       console.log(normalo);
 
+
+      document.getElementById('new_contact_for_admina').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('mainscreen-admina').style.display = 'none';
+      }).call(document.getElementById('addnewaddress').style.display = 'block', event);
+    });
+
+
       function getAdminaContacts(){
         document.getElementById('first_contact_admina').innerHTML = admina.contactPublic;
         document.getElementById('second_contact_admina').innerHTML = admina.contactPrivate;
@@ -402,6 +421,40 @@
           document.getElementById('mainscreen-normalo').style.display = 'none';
       }).call(document.getElementById('loginform').style.display = 'block', event);
     });
+
+      document.getElementById('go_back_from_add').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('addnewaddress').style.display = 'none';
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+      document.getElementById('go_back_from_edit-delete_to_admina').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('edit/delete').style.display = 'none';
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+      document.getElementById('go_back_from_edit-delete_to_normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('edit/delete').style.display = 'none';
+      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
+    });
+
+      document.getElementById('show-my-contacts-admina').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('mainscreen-admina').style.display = 'block';
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+      function editAndDeleteAdmina(){
+        document.getElementById('mainscreen-admina').style.display = 'none';
+        document.getElementById('edit/delete').style.display = 'block';
+      }
+
+      function editAndDeleteNormalo(){
+        document.getElementById('mainscreen-normalo').style.display = 'none';
+        document.getElementById('edit/delete').style.display = 'block';
+      }
     </script>
   </body>
 </html>
