@@ -225,7 +225,7 @@
           <button type="button" class="btn btn-warning" style = "margin: 5px">Show my contacts</button>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Add new contact</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id ="new_contact_for_normalo" onclick="">Add new contact</button>
         </li>
         <li class="nav-item">
           <button id="logout-normalo" type="button" class="btn btn-danger" style = "margin: 5px" onclick="">Log out</button>
@@ -259,9 +259,9 @@
 
 
 
-    <fieldset id = "addnewaddress" style = "display: none">
+    <fieldset id = "addnewaddress-admina" style = "display: none">
       <button type="button" class="btn btn-warning" id="go_back_from_add" onclick="">Go Back</button>
-      <!-- Add new address -->
+      <!-- Add new address admina-->
       <div class="container">
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
@@ -272,6 +272,52 @@
                     <input type="checkbox" class="form-check-input" id="check-normalo">
                     <label class="form-check-label" for="check">as normalo</label>
                   </div>
+                  <hr>
+                  <label class='control-label'>
+                  <label for="Vorname"><b>Vorname:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                  <label class='control-label'>
+                  <label for="Name"><b>Name:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                  <label class='control-label'>
+                  <label for="Straße"><b>Straße:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                  <label class='control-label'>
+                  <label for="PLZ"><b>PLZ:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                  <label class='control-label'>
+                  <label for="Stadt"><b>Stadt:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                  <label class='control-label'>
+                  <label for="Land"><b>Land:</b></label>
+                  </label>
+                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check">Privat</label>
+                  </div>
+                  <button type="add" class="addbtn">Add</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+    </fieldset>
+
+     <fieldset id = "addnewaddress-normalo" style = "display: none">
+      <button type="button" class="btn btn-warning" id="go_back_from_add-normalo" onclick="">Go Back</button>
+      <!-- Add new address normalo-->
+      <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-md-10 col-lg-6">
+              <div class="input_form">
+                <form action="javascript:savetomain();">
+                  <h1>Add new address</h1>
                   <hr>
                   <label class='control-label'>
                   <label for="Vorname"><b>Vorname:</b></label>
@@ -390,7 +436,13 @@
       document.getElementById('new_contact_for_admina').addEventListener("click", function(event) {
       (function(event) {
           document.getElementById('mainscreen-admina').style.display = 'none';
-      }).call(document.getElementById('addnewaddress').style.display = 'block', event);
+      }).call(document.getElementById('addnewaddress-admina').style.display = 'block', event);
+    });
+
+      document.getElementById('new_contact_for_normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('mainscreen-normalo').style.display = 'none';
+      }).call(document.getElementById('addnewaddress-normalo').style.display = 'block', event);
     });
 
 
@@ -420,6 +472,20 @@
         alert("Who are you? Get the duck out of here. I don't know who you are. I've not called you.");
       }
       }
+
+
+      function savetomain(){
+        if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
+        document.getElementById('addnewaddress-admina').style.display = 'none';
+        document.getElementById('mainscreen-admina').style.display = 'block';
+        }
+        else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
+        document.getElementById('addnewaddress-normalo').style.display = 'none';
+        document.getElementById('mainscreen-normalo').style.display = 'block';
+        }
+      }
+
+
       // This is for log out for admina:
       document.getElementById('logout-admina').addEventListener("click", function(event) {
       (function(event) {
@@ -436,8 +502,14 @@
 
       document.getElementById('go_back_from_add').addEventListener("click", function(event) {
       (function(event) {
-          document.getElementById('addnewaddress').style.display = 'none';
+          document.getElementById('addnewaddress-admina').style.display = 'none';
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+      document.getElementById('go_back_from_add-normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('addnewaddress-normalo').style.display = 'none';
+      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
     });
 
       document.getElementById('go_back_from_edit-delete_to_admina').addEventListener("click", function(event) {
@@ -458,10 +530,7 @@
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
 
-      function savetomain(){
-        document.getElementById('addnewaddress').style.display = 'none';
-        document.getElementById('mainscreen-admina').style.display = 'block';
-      }
+
 
       function editAndDeleteAdmina(){
         document.getElementById('mainscreen-admina').style.display = 'none';
