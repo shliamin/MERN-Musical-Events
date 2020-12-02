@@ -22,18 +22,6 @@
   <body>
 
     <script>
-
-      function getAdminaContacts(){
-        document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
-        document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
-      }
-
-
-       function getNormaloContacts(){
-        document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
-        document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
-      }
-
       function Cred(username, password ) {
       this.username = username;
       this.password = password;
@@ -54,6 +42,18 @@
       normalo.createCreds = "false";
       normalo.showCreds = "false";
       normalo.editCreds = "false";
+
+      function getAdminaContacts(){
+        document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+        document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+      }
+
+
+       function getNormaloContacts(){
+        document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
+        document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+      }
+
 
       function getMap(param,privX,privY,publX,publY){
           mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
@@ -294,20 +294,20 @@
       <fieldset id="all_contacts_normalo_fieldset" style="display:none">
         <div class="content">
             <div class="cards_main_page">
-              <div class="card" style="background-image: url(images/con4.jpeg)">
-                <div id="second_contact_normalo">
-                </div>
-              </div>
               <div class="card" style="background-image: url(images/con3.jpeg)">
-                <div id="first_contact_normalo">
-                </div>
-              </div>
-              <div class="card" style="background-image: url(images/con3.jpeg)">
-                <div id="first_contact_normalo">
+                <div id="first_contact_all_contacts_normalo">
                 </div>
               </div>
               <div class="card" style="background-image: url(images/con4.jpeg)">
-                <div id="second_contact_normalo">
+                <div id="second_contact_all_contacts_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con1.jpeg)">
+                <div id="third_contact_all_contacts_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con2.jpeg)">
+                <div id="fourth_contact_all_contacts_normalo">
                 </div>
               </div>
             </div>
@@ -315,6 +315,13 @@
             <div id="map-normalo-all-contacts" style='width: 700px;'></div>
             <!-- map -->
           <script>
+            function getAllContactsForNormalo(){
+              document.getElementById('first_contact_all_contacts_normalo').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+              document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+              document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
+              document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+            }
+            getAllContactsForNormalo();
             // TO MAKE THE MAP APPEAR YOU MUST
             // ADD YOUR ACCESS TOKEN FROM
             // https://account.mapbox.com
