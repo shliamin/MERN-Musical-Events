@@ -231,30 +231,75 @@
           <button id="logout-admina" type="button" class="btn btn-danger" style = "margin: 5px" onclick="">Log out</button>
         </li>
       </ul>
-      <div class="content">
-        <div class="cards_main_page" id="list_of_addresses" >
-          <div class="card" style="background-image: url(images/con1.jpeg)">
-            <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
-            <div id="first_contact_admina">
-            </div>
-          </div>
-          <div class="card" style="background-image: url(images/con2.jpeg)">
-            <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
-            <div id="second_contact_admina">
-            </div>
-          </div>
-        </div>
-          <div id="map-admina" style='width: 700px;'></div>
-          <!-- map -->
-        <script>
-          // TO MAKE THE MAP APPEAR YOU MUST
-          // ADD YOUR ACCESS TOKEN FROM
-          // https://account.mapbox.com
 
-          getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-        </script>
-        <!-- end of map -->
-      </div>
+      <fieldset id="only_admina_contacts" style="display:block">
+        <div class="content">
+          <div class="cards_main_page" id="list_of_addresses" >
+            <div class="card" style="background-image: url(images/con1.jpeg)">
+              <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
+              <div id="first_contact_admina">
+              </div>
+            </div>
+            <div class="card" style="background-image: url(images/con2.jpeg)">
+              <a href="javascript:editAndDeleteAdmina()">edit/delete</a>
+              <div id="second_contact_admina">
+              </div>
+            </div>
+          </div>
+            <div id="map-admina" style='width: 700px;'></div>
+            <!-- map -->
+          <script>
+            // TO MAKE THE MAP APPEAR YOU MUST
+            // ADD YOUR ACCESS TOKEN FROM
+            // https://account.mapbox.com
+
+            getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+          </script>
+          <!-- end of map -->
+        </div>
+      </fieldset>
+
+      <fieldset id="all_contacts_admina_fieldset" style="display:none">
+        <div class="content">
+            <div class="cards_main_page">
+              <div class="card" style="background-image: url(images/con3.jpeg)">
+                <div id="first_contact_all_contacts_admina">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con4.jpeg)">
+                <div id="second_contact_all_contacts_admina">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con1.jpeg)">
+                <div id="third_contact_all_contacts_admina">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con2.jpeg)">
+                <div id="fourth_contact_all_contacts_admina">
+                </div>
+              </div>
+            </div>
+
+            <div id="map-admina-all-contacts" style='width: 700px;'></div>
+            <!-- map -->
+          <script>
+            function getAllContactsForAdmina(){
+              document.getElementById('first_contact_all_contacts_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+              document.getElementById('second_contact_all_contacts_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+              document.getElementById('third_contact_all_contacts_admina').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
+              document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+            }
+            getAllContactsForAdmina();
+            // TO MAKE THE MAP APPEAR YOU MUST
+            // ADD YOUR ACCESS TOKEN FROM
+            // https://account.mapbox.com
+            getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+          </script>
+          <!-- end of map -->
+        </div>
+      </fieldset>
+
+
     </fieldset>
 
 
@@ -635,6 +680,18 @@
       (function(event) {
           document.getElementById('all_contacts_normalo_fieldset').style.display = 'none';
       }).call(document.getElementById('only_normalo_contacts').style.display = 'block', event);
+    });
+
+      document.getElementById('show_all_contacts').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('only_admina_contacts').style.display = 'none';
+      }).call(document.getElementById('all_contacts_admina_fieldset').style.display = 'block', event);
+    });
+
+      document.getElementById('show-my-contacts-admina').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('all_contacts_admina_fieldset').style.display = 'none';
+      }).call(document.getElementById('only_admina_contacts').style.display = 'block', event);
     });
 
 
