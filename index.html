@@ -23,6 +23,17 @@
 
     <script>
 
+      function getAdminaContacts(){
+        document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+        document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+      }
+
+
+       function getNormaloContacts(){
+        document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
+        document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+      }
+
       function Cred(username, password ) {
       this.username = username;
       this.password = password;
@@ -37,9 +48,9 @@
       admina.editCreds = "true";
       var normalo = new Cred("normalo", "normalo");
       normalo.contactPrivateX = 13.4;
-      normalo.contactPrivateY = 52.5;
+      normalo.contactPrivateY = 52.51;
       normalo.contactPublicX = 13.45;
-      normalo.contactPublicY = 52.5;
+      normalo.contactPublicY = 52.51;
       normalo.createCreds = "false";
       normalo.showCreds = "false";
       normalo.editCreds = "false";
@@ -240,10 +251,10 @@
           <h1>Hello, normalo!</h1>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Show all contacts</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id="show_all_contacts_for_normalo" onclick="">Show all contacts</button>
         </li>
         <li>
-          <button type="button" class="btn btn-warning" style = "margin: 5px">Show my contacts</button>
+          <button type="button" class="btn btn-warning" style = "margin: 5px" id="show_only_my_contacts_for_normalo" onclick="">Show my contacts</button>
         </li>
         <li>
           <button type="button" class="btn btn-warning" style = "margin: 5px" id ="new_contact_for_normalo" onclick="">Add new contact</button>
@@ -252,30 +263,69 @@
           <button id="logout-normalo" type="button" class="btn btn-danger" style = "margin: 5px" onclick="">Log out</button>
         </li>
       </ul>
-      <div class="content">
-        <div class="cards_main_page">
-          <div class="card" style="background-image: url(images/con3.jpeg)">
-            <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
-            <div id="first_contact_normalo">
-            </div>
-          </div>
-          <div class="card" style="background-image: url(images/con4.jpeg)">
-            <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
-            <div id="second_contact_normalo">
-            </div>
-          </div>
-        </div>
 
-          <div id="map-normalo" style='width: 700px;'></div>
-          <!-- map -->
-        <script>
-          // TO MAKE THE MAP APPEAR YOU MUST
-          // ADD YOUR ACCESS TOKEN FROM
-          // https://account.mapbox.com
-          getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
-        </script>
-        <!-- end of map -->
-      </div>
+      <fieldset id="only_normalo_contacts" style="display:block">
+        <div class="content">
+            <div class="cards_main_page">
+              <div class="card" style="background-image: url(images/con3.jpeg)">
+                <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
+                <div id="first_contact_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con4.jpeg)">
+                <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
+                <div id="second_contact_normalo">
+                </div>
+              </div>
+            </div>
+
+            <div id="map-normalo" style='width: 700px;'></div>
+            <!-- map -->
+          <script>
+            // TO MAKE THE MAP APPEAR YOU MUST
+            // ADD YOUR ACCESS TOKEN FROM
+            // https://account.mapbox.com
+            getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+          </script>
+          <!-- end of map -->
+        </div>
+      </fieldset>
+
+      <fieldset id="all_contacts_normalo_fieldset" style="display:none">
+        <div class="content">
+            <div class="cards_main_page">
+              <div class="card" style="background-image: url(images/con4.jpeg)">
+                <div id="second_contact_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con3.jpeg)">
+                <div id="first_contact_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con3.jpeg)">
+                <div id="first_contact_normalo">
+                </div>
+              </div>
+              <div class="card" style="background-image: url(images/con4.jpeg)">
+                <div id="second_contact_normalo">
+                </div>
+              </div>
+            </div>
+
+            <div id="map-normalo-all-contacts" style='width: 700px;'></div>
+            <!-- map -->
+          <script>
+            // TO MAKE THE MAP APPEAR YOU MUST
+            // ADD YOUR ACCESS TOKEN FROM
+            // https://account.mapbox.com
+            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+          </script>
+          <!-- end of map -->
+        </div>
+      </fieldset>
+
+
+
     </fieldset>
 
 
@@ -480,29 +530,17 @@
           document.getElementById('mainscreen-normalo').style.display = 'none';
       }).call(document.getElementById('addnewaddress-normalo').style.display = 'block', event);
     });
-
-
-      function getAdminaContacts(){
-        document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
-        document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
-      }
-
-
-       function getNormaloContacts(){
-        document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
-        document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
-      }
+          getAdminaContacts();
+          getNormaloContacts();
 
       function login(){
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
           document.getElementById('loginform').style.display = 'none';
           document.getElementById('mainscreen-admina').style.display = 'block';
-          getAdminaContacts();
         }
        else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
           document.getElementById('loginform').style.display = 'none';
           document.getElementById('mainscreen-normalo').style.display = 'block';
-          getNormaloContacts();
       }
       else{
         alert("Who are you? Get the duck out of here. I don't know who you are. I did not call you.");
@@ -566,6 +604,17 @@
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
 
+      document.getElementById('show_all_contacts_for_normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('only_normalo_contacts').style.display = 'none';
+      }).call(document.getElementById('all_contacts_normalo_fieldset').style.display = 'block', event);
+    });
+
+      document.getElementById('show_only_my_contacts_for_normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('all_contacts_normalo_fieldset').style.display = 'none';
+      }).call(document.getElementById('only_normalo_contacts').style.display = 'block', event);
+    });
 
 
       function editAndDeleteAdmina(){
