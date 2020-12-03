@@ -375,7 +375,7 @@
             <!-- map -->
           <script>
             function getAllContactsForNormalo(){
-              document.getElementById('first_contact_all_contacts_normalo').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+             // document.getElementById('first_contact_all_contacts_normalo').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
               document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
               document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
               document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
@@ -384,7 +384,7 @@
             // TO MAKE THE MAP APPEAR YOU MUST
             // ADD YOUR ACCESS TOKEN FROM
             // https://account.mapbox.com
-            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); // admina.contactPrivateX,admina.contactPrivateY
           </script>
           <!-- end of map -->
         </div>
