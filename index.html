@@ -353,11 +353,7 @@
       <fieldset id="all_contacts_normalo_fieldset" style="display:none">
         <div class="content">
             <div class="cards_main_page">
-              <!--  
-              <div class="card" style="background-image: url(images/con3.jpeg)">
-                <div id="first_contact_all_contacts_normalo">
-                </div>
-              </div> -->
+             
               <div class="card" style="background-image: url(images/con4.jpeg)">
                 <div id="second_contact_all_contacts_normalo">
                 </div>
@@ -376,7 +372,7 @@
             <!-- map -->
           <script>
             function getAllContactsForNormalo(){
-             // document.getElementById('first_contact_all_contacts_normalo').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+             
               document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
               document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
               document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
@@ -385,7 +381,7 @@
             // TO MAKE THE MAP APPEAR YOU MUST
             // ADD YOUR ACCESS TOKEN FROM
             // https://account.mapbox.com
-            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); // admina.contactPrivateX,admina.contactPrivateY
+            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); //
           </script>
           <!-- end of map -->
         </div>
@@ -610,7 +606,7 @@
           document.getElementById('mainscreen-normalo').style.display = 'block';
       }
       else{
-        alert("Who are you? Get the duck out of here. I don't know who you are. I did not call you.");
+        alert("The entered username and password is wrong. Please enter the correct one.");
       }
       }
 
