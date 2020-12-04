@@ -370,7 +370,7 @@
 
       <fieldset id="all_contacts_normalo_fieldset" style="display:none">
         <div class="content">
-            <div class="cards_main_page" id="all_list_of_addresses">
+            <div class="cards_main_page" id="all_list_of_addresses_normalo">
 
               <div class="card" style="background-image: url(images/con4.jpeg)">
                 <div id="second_contact_all_contacts_normalo">
@@ -632,8 +632,12 @@
           var div2 = document.createElement("div");
           div2.id = `${document.getElementById('vorname_normalo').value}`;
           div2.innerHTML = `Vorname: ${document.getElementById('vorname_normalo').value}, Nachname: ${document.getElementById('name_normalo').value},Strasse: ${document.getElementById('strasse_normalo').value}, PLZ: ${document.getElementById('plz_normalo').value}, Stadt: ${document.getElementById('stadt_normalo').value}, Land: ${document.getElementById('land_normalo').value} `;
+          var a = document.createElement("a");
+          a.innerHTML = "edit/delete";
+          a.href = "javascript:editAndDeleteNormalo()";
+          div2.appendChild(a);
           div.appendChild(div2);
-          var element = document.getElementById("all_list_of_addresses");
+          var element = document.getElementById("all_list_of_addresses_normalo");
           element.appendChild(div);
 
       }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
