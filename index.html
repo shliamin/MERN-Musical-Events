@@ -416,7 +416,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="javascript:newContact(1,2,3,4,5,6);">
+                <form action="javascript:newContact(document.getElementById('vorname_admina').value,document.getElementById('name_admina').value,document.getElementById('strasse_admina').value,document.getElementById('plz_admina').value,document.getElementById('stadt_admina').value,document.getElementById('land_admina').value);">
                   <h1>Add new address</h1>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check-normalo">
@@ -426,27 +426,27 @@
                   <label class='control-label'>
                   <label for="Vorname"><b>Vorname:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname_admina" required>
                   <label class='control-label'>
                   <label for="Name"><b>Name:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name_admina" required>
                   <label class='control-label'>
                   <label for="Straße"><b>Straße:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse_admina" required>
                   <label class='control-label'>
                   <label for="PLZ"><b>PLZ:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz_admina" required>
                   <label class='control-label'>
                   <label for="Stadt"><b>Stadt:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt_admina" required>
                   <label class='control-label'>
                   <label for="Land"><b>Land:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land_admina" required>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check">Privat</label>
@@ -466,33 +466,33 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="javascript:newContact(1,2,3,4,5,6);">
+                <form action="javascript:newContact(document.getElementById('vorname_normalo').value,document.getElementById('name_normalo').value,document.getElementById('strasse_normalo').value,document.getElementById('plz_normalo').value,document.getElementById('stadt_normalo').value,document.getElementById('land_normalo').value);">
                   <h1>Add new address</h1>
                   <hr>
                   <label class='control-label'>
                   <label for="Vorname"><b>Vorname:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname" required>
+                  <input type="text" placeholder="Geben Sie Ihren Vornamen ein" name="vorname" id="vorname_normalo" required>
                   <label class='control-label'>
                   <label for="Name"><b>Name:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name" required>
+                  <input type="text" placeholder="Geben Sie Ihren Namen ein" name="name" id="name_normalo" required>
                   <label class='control-label'>
                   <label for="Straße"><b>Straße:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse" required>
+                  <input type="text" placeholder="Geben Sie den Namen Ihrer Straße ein" name="strasse" id="strasse_normalo" required>
                   <label class='control-label'>
                   <label for="PLZ"><b>PLZ:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz" required>
+                  <input type="text" placeholder="Geben Sie Ihre PLZ ein" name="plz" id="plz_normalo" required>
                   <label class='control-label'>
                   <label for="Stadt"><b>Stadt:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt" required>
+                  <input type="text" placeholder="Geben Sie Ihre Stadt ein" name="stadt" id="stadt_normalo" required>
                   <label class='control-label'>
                   <label for="Land"><b>Land:</b></label>
                   </label>
-                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land" required>
+                  <input type="text" placeholder="Geben Sie Ihren Land ein" name="land" id="land_normalo" required>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check">Privat</label>
