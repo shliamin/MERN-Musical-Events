@@ -40,6 +40,14 @@
       console.log(contact);
     }
 
+    //To DO:
+
+    function removeElement(elementId) {
+        // Removes an element from the document
+        var element = document.getElementById(elementId); //name of
+        element.parentNode.removeChild(element);
+    }
+
       var admina = new Cred("admina", "admina");
       admina.contactPrivateX = 13.4;
       admina.contactPrivateY = 52.5;
@@ -535,7 +543,7 @@
                     <label class="form-check-label" for="check">Privat</label>
                   </div>
                   <a href="#" class="btn btn-warning" role="button" aria-pressed="true">Update</a>
-                  <a href="#" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                  <a href="#" class="btn btn-danger" role="button" aria-pressed="true" id ="delete_contact_admina" onclick="">Delete</a>
                 </form>
               </div>
             </div>
@@ -608,7 +616,7 @@
           div.className ="card";
           div.style = "background-image: url(images/con1.jpeg)";
           var div2 = document.createElement("div");
-          div2.id = `${document.getElementById('vorname_admina').value}`;
+          div.id = `${document.getElementById('vorname_admina').value}`;
           div2.innerHTML = `Vorname: ${document.getElementById('vorname_admina').value}, Nachname: ${document.getElementById('name_admina').value},Strasse: ${document.getElementById('strasse_admina').value}, PLZ: ${document.getElementById('plz_admina').value}, Stadt: ${document.getElementById('stadt_admina').value}, Land: ${document.getElementById('land_admina').value} `;
               var a = document.createElement("a");
           a.innerHTML = "edit/delete";
@@ -630,7 +638,7 @@
           div.className ="card";
           div.style = "background-image: url(images/con1.jpeg)";
           var div2 = document.createElement("div");
-          div2.id = `${document.getElementById('vorname_normalo').value}`;
+          div.id = `${document.getElementById('vorname_normalo').value}`;
           div2.innerHTML = `Vorname: ${document.getElementById('vorname_normalo').value}, Nachname: ${document.getElementById('name_normalo').value},Strasse: ${document.getElementById('strasse_normalo').value}, PLZ: ${document.getElementById('plz_normalo').value}, Stadt: ${document.getElementById('stadt_normalo').value}, Land: ${document.getElementById('land_normalo').value} `;
           var a = document.createElement("a");
           a.innerHTML = "edit/delete";
@@ -755,6 +763,13 @@
       (function(event) {
           document.getElementById('all_contacts_admina_fieldset').style.display = 'none';
       }).call(document.getElementById('only_admina_contacts').style.display = 'block', event);
+    });
+
+      document.getElementById('delete_contact_admina').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('edit/delete').style.display = 'none';
+          removeElement(document.getElementById('vorname_admina').value);
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
 
 
