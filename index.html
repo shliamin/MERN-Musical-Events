@@ -26,7 +26,7 @@
       this.username = username;
       this.password = password;
     }
-    function newContactParams(vorname, nachname, strasse, plz, stadt, land){
+    function Contact(vorname, nachname, strasse, plz, stadt, land){
       this.vorname = vorname;
       this.nachname = nachname;
       this.strasse = strasse;
@@ -36,7 +36,7 @@
     }
 
     function newContact(vorname, nachname, strasse, plz, stadt, land){
-      var contact = new newContactParams(vorname, nachname, strasse, plz, stadt, land);
+      var contact = new Contact(vorname, nachname, strasse, plz, stadt, land);
       console.log(contact);
     }
 
@@ -261,6 +261,7 @@
               <div id="second_contact_admina">
               </div>
             </div>
+            <!-- insert divs-->
           </div>
             <div id="map-admina" style='width: 700px;'></div>
             <!-- map -->
@@ -277,7 +278,7 @@
 
       <fieldset id="all_contacts_admina_fieldset" style="display:none">
         <div class="content">
-            <div class="cards_main_page">
+            <div class="cards_main_page" id="all_list_of_addresses">
               <div class="card" style="background-image: url(images/con3.jpeg)">
                 <div id="first_contact_all_contacts_admina">
                 </div>
@@ -294,6 +295,7 @@
                 <div id="fourth_contact_all_contacts_admina">
                 </div>
               </div>
+              <!-- insert divs here -->
             </div>
 
             <div id="map-admina-all-contacts" style='width: 700px;'></div>
@@ -341,7 +343,7 @@
 
       <fieldset id="only_normalo_contacts" style="display:block">
         <div class="content">
-            <div class="cards_main_page">
+            <div class="cards_main_page" id="list_of_addresses_normalo">
               <div class="card" style="background-image: url(images/con3.jpeg)">
                 <a href="javascript:editAndDeleteNormalo()">edit/delete</a>
                 <div id="first_contact_normalo">
@@ -368,7 +370,7 @@
 
       <fieldset id="all_contacts_normalo_fieldset" style="display:none">
         <div class="content">
-            <div class="cards_main_page">
+            <div class="cards_main_page" id="all_list_of_addresses">
 
               <div class="card" style="background-image: url(images/con4.jpeg)">
                 <div id="second_contact_all_contacts_normalo">
@@ -595,14 +597,29 @@
     <script src="/path/to/bootstrap-switch.js"></script>
 
      <!-- js login -->
-
+     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script>
       // TO DO
       document.getElementById('new_contact_for_admina_added').addEventListener("click", function(event) {
       (function(event) {
           document.getElementById('addnewaddress-admina').style.display = 'none';
+
+          var div = document.createElement("div");
+          div.className ="card";
+          div.style = "background-image: url(images/con1.jpeg)";
+          var div2 = document.createElement("div");
+          div2.id = `${document.getElementById('vorname_admina').value}`;
+          div2.innerHTML = `Vorname: ${document.getElementById('vorname_admina').value}, Nachname: ${document.getElementById('name_admina').value},Strasse: ${document.getElementById('strasse_admina').value}, PLZ: ${document.getElementById('plz_admina').value}, Stadt: ${document.getElementById('stadt_admina').value}, Land: ${document.getElementById('land_admina').value} `;
+          div.appendChild(div2);
+          var element = document.getElementById("all_list_of_addresses");
+          element.appendChild(div);
+
+
+
+
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
+
 
       document.getElementById('new_contact_for_normalo_added').addEventListener("click", function(event) {
       (function(event) {
