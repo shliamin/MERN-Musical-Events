@@ -26,14 +26,20 @@
       this.username = username;
       this.password = password;
     }
-    function newContact(vorname, nachname, strasse, plz, stadt, land){
+    function newContactParams(vorname, nachname, strasse, plz, stadt, land){
       this.vorname = vorname;
       this.nachname = nachname;
       this.strasse = strasse;
       this.plz = plz;
       this.stadt = stadt;
-      this.land = land; 
+      this.land = land;
     }
+
+    function newContact(vorname, nachname, strasse, plz, stadt, land){
+      var contact = new newContactParams(vorname, nachname, strasse, plz, stadt, land);
+      console.log(contact);
+    }
+
       var admina = new Cred("admina", "admina");
       admina.contactPrivateX = 13.4;
       admina.contactPrivateY = 52.5;
@@ -363,7 +369,7 @@
       <fieldset id="all_contacts_normalo_fieldset" style="display:none">
         <div class="content">
             <div class="cards_main_page">
-             
+
               <div class="card" style="background-image: url(images/con4.jpeg)">
                 <div id="second_contact_all_contacts_normalo">
                 </div>
@@ -382,7 +388,7 @@
             <!-- map -->
           <script>
             function getAllContactsForNormalo(){
-             
+
               document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
               document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
               document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
@@ -410,7 +416,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="javascript:savetomain();">
+                <form action="javascript:newContact(1,2,3,4,5,6);">
                   <h1>Add new address</h1>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check-normalo">
@@ -445,7 +451,7 @@
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check">Privat</label>
                   </div>
-                  <button type="add" class="addbtn">Add</button>
+                  <button type="add" class="addbtn" id="new_contact_for_admina_added" onclick="">Add</button>
                 </form>
               </div>
             </div>
@@ -460,7 +466,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-10 col-lg-6">
               <div class="input_form">
-                <form action="javascript:savetomain();">
+                <form action="javascript:newContact(1,2,3,4,5,6);">
                   <h1>Add new address</h1>
                   <hr>
                   <label class='control-label'>
@@ -491,7 +497,7 @@
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check">Privat</label>
                   </div>
-                  <button type="add" class="addbtn">Add</button>
+                  <button type="add" class="addbtn" id="new_contact_for_normalo_added" onclick="">Add</button>
                 </form>
               </div>
             </div>
@@ -591,6 +597,18 @@
      <!-- js login -->
 
     <script>
+      // TO DO
+      document.getElementById('new_contact_for_admina_added').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('addnewaddress-admina').style.display = 'none';
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+      document.getElementById('new_contact_for_normalo_added').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('addnewaddress-normalo').style.display = 'none';
+      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
+    });
 
       document.getElementById('new_contact_for_admina').addEventListener("click", function(event) {
       (function(event) {
@@ -605,6 +623,11 @@
     });
           getAdminaContacts();
           getNormaloContacts();
+
+
+
+
+
 
       function login(){
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
