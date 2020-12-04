@@ -26,6 +26,14 @@
       this.username = username;
       this.password = password;
     }
+    function newContact(vorname, nachname, strasse, plz, stadt, land){
+      this.vorname = vorname;
+      this.nachname = nachname;
+      this.strasse = strasse;
+      this.plz = plz;
+      this.stadt = stadt;
+      this.land = land; 
+    }
       var admina = new Cred("admina", "admina");
       admina.contactPrivateX = 13.4;
       admina.contactPrivateY = 52.5;
@@ -42,6 +50,8 @@
       normalo.createCreds = "false";
       normalo.showCreds = "false";
       normalo.editCreds = "false";
+
+
 
       function getAdminaContacts(){
         document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
@@ -624,7 +634,7 @@
 
 
       // This is for log out for admina:
-      document.getElementById('logout-admina').addEventListener("click", function(event) {
+      document.getElementById('logout-admina').addEventListener("click", function(event) {  // Todo: pack everything in a javascript file.
       (function(event) {
           document.getElementById('mainscreen-admina').style.display = 'none';
       }).call(document.getElementById('loginform').style.display = 'block', event);
@@ -640,7 +650,7 @@
       document.getElementById('go_back_from_add').addEventListener("click", function(event) {
       (function(event) {
           document.getElementById('addnewaddress-admina').style.display = 'none';
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event); //TODO
     });
 
       document.getElementById('go_back_from_add-normalo').addEventListener("click", function(event) {
