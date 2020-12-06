@@ -579,7 +579,7 @@
                     <label class="form-check-label" for="check">Privat</label>
                   </div>
                   <a href="#" class="btn btn-warning" role="button" aria-pressed="true">Update</a>
-                  <a href="#" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                  <a href="#" class="btn btn-danger" role="button" aria-pressed="true" id ="delete_contact_normalo" onclick="">Delete</a>
                 </form>
               </div>
             </div>
@@ -624,9 +624,7 @@
           div2.appendChild(a);
           div.appendChild(div2);
           var element = document.getElementById("all_list_of_addresses");
-          // var element2 = document.getElementById("list_of_addresses");
           element.appendChild(div);
-          // element2.appendChild(div);
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
 
@@ -770,6 +768,14 @@
           document.getElementById('edit/delete').style.display = 'none';
           removeElement(document.getElementById('vorname_admina').value);
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
+    });
+
+
+           document.getElementById('delete_contact_normalo').addEventListener("click", function(event) {
+      (function(event) {
+          document.getElementById('edit/delete-normalo').style.display = 'none';
+          removeElement(document.getElementById('vorname_normalo').value);
+      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
     });
 
 
