@@ -24,6 +24,532 @@
         </meta>
     </head>
     <body>
+        <!-- Login -->
+        <fieldset id="loginform">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 col-md-10 col-lg-6">
+                        <div class="input_form">
+                            <form action="javascript:login();">
+                                <h1>
+                                    Login
+                                </h1>
+                                <hr>
+                                    <label class="control-label">
+                                        <label for="Username">
+                                            <b>
+                                                Username:
+                                            </b>
+                                        </label>
+                                    </label>
+                                    <input id="username" name="username" placeholder="Write your username" required="" type="text">
+                                        <label class="control-label">
+                                            <label for="psw">
+                                                <b>
+                                                    Password:
+                                                </b>
+                                            </label>
+                                        </label>
+                                        <input id="psw" name="psw" placeholder="Enter Password" required="" type="password">
+                                            <button class="loginbtn" onclick="" type="submit">
+                                                Login
+                                            </button>
+                                        </input>
+                                    </input>
+                                </hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Main Screen Admina -->
+        <fieldset class="hide_by_default" id="mainscreen-admina">
+            <ul class="nav justify-content-end">
+                <li>
+                    <h1>
+                        Hello, admina!
+                    </h1>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="show_all_contacts" onclick="" type="button">
+                        Show all contacts
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="show-my-contacts-admina" onclick="" type="button">
+                        Show my contacts
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="new_contact_for_admina" onclick="" type="button">
+                        Add new contact
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger" id="logout-admina" onclick="" type="button">
+                        Log out
+                    </button>
+                </li>
+            </ul>
+            <fieldset id="only_admina_contacts">
+                <div class="content">
+                    <div class="cards_main_page" id="list_of_addresses">
+                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                            <a href="javascript:editAndDeleteAdmina()">
+                                edit/delete
+                            </a>
+                            <div id="first_contact_admina">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                            <a href="javascript:editAndDeleteAdmina()">
+                                edit/delete
+                            </a>
+                            <div id="second_contact_admina">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-size" id="map-admina">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="hide_by_default" id="all_contacts_admina_fieldset">
+                <div class="content">
+                    <div class="cards_main_page" id="all_list_of_addresses">
+                        <div class="card" style="background-image: url(images/con3.jpeg)">
+                            <div id="first_contact_all_contacts_admina">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                            <div id="second_contact_all_contacts_admina">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                            <div id="third_contact_all_contacts_admina">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                            <div id="fourth_contact_all_contacts_admina">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-size" id="map-admina-all-contacts">
+                    </div>
+                </div>
+            </fieldset>
+        </fieldset>
+        <!-- Main Screen Normalo -->
+        <fieldset class="hide_by_default" id="mainscreen-normalo">
+            <ul class="nav justify-content-end">
+                <li>
+                    <h1>
+                        Hello, normalo!
+                    </h1>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="show_all_contacts_for_normalo" onclick="" type="button">
+                        Show all contacts
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="show_only_my_contacts_for_normalo" onclick="" type="button">
+                        Show my contacts
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" id="new_contact_for_normalo" onclick="" type="button">
+                        Add new contact
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger" id="logout-normalo" onclick="" type="button">
+                        Log out
+                    </button>
+                </li>
+            </ul>
+            <fieldset id="only_normalo_contacts">
+                <div class="content">
+                    <div class="cards_main_page" id="list_of_addresses_normalo">
+                        <div class="card" style="background-image: url(images/con3.jpeg)">
+                            <a href="javascript:editAndDeleteNormalo()">
+                                edit/delete
+                            </a>
+                            <div id="first_contact_normalo">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                            <a href="javascript:editAndDeleteNormalo()">
+                                edit/delete
+                            </a>
+                            <div id="second_contact_normalo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-size" id="map-normalo">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="hide_by_default" id="all_contacts_normalo_fieldset">
+                <div class="content">
+                    <div class="cards_main_page" id="all_list_of_addresses_normalo">
+                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                            <div id="second_contact_all_contacts_normalo">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                            <div id="third_contact_all_contacts_normalo">
+                            </div>
+                        </div>
+                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                            <div id="fourth_contact_all_contacts_normalo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-size" id="map-normalo-all-contacts">
+                    </div>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="hide_by_default" id="addnewaddress-admina">
+            <button class="btn btn-warning" id="go_back_from_add" onclick="" type="button">
+                Go Back
+            </button>
+            <!-- Add new address admina-->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 col-md-10 col-lg-6">
+                        <div class="input_form">
+                            <form action="javascript:newContact(document.getElementById('vorname_admina').value,document.getElementById('name_admina').value,document.getElementById('strasse_admina').value,document.getElementById('plz_admina').value,document.getElementById('stadt_admina').value,document.getElementById('land_admina').value);">
+                                <h1>
+                                    Add new address
+                                </h1>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                        <label class="form-check-label" for="check">
+                                            as normalo
+                                        </label>
+                                    </input>
+                                </div>
+                                <hr>
+                                    <label class="control-label">
+                                        <label for="Vorname">
+                                            <b>
+                                                Vorname:
+                                            </b>
+                                        </label>
+                                    </label>
+                                    <input id="vorname_admina" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
+                                        <label class="control-label">
+                                            <label for="Name">
+                                                <b>
+                                                    Name:
+                                                </b>
+                                            </label>
+                                        </label>
+                                        <input id="name_admina" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
+                                            <label class="control-label">
+                                                <label for="Straße">
+                                                    <b>
+                                                        Straße:
+                                                    </b>
+                                                </label>
+                                            </label>
+                                            <input id="strasse_admina" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
+                                                <label class="control-label">
+                                                    <label for="PLZ">
+                                                        <b>
+                                                            PLZ:
+                                                        </b>
+                                                    </label>
+                                                </label>
+                                                <input id="plz_admina" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
+                                                    <label class="control-label">
+                                                        <label for="Stadt">
+                                                            <b>
+                                                                Stadt:
+                                                            </b>
+                                                        </label>
+                                                    </label>
+                                                    <input id="stadt_admina" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
+                                                        <label class="control-label">
+                                                            <label for="Land">
+                                                                <b>
+                                                                    Land:
+                                                                </b>
+                                                            </label>
+                                                        </label>
+                                                        <input id="land_admina" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="check1" type="checkbox">
+                                                                    <label class="form-check-label" for="check">
+                                                                        Privat
+                                                                    </label>
+                                                                </input>
+                                                            </div>
+                                                            <button class="addbtn" id="new_contact_for_admina_added" onclick="" type="add">
+                                                                Add
+                                                            </button>
+                                                        </input>
+                                                    </input>
+                                                </input>
+                                            </input>
+                                        </input>
+                                    </input>
+                                </hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="hide_by_default" id="addnewaddress-normalo">
+            <button class="btn btn-warning" id="go_back_from_add-normalo" onclick="" type="button">
+                Go Back
+            </button>
+            <!-- Add new address normalo-->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 col-md-10 col-lg-6">
+                        <div class="input_form">
+                            <form action="javascript:newContact(document.getElementById('vorname_normalo').value,document.getElementById('name_normalo').value,document.getElementById('strasse_normalo').value,document.getElementById('plz_normalo').value,document.getElementById('stadt_normalo').value,document.getElementById('land_normalo').value);">
+                                <h1>
+                                    Add new address
+                                </h1>
+                                <hr>
+                                    <label class="control-label">
+                                        <label for="Vorname">
+                                            <b>
+                                                Vorname:
+                                            </b>
+                                        </label>
+                                    </label>
+                                    <input id="vorname_normalo" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
+                                        <label class="control-label">
+                                            <label for="Name">
+                                                <b>
+                                                    Name:
+                                                </b>
+                                            </label>
+                                        </label>
+                                        <input id="name_normalo" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
+                                            <label class="control-label">
+                                                <label for="Straße">
+                                                    <b>
+                                                        Straße:
+                                                    </b>
+                                                </label>
+                                            </label>
+                                            <input id="strasse_normalo" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
+                                                <label class="control-label">
+                                                    <label for="PLZ">
+                                                        <b>
+                                                            PLZ:
+                                                        </b>
+                                                    </label>
+                                                </label>
+                                                <input id="plz_normalo" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
+                                                    <label class="control-label">
+                                                        <label for="Stadt">
+                                                            <b>
+                                                                Stadt:
+                                                            </b>
+                                                        </label>
+                                                    </label>
+                                                    <input id="stadt_normalo" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
+                                                        <label class="control-label">
+                                                            <label for="Land">
+                                                                <b>
+                                                                    Land:
+                                                                </b>
+                                                            </label>
+                                                        </label>
+                                                        <input id="land_normalo" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="check1" type="checkbox">
+                                                                    <label class="form-check-label" for="check">
+                                                                        Privat
+                                                                    </label>
+                                                                </input>
+                                                            </div>
+                                                            <button class="addbtn" id="new_contact_for_normalo_added" onclick="" type="add">
+                                                                Add
+                                                            </button>
+                                                        </input>
+                                                    </input>
+                                                </input>
+                                            </input>
+                                        </input>
+                                    </input>
+                                </hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="hide_by_default" id="edit/delete">
+            <button class="btn btn-warning" id="go_back_from_edit-delete_to_admina" onclick="" type="button">
+                Go Back
+            </button>
+            <!-- Edit / Delete new address admina-->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 col-md-10 col-lg-6">
+                        <div class="input_form">
+                            <form>
+                                <h1>
+                                    Edit / Delete address
+                                </h1>
+                                <hr>
+                                    <label for="Vorname">
+                                        <b>
+                                            Vorname:
+                                        </b>
+                                    </label>
+                                    <input id="vorname" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
+                                        <label for="Name">
+                                            <b>
+                                                Name:
+                                            </b>
+                                        </label>
+                                        <input id="name" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
+                                            <label for="Straße">
+                                                <b>
+                                                    Straße:
+                                                </b>
+                                            </label>
+                                            <input id="strasse" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
+                                                <label for="PLZ">
+                                                    <b>
+                                                        PLZ:
+                                                    </b>
+                                                </label>
+                                                <input id="plz" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
+                                                    <label for="Stadt">
+                                                        <b>
+                                                            Stadt:
+                                                        </b>
+                                                    </label>
+                                                    <input id="stadt" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
+                                                        <label for="Land">
+                                                            <b>
+                                                                Land:
+                                                            </b>
+                                                        </label>
+                                                        <input id="land" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="check1" type="checkbox">
+                                                                    <label class="form-check-label" for="check">
+                                                                        Privat
+                                                                    </label>
+                                                                </input>
+                                                            </div>
+                                                            <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
+                                                                Update
+                                                            </a>
+                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_admina" onclick="" role="button">
+                                                                Delete
+                                                            </a>
+                                                        </input>
+                                                    </input>
+                                                </input>
+                                            </input>
+                                        </input>
+                                    </input>
+                                </hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="hide_by_default" id="edit/delete-normalo">
+            <button class="btn btn-warning" id="go_back_from_edit-delete_to_normalo" onclick="" type="button">
+                Go Back
+            </button>
+            <!-- Edit / Delete new address normalo-->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 col-md-10 col-lg-6">
+                        <div class="input_form">
+                            <form>
+                                <h1>
+                                    Edit / Delete address
+                                </h1>
+                                <hr>
+                                    <label for="Vorname">
+                                        <b>
+                                            Vorname:
+                                        </b>
+                                    </label>
+                                    <input id="vorname" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
+                                        <label for="Name">
+                                            <b>
+                                                Name:
+                                            </b>
+                                        </label>
+                                        <input id="name" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
+                                            <label for="Straße">
+                                                <b>
+                                                    Straße:
+                                                </b>
+                                            </label>
+                                            <input id="strasse" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
+                                                <label for="PLZ">
+                                                    <b>
+                                                        PLZ:
+                                                    </b>
+                                                </label>
+                                                <input id="plz" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
+                                                    <label for="Stadt">
+                                                        <b>
+                                                            Stadt:
+                                                        </b>
+                                                    </label>
+                                                    <input id="stadt" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
+                                                        <label for="Land">
+                                                            <b>
+                                                                Land:
+                                                            </b>
+                                                        </label>
+                                                        <input id="land" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="check1" type="checkbox">
+                                                                    <label class="form-check-label" for="check">
+                                                                        Privat
+                                                                    </label>
+                                                                </input>
+                                                            </div>
+                                                            <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
+                                                                Update
+                                                            </a>
+                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_normalo" onclick="" role="button">
+                                                                Delete
+                                                            </a>
+                                                        </input>
+                                                    </input>
+                                                </input>
+                                            </input>
+                                        </input>
+                                    </input>
+                                </hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
+        </script>
+        <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+        </script>
+        <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+        </script>
+        <script src="/path/to/bootstrap-switch.js">
+        </script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript">
+        </script>
         <script>
             function Cred(username, password ) {
       this.username = username;
@@ -220,540 +746,10 @@
           });
           });
     }
-        </script>
-        <!-- Login -->
-        <fieldset id="loginform">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form action="javascript:login();">
-                                <h1>
-                                    Login
-                                </h1>
-                                <hr>
-                                    <label class="control-label">
-                                        <label for="Username">
-                                            <b>
-                                                Username:
-                                            </b>
-                                        </label>
-                                    </label>
-                                    <input id="username" name="username" placeholder="Write your username" required="" type="text">
-                                        <label class="control-label">
-                                            <label for="psw">
-                                                <b>
-                                                    Password:
-                                                </b>
-                                            </label>
-                                        </label>
-                                        <input id="psw" name="psw" placeholder="Enter Password" required="" type="password">
-                                            <button class="loginbtn" onclick="" type="submit">
-                                                Login
-                                            </button>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <!-- Main Screen Admina -->
-        <fieldset id="mainscreen-admina" class="hide_by_default">
-            <ul class="nav justify-content-end">
-                <li>
-                    <h1>
-                        Hello, admina!
-                    </h1>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="show_all_contacts" onclick="" type="button">
-                        Show all contacts
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="show-my-contacts-admina" onclick="" type="button">
-                        Show my contacts
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="new_contact_for_admina" onclick="" type="button">
-                        Add new contact
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-admina" onclick="" type="button">
-                        Log out
-                    </button>
-                </li>
-            </ul>
-            <fieldset id="only_admina_contacts">
-                <div class="content">
-                    <div class="cards_main_page" id="list_of_addresses">
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
-                            <a href="javascript:editAndDeleteAdmina()">
-                                edit/delete
-                            </a>
-                            <div id="first_contact_admina">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
-                            <a href="javascript:editAndDeleteAdmina()">
-                                edit/delete
-                            </a>
-                            <div id="second_contact_admina">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-admina">
-                    </div>
-                    <script>
-                        getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-                    </script>
-                </div>
-            </fieldset>
-            <fieldset id="all_contacts_admina_fieldset" class="hide_by_default">
-                <div class="content">
-                    <div class="cards_main_page" id="all_list_of_addresses">
-                        <div class="card" style="background-image: url(images/con3.jpeg)">
-                            <div id="first_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
-                            <div id="second_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
-                            <div id="third_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
-                            <div id="fourth_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-admina-all-contacts">
-                    </div>
-                </div>
-            </fieldset>
-        </fieldset>
-        <!-- Main Screen Normalo -->
-        <fieldset id="mainscreen-normalo" class="hide_by_default">
-            <ul class="nav justify-content-end">
-                <li>
-                    <h1>
-                        Hello, normalo!
-                    </h1>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="show_all_contacts_for_normalo" onclick="" type="button">
-                        Show all contacts
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="show_only_my_contacts_for_normalo" onclick="" type="button">
-                        Show my contacts
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-warning" id="new_contact_for_normalo" onclick="" type="button">
-                        Add new contact
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-normalo" onclick="" type="button">
-                        Log out
-                    </button>
-                </li>
-            </ul>
-            <fieldset id="only_normalo_contacts">
-                <div class="content">
-                    <div class="cards_main_page" id="list_of_addresses_normalo">
-                        <div class="card" style="background-image: url(images/con3.jpeg)">
-                            <a href="javascript:editAndDeleteNormalo()">
-                                edit/delete
-                            </a>
-                            <div id="first_contact_normalo">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
-                            <a href="javascript:editAndDeleteNormalo()">
-                                edit/delete
-                            </a>
-                            <div id="second_contact_normalo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-normalo">
-                    </div>
-                    <script>
-                        getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
-                    </script>
-                </div>
-            </fieldset>
-            <fieldset id="all_contacts_normalo_fieldset" class="hide_by_default">
-                <div class="content">
-                    <div class="cards_main_page" id="all_list_of_addresses_normalo">
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
-                            <div id="second_contact_all_contacts_normalo">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
-                            <div id="third_contact_all_contacts_normalo">
-                            </div>
-                        </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
-                            <div id="fourth_contact_all_contacts_normalo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-normalo-all-contacts">
-                    </div>
-                </div>
-            </fieldset>
-        </fieldset>
-        <fieldset id="addnewaddress-admina" class="hide_by_default">
-            <button class="btn btn-warning" id="go_back_from_add" onclick="" type="button">
-                Go Back
-            </button>
-            <!-- Add new address admina-->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form action="javascript:newContact(document.getElementById('vorname_admina').value,document.getElementById('name_admina').value,document.getElementById('strasse_admina').value,document.getElementById('plz_admina').value,document.getElementById('stadt_admina').value,document.getElementById('land_admina').value);">
-                                <h1>
-                                    Add new address
-                                </h1>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="check-normalo" type="checkbox">
-                                        <label class="form-check-label" for="check">
-                                            as normalo
-                                        </label>
-                                    </input>
-                                </div>
-                                <hr>
-                                    <label class="control-label">
-                                        <label for="Vorname">
-                                            <b>
-                                                Vorname:
-                                            </b>
-                                        </label>
-                                    </label>
-                                    <input id="vorname_admina" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
-                                        <label class="control-label">
-                                            <label for="Name">
-                                                <b>
-                                                    Name:
-                                                </b>
-                                            </label>
-                                        </label>
-                                        <input id="name_admina" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
-                                            <label class="control-label">
-                                                <label for="Straße">
-                                                    <b>
-                                                        Straße:
-                                                    </b>
-                                                </label>
-                                            </label>
-                                            <input id="strasse_admina" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
-                                                <label class="control-label">
-                                                    <label for="PLZ">
-                                                        <b>
-                                                            PLZ:
-                                                        </b>
-                                                    </label>
-                                                </label>
-                                                <input id="plz_admina" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
-                                                    <label class="control-label">
-                                                        <label for="Stadt">
-                                                            <b>
-                                                                Stadt:
-                                                            </b>
-                                                        </label>
-                                                    </label>
-                                                    <input id="stadt_admina" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
-                                                        <label class="control-label">
-                                                            <label for="Land">
-                                                                <b>
-                                                                    Land:
-                                                                </b>
-                                                            </label>
-                                                        </label>
-                                                        <input id="land_admina" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" id="check1" type="checkbox">
-                                                                    <label class="form-check-label" for="check">
-                                                                        Privat
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                            <button class="addbtn" id="new_contact_for_admina_added" onclick="" type="add">
-                                                                Add
-                                                            </button>
-                                                        </input>
-                                                    </input>
-                                                </input>
-                                            </input>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset id="addnewaddress-normalo" class="hide_by_default">
-            <button class="btn btn-warning" id="go_back_from_add-normalo" onclick="" type="button">
-                Go Back
-            </button>
-            <!-- Add new address normalo-->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form action="javascript:newContact(document.getElementById('vorname_normalo').value,document.getElementById('name_normalo').value,document.getElementById('strasse_normalo').value,document.getElementById('plz_normalo').value,document.getElementById('stadt_normalo').value,document.getElementById('land_normalo').value);">
-                                <h1>
-                                    Add new address
-                                </h1>
-                                <hr>
-                                    <label class="control-label">
-                                        <label for="Vorname">
-                                            <b>
-                                                Vorname:
-                                            </b>
-                                        </label>
-                                    </label>
-                                    <input id="vorname_normalo" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
-                                        <label class="control-label">
-                                            <label for="Name">
-                                                <b>
-                                                    Name:
-                                                </b>
-                                            </label>
-                                        </label>
-                                        <input id="name_normalo" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
-                                            <label class="control-label">
-                                                <label for="Straße">
-                                                    <b>
-                                                        Straße:
-                                                    </b>
-                                                </label>
-                                            </label>
-                                            <input id="strasse_normalo" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
-                                                <label class="control-label">
-                                                    <label for="PLZ">
-                                                        <b>
-                                                            PLZ:
-                                                        </b>
-                                                    </label>
-                                                </label>
-                                                <input id="plz_normalo" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
-                                                    <label class="control-label">
-                                                        <label for="Stadt">
-                                                            <b>
-                                                                Stadt:
-                                                            </b>
-                                                        </label>
-                                                    </label>
-                                                    <input id="stadt_normalo" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
-                                                        <label class="control-label">
-                                                            <label for="Land">
-                                                                <b>
-                                                                    Land:
-                                                                </b>
-                                                            </label>
-                                                        </label>
-                                                        <input id="land_normalo" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" id="check1" type="checkbox">
-                                                                    <label class="form-check-label" for="check">
-                                                                        Privat
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                            <button class="addbtn" id="new_contact_for_normalo_added" onclick="" type="add">
-                                                                Add
-                                                            </button>
-                                                        </input>
-                                                    </input>
-                                                </input>
-                                            </input>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset id="edit/delete" class="hide_by_default">
-            <button class="btn btn-warning" id="go_back_from_edit-delete_to_admina" onclick="" type="button">
-                Go Back
-            </button>
-            <!-- Edit / Delete new address admina-->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form>
-                                <h1>
-                                    Edit / Delete address
-                                </h1>
-                                <hr>
-                                    <label for="Vorname">
-                                        <b>
-                                            Vorname:
-                                        </b>
-                                    </label>
-                                    <input id="vorname" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
-                                        <label for="Name">
-                                            <b>
-                                                Name:
-                                            </b>
-                                        </label>
-                                        <input id="name" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
-                                            <label for="Straße">
-                                                <b>
-                                                    Straße:
-                                                </b>
-                                            </label>
-                                            <input id="strasse" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
-                                                <label for="PLZ">
-                                                    <b>
-                                                        PLZ:
-                                                    </b>
-                                                </label>
-                                                <input id="plz" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
-                                                    <label for="Stadt">
-                                                        <b>
-                                                            Stadt:
-                                                        </b>
-                                                    </label>
-                                                    <input id="stadt" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
-                                                        <label for="Land">
-                                                            <b>
-                                                                Land:
-                                                            </b>
-                                                        </label>
-                                                        <input id="land" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" id="check1" type="checkbox">
-                                                                    <label class="form-check-label" for="check">
-                                                                        Privat
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                            <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
-                                                                Update
-                                                            </a>
-                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_admina" onclick="" role="button">
-                                                                Delete
-                                                            </a>
-                                                        </input>
-                                                    </input>
-                                                </input>
-                                            </input>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset id="edit/delete-normalo" class="hide_by_default">
-            <button class="btn btn-warning" id="go_back_from_edit-delete_to_normalo" onclick="" type="button">
-                Go Back
-            </button>
-            <!-- Edit / Delete new address normalo-->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form>
-                                <h1>
-                                    Edit / Delete address
-                                </h1>
-                                <hr>
-                                    <label for="Vorname">
-                                        <b>
-                                            Vorname:
-                                        </b>
-                                    </label>
-                                    <input id="vorname" name="vorname" placeholder="Geben Sie Ihren Vornamen ein" required="" type="text">
-                                        <label for="Name">
-                                            <b>
-                                                Name:
-                                            </b>
-                                        </label>
-                                        <input id="name" name="name" placeholder="Geben Sie Ihren Namen ein" required="" type="text">
-                                            <label for="Straße">
-                                                <b>
-                                                    Straße:
-                                                </b>
-                                            </label>
-                                            <input id="strasse" name="strasse" placeholder="Geben Sie den Namen Ihrer Straße ein" required="" type="text">
-                                                <label for="PLZ">
-                                                    <b>
-                                                        PLZ:
-                                                    </b>
-                                                </label>
-                                                <input id="plz" name="plz" placeholder="Geben Sie Ihre PLZ ein" required="" type="text">
-                                                    <label for="Stadt">
-                                                        <b>
-                                                            Stadt:
-                                                        </b>
-                                                    </label>
-                                                    <input id="stadt" name="stadt" placeholder="Geben Sie Ihre Stadt ein" required="" type="text">
-                                                        <label for="Land">
-                                                            <b>
-                                                                Land:
-                                                            </b>
-                                                        </label>
-                                                        <input id="land" name="land" placeholder="Geben Sie Ihren Land ein" required="" type="text">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" id="check1" type="checkbox">
-                                                                    <label class="form-check-label" for="check">
-                                                                        Privat
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                            <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
-                                                                Update
-                                                            </a>
-                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_normalo" onclick="" role="button">
-                                                                Delete
-                                                            </a>
-                                                        </input>
-                                                    </input>
-                                                </input>
-                                            </input>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
-        </script>
-        <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-        </script>
-        <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
-        </script>
-        <script src="/path/to/bootstrap-switch.js">
-        </script>
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript">
-        </script>
-        <script>
+
+            getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+            getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+
             function getAllContactsForAdmina(){
               document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
               document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
