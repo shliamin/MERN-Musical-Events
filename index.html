@@ -585,38 +585,29 @@
             map.addLayer({'id': 'points','type': 'symbol','source': 'points','layout': {'icon-image': 'pulsing-dot'}});});
           }
 
-          // --------------------------- getContacts---------------//     //should create divs dynamically
+          // getting contacts:
           function getAdminaContacts(){
-            document.getElementById('first_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
-            document.getElementById('second_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
+            document.getElementById('first_contact_admina').innerHTML = `<span class="yellow-black">Vorname:</span>${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse} <br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="green">private</span>`;
+            document.getElementById('second_contact_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse}<br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="orange">public</span>`;
           }
 
           function getNormaloContacts(){
-            document.getElementById('first_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            document.getElementById('second_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('first_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('second_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
           }
 
           function getAllContactsForAdmina(){
-            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
-            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
-            document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse} <br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
+            document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse}<br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
           }
 
           function getAllContactsForNormalo(){
-            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
-            document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse}<br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
           }
-
-          //-----------------------------------------------------//
-
-
-          function getContacts(type, place, name, surname, street, plz, city,country){
-            document.getElementById(place).innerHTML = `Vorname: ${name}, Nachname: ${surname},Strasse: ${street}, PLZ: ${plz}, Stadt: ${city}, Land: ${country} `;
-          }
-
-          //-----------------------------------------
 
           // changing pages on click:
           function switchPage(page1,page2){
@@ -650,7 +641,7 @@
           function createCard(uniqid,name,surname,street,plz,city,country,linkto,wheretoplace){
             var div = document.createElement("div");
             div.className ="card";
-            div.style = "background-image: url(https://source.unsplash.com/random/900x900)";
+            div.style = "background-image: url(https://source.unsplash.com/900x900/?germany)";
             var div2 = document.createElement("div");
             div.id = uniqid;
             div2.innerHTML = `Vorname: ${name}, Nachname: ${surname},Strasse: ${street}, PLZ: ${plz}, Stadt: ${city}, Land: ${country} `;
