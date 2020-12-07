@@ -583,7 +583,7 @@
             map.addLayer({'id': 'points','type': 'symbol','source': 'points','layout': {'icon-image': 'pulsing-dot'}});});
           }
 
-          // --------------------------- getContacts---------------//
+          // --------------------------- getContacts---------------//     //should create divs dynamically
           function getAdminaContacts(){
             document.getElementById('first_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
             document.getElementById('second_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
@@ -608,6 +608,14 @@
           }
 
           //-----------------------------------------------------//
+
+
+          function getContacts(type, place, name, surname, street, plz, city,country){
+            document.getElementById(place).innerHTML = `Vorname: ${name}, Nachname: ${surname},Strasse: ${street}, PLZ: ${plz}, Stadt: ${city}, Land: ${country} `;
+          }
+
+          //-----------------------------------------
+
 
           function switchPage(page1,page2){
             document.getElementById(page1).style.display = 'none';
