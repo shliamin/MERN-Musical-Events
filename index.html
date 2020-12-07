@@ -4,25 +4,26 @@
         <title>
             AdViz
         </title>
-        <link rel="shortcut icon" href="#">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-            <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet"/>
-            <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-                <link href="styles.css" rel="stylesheet"/>
-                <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet"/>
-                <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
-                </script>
-                <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
-                </script>
-                <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet"/>
-                <meta charset="utf-8">
-                    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-                        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="#" rel="shortcut icon">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet"/>
+                <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+                    <link href="styles.css" rel="stylesheet"/>
+                    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet"/>
+                    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+                    </script>
+                    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+                    </script>
+                    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet"/>
+                    <meta charset="utf-8">
+                        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+                            <meta content="width=device-width, initial-scale=1" name="viewport">
+                            </meta>
                         </meta>
                     </meta>
-                </meta>
-            </link>
-        </meta>
+                </link>
+            </meta>
+        </link>
     </head>
     <body>
         <!-- Login -->
@@ -73,22 +74,22 @@
                     </h1>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_all_contacts" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('only_admina_contacts','all_contacts_admina_fieldset')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show-my-contacts-admina" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('all_contacts_admina_fieldset','only_admina_contacts')" type="button">
                         Show my contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="new_contact_for_admina" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('mainscreen-admina','addnewaddress-admina')" type="button">
                         Add new contact
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-admina" onclick="" type="button">
+                    <button class="btn btn-danger" onclick="switchPage('mainscreen-admina','loginform')" type="button">
                         Log out
                     </button>
                 </li>
@@ -96,14 +97,14 @@
             <fieldset id="only_admina_contacts">
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses">
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                        <div class="card">
                             <a href="javascript:editAndDeleteAdmina()">
                                 edit/delete
                             </a>
                             <div id="first_contact_admina">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                        <div class="card">
                             <a href="javascript:editAndDeleteAdmina()">
                                 edit/delete
                             </a>
@@ -118,19 +119,19 @@
             <fieldset class="hide_by_default" id="all_contacts_admina_fieldset">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses">
-                        <div class="card" style="background-image: url(images/con3.jpeg)">
+                        <div class="card">
                             <div id="first_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                        <div class="card">
                             <div id="second_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                        <div class="card">
                             <div id="third_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                        <div class="card">
                             <div id="fourth_contact_all_contacts_admina">
                             </div>
                         </div>
@@ -149,22 +150,22 @@
                     </h1>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_all_contacts_for_normalo" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('only_normalo_contacts','all_contacts_normalo_fieldset')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_only_my_contacts_for_normalo" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('all_contacts_normalo_fieldset','only_normalo_contacts')" type="button">
                         Show my contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="new_contact_for_normalo" onclick="" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('mainscreen-normalo','addnewaddress-normalo')" type="button">
                         Add new contact
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-normalo" onclick="" type="button">
+                    <button class="btn btn-danger" onclick="switchPage('mainscreen-normalo','loginform')" type="button">
                         Log out
                     </button>
                 </li>
@@ -172,14 +173,14 @@
             <fieldset id="only_normalo_contacts">
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses_normalo">
-                        <div class="card" style="background-image: url(images/con3.jpeg)">
+                        <div class="card">
                             <a href="javascript:editAndDeleteNormalo()">
                                 edit/delete
                             </a>
                             <div id="first_contact_normalo">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                        <div class="card">
                             <a href="javascript:editAndDeleteNormalo()">
                                 edit/delete
                             </a>
@@ -194,15 +195,15 @@
             <fieldset class="hide_by_default" id="all_contacts_normalo_fieldset">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses_normalo">
-                        <div class="card" style="background-image: url(images/con4.jpeg)">
+                        <div class="card">
                             <div id="second_contact_all_contacts_normalo">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con1.jpeg)">
+                        <div class="card">
                             <div id="third_contact_all_contacts_normalo">
                             </div>
                         </div>
-                        <div class="card" style="background-image: url(images/con2.jpeg)">
+                        <div class="card">
                             <div id="fourth_contact_all_contacts_normalo">
                             </div>
                         </div>
@@ -213,7 +214,7 @@
             </fieldset>
         </fieldset>
         <fieldset class="hide_by_default" id="addnewaddress-admina">
-            <button class="btn btn-warning" id="go_back_from_add" onclick="" type="button">
+            <button class="btn btn-warning" onclick="switchPage('addnewaddress-admina','mainscreen-admina')" type="button">
                 Go Back
             </button>
             <!-- Add new address admina-->
@@ -221,7 +222,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xs-12 col-md-10 col-lg-6">
                         <div class="input_form">
-                            <form action="javascript:newContact(document.getElementById('vorname_admina').value,document.getElementById('name_admina').value,document.getElementById('strasse_admina').value,document.getElementById('plz_admina').value,document.getElementById('stadt_admina').value,document.getElementById('land_admina').value);">
+                            <form action="javascript:Contact(document.getElementById('vorname_admina').value,document.getElementById('name_admina').value,document.getElementById('strasse_admina').value,document.getElementById('plz_admina').value,document.getElementById('stadt_admina').value,document.getElementById('land_admina').value);">
                                 <h1>
                                     Add new address
                                 </h1>
@@ -288,7 +289,7 @@
                                                                     </label>
                                                                 </input>
                                                             </div>
-                                                            <button class="addbtn" id="new_contact_for_admina_added" onclick="" type="add">
+                                                            <button class="addbtn" onclick="switchPage('addnewaddress-admina','mainscreen-admina')" type="add">
                                                                 Add
                                                             </button>
                                                         </input>
@@ -305,7 +306,7 @@
             </div>
         </fieldset>
         <fieldset class="hide_by_default" id="addnewaddress-normalo">
-            <button class="btn btn-warning" id="go_back_from_add-normalo" onclick="" type="button">
+            <button class="btn btn-warning" onclick="switchPage('addnewaddress-normalo','mainscreen-normalo')" type="button">
                 Go Back
             </button>
             <!-- Add new address normalo-->
@@ -313,7 +314,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xs-12 col-md-10 col-lg-6">
                         <div class="input_form">
-                            <form action="javascript:newContact(document.getElementById('vorname_normalo').value,document.getElementById('name_normalo').value,document.getElementById('strasse_normalo').value,document.getElementById('plz_normalo').value,document.getElementById('stadt_normalo').value,document.getElementById('land_normalo').value);">
+                            <form action="javascript:Contact(document.getElementById('vorname_normalo').value,document.getElementById('name_normalo').value,document.getElementById('strasse_normalo').value,document.getElementById('plz_normalo').value,document.getElementById('stadt_normalo').value,document.getElementById('land_normalo').value);">
                                 <h1>
                                     Add new address
                                 </h1>
@@ -373,7 +374,7 @@
                                                                     </label>
                                                                 </input>
                                                             </div>
-                                                            <button class="addbtn" id="new_contact_for_normalo_added" onclick="" type="add">
+                                                            <button class="addbtn" onclick="switchPage('addnewaddress-normalo','mainscreen-normalo')" type="add">
                                                                 Add
                                                             </button>
                                                         </input>
@@ -390,7 +391,7 @@
             </div>
         </fieldset>
         <fieldset class="hide_by_default" id="edit/delete">
-            <button class="btn btn-warning" id="go_back_from_edit-delete_to_admina" onclick="" type="button">
+            <button class="btn btn-warning" onclick="switchPage('edit/delete','mainscreen-admina')" type="button">
                 Go Back
             </button>
             <!-- Edit / Delete new address admina-->
@@ -449,7 +450,7 @@
                                                             <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
                                                                 Update
                                                             </a>
-                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_admina" onclick="" role="button">
+                                                            <a aria-pressed="true" class="btn btn-danger" href="#" onclick="switchPage('edit/delete','mainscreen-admina')" role="button">
                                                                 Delete
                                                             </a>
                                                         </input>
@@ -466,7 +467,7 @@
             </div>
         </fieldset>
         <fieldset class="hide_by_default" id="edit/delete-normalo">
-            <button class="btn btn-warning" id="go_back_from_edit-delete_to_normalo" onclick="" type="button">
+            <button class="btn btn-warning" onclick="switchPage('edit/delete-normalo','mainscreen-normalo')" type="button">
                 Go Back
             </button>
             <!-- Edit / Delete new address normalo-->
@@ -525,7 +526,7 @@
                                                             <a aria-pressed="true" class="btn btn-warning" href="#" role="button">
                                                                 Update
                                                             </a>
-                                                            <a aria-pressed="true" class="btn btn-danger" href="#" id="delete_contact_normalo" onclick="" role="button">
+                                                            <a aria-pressed="true" class="btn btn-danger" href="#" onclick="switchPage('edit/delete-normalo','mainscreen-normalo')" role="button">
                                                                 Delete
                                                             </a>
                                                         </input>
@@ -548,389 +549,142 @@
         <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
         </script>
         <script>
-            function Cred(username, password ) {
-      this.username = username;
-      this.password = password;
-    }
-    function Contact(vorname, nachname, strasse, plz, stadt, land){
-      this.vorname = vorname;
-      this.nachname = nachname;
-      this.strasse = strasse;
-      this.plz = plz;
-      this.stadt = stadt;
-      this.land = land;
-    }
 
-    function newContact(vorname, nachname, strasse, plz, stadt, land){
-      var contact = new Contact(vorname, nachname, strasse, plz, stadt, land);
-      console.log(contact);
-    }
-
-    function removeElement(elementId) {
-        var element = document.getElementById(elementId);
-        element.parentNode.removeChild(element);
-    }
-
-      var admina = new Cred("admina", "admina");
-      admina.contactPrivateX = 13.4;
-      admina.contactPrivateY = 52.5;
-      admina.contactPublicX = 13.45;
-      admina.contactPublicY = 52.5;
-      admina.createCreds = "true";
-      admina.showCreds = "true";
-      admina.editCreds = "true";
-      admina.vorname = "admina";
-      admina.nachname = "admina";
-      admina.strasse = "Stralsunder Strasse";
-      admina.plz = "13355";
-      admina.stadt = "Berlin";
-      admina.land = "Deutschland";
-      var normalo = new Cred("normalo", "normalo");
-      normalo.contactPrivateX = 13.4;
-      normalo.contactPrivateY = 52.51;
-      normalo.contactPublicX = 13.45;
-      normalo.contactPublicY = 52.51;
-      normalo.createCreds = "false";
-      normalo.showCreds = "false";
-      normalo.editCreds = "false";
-      normalo.vorname = "normalo";
-      normalo.nachname = "normalo";
-      normalo.strasse = "Warschauer Strasse";
-      normalo.plz = "10243";
-      normalo.stadt = "Berlin";
-
-
-
-
-
-      function getAdminaContacts(){
-        document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
-        document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
-      }
-
-
-       function getNormaloContacts(){
-        document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
-        document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
-      }
-
-
-      function getMap(param,privX1,privY1,publX1,publY1,privX2,privY2,publX2,publY2){
-          mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
-          var map = new mapboxgl.Map({
-          container: `${param}`,
-          style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-          center: [13.43,52.50], // starting position [lng, lat]
-          zoom: 11.5 // starting zoom
-          });
-          var size = 100;
-
-          // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
-          // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
-          var pulsingDot = {
-          width: size,
-          height: size,
-          data: new Uint8Array(size * size * 4),
-
-          // get rendering context for the map canvas when layer is added to the map
-          onAdd: function () {
-          var canvas = document.createElement('canvas');
-          canvas.width = this.width;
-          canvas.height = this.height;
-          this.context = canvas.getContext('2d');
-          },
-
-          // called once before every frame where the icon will be used
-          render: function () {
-          var duration = 1000;
-          var t = (performance.now() % duration) / duration;
-
-          var radius = (size / 2) * 0.3;
-          var outerRadius = (size / 2) * 1 * t + radius;
-          var context = this.context;
-
-          // draw outer circle
-          context.clearRect(0, 0, this.width, this.height);
-          context.beginPath();
-          context.arc(
-          this.width / 2,
-          this.height / 2,
-          outerRadius,
-          0,
-          Math.PI * 2
-          );
-          context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
-          context.fill();
-
-          // draw inner circle
-          context.beginPath();
-          context.arc(
-          this.width / 2,
-          this.height / 2,
-          radius,
-          0,
-          Math.PI * 2
-          );
-          context.fillStyle = 'rgba(255, 100, 100, 1)';
-          context.strokeStyle = 'white';
-          context.lineWidth = 2 + 4 * (1 - t);
-          context.fill();
-          context.stroke();
-
-          // update this image's data with data from the canvas
-          this.data = context.getImageData(
-          0,
-          0,
-          this.width,
-          this.height
-          ).data;
-
-          // continuously repaint the map, resulting in the smooth animation of the dot
-          map.triggerRepaint();
-
-          // return `true` to let the map know that the image was updated
-          return true;
+          function Cred(username,password,priX,priY,pubX,pubY,vorname,nachname,strasse,plz,stadt,land) {
+            this.username = username;
+            this.password = password;
+            this.contactPrivateX = priX;
+            this.contactPrivateY = priY;
+            this.contactPublicX = pubX;
+            this.contactPublicY = pubY;
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.strasse = strasse;
+            this.plz = plz;
+            this.stadt = stadt;
+            this.land = land;
           }
-          };
 
-          map.on('load', function () {
-          map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+          function getMap(param,privX1,privY1,publX1,publY1,privX2,privY2,publX2,publY2){
+            mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+            var map = new mapboxgl.Map({container:`${param}`,style:'mapbox://styles/mapbox/streets-v11',center:[13.43,52.50],zoom:11.5});
+            var size = 100;
+            var pulsingDot = {
+              width: size,
+              height: size,
+              data: new Uint8Array(size * size * 4),
+            onAdd: function () {var canvas = document.createElement('canvas');canvas.width = this.width;canvas.height = this.height;this.context = canvas.getContext('2d');},
+            render: function () {var duration = 1000;var t = (performance.now() % duration) / duration;var radius = (size / 2) * 0.3;var outerRadius = (size / 2) * 1 * t + radius;var context = this.context;context.clearRect(0, 0, this.width, this.height);context.beginPath();context.arc(this.width / 2,this.height / 2,outerRadius,0,Math.PI * 2);context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';context.fill();context.beginPath();context.arc(this.width / 2,this.height / 2,radius,0,Math.PI * 2);context.fillStyle = 'rgba(255, 100, 100, 1)';context.strokeStyle = 'white';context.lineWidth = 2 + 4 * (1 - t);context.fill();context.stroke();this.data = context.getImageData(0,0,this.width,this.height).data;map.triggerRepaint();return true;}
+            };
+            map.on('load', function () {map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });map.addSource('points', {'type': 'geojson','data': {'type': 'FeatureCollection','features': [{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${privX1}`,`${privY1}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${publX1}`,`${publY1}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${privX2}`,`${privY2}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${publX2}`,`${publY2}`]}}]}});
+            map.addLayer({'id': 'points','type': 'symbol','source': 'points','layout': {'icon-image': 'pulsing-dot'}});});
+          }
 
-          map.addSource('points', {
-          'type': 'geojson',
-          'data': {
-          'type': 'FeatureCollection',
-          'features': [
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [`${privX1}`,`${privY1}`]
+          function Contact(vorname, nachname, strasse, plz, stadt, land){
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.strasse = strasse;
+            this.plz = plz;
+            this.stadt = stadt;
+            this.land = land;
           }
-          },
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [`${publX1}`,`${publY1}`]
-          }
-          },
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [`${privX2}`,`${privY2}`]
-          }
-          },
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [`${publX2}`,`${publY2}`]
-          }
-          }
-          ]
-          }
-          });
 
-          map.addLayer({
-          'id': 'points',
-          'type': 'symbol',
-          'source': 'points',
-          'layout': {
-          'icon-image': 'pulsing-dot'
+          function removeElement(elementId) {
+            document.getElementById(elementId).parentNode.removeChild(document.getElementById(elementId));
           }
-          });
-          });
-    }
 
-            getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-            getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+          function getAdminaContacts(){
+            document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
+            document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+          }
 
-            function getAllContactsForAdmina(){
-              document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+          function getNormaloContacts(){
+            document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
+            document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+          }
+
+          function getAllContactsForAdmina(){
+            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+          }
+
+          function getAllContactsForNormalo(){
+            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+          }
+
+          function savetomain(){
+            if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
+            document.getElementById('addnewaddress-admina').style.display = 'none';
+            document.getElementById('mainscreen-admina').style.display = 'block';
             }
-            getAllContactsForAdmina();
-            getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-
-            function getAllContactsForNormalo(){
-              document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
+            document.getElementById('addnewaddress-normalo').style.display = 'none';
+            document.getElementById('mainscreen-normalo').style.display = 'block';
             }
-            getAllContactsForNormalo();
-            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
+          }
 
-            document.getElementById('new_contact_for_admina_added').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('addnewaddress-admina').style.display = 'none';
-          var div = document.createElement("div");
-          div.className ="card";
-          div.style = "background-image: url(https://source.unsplash.com/random/900x900)";
-          var div2 = document.createElement("div");
-          div.id = `${document.getElementById('vorname_admina').value}`;
-          div2.innerHTML = `Vorname: ${document.getElementById('vorname_admina').value}, Nachname: ${document.getElementById('name_admina').value},Strasse: ${document.getElementById('strasse_admina').value}, PLZ: ${document.getElementById('plz_admina').value}, Stadt: ${document.getElementById('stadt_admina').value}, Land: ${document.getElementById('land_admina').value} `;
-              var a = document.createElement("a");
-          a.innerHTML = "edit/delete";
-          a.href = "javascript:editAndDeleteAdmina()";
-          div2.appendChild(a);
-          div.appendChild(div2);
-          var element = document.getElementById("all_list_of_addresses");
-          element.appendChild(div);
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
-    });
+          function editAndDeleteAdmina(){
+            document.getElementById('mainscreen-admina').style.display = 'none';
+            document.getElementById('edit/delete').style.display = 'block';
+          }
 
-      document.getElementById('new_contact_for_normalo_added').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('addnewaddress-normalo').style.display = 'none';
-         var div = document.createElement("div");
-          div.className ="card";
-          div.style = "background-image: url(https://source.unsplash.com/random/900x900)";
-          var div2 = document.createElement("div");
-          div.id = `${document.getElementById('vorname_normalo').value}`;
-          div2.innerHTML = `Vorname: ${document.getElementById('vorname_normalo').value}, Nachname: ${document.getElementById('name_normalo').value},Strasse: ${document.getElementById('strasse_normalo').value}, PLZ: ${document.getElementById('plz_normalo').value}, Stadt: ${document.getElementById('stadt_normalo').value}, Land: ${document.getElementById('land_normalo').value} `;
-          var a = document.createElement("a");
-          a.innerHTML = "edit/delete";
-          a.href = "javascript:editAndDeleteNormalo()";
-          div2.appendChild(a);
-          div.appendChild(div2);
-          var element = document.getElementById("all_list_of_addresses_normalo");
-          element.appendChild(div);
+          function editAndDeleteNormalo(){
+            document.getElementById('mainscreen-normalo').style.display = 'none';
+            document.getElementById('edit/delete-normalo').style.display = 'block';
+          }
 
-      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
-    });
+          function switchPage(page1,page2){
+            document.getElementById(page1).style.display = 'none';
+            document.getElementById(page2).style.display = 'block';
+          }
 
-      document.getElementById('new_contact_for_admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('mainscreen-admina').style.display = 'none';
-      }).call(document.getElementById('addnewaddress-admina').style.display = 'block', event);
-    });
+          function login(){
+            if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
+              switchPage('loginform','mainscreen-admina');
+            }
+           else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
+              switchPage('loginform','mainscreen-normalo');
+          }
+          else{
+            alert("The entered username and password is wrong. Please enter the correct one.");
+            }
+          }
 
-      document.getElementById('new_contact_for_normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('mainscreen-normalo').style.display = 'none';
-      }).call(document.getElementById('addnewaddress-normalo').style.display = 'block', event);
-    });
+          function createCard(uniqid,name,surname,street,plz,city,country,linkto,wheretoplace){
+            var div = document.createElement("div");
+            div.className ="card";
+            div.style = "background-image: url(https://source.unsplash.com/random/900x900)";
+            var div2 = document.createElement("div");
+            div.id = uniqid;
+            div2.innerHTML = `Vorname: ${name}, Nachname: ${surname},Strasse: ${street}, PLZ: ${plz}, Stadt: ${city}, Land: ${country} `;
+            var a = document.createElement("a");
+            a.innerHTML = "edit/delete";
+            a.href = linkto;
+            div2.appendChild(a);
+            div.appendChild(div2);
+            var element = document.getElementById(wheretoplace);
+            element.appendChild(div);
+          }
+
+          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
+          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
+
+          getAllContactsForAdmina();
+          getAllContactsForNormalo();
           getAdminaContacts();
           getNormaloContacts();
 
-      function login(){
-        if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
-          document.getElementById('loginform').style.display = 'none';
-          document.getElementById('mainscreen-admina').style.display = 'block';
-        }
-       else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
-          document.getElementById('loginform').style.display = 'none';
-          document.getElementById('mainscreen-normalo').style.display = 'block';
-      }
-      else{
-        alert("The entered username and password is wrong. Please enter the correct one.");
-      }
-      }
+          getMap("map-admina",admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+          getMap("map-normalo",normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+          getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+          getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
 
-      function savetomain(){
-        if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
-        document.getElementById('addnewaddress-admina').style.display = 'none';
-        document.getElementById('mainscreen-admina').style.display = 'block';
-        }
-        else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
-        document.getElementById('addnewaddress-normalo').style.display = 'none';
-        document.getElementById('mainscreen-normalo').style.display = 'block';
-        }
-      }
+          // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:editAndDeleteAdmina()","all_list_of_addresses");
 
-      document.getElementById('logout-admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('mainscreen-admina').style.display = 'none';
-      }).call(document.getElementById('loginform').style.display = 'block', event);
-    });
-
-      document.getElementById('logout-normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('mainscreen-normalo').style.display = 'none';
-      }).call(document.getElementById('loginform').style.display = 'block', event);
-    });
-
-      document.getElementById('go_back_from_add').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('addnewaddress-admina').style.display = 'none';
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event); //TODO
-    });
-
-      document.getElementById('go_back_from_add-normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('addnewaddress-normalo').style.display = 'none';
-      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
-    });
-
-      document.getElementById('go_back_from_edit-delete_to_admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('edit/delete').style.display = 'none';
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
-    });
-
-      document.getElementById('go_back_from_edit-delete_to_normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('edit/delete-normalo').style.display = 'none';
-      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
-    });
-
-      document.getElementById('show-my-contacts-admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('mainscreen-admina').style.display = 'block';
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
-    });
-
-      document.getElementById('show_all_contacts_for_normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('only_normalo_contacts').style.display = 'none';
-      }).call(document.getElementById('all_contacts_normalo_fieldset').style.display = 'block', event);
-    });
-
-      document.getElementById('show_only_my_contacts_for_normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('all_contacts_normalo_fieldset').style.display = 'none';
-      }).call(document.getElementById('only_normalo_contacts').style.display = 'block', event);
-    });
-
-      document.getElementById('show_all_contacts').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('only_admina_contacts').style.display = 'none';
-      }).call(document.getElementById('all_contacts_admina_fieldset').style.display = 'block', event);
-    });
-
-      document.getElementById('show-my-contacts-admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('all_contacts_admina_fieldset').style.display = 'none';
-      }).call(document.getElementById('only_admina_contacts').style.display = 'block', event);
-    });
-
-      document.getElementById('delete_contact_admina').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('edit/delete').style.display = 'none';
-          removeElement(document.getElementById('vorname_admina').value);
-      }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
-    });
-
-      document.getElementById('delete_contact_normalo').addEventListener("click", function(event) {
-      (function(event) {
-          document.getElementById('edit/delete-normalo').style.display = 'none';
-          removeElement(document.getElementById('vorname_normalo').value);
-      }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
-    });
-
-      function editAndDeleteAdmina(){
-        document.getElementById('mainscreen-admina').style.display = 'none';
-        document.getElementById('edit/delete').style.display = 'block';
-      }
-
-      function editAndDeleteNormalo(){
-        document.getElementById('mainscreen-normalo').style.display = 'none';
-        document.getElementById('edit/delete-normalo').style.display = 'block';
-      }
         </script>
     </body>
 </html>
