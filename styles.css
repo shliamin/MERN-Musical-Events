@@ -7,10 +7,8 @@ body {
   box-sizing: border-box;
 }
 
-/* Add padding to containers */
 .container {
   padding: 16px;
-  /*background-color: white;*/
   background-color: #EFF2F5;
 }
 
@@ -35,7 +33,6 @@ body {
   border-radius: 8px;
 }
 
-/* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
   padding: 10px;
@@ -47,7 +44,6 @@ input[type=text], input[type=password] {
 }
 
 .form-check {
-  /*padding: 10px;*/
   margin: 6px 0 22px 0;
 }
 
@@ -56,13 +52,11 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
-/* Overwrite default styles of hr */
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
 
-/* Set a style for the submit button */
 .loginbtn {
   background-color: #156FE4;
   color: white;
@@ -127,12 +121,10 @@ hr {
   opacity: 1;
 }
 
-/* Add a blue text color to links */
 a {
   color: dodgerblue;
 }
 
-/* Set a grey background color and center the text of the "sign in" section */
 .signin {
   background-color: #f1f1f1;
   text-align: center;
@@ -151,6 +143,14 @@ a {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.map-size{
+  width: 700px;
+}
+
+.btn.btn-warning.btn-danger{
+  margin: 5px;
 }
 
 .card-category:hover {
@@ -176,7 +176,6 @@ a {
   padding: 16px;
   flex-grow: 1;
 }
-
 
 .card{
   background-size: cover;
@@ -241,7 +240,6 @@ a {
   }
 }
 
-
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .cards {
@@ -291,7 +289,6 @@ a {
 }
 
 .footer {
-  /*position: fixed;*/
   left: 0;
   bottom: 0;
   width: 100%;
@@ -299,7 +296,6 @@ a {
   margin-top: 50px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
-  /*border-radius: 8px;*/
   color: black;
   text-align: center;
 }

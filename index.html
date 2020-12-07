@@ -308,10 +308,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-admina" style="width: 700px;">
+                    <div id="map-admina" class= "map-size">
                     </div>
                     <script>
-            getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+                        getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
                     </script>
                 </div>
             </fieldset>
@@ -335,18 +335,8 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-admina-all-contacts" style="width: 700px;">
+                    <div id="map-admina-all-contacts" class="map-size">
                     </div>
-                    <script>
-                        function getAllContactsForAdmina(){
-              document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            }
-            getAllContactsForAdmina();
-            getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-                    </script>
                 </div>
             </fieldset>
         </fieldset>
@@ -397,10 +387,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-normalo" style="width: 700px;">
+                    <div id="map-normalo" class="map-size">
                     </div>
                     <script>
-            getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+                        getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
                     </script>
                 </div>
             </fieldset>
@@ -420,18 +410,8 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-normalo-all-contacts" style="width: 700px;">
+                    <div id="map-normalo-all-contacts" class="map-size">
                     </div>
-                    <script>
-                        function getAllContactsForNormalo(){
-
-              document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-              document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            }
-            getAllContactsForNormalo();
-            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
-                    </script>
                 </div>
             </fieldset>
         </fieldset>
@@ -775,10 +755,26 @@
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript">
         </script>
         <script>
-      document.getElementById('new_contact_for_admina_added').addEventListener("click", function(event) {
+            function getAllContactsForAdmina(){
+              document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+              document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+              document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+              document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            }
+            getAllContactsForAdmina();
+            getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+
+            function getAllContactsForNormalo(){
+              document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+              document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+              document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            }
+            getAllContactsForNormalo();
+            getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
+
+            document.getElementById('new_contact_for_admina_added').addEventListener("click", function(event) {
       (function(event) {
           document.getElementById('addnewaddress-admina').style.display = 'none';
-
           var div = document.createElement("div");
           div.className ="card";
           div.style = "background-image: url(https://source.unsplash.com/random/900x900)";
@@ -794,7 +790,6 @@
           element.appendChild(div);
       }).call(document.getElementById('mainscreen-admina').style.display = 'block', event);
     });
-
 
       document.getElementById('new_contact_for_normalo_added').addEventListener("click", function(event) {
       (function(event) {
@@ -934,7 +929,6 @@
           removeElement(document.getElementById('vorname_normalo').value);
       }).call(document.getElementById('mainscreen-normalo').style.display = 'block', event);
     });
-
 
       function editAndDeleteAdmina(){
         document.getElementById('mainscreen-admina').style.display = 'none';
