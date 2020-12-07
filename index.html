@@ -98,14 +98,14 @@
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses">
                         <div class="card">
-                            <a href="javascript:editAndDeleteAdmina()">
+                            <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
                                 edit/delete
                             </a>
                             <div id="first_contact_admina">
                             </div>
                         </div>
                         <div class="card">
-                            <a href="javascript:editAndDeleteAdmina()">
+                            <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
                                 edit/delete
                             </a>
                             <div id="second_contact_admina">
@@ -174,14 +174,14 @@
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses_normalo">
                         <div class="card">
-                            <a href="javascript:editAndDeleteNormalo()">
+                            <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 edit/delete
                             </a>
                             <div id="first_contact_normalo">
                             </div>
                         </div>
                         <div class="card">
-                            <a href="javascript:editAndDeleteNormalo()">
+                            <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 edit/delete
                             </a>
                             <div id="second_contact_normalo">
@@ -565,6 +565,9 @@
             this.land = land;
           }
 
+          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
+          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
+
           function getMap(param,privX1,privY1,publX1,publY1,privX2,privY2,publX2,publY2){
             mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
             var map = new mapboxgl.Map({container:`${param}`,style:'mapbox://styles/mapbox/streets-v11',center:[13.43,52.50],zoom:11.5});
@@ -580,62 +583,31 @@
             map.addLayer({'id': 'points','type': 'symbol','source': 'points','layout': {'icon-image': 'pulsing-dot'}});});
           }
 
-          function Contact(vorname, nachname, strasse, plz, stadt, land){
-            this.vorname = vorname;
-            this.nachname = nachname;
-            this.strasse = strasse;
-            this.plz = plz;
-            this.stadt = stadt;
-            this.land = land;
-          }
-
-          function removeElement(elementId) {
-            document.getElementById(elementId).parentNode.removeChild(document.getElementById(elementId));
-          }
-
+          // --------------------------- getContacts---------------//
           function getAdminaContacts(){
-            document.getElementById('first_contact_admina').innerHTML = `Private Admina X: ${admina.contactPrivateX}, Private Admina Y: ${admina.contactPrivateY}`;
-            document.getElementById('second_contact_admina').innerHTML = `Public Admina X: ${admina.contactPublicX}, Public Admina Y: ${admina.contactPublicY}`;
+            document.getElementById('first_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
+            document.getElementById('second_contact_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
           }
 
           function getNormaloContacts(){
-            document.getElementById('first_contact_normalo').innerHTML = `Private Normalo X: ${normalo.contactPrivateX}, Private Normalo Y: ${normalo.contactPrivateY}`;
-            document.getElementById('second_contact_normalo').innerHTML = `Public Normalo X: ${normalo.contactPublicX}, Public Normalo Y: ${normalo.contactPublicY}`;
+            document.getElementById('first_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('second_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
           }
 
           function getAllContactsForAdmina(){
-            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
-            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
+            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
             document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
             document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
           }
 
           function getAllContactsForNormalo(){
-            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
+            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${admina.vorname}, Nachname: ${admina.nachname},Strasse: ${admina.strasse}, PLZ: ${admina.plz}, Stadt: ${admina.stadt}, Land: ${admina.land}`;
             document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
             document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}, Nachname: ${normalo.nachname},Strasse: ${normalo.strasse}, PLZ: ${normalo.plz}, Stadt: ${normalo.stadt}, Land: ${normalo.land}`;
           }
 
-          function savetomain(){
-            if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
-            document.getElementById('addnewaddress-admina').style.display = 'none';
-            document.getElementById('mainscreen-admina').style.display = 'block';
-            }
-            else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
-            document.getElementById('addnewaddress-normalo').style.display = 'none';
-            document.getElementById('mainscreen-normalo').style.display = 'block';
-            }
-          }
-
-          function editAndDeleteAdmina(){
-            document.getElementById('mainscreen-admina').style.display = 'none';
-            document.getElementById('edit/delete').style.display = 'block';
-          }
-
-          function editAndDeleteNormalo(){
-            document.getElementById('mainscreen-normalo').style.display = 'none';
-            document.getElementById('edit/delete-normalo').style.display = 'block';
-          }
+          //-----------------------------------------------------//
 
           function switchPage(page1,page2){
             document.getElementById(page1).style.display = 'none';
@@ -645,14 +617,24 @@
           function login(){
             if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
               switchPage('loginform','mainscreen-admina');
+              getAllContactsForAdmina();
+              getAdminaContacts();
+              getMap("map-admina",admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
+              getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
             }
            else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
               switchPage('loginform','mainscreen-normalo');
+              getAllContactsForNormalo();
+              getNormaloContacts();
+              getMap("map-normalo",normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
+              getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
           }
           else{
             alert("The entered username and password is wrong. Please enter the correct one.");
             }
           }
+
+          // TO DO:
 
           function createCard(uniqid,name,surname,street,plz,city,country,linkto,wheretoplace){
             var div = document.createElement("div");
@@ -670,20 +652,41 @@
             element.appendChild(div);
           }
 
-          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
-          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
+          function deleteCard(uniqid){
+            document.getElementById(uniqid).parentNode.removeChild(document.getElementById(uniqid));
+          }
 
-          getAllContactsForAdmina();
-          getAllContactsForNormalo();
-          getAdminaContacts();
-          getNormaloContacts();
+          function Contact(vorname, nachname, strasse, plz, stadt, land){
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.strasse = strasse;
+            this.plz = plz;
+            this.stadt = stadt;
+            this.land = land;
+            this.uniqid = 0;
+          }
 
-          getMap("map-admina",admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-          getMap("map-normalo",normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
-          getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-          getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
+          function deleteContact(uniqid){
 
-          // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:editAndDeleteAdmina()","all_list_of_addresses");
+          }
+
+          function editCard(uniqid){
+
+          }
+
+          function editContact(uniqid, lat, long){
+
+          }
+
+          function addContactToTheMap(uniqid,lat,long){
+
+          }
+
+          function deleteContactFromTheMap(uniqid){
+
+          }
+
+          // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:switchPage()","all_list_of_addresses");
 
         </script>
     </body>
