@@ -44,8 +44,7 @@
     }
 
     function removeElement(elementId) {
-        // Removes an element from the document
-        var element = document.getElementById(elementId); //name of
+        var element = document.getElementById(elementId);
         element.parentNode.removeChild(element);
     }
 
@@ -262,7 +261,7 @@
             </div>
         </fieldset>
         <!-- Main Screen Admina -->
-        <fieldset id="mainscreen-admina" style="display: none">
+        <fieldset id="mainscreen-admina" class="hide_by_default">
             <ul class="nav justify-content-end">
                 <li>
                     <h1>
@@ -270,27 +269,27 @@
                     </h1>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_all_contacts" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="show_all_contacts" onclick="" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show-my-contacts-admina" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="show-my-contacts-admina" onclick="" type="button">
                         Show my contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="new_contact_for_admina" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="new_contact_for_admina" onclick="" type="button">
                         Add new contact
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-admina" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-danger" id="logout-admina" onclick="" type="button">
                         Log out
                     </button>
                 </li>
             </ul>
-            <fieldset id="only_admina_contacts" style="display:block">
+            <fieldset id="only_admina_contacts">
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses">
                         <div class="card" style="background-image: url(images/con1.jpeg)">
@@ -308,14 +307,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-admina" class= "map-size">
+                    <div class="map-size" id="map-admina">
                     </div>
                     <script>
                         getMap("map-admina", admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
                     </script>
                 </div>
             </fieldset>
-            <fieldset id="all_contacts_admina_fieldset" style="display:none">
+            <fieldset id="all_contacts_admina_fieldset" class="hide_by_default">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses">
                         <div class="card" style="background-image: url(images/con3.jpeg)">
@@ -335,13 +334,13 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-admina-all-contacts" class="map-size">
+                    <div class="map-size" id="map-admina-all-contacts">
                     </div>
                 </div>
             </fieldset>
         </fieldset>
         <!-- Main Screen Normalo -->
-        <fieldset id="mainscreen-normalo" style="display: none">
+        <fieldset id="mainscreen-normalo" class="hide_by_default">
             <ul class="nav justify-content-end">
                 <li>
                     <h1>
@@ -349,27 +348,27 @@
                     </h1>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_all_contacts_for_normalo" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="show_all_contacts_for_normalo" onclick="" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="show_only_my_contacts_for_normalo" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="show_only_my_contacts_for_normalo" onclick="" type="button">
                         Show my contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" id="new_contact_for_normalo" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-warning" id="new_contact_for_normalo" onclick="" type="button">
                         Add new contact
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" id="logout-normalo" onclick="" style="margin: 5px" type="button">
+                    <button class="btn btn-danger" id="logout-normalo" onclick="" type="button">
                         Log out
                     </button>
                 </li>
             </ul>
-            <fieldset id="only_normalo_contacts" style="display:block">
+            <fieldset id="only_normalo_contacts">
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses_normalo">
                         <div class="card" style="background-image: url(images/con3.jpeg)">
@@ -387,14 +386,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-normalo" class="map-size">
+                    <div class="map-size" id="map-normalo">
                     </div>
                     <script>
                         getMap("map-normalo", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
                     </script>
                 </div>
             </fieldset>
-            <fieldset id="all_contacts_normalo_fieldset" style="display:none">
+            <fieldset id="all_contacts_normalo_fieldset" class="hide_by_default">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses_normalo">
                         <div class="card" style="background-image: url(images/con4.jpeg)">
@@ -410,12 +409,12 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map-normalo-all-contacts" class="map-size">
+                    <div class="map-size" id="map-normalo-all-contacts">
                     </div>
                 </div>
             </fieldset>
         </fieldset>
-        <fieldset id="addnewaddress-admina" style="display: none">
+        <fieldset id="addnewaddress-admina" class="hide_by_default">
             <button class="btn btn-warning" id="go_back_from_add" onclick="" type="button">
                 Go Back
             </button>
@@ -507,7 +506,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset id="addnewaddress-normalo" style="display: none">
+        <fieldset id="addnewaddress-normalo" class="hide_by_default">
             <button class="btn btn-warning" id="go_back_from_add-normalo" onclick="" type="button">
                 Go Back
             </button>
@@ -592,7 +591,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset id="edit/delete" style="display: none">
+        <fieldset id="edit/delete" class="hide_by_default">
             <button class="btn btn-warning" id="go_back_from_edit-delete_to_admina" onclick="" type="button">
                 Go Back
             </button>
@@ -668,7 +667,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset id="edit/delete-normalo" style="display: none">
+        <fieldset id="edit/delete-normalo" class="hide_by_default">
             <button class="btn btn-warning" id="go_back_from_edit-delete_to_normalo" onclick="" type="button">
                 Go Back
             </button>

@@ -7,6 +7,10 @@ body {
   box-sizing: border-box;
 }
 
+.hide_by_default{
+  display: none;
+}
+
 .container {
   padding: 16px;
   background-color: #EFF2F5;
@@ -71,6 +75,14 @@ hr {
 
 .loginbtn:hover {
   opacity: 1;
+}
+
+.btn.btn-warning{
+  margin: 5px;
+}
+
+.btn.btn-danger{
+  margin: 5px;
 }
 
 .addbtn {
