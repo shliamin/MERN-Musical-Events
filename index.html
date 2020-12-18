@@ -102,20 +102,24 @@
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses">
                         <div class="card" id='admina_card_1'>
-                            <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
+                            <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                            </a>
+                            <a href="javascript:deleteCard('admina_card_1')">
+                              <i class="far fa-trash-alt fa-2x" id="delete_icon">
                                 </i>
                             </a>
                             <div id="first_contact_admina">
                             </div>
                         </div>
                         <div class="card" id='admina_card_2'>
-                            <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
+                            <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                            </a>
+                            <a href="javascript:deleteCard('admina_card_2')">
+                              <i class="far fa-trash-alt fa-2x" id="delete_icon">
                                 </i>
                             </a>
                             <div id="second_contact_admina">
@@ -187,7 +191,9 @@
                             <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                            </a>
+                            <a href="javascript:deleteCard('normalo_card_1')">
+                              <i class="far fa-trash-alt fa-2x" id="delete_icon">
                                 </i>
                             </a>
                             <div id="first_contact_normalo">
@@ -197,7 +203,9 @@
                             <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                            </a>
+                            <a href="javascript:deleteCard('normalo_card_2')">
+                              <i class="far fa-trash-alt fa-2x" id="delete_icon">
                                 </i>
                             </a>
                             <div id="second_contact_normalo">
@@ -676,7 +684,8 @@
           }
 
           function deleteCard(uniqid){
-            document.getElementById(uniqid).parentNode.removeChild(document.getElementById(uniqid));
+            let el = document.getElementById(uniqid);
+            el.remove();
           }
 
           function Contact(vorname, nachname, strasse, plz, stadt, land){
