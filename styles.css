@@ -184,6 +184,30 @@ a {
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
 }
 
+.far{
+  color: white;
+}
+
+#edit_icon{
+  position: absolute;
+  right: 50px;
+  bottom: 10px;
+}
+
+#edit_icon:hover{
+  color: orange;
+}
+
+#delete_icon{
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}
+
+#delete_icon:hover{
+  color: red;
+}
+
 .cards {
   width: 100%;
   display: grid;
@@ -216,7 +240,15 @@ a {
   color: white;
   font-weight: bolder;
   text-shadow: 0 0 10px rgba(0,0,0,0.7);
-  background-image: url(https://source.unsplash.com/900x900/?berlin);
+  background-image: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),url(https://source.unsplash.com/900x900/?berlin);
+  border-radius: 5px;
+}
+
+.card:hower{
+  transform: scale(1.05);
 }
 
 .banner {

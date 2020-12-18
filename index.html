@@ -15,12 +15,14 @@
                     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
                     </script>
                     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet"/>
-                    <meta charset="utf-8">
-                        <meta content="IE=edge" http-equiv="X-UA-Compatible">
-                            <meta content="width=device-width, initial-scale=1" name="viewport">
+                    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+                        <meta charset="utf-8">
+                            <meta content="IE=edge" http-equiv="X-UA-Compatible">
+                                <meta content="width=device-width, initial-scale=1" name="viewport">
+                                </meta>
                             </meta>
                         </meta>
-                    </meta>
+                    </link>
                 </link>
             </meta>
         </link>
@@ -99,14 +101,20 @@
                     <div class="cards_main_page" id="list_of_addresses">
                         <div class="card">
                             <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
-                                edit/delete
+                                <i class="far fa-edit fa-2x" id="edit_icon">
+                                </i>
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
                             </a>
                             <div id="first_contact_admina">
                             </div>
                         </div>
                         <div class="card">
                             <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
-                                edit/delete
+                                <i class="far fa-edit fa-2x" id="edit_icon">
+                                </i>
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
                             </a>
                             <div id="second_contact_admina">
                             </div>
@@ -175,14 +183,20 @@
                     <div class="cards_main_page" id="list_of_addresses_normalo">
                         <div class="card">
                             <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
-                                edit/delete
+                                <i class="far fa-edit fa-2x" id="edit_icon">
+                                </i>
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
                             </a>
                             <div id="first_contact_normalo">
                             </div>
                         </div>
                         <div class="card">
                             <a href="javascript:switchPage('mainscreen-normalo','edit/delete-normalo')">
-                                edit/delete
+                                <i class="far fa-edit fa-2x" id="edit_icon">
+                                </i>
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
                             </a>
                             <div id="second_contact_normalo">
                             </div>
@@ -549,7 +563,7 @@
         <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
         </script>
         <script>
-        //-------------------------------------- JAVA SCRIPT -------------------------------------------\\
+            //-------------------------------------- JAVA SCRIPT -------------------------------------------\\
 
         // getting objects (declaration):
           function Cred(username,password,priX,priY,pubX,pubY,vorname,nachname,strasse,plz,stadt,land) {
@@ -587,26 +601,26 @@
 
           // getting contacts:
           function getAdminaContacts(){
-            document.getElementById('first_contact_admina').innerHTML = `<span class="yellow-black">Vorname:</span>${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse} <br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="green">private</span>`;
+            document.getElementById('first_contact_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse} <br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="green">private</span>`;
             document.getElementById('second_contact_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse}<br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="orange">public</span>`;
           }
 
           function getNormaloContacts(){
-            document.getElementById('first_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
-            document.getElementById('second_contact_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
+            document.getElementById('first_contact_normalo').innerHTML = `<span class="yellow-black">Vorname:</span> ${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse} <br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="green">private</span>`;
+            document.getElementById('second_contact_normalo').innerHTML = `<span class="yellow-black">Vorname:</span> ${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse}<br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="orange">public</span>`;
           }
 
           function getAllContactsForAdmina(){
-            document.getElementById('first_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
-            document.getElementById('second_contact_all_contacts_admina').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
-            document.getElementById('third_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse} <br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
-            document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse}<br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
+            document.getElementById('first_contact_all_contacts_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse} <br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="green">private</span>`;
+            document.getElementById('second_contact_all_contacts_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse}<br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="orange">public</span>`;
+            document.getElementById('third_contact_all_contacts_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse} <br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="green">private</span>`;
+            document.getElementById('fourth_contact_all_contacts_admina').innerHTML = `<span class="yellow-black">Vorname:</span> ${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse}<br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="orange">public</span>`;
           }
 
           function getAllContactsForNormalo(){
-            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
-            document.getElementById('third_contact_all_contacts_normalo').innerHTML = `Vorname: ${normalo.vorname}<br /> Nachname: ${normalo.nachname}<br /> Strasse: ${normalo.strasse}<br /> PLZ: ${normalo.plz}<br /> Stadt: ${normalo.stadt}<br /> Land: ${normalo.land}`;
-            document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `Vorname: ${admina.vorname}<br /> Nachname: ${admina.nachname}<br /> Strasse: ${admina.strasse}<br /> PLZ: ${admina.plz}<br /> Stadt: ${admina.stadt}<br /> Land: ${admina.land}`;
+            document.getElementById('second_contact_all_contacts_normalo').innerHTML = `<span class="yellow-black">Vorname:</span>${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse} <br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="green">private</span>`;
+            document.getElementById('third_contact_all_contacts_normalo').innerHTML = `<span class="yellow-black">Vorname:</span> ${normalo.vorname}<br /> <span class="yellow-black">Nachname:</span> ${normalo.nachname}<br /> <span class="yellow-black">Strasse:</span> ${normalo.strasse}<br /> <span class="yellow-black">PLZ:</span> ${normalo.plz}<br /> <span class="yellow-black">Stadt:</span> ${normalo.stadt}<br /> <span class="yellow-black">Land:</span> ${normalo.land}<br /> <span class="orange">public</span>`;
+            document.getElementById('fourth_contact_all_contacts_normalo').innerHTML = `<span class="yellow-black">Vorname:</span> ${admina.vorname}<br /> <span class="yellow-black">Nachname:</span> ${admina.nachname}<br /> <span class="yellow-black">Strasse:</span> ${admina.strasse}<br /> <span class="yellow-black">PLZ:</span> ${admina.plz}<br /> <span class="yellow-black">Stadt:</span> ${admina.stadt}<br /> <span class="yellow-black">Land:</span> ${admina.land}<br /> <span class="orange">public</span>`;
           }
 
           // changing pages on click:
@@ -689,7 +703,6 @@
           }
 
           // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:switchPage()","all_list_of_addresses");
-
         </script>
     </body>
 </html>
