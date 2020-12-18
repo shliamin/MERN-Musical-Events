@@ -16,6 +16,8 @@
                     </script>
                     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet"/>
                     <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+                    <link rel="preconnect" href="https://fonts.gstatic.com">
+                    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
                         <meta charset="utf-8">
                             <meta content="IE=edge" http-equiv="X-UA-Compatible">
                                 <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -71,9 +73,9 @@
         <fieldset class="hide_by_default" id="mainscreen-admina">
             <ul class="nav justify-content-end">
                 <li>
-                    <h1>
+                    <h2 class="greetings">
                         Hello, admina!
-                    </h1>
+                    </h2>
                 </li>
                 <li>
                     <button class="btn btn-warning" onclick="switchPage('only_admina_contacts','all_contacts_admina_fieldset')" type="button">
@@ -99,7 +101,7 @@
             <fieldset id="only_admina_contacts">
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses">
-                        <div class="card">
+                        <div class="card" id='admina_card_1'>
                             <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
@@ -109,7 +111,7 @@
                             <div id="first_contact_admina">
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" id='admina_card_2'>
                             <a href="javascript:switchPage('mainscreen-admina','edit/delete')">
                                 <i class="far fa-edit fa-2x" id="edit_icon">
                                 </i>
@@ -127,19 +129,19 @@
             <fieldset class="hide_by_default" id="all_contacts_admina_fieldset">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses">
-                        <div class="card">
+                        <div class="card" id='admina_card_3'>
                             <div id="first_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" id='admina_card_4'>
                             <div id="second_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" id='admina_card_5'>
                             <div id="third_contact_all_contacts_admina">
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" id='admina_card_6'>
                             <div id="fourth_contact_all_contacts_admina">
                             </div>
                         </div>
@@ -153,9 +155,9 @@
         <fieldset class="hide_by_default" id="mainscreen-normalo">
             <ul class="nav justify-content-end">
                 <li>
-                    <h1>
+                    <h2 class="greetings">
                         Hello, normalo!
-                    </h1>
+                    </h2>
                 </li>
                 <li>
                     <button class="btn btn-warning" onclick="switchPage('only_normalo_contacts','all_contacts_normalo_fieldset')" type="button">
@@ -707,17 +709,23 @@
 
           }
 
-        //Changing backgrounds
-
+        //Changing backgrounds for pictures
         function changeElement(id,city) {
           var el = document.getElementById(id);
-          el.style.backgroundImage = `url('https://source.unsplash.com/900x900/?${city}')` ;
+          el.style.backgroundImage = `linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),url(https://source.unsplash.com/900x900/?${city})`;
         }
-
-        changeElement('normalo_card_2','moscow');
-        changeElement('normalo_card_3','paris');
-        changeElement('normalo_card_4','london');
+        // changing pictures for normalo's cards
+        changeElement('normalo_card_2','london');
+        changeElement('normalo_card_4','paris');
         changeElement('normalo_card_5','nyc');
+        // changing pictures for admina's cards
+        changeElement('admina_card_2','moscow');
+        changeElement('admina_card_4','LA');
+        changeElement('admina_card_5','tokyo');
+        changeElement('admina_card_6','barcelona');
 
           // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:switchPage()","all_list_of_addresses");
         </script>
