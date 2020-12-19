@@ -205,6 +205,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label" for="recipient-name">
                                                         Vorname:
@@ -275,9 +282,9 @@
                             </div>
                         </div>
                         <div class="card" id="admina_card_2">
-                            <i class="far fa-edit fa-2x" data-target="#exampleModal" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_admina" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
                             </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_admina" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -292,6 +299,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label" for="recipient-name">
                                                         Vorname:
@@ -370,18 +384,378 @@
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses">
                         <div class="card" id="admina_card_3">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_admina_3" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            </i>
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_admina_3" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Edit Address
+                                            </h5>
+                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                <span aria-hidden="true">
+                                                    ×
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-name">
+                                                        Vorname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-name" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-nachname">
+                                                        Nachname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-nachname" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-strasse">
+                                                        Strasse:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-strasse" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-plz">
+                                                        PLZ:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-plz" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-stadt">
+                                                        Stadt:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-stadt" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-land">
+                                                        Land:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-land" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check_private_normalo_edit" required="" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            Privat
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                                Close
+                                            </button>
+                                            <button class="btn btn-primary" type="button">
+                                                Edit address
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:deleteCard('admina_card_3')">
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
+                            </a>
                             <div id="first_contact_all_contacts_admina">
                             </div>
                         </div>
                         <div class="card" id="admina_card_4">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_admina_4" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            </i>
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_admina_4" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Edit Address
+                                            </h5>
+                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                <span aria-hidden="true">
+                                                    ×
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-name">
+                                                        Vorname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-name" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-nachname">
+                                                        Nachname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-nachname" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-strasse">
+                                                        Strasse:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-strasse" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-plz">
+                                                        PLZ:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-plz" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-stadt">
+                                                        Stadt:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-stadt" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-land">
+                                                        Land:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-land" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check_private_normalo_edit" required="" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            Privat
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                                Close
+                                            </button>
+                                            <button class="btn btn-primary" type="button">
+                                                Edit address
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:deleteCard('admina_card_4')">
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
+                            </a>
                             <div id="second_contact_all_contacts_admina">
                             </div>
                         </div>
                         <div class="card" id="admina_card_5">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_admina_5" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            </i>
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_admina_5" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Edit Address
+                                            </h5>
+                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                <span aria-hidden="true">
+                                                    ×
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-name">
+                                                        Vorname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-name" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-nachname">
+                                                        Nachname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-nachname" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-strasse">
+                                                        Strasse:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-strasse" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-plz">
+                                                        PLZ:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-plz" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-stadt">
+                                                        Stadt:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-stadt" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-land">
+                                                        Land:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-land" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check_private_normalo_edit" required="" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            Privat
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                                Close
+                                            </button>
+                                            <button class="btn btn-primary" type="button">
+                                                Edit address
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:deleteCard('admina_card_5')">
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
+                            </a>
                             <div id="third_contact_all_contacts_admina">
                             </div>
                         </div>
                         <div class="card" id="admina_card_6">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_admina_6" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            </i>
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_admina_6" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Edit Address
+                                            </h5>
+                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                <span aria-hidden="true">
+                                                    ×
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check-normalo" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            as normalo
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-name">
+                                                        Vorname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-name" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-nachname">
+                                                        Nachname:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-nachname" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-strasse">
+                                                        Strasse:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-strasse" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-plz">
+                                                        PLZ:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-plz" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-stadt">
+                                                        Stadt:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-stadt" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="recipient-land">
+                                                        Land:
+                                                    </label>
+                                                    <input class="form-control" id="recipient-land" required="" type="text">
+                                                    </input>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="check_private_normalo_edit" required="" type="checkbox">
+                                                        <label class="form-check-label" for="check">
+                                                            Privat
+                                                        </label>
+                                                    </input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                                Close
+                                            </button>
+                                            <button class="btn btn-primary" type="button">
+                                                Edit address
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:deleteCard('admina_card_6')">
+                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
+                                </i>
+                            </a>
                             <div id="fourth_contact_all_contacts_admina">
                             </div>
                         </div>
@@ -501,7 +875,7 @@
                 <div class="content">
                     <div class="cards_main_page" id="list_of_addresses_normalo">
                         <div class="card" id="normalo_card_1">
-                           <i class="far fa-edit fa-2x" data-target="#exampleModal_edit_normalo" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
+                            <i class="far fa-edit fa-2x" data-target="#exampleModal_edit_normalo" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
                             </i>
                             <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal_edit_normalo" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">
