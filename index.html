@@ -1226,10 +1226,123 @@
 
           }
 
+// <form>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-name-8">
+//                                                         Vorname:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-name-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-nachname-8">
+//                                                         Nachname:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-nachname-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-strasse-8">
+//                                                         Strasse:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-strasse-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-plz-8">
+//                                                         Plz:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-plz-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-stadt-8">
+//                                                         Stadt:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-stadt-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-group">
+//                                                     <label class="col-form-label" for="recipient-land-8">
+//                                                         Land:
+//                                                     </label>
+//                                                     <input class="form-control" id="recipient-land-8" required="" type="text">
+//                                                     </input>
+//                                                 </div>
+//                                                 <div class="form-check">
+//                                                     <input class="form-check-input" id="check_private_normalo_edit_8" required="" type="checkbox">
+//                                                         <label class="form-check-label" for="check">
+//                                                             Privat
+//                                                         </label>
+//                                                     </input>
+//                                                 </div>
+//                                             </form>
 
           //inserting forms
-        function insertForm(){
 
+        function insertForm(id, id_for_label, text, id_for_input, id_for_input_check){
+                // Find a place to append
+                let doc = document.getElementById(id);
+
+                // Create a form synamically
+                let form = document.createElement("form");
+
+                // Create 6 divs
+                let div1 = document.createElement("div");
+                div1.classList.add("form-group");
+                let div2 = document.createElement("div");
+                div2.classList.add("form-group");
+                let div3 = document.createElement("div");
+                div3.classList.add("form-group");
+                let div4 = document.createElement("div");
+                div4.classList.add("form-group");
+                let div5 = document.createElement("div");
+                div5.classList.add("form-group");
+                let div6 = document.createElement("div");
+                div6.classList.add("form-group");
+
+                // Create a label
+                let label = document.createElement("Label");
+                label.classList.add("col-form-label");
+                label.setAttribute("for",id_for_label);
+                label.innerHTML = text;
+
+                // Create an input
+                let input = document.createElement("input");
+                input.classList.add("form-control");
+                input.setAttribute("id", id_for_input);
+                input.required = true;
+                input.setAttribute("type", "text");
+
+                // Create a check form (div)
+                let divCheck = document.createElement("div");
+                divCheck.classList.add("form-check");
+                let inputCheck = document.createElement("input");
+                inputCheck.classList.add("form-check-input");
+                inputCheck.setAttribute("id", id_for_input_check);
+                inputCheck.required = true;
+                inputCheck.setAttribute("type", "checkbox");
+                let labelCheck = document.createElement("Label");
+                labelCheck.classList.add("form-check-label");
+                labelCheck.setAttribute("for","check");
+                labelCheck.innerHTML = "Privat";
+                inputCheck.append(labelCheck);
+                divCheck.append(inputCheck);
+
+
+                // Append all 6 divs to the form
+                form.append(div1);
+                form.append(div2);
+                form.append(div3);
+                form.append(div4);
+                form.append(div5);
+                form.append(div6);
+
+                // Append the checkbox input to the form
+                form.append(divCheck);
+
+                // Append the form input to the doc
+                doc.appendChild(form);
         }
 
         //Changing backgrounds for pictures
@@ -1249,8 +1362,6 @@
         changeElement('admina_card_4','LA');
         changeElement('admina_card_5','tokyo');
         changeElement('admina_card_6','barcelona');
-
-          // createCard(uniqid,${document.getElementById('vorname_admina').value},${document.getElementById('name_admina').value},${document.getElementById('strasse_admina').value},${document.getElementById('plz_admina').value},${document.getElementById('stadt_admina').value},${document.getElementById('land_admina').value},"javascript:switchPage()","all_list_of_addresses");
         </script>
     </body>
 </html>
