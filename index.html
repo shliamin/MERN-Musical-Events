@@ -32,6 +32,29 @@
         </link>
     </head>
     <body>
+       <!-- ---------------Hard programmed creds (js) ---------------->
+      <script>
+        // getting objects (declaration):
+          function Cred(username,password,priX,priY,pubX,pubY,vorname,nachname,strasse,plz,stadt,land) {
+            this.username = username;
+            this.password = password;
+            this.contactPrivateX = priX;
+            this.contactPrivateY = priY;
+            this.contactPublicX = pubX;
+            this.contactPublicY = pubY;
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.strasse = strasse;
+            this.plz = plz;
+            this.stadt = stadt;
+            this.land = land;
+          }
+        // creating two objects:
+          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
+          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
+      </script>
+
+      <!-- -------------------------------------------------- -->
         <!-- Login -->
         <fieldset id="loginform">
             <div class="container">
@@ -80,12 +103,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('only_admina_contacts','all_contacts_admina_fieldset')" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('only_admina_contacts','all_contacts_admina_fieldset'); getMap('map-admina-all-contacts', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY)" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('all_contacts_admina_fieldset','only_admina_contacts')" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('all_contacts_admina_fieldset','only_admina_contacts'); getMap('map-admina',admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY)" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -368,12 +391,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('only_normalo_contacts','all_contacts_normalo_fieldset')" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('only_normalo_contacts','all_contacts_normalo_fieldset'); getMap('map-normalo-all-contacts', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY)" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('all_contacts_normalo_fieldset','only_normalo_contacts')" type="button">
+                    <button class="btn btn-warning" onclick="switchPage('all_contacts_normalo_fieldset','only_normalo_contacts');getMap('map-normalo',normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY)" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -524,24 +547,6 @@
         <script>
             //-------------------------------------- JAVA SCRIPT -------------------------------------------\\
 
-        // getting objects (declaration):
-          function Cred(username,password,priX,priY,pubX,pubY,vorname,nachname,strasse,plz,stadt,land) {
-            this.username = username;
-            this.password = password;
-            this.contactPrivateX = priX;
-            this.contactPrivateY = priY;
-            this.contactPublicX = pubX;
-            this.contactPublicY = pubY;
-            this.vorname = vorname;
-            this.nachname = nachname;
-            this.strasse = strasse;
-            this.plz = plz;
-            this.stadt = stadt;
-            this.land = land;
-          }
-        // creating two objects:
-          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
-          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
         // getting the map (declaration):
           function getMap(param,privX1,privY1,publX1,publY1,privX2,privY2,publX2,publY2){
             mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
@@ -600,14 +605,12 @@
               getAllContactsForAdmina();
               getAdminaContacts();
               getMap("map-admina",admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-              getMap("map-admina-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
             }
            else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
               switchPage('loginform','mainscreen-normalo');
               getAllContactsForNormalo();
               getNormaloContacts();
               getMap("map-normalo",normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
-              getMap("map-normalo-all-contacts", normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY);
           }
           else{
             alert("The entered username and password is wrong. Please enter the correct one.");
