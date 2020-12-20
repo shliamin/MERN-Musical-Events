@@ -520,18 +520,6 @@
             <fieldset class="hide_by_default" id="all_contacts_normalo_fieldset">
                 <div class="content">
                     <div class="cards_main_page" id="all_list_of_addresses_normalo">
-                        <div class="card" id="normalo_card_3">
-                            <div id="second_contact_all_contacts_normalo">
-                            </div>
-                        </div>
-                        <div class="card" id="normalo_card_4">
-                            <div id="third_contact_all_contacts_normalo">
-                            </div>
-                        </div>
-                        <div class="card" id="normalo_card_5">
-                            <div id="fourth_contact_all_contacts_normalo">
-                            </div>
-                        </div>
                     </div>
                     <div class="map-size" id="map-normalo-all-contacts">
                     </div>
@@ -569,6 +557,135 @@
             document.getElementById(place).innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
           }
 
+          // A function to create a card with a contact inside, and a random background picture of a city + the edit/delete-section
+          function addCard(cardId,contactId,wheretoplace,vorname,nachname,strasse,plz,stadt,land,privateOrPublic,color, target_id_for_edit, modal_body_id){
+            // Create card
+            let divCard = document.createElement("div");
+            // Add a class for css styles
+            divCard.className ="card";
+            // We need a uniq id for the card (with connection to the contact)
+            divCard.id = cardId;
+            // --------We want to have a background image for the card as a picture of a random city from unspalsh.com-------
+            // a function to create a random number
+            function getRandomInt(max) {
+              return Math.floor(Math.random() * Math.floor(max));
+            }
+            // Create a random number between 0 and 14
+            let randomNumber = getRandomInt(14);
+            // Let's choose a random city name based on a number between 0 and 14
+            let city;
+            switch(randomNumber){case 0:city="moscow";break;case 1:city="london";break;case 2:city="nyc";break;case 3:city="paris";break;case 4:city="helsinki";break;case 5:city="warsaw";break;case 6:city="barcelona";break;case 7:city="tokyo";break;case 8:city="venice";break;case 9:city="stockholm";break;case 10:city="chicago";break;case 11:city="budapest";break;case 12:city="lisbon";break;case 13:city="madrid";break;case 14:city="oslo";break;default:city="berlin"}
+            // Create a background picture with gradient for better readability of the text on it using a random city name (as city)
+            divCard.style.backgroundImage = `linear-gradient(
+              rgba(0, 0, 0, 0.5),
+              rgba(0, 0, 0, 0.5)
+            ),url(https://source.unsplash.com/900x900/?${city})`;
+            //-----------------------------------------------------------------------------------
+            // Create contact for the card
+            let divContact = document.createElement("div");
+            // We need a uniq id for the contact (with connection to the card)
+            divContact.id = contactId;
+            // Put on the info
+            divContact.innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
+            // Append contact to the card
+            divCard.append(divContact);
+            // ------------- Here we want to create an edit/delete section for the card-----------------------
+            // Create the i section
+            let i = document.createElement("i");
+            i.className = "far fa-edit fa-2x";
+            i.setAttribute("data-target", `#${target_id_for_edit}`);
+            i.setAttribute("data-toggle", "modal");
+            i.setAttribute("data-whatever", "@mdo");
+            i.setAttribute("id", "edit_icon");
+            // Create the Label
+            let divModalLabel = document.createElement("div");
+            divModalLabel.setAttribute("aria-hidden", "true");
+            divModalLabel.setAttribute("aria-labelledby", "exampleModalLabel");
+            divModalLabel.setAttribute("class", "modal fade");
+            divModalLabel.setAttribute("id", target_id_for_edit);
+            divModalLabel.setAttribute("role", "dialog");
+            divModalLabel.setAttribute("tabindex", "-1");
+            // Create the Dialog
+            let divModalDialog = document.createElement("div");
+            divModalDialog.setAttribute("class", "modal-dialog");
+            divModalDialog.setAttribute("role", "document");
+            // Create the Content
+            let divModalContent = document.createElement("div");
+            divModalContent.setAttribute("class", "modal-content");
+            // Create the Header for the Content
+            let divModalHeader = document.createElement("div");
+            divModalHeader.setAttribute("class", "modal-header");
+            let hDivModalHeader = document.createElement("h5");
+            hDivModalHeader.setAttribute("class", "modal-title");
+            hDivModalHeader.setAttribute("id", "exampleModalLabel");
+            hDivModalHeader.innerHTML = "Edit Address";
+            let buttonDivModalHeader = document.createElement("button");
+            buttonDivModalHeader.setAttribute("aria-label", "Close");
+            buttonDivModalHeader.setAttribute("class", "close");
+            buttonDivModalHeader.setAttribute("data-dismiss", "modal");
+            buttonDivModalHeader.setAttribute("type", "button");
+            let spanButtonDivModalHeader = document.createElement("span");
+            spanButtonDivModalHeader.setAttribute("aria-hidden", "true");
+            spanButtonDivModalHeader.innerHTML = "×";
+            buttonDivModalHeader.append(spanButtonDivModalHeader);
+            divModalHeader.append(hDivModalHeader);
+            divModalHeader.append(buttonDivModalHeader);
+            // Create the Body for the Content
+            let divModalBody = document.createElement("div");
+            divModalBody.setAttribute("class", "modal-body");
+            divModalBody.setAttribute("id", modal_body_id);
+            // Create the Footer for the Content
+            let divModalFooter = document.createElement("div");
+            let closeButtonDivModalFooter = document.createElement("button");
+            closeButtonDivModalFooter.setAttribute("class", "btn btn-secondary");
+            closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
+            closeButtonDivModalFooter.setAttribute("type", "button");
+            closeButtonDivModalFooter.innerHTML = "Close";
+            let editButtonDivModalFooter = document.createElement("button");
+            editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
+            editButtonDivModalFooter.setAttribute("type", "button");
+            editButtonDivModalFooter.innerHTML = "Edit address";
+            divModalFooter.append(closeButtonDivModalFooter);
+            divModalFooter.append(editButtonDivModalFooter);
+            // Append the Header, the Body, and the Footer to the Content
+            divModalContent.append(divModalHeader);
+            divModalContent.append(divModalBody);
+            divModalContent.append(divModalFooter);
+            // Append the Content to the Dialog
+            divModalDialog.append(divModalContent);
+            // Append the Dialog to the Label
+            divModalLabel.append(divModalDialog);
+            // Create the delete icon
+            let aEditOrDeleteSection = document.createElement("a");
+            aEditOrDeleteSection.setAttribute("href", "");
+            let iForAEditOrDeleteSection = document.createElement("i");
+            iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
+            iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
+            aEditOrDeleteSection.append(iForAEditOrDeleteSection);
+            //------------------------------------------------------------------
+
+            //------------ Here we want to decide if we want to append the edit/delete section to the card-----------
+            // Append the i (edit icon) to the card
+            divCard.append(i);
+            // Append the Label to the card
+            divCard.append(divModalLabel);
+            // Append the delete icon to the card
+            divCard.append(aEditOrDeleteSection);
+
+            //------------------------------------------------------------------
+            // Find a place where to append the card
+            let element = document.getElementById(wheretoplace);
+            // Append the card there
+            element.append(divCard);
+          }
+
+          // A function to create an edit/delete section on a card
+          function addEditOrDeleteSection(){
+
+          }
+
+
+
           function getAdminaContacts(){
             getContactInfo('first_contact_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'private','green');
             getContactInfo('second_contact_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange');
@@ -587,14 +704,16 @@
           }
 
           function getAllContactsForNormalo(){
-            getContactInfo('second_contact_all_contacts_normalo',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange');
-            getContactInfo('third_contact_all_contacts_normalo',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green');
-            getContactInfo('fourth_contact_all_contacts_normalo',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange');
+            addCard("normalo_card_1","normalo_contact_1","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange', 'normalo_target_id_1', 'normalo_modal_body_id_1');
+            addCard("normalo_card_2","normalo_contact_2","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green', 'normalo_target_id_2', 'normalo_modal_body_id_2');
+            addCard("admina_card_1","admina_contact_1","all_list_of_addresses_normalo",admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange', 'admina_target_id_1', 'admina_modal_body_id_1');
           }
 
-          // changing pages on click:
+          // Changing pages on click:
           function switchPage(page1,page2){
+            // Close this page
             document.getElementById(page1).style.display = 'none';
+            // Open this page
             document.getElementById(page2).style.display = 'block';
           }
 
@@ -618,23 +737,6 @@
           }
 
           // TO DO:
-
-          function createCard(uniqid,name,surname,street,plz,city,country,linkto,wheretoplace){
-            var div = document.createElement("div");
-            div.className ="card";
-            div.style = "background-image: url(https://source.unsplash.com/900x900/?germany)";
-            var div2 = document.createElement("div");
-            div.id = uniqid;
-            div2.innerHTML = `Vorname: ${name}, Nachname: ${surname},Strasse: ${street}, PLZ: ${plz}, Stadt: ${city}, Land: ${country} `;
-            var a = document.createElement("a");
-            a.innerHTML = "edit/delete";
-            a.href = linkto;
-            div2.appendChild(a);
-            div.appendChild(div2);
-            var element = document.getElementById(wheretoplace);
-            element.appendChild(div);
-          }
-
           function deleteCard(uniqid){
             let el = document.getElementById(uniqid);
             el.remove();
@@ -765,10 +867,7 @@
           rgba(0, 0, 0, 0.5)
         ),url(https://source.unsplash.com/900x900/?${city})`;
         }
-        // changing pictures for normalo's cards
-        changeElement('normalo_card_2','london');
-        changeElement('normalo_card_4','paris');
-        changeElement('normalo_card_5','nyc');
+
         // changing pictures for admina's cards
         changeElement('admina_card_2','moscow');
         changeElement('admina_card_4','LA');
