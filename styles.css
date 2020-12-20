@@ -255,7 +255,12 @@ a {
   font-size: 12px;
 }
 
-
+#exampleModalLabel{
+  color: orange;
+  font-weight: normal;
+  text-shadow: none;
+  font-size: 20px;
+}
 
 .card:hower{
   transform: scale(1.05);
@@ -303,8 +308,26 @@ h2{
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-#map {
-  height: 50vh;
+#map-admina {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+#map-admina-all-contacts{
+  height: 200vh;
+  position: sticky;
+  top: 0;
+}
+
+#map-normalo{
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+#map-normalo-all-contacts{
+  height: 100vh;
   position: sticky;
   top: 0;
 }
@@ -322,7 +345,19 @@ h2{
     grid-template-columns: 1fr;
   }
 
-  #map {
+  #map-admina {
+    display: none;
+  }
+
+  #map-normalo {
+    display: none;
+  }
+
+  #map-admina-all-contacts {
+    display: none;
+  }
+
+  #map-normalo-all-contacts {
     display: none;
   }
 }
@@ -336,7 +371,19 @@ h2{
     grid-template-columns: 1fr;
   }
 
-  #map {
+  #map-admina {
+    display: none;
+  }
+
+  #map-normalo {
+    display: none;
+  }
+
+  #map-admina-all-contacts {
+    display: none;
+  }
+
+  #map-normalo-all-contacts {
     display: none;
   }
 }
@@ -370,7 +417,22 @@ h2{
     grid-template-columns: 1fr 1fr;
   }
 
-  #map {
+  #map-admina {
+    display: block;
+    box-shadow: 0 30px 30px rgba(0,0,0,0.4);
+  }
+
+  #map-normalo {
+    display: block;
+    box-shadow: 0 30px 30px rgba(0,0,0,0.4);
+  }
+
+  #map-admina-all-contacts {
+    display: block;
+    box-shadow: 0 30px 30px rgba(0,0,0,0.4);
+  }
+
+  #map-normalo-all-contacts {
     display: block;
     box-shadow: 0 30px 30px rgba(0,0,0,0.4);
   }
