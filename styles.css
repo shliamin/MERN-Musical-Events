@@ -215,8 +215,9 @@ a {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200px;
   grid-gap: 10px;
-  grid-row-gap: 0;
+  grid-row-gap: 10px;
   justify-content: center;
   padding-top: 18px;
   padding-left: 10px;
@@ -226,7 +227,7 @@ a {
 .card{
   background-size: cover;
   background-position: center;
-  height: 320px;
+  height: 200px;
   border-radius: 8px;
   box-shadow: 0 30px 30px rgba(0,0,0,0.4);
   display: flex;
