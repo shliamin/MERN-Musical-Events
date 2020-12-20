@@ -589,12 +589,23 @@
             getMap("map", admina.contactPrivateX, admina.contactPrivateY, admina.contactPublicX, admina.contactPublicY);
             hideAllCardsOfUser('normalo');
             showMine('admina');
+            let checksToShow = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
+            let index;
+            for (index = 0; index < checksToShow.length; ++index) {
+              checksToShow[index].style.display = 'block';
+            }
         } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
             switchPage('loginform', 'mainscreen');
             document.getElementById('normalo').style.display = 'block';
             getMap("map", normalo.contactPrivateX, normalo.contactPrivateY, normalo.contactPublicX, normalo.contactPublicY);
             hideAllCardsOfUser('admina');
             showMine('normalo');
+            let checksToHide = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
+            let index;
+            for (index = 0; index < checksToHide.length; ++index) {
+              checksToHide[index].style.display = 'none';
+            }
+
         } else {
             alert("The entered username and password is wrong. Please enter the correct one.");
         }
