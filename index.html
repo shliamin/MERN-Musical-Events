@@ -498,16 +498,12 @@
         iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
         aEditOrDeleteSection.append(iForAEditOrDeleteSection);
         //------------------------------------------------------------------
-
-        //------------ Here we want to decide if we want to append the edit/delete section to the card-----------
         // Append the i (edit icon) to the card
         divCard.append(i);
         // Append the Label to the card
         divCard.append(divModalLabel);
         // Append the delete icon to the card
         divCard.append(aEditOrDeleteSection);
-
-        //------------------------------------------------------------------
         // Find a place where to append the card
         let element = document.getElementById(wheretoplace);
         // Append the card there
@@ -538,7 +534,7 @@
     // "show all" function
     function showAllCardsFor(user){
       if(user=='admina'){
-        let elems = document.querySelectorAll(`[id^='card_']`);
+        let elems = document.querySelectorAll(`[id^='card_'], [id^='edit_icon'], [id^='delete_icon']`);
         let index;
         for (index = 0; index < elems.length; ++index) {
             elems[index].style.display = 'block';
@@ -550,10 +546,15 @@
         for (index = 0; index < elems.length; ++index) {
             elems[index].style.display = 'block';
         }
-        let elemsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
+        let cardsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
         let index2;
-        for (index2 = 0; index2 < elemsToHide.length; ++index2) {
-            elemsToHide[index2].style.display = 'none';
+        for (index2 = 0; index2 < cardsToHide.length; ++index2) {
+            cardsToHide[index2].style.display = 'none';
+        }
+        let iconsToHide = document.querySelectorAll(`[id^='edit_icon'], [id^='delete_icon']`);
+        let index3;
+        for (index3 = 0; index3 < iconsToHide.length; ++index3) {
+            iconsToHide[index3].style.display = 'none';
         }
       }
     }
@@ -567,7 +568,7 @@
     }
     // "showMine" function
     function showMine(user){
-        let elems = document.querySelectorAll(`[id^='card_${user}']`);
+        let elems = document.querySelectorAll(`[id^='card_${user}'], [id^='edit_icon'], [id^='delete_icon']`);
         let index;
         for (index = 0; index < elems.length; ++index) {
             elems[index].style.display = 'block';;
