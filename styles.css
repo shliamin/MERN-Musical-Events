@@ -166,10 +166,6 @@ a {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.map-size{
-  width: 700px;
-}
-
 .btn.btn-warning.btn-danger{
   margin: 5px;
 }
@@ -298,25 +294,8 @@ h2{
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-#map-admina {
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
-
-#map-admina-all-contacts{
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
-
-#map-normalo{
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
-
-#map-normalo-all-contacts{
+#map{
+  width: 700px;
   height: 100vh;
   position: sticky;
   top: 0;

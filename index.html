@@ -1,101 +1,82 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            AdViz
-        </title>
-        <link href="#" rel="shortcut icon">
-            <meta content="width=device-width, initial-scale=1" name="viewport">
-                <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet"/>
-                <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-                    <link href="styles.css" rel="stylesheet"/>
-                    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet"/>
-                    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
-                    </script>
-                    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
-                    </script>
-                    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet"/>
-                    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
-                        <link href="https://fonts.gstatic.com" rel="preconnect">
-                            <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-                                <meta charset="utf-8">
-                                    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-                                        <meta content="width=device-width, initial-scale=1" name="viewport">
-                                        </meta>
-                                    </meta>
-                                </meta>
-                            </link>
-                        </link>
-                    </link>
-                </link>
-            </meta>
-        </link>
-    </head>
-    <body>
-       <!-- ---------------Hard programmed creds (js) ---------------->
-      <script>
-        // getting objects (declaration):
-          function Cred(username,password,priX,priY,pubX,pubY,vorname,nachname,strasse,plz,stadt,land) {
-            this.username = username;
-            this.password = password;
-            this.contactPrivateX = priX;
-            this.contactPrivateY = priY;
-            this.contactPublicX = pubX;
-            this.contactPublicY = pubY;
-            this.vorname = vorname;
-            this.nachname = nachname;
-            this.strasse = strasse;
-            this.plz = plz;
-            this.stadt = stadt;
-            this.land = land;
-          }
-        // creating two objects:
-          var admina = new Cred("admina","admina",13.4,52.5,13.45,52.5,"admina","admina","Stralsunder Strasse","13355","Berlin","GER");
-          var normalo = new Cred("normalo","normalo",13.4,52.51,13.45,52.51,"normalo","normalo","Warschauer Strasse","10243","Berlin","GER");
-      </script>
 
-      <!-- -------------------------------------------------- -->
-        <!-- Login -->
-        <fieldset id="loginform">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-10 col-lg-6">
-                        <div class="input_form">
-                            <form action="javascript:login();">
-                                <h1>
-                                    Login
-                                </h1>
-                                <hr>
-                                    <label class="control-label">
-                                        <label for="Username">
-                                            <b>
-                                                Username:
-                                            </b>
-                                        </label>
-                                    </label>
-                                    <input id="username" name="username" placeholder="Write your username" required="" type="text1">
-                                        <label class="control-label">
-                                            <label for="psw">
-                                                <b>
-                                                    Password:
-                                                </b>
-                                            </label>
-                                        </label>
-                                        <input id="psw" name="psw" placeholder="Enter Password" required="" type="password1">
-                                            <button class="loginbtn" onclick="" type="submit">
-                                                Login
-                                            </button>
-                                        </input>
-                                    </input>
-                                </hr>
-                            </form>
-                        </div>
+<head>
+    <title>
+        AdViz
+    </title>
+    <link href="#" rel="shortcut icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </link>
+</head>
+
+<body>
+    <!-- Login Screen-->
+    <fieldset id="loginform">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-md-10 col-lg-6">
+                    <div class="input_form">
+                        <form action="javascript:login();">
+                            <h1>
+                                Login
+                            </h1>
+                            <hr>
+                            <label class="control-label">
+                                <label for="Username">
+                                    <b>
+                                        Username:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="username" name="username" placeholder="Write your username" required="" type="text1">
+                            <label class="control-label">
+                                <label for="psw">
+                                    <b>
+                                        Password:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="psw" name="psw" placeholder="Enter Password" required="" type="password1">
+                            <button class="loginbtn" onclick="" type="submit">
+                                Login
+                            </button>
+                            </input>
+                            </input>
+                            </hr>
+                        </form>
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <!-- Main Screen Admina -->
-        <fieldset class="hide_by_default" id="mainscreen-admina">
+        </div>
+    </fieldset>
+    <!-- Main Screen  -->
+    <fieldset class="hide_by_default" id="mainscreen">
+        <!-- admina -->
+        <fieldset class="hide_by_default" id="admina">
             <ul class="nav justify-content-end">
                 <li>
                     <h2 class="greetings">
@@ -103,12 +84,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('only_admina_contacts','all_contacts_admina_fieldset'); getMap('map-admina-all-contacts', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY)" type="button">
+                    <button class="btn btn-warning" onclick="getMap('map', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('admina')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('all_contacts_admina_fieldset','only_admina_contacts'); getMap('map-admina',admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY)" type="button">
+                    <button class="btn btn-warning" onclick="getMap('map',admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -118,7 +99,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" onclick="switchPage('mainscreen-admina','loginform')" type="button">
+                    <button class="btn btn-danger" onclick="switchPage('mainscreen','loginform'); hide('admina')" type="button">
                         Log out
                     </button>
                 </li>
@@ -149,241 +130,9 @@
                     </div>
                 </div>
             </div>
-            <fieldset id="only_admina_contacts">
-                <div class="content">
-                    <div class="cards_main_page" id="list_of_addresses">
-                        <div class="card" id="admina_card_1">
-                            <i class="far fa-edit fa-2x" data-target="#Modal2" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal2" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-2">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_1'),deleteCard('admina_card_3')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="first_contact_admina">
-                            </div>
-                        </div>
-                        <div class="card" id="admina_card_2">
-                            <i class="far fa-edit fa-2x" data-target="#Modal3" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal3" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-3">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_2'),deleteCard('admina_card_4')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="second_contact_admina">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-admina">
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="hide_by_default" id="all_contacts_admina_fieldset">
-                <div class="content">
-                    <div class="cards_main_page" id="all_list_of_addresses">
-                        <div class="card" id="admina_card_3">
-                            <i class="far fa-edit fa-2x" data-target="#Modal4" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal4" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-4">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_3')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="first_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" id="admina_card_4">
-                            <i class="far fa-edit fa-2x" data-target="#Modal5" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal5" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-5">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_4')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="second_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" id="admina_card_5">
-                            <i class="far fa-edit fa-2x" data-target="#Modal6" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal6" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-6">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_5')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="third_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                        <div class="card" id="admina_card_6">
-                            <i class="far fa-edit fa-2x" data-target="#Modal7" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal7" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-7">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('admina_card_6')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="fourth_contact_all_contacts_admina">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-admina-all-contacts">
-                    </div>
-                </div>
-            </fieldset>
         </fieldset>
-        <!-- Main Screen Normalo -->
-        <fieldset class="hide_by_default" id="mainscreen-normalo">
+        <!-- normalo -->
+        <fieldset class="hide_by_default" id="normalo">
             <ul class="nav justify-content-end">
                 <li>
                     <h2 class="greetings">
@@ -391,12 +140,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('only_normalo_contacts','all_contacts_normalo_fieldset'); getMap('map-normalo-all-contacts', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY)" type="button">
+                    <button class="btn btn-warning" onclick="getMap('map', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('normalo')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="switchPage('all_contacts_normalo_fieldset','only_normalo_contacts');getMap('map-normalo',normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY)" type="button">
+                    <button class="btn btn-warning" onclick="getMap('map',normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -406,7 +155,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger" onclick="switchPage('mainscreen-normalo','loginform')" type="button">
+                    <button class="btn btn-danger" onclick="switchPage('mainscreen','loginform'); hide('normalo')" type="button">
                         Log out
                     </button>
                 </li>
@@ -437,532 +186,426 @@
                     </div>
                 </div>
             </div>
-            <fieldset id="only_normalo_contacts">
-                <div class="content">
-                    <div class="cards_main_page" id="list_of_addresses_normalo">
-                        <div class="card" id="normalo_card_1">
-                            <i class="far fa-edit fa-2x" data-target="#Modal9" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal9" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-9">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('normalo_card_1'),deleteCard('normalo_card_3')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="first_contact_normalo">
-                            </div>
-                        </div>
-                        <div class="card" id="normalo_card_2">
-                            <i class="far fa-edit fa-2x" data-target="#Modal10" data-toggle="modal" data-whatever="@mdo" id="edit_icon">
-                            </i>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="Modal10" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Edit Address
-                                            </h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">
-                                                    ×
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal-body-10">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                                                Close
-                                            </button>
-                                            <button class="btn btn-primary" type="button">
-                                                Edit address
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="javascript:deleteCard('normalo_card_2'),deleteCard('normalo_card_4')">
-                                <i class="far fa-trash-alt fa-2x" id="delete_icon">
-                                </i>
-                            </a>
-                            <div id="second_contact_normalo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="map-size" id="map-normalo">
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="hide_by_default" id="all_contacts_normalo_fieldset">
-                <div class="content">
-                    <div class="cards_main_page" id="all_list_of_addresses_normalo">
-                    </div>
-                    <div class="map-size" id="map-normalo-all-contacts">
-                    </div>
-                </div>
-            </fieldset>
         </fieldset>
-        <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
-        </script>
-        <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-        </script>
-        <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
-        </script>
-        <script>
-            //-------------------------------------- JAVA SCRIPT -------------------------------------------\\
-
-        // getting the map (declaration):
-          function getMap(param,privX1,privY1,publX1,publY1,privX2,privY2,publX2,publY2){
-            mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
-            var map = new mapboxgl.Map({container:`${param}`,style:'mapbox://styles/mapbox/streets-v11',center:[13.43,52.50],zoom:11.5});
-            var size = 100;
-            var pulsingDot = {
-              width: size,
-              height: size,
-              data: new Uint8Array(size * size * 4),
-            onAdd: function () {var canvas = document.createElement('canvas');canvas.width = this.width;canvas.height = this.height;this.context = canvas.getContext('2d');},
-            render: function () {var duration = 1000;var t = (performance.now() % duration) / duration;var radius = (size / 2) * 0.3;var outerRadius = (size / 2) * 1 * t + radius;var context = this.context;context.clearRect(0, 0, this.width, this.height);context.beginPath();context.arc(this.width / 2,this.height / 2,outerRadius,0,Math.PI * 2);context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';context.fill();context.beginPath();context.arc(this.width / 2,this.height / 2,radius,0,Math.PI * 2);context.fillStyle = 'rgba(255, 100, 100, 1)';context.strokeStyle = 'white';context.lineWidth = 2 + 4 * (1 - t);context.fill();context.stroke();this.data = context.getImageData(0,0,this.width,this.height).data;map.triggerRepaint();return true;}
-            };
-            map.on('load', function () {map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });map.addSource('points', {'type': 'geojson','data': {'type': 'FeatureCollection','features': [{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${privX1}`,`${privY1}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${publX1}`,`${publY1}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${privX2}`,`${privY2}`]}},{'type': 'Feature','geometry': {'type': 'Point','coordinates': [`${publX2}`,`${publY2}`]}}]}});
-            map.addLayer({'id': 'points','type': 'symbol','source': 'points','layout': {'icon-image': 'pulsing-dot'}});});
-          }
-
-          // getting contacts:
-
-          function getContactInfo(place,vorname,nachname,strasse,plz,stadt,land,privateOrPublic,color){
-            document.getElementById(place).innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
-          }
-
-          // A function to create a card with a contact inside, and a random background picture of a city + the edit/delete-section
-          function getCard(cardId,contactId,wheretoplace,vorname,nachname,strasse,plz,stadt,land,privateOrPublic,color, target_id_for_edit, type,num){
-            // Create card
-            let divCard = document.createElement("div");
-            // Add a class for css styles
-            divCard.className ="card";
-            // We need a uniq id for the card (with connection to the contact)
-            divCard.id = cardId;
-            // --------We want to have a background image for the card as a picture of a random city from unspalsh.com-------
-            // a function to create a random number
-            function getRandomInt(max) {
-              return Math.floor(Math.random() * Math.floor(max));
-            }
-            // Create a random number between 0 and 14
-            let randomNumber = getRandomInt(14);
-            // Let's choose a random city name based on a number between 0 and 14
-            let city;
-            switch(randomNumber){case 0:city="moscow";break;case 1:city="london";break;case 2:city="nyc";break;case 3:city="paris";break;case 4:city="helsinki";break;case 5:city="warsaw";break;case 6:city="barcelona";break;case 7:city="tokyo";break;case 8:city="venice";break;case 9:city="stockholm";break;case 10:city="chicago";break;case 11:city="budapest";break;case 12:city="lisbon";break;case 13:city="madrid";break;case 14:city="oslo";break;default:city="berlin"}
-            // Create a background picture with gradient for better readability of the text on it using a random city name (as city)
-            divCard.style.backgroundImage = `linear-gradient(
+        <!-- Main info -->
+        <fieldset id="info">
+            <div class="content">
+                <div class="cards_main_page" id="all_cards">
+                </div>
+                <div id="map">
+                </div>
+            </div>
+        </fieldset>
+    </fieldset>
+    <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
+    </script>
+    <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
+    <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+    </script>
+    <script>
+    //-------------------------------------- JAVA SCRIPT -------------------------------------------\\
+    // getting objects (declaration):
+    function Cred(username, password, priX, priY, pubX, pubY, vorname, nachname, strasse, plz, stadt, land) {
+        this.username = username;
+        this.password = password;
+        this.contactPrivateX = priX;
+        this.contactPrivateY = priY;
+        this.contactPublicX = pubX;
+        this.contactPublicY = pubY;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.strasse = strasse;
+        this.plz = plz;
+        this.stadt = stadt;
+        this.land = land;
+    }
+    // creating two objects:
+    var admina = new Cred("admina", "admina", 13.4, 52.5, 13.45, 52.5, "admina", "admina", "Stralsunder Strasse", "13355", "Berlin", "GER");
+    var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "normalo", "normalo", "Warschauer Strasse", "10243", "Berlin", "GER");
+    // getting the map (declaration):
+    function getMap(param, privX1, privY1, publX1, publY1, privX2, privY2, publX2, publY2) {
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+        var map = new mapboxgl.Map({ container: `${param}`, style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
+        var size = 100;
+        var pulsingDot = {
+            width: size,
+            height: size,
+            data: new Uint8Array(size * size * 4),
+            onAdd: function() { var canvas = document.createElement('canvas');
+                canvas.width = this.width;
+                canvas.height = this.height;
+                this.context = canvas.getContext('2d'); },
+            render: function() { var duration = 1000; var t = (performance.now() % duration) / duration; var radius = (size / 2) * 0.3; var outerRadius = (size / 2) * 1 * t + radius; var context = this.context;
+                context.clearRect(0, 0, this.width, this.height);
+                context.beginPath();
+                context.arc(this.width / 2, this.height / 2, outerRadius, 0, Math.PI * 2);
+                context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
+                context.fill();
+                context.beginPath();
+                context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
+                context.fillStyle = 'rgba(255, 100, 100, 1)';
+                context.strokeStyle = 'white';
+                context.lineWidth = 2 + 4 * (1 - t);
+                context.fill();
+                context.stroke();
+                this.data = context.getImageData(0, 0, this.width, this.height).data;
+                map.triggerRepaint(); return true; }
+        };
+        map.on('load', function() {
+            map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+            map.addSource('points', { 'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [{ 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX1}`, `${privY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX1}`, `${publY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX2}`, `${privY2}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX2}`, `${publY2}`] } }] } });
+            map.addLayer({ 'id': 'points', 'type': 'symbol', 'source': 'points', 'layout': { 'icon-image': 'pulsing-dot' } });
+        });
+    }
+    // A function to create a card with a contact inside, and a random background picture of a city + the edit/delete-section
+    function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, privateOrPublic, type, num) {
+        // Create card
+        let divCard = document.createElement("div");
+        // Add a class for css styles
+        divCard.className = "card";
+        // We need a uniq id for the card (with connection to the contact)
+        divCard.id = `card_${type}_${privateOrPublic}_${num}`;
+        // --------We want to have a background image for the card as a picture of a random city from unspalsh.com-------
+        // a function to create a random number
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        // Create a random number between 0 and 14
+        let randomNumber = getRandomInt(14);
+        // Let's choose a random city name based on a number between 0 and 14
+        let city;
+        switch (randomNumber) {
+            case 0:
+                city = "moscow"; break;
+            case 1:
+                city = "london"; break;
+            case 2:
+                city = "nyc"; break;
+            case 3:
+                city = "paris"; break;
+            case 4:
+                city = "helsinki"; break;
+            case 5:
+                city = "warsaw"; break;
+            case 6:
+                city = "barcelona"; break;
+            case 7:
+                city = "tokyo"; break;
+            case 8:
+                city = "venice"; break;
+            case 9:
+                city = "stockholm"; break;
+            case 10:
+                city = "chicago"; break;
+            case 11:
+                city = "budapest"; break;
+            case 12:
+                city = "lisbon"; break;
+            case 13:
+                city = "madrid"; break;
+            case 14:
+                city = "oslo"; break;
+            default:
+                city = "berlin" }
+        // Create a background picture with gradient for better readability of the text on it using a random city name (as city)
+        divCard.style.backgroundImage = `linear-gradient(
               rgba(0, 0, 0, 0.5),
               rgba(0, 0, 0, 0.5)
             ),url(https://source.unsplash.com/900x900/?${city})`;
-            //-----------------------------------------------------------------------------------
-            // Create contact for the card
-            let divContact = document.createElement("div");
-            // We need a uniq id for the contact (with connection to the card)
-            divContact.id = contactId;
-            // Put on the info
-            divContact.innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
-            // Append contact to the card
-            divCard.append(divContact);
-            // ------------- Here we want to create an edit/delete section for the card-----------------------
-            // Create the i section
-            let i = document.createElement("i");
-            i.className = "far fa-edit fa-2x";
-            i.setAttribute("data-target", `#${target_id_for_edit}`);
-            i.setAttribute("data-toggle", "modal");
-            i.setAttribute("data-whatever", "@mdo");
-            i.setAttribute("id", "edit_icon");
-            // Create the Label
-            let divModalLabel = document.createElement("div");
-            divModalLabel.setAttribute("aria-hidden", "true");
-            divModalLabel.setAttribute("aria-labelledby", "exampleModalLabel");
-            divModalLabel.setAttribute("class", "modal fade");
-            divModalLabel.setAttribute("id", target_id_for_edit);
-            divModalLabel.setAttribute("role", "dialog");
-            divModalLabel.setAttribute("tabindex", "-1");
-            // Create the Dialog
-            let divModalDialog = document.createElement("div");
-            divModalDialog.setAttribute("class", "modal-dialog");
-            divModalDialog.setAttribute("role", "document");
-            // Create the Content
-            let divModalContent = document.createElement("div");
-            divModalContent.setAttribute("class", "modal-content");
-            // Create the Header for the Content
-            let divModalHeader = document.createElement("div");
-            divModalHeader.setAttribute("class", "modal-header");
-            let hDivModalHeader = document.createElement("h5");
-            hDivModalHeader.setAttribute("class", "modal-title");
-            hDivModalHeader.setAttribute("id", "exampleModalLabel");
-            hDivModalHeader.innerHTML = "Edit Address";
-            let buttonDivModalHeader = document.createElement("button");
-            buttonDivModalHeader.setAttribute("aria-label", "Close");
-            buttonDivModalHeader.setAttribute("class", "close");
-            buttonDivModalHeader.setAttribute("data-dismiss", "modal");
-            buttonDivModalHeader.setAttribute("type", "button");
-            let spanButtonDivModalHeader = document.createElement("span");
-            spanButtonDivModalHeader.setAttribute("aria-hidden", "true");
-            spanButtonDivModalHeader.innerHTML = "×";
-            buttonDivModalHeader.append(spanButtonDivModalHeader);
-            divModalHeader.append(hDivModalHeader);
-            divModalHeader.append(buttonDivModalHeader);
-            // Create the Body for the Content
-            let divModalBody = document.createElement("div");
-            divModalBody.setAttribute("class", "modal-body");
-            divModalBody.setAttribute("id", `modal_body_${type}_${num}`);
-            // -------- Here we want to insert different forms -----
+        //-----------------------------------------------------------------------------------
+        // Create contact for the card
+        let divContact = document.createElement("div");
+        // We need a uniq id for the contact (with connection to the card)
+        divContact.id = `contact_${type}_${num}`;
+        // The color could be orange for public and green for private
+        let color;
+        if (privateOrPublic == 'private') {
+          color = 'green';
+        } else {
+          color = 'orange';
+        }
+        // Put on the info
+        divContact.innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
+        // Append contact to the card
+        divCard.append(divContact);
+        // ------------- Here we want to create an edit/delete section for the card-----------------------
+        // Create the i section
+        let i = document.createElement("i");
+        i.className = "far fa-edit fa-2x";
+        i.setAttribute("data-target", `#target_id_${type}_${num}`);
+        i.setAttribute("data-toggle", "modal");
+        i.setAttribute("data-whatever", "@mdo");
+        i.setAttribute("id", "edit_icon");
+        // Create the Label
+        let divModalLabel = document.createElement("div");
+        divModalLabel.setAttribute("aria-hidden", "true");
+        divModalLabel.setAttribute("aria-labelledby", "exampleModalLabel");
+        divModalLabel.setAttribute("class", "modal fade");
+        divModalLabel.setAttribute("id", `target_id_${type}_${num}`);
+        divModalLabel.setAttribute("role", "dialog");
+        divModalLabel.setAttribute("tabindex", "-1");
+        // Create the Dialog
+        let divModalDialog = document.createElement("div");
+        divModalDialog.setAttribute("class", "modal-dialog");
+        divModalDialog.setAttribute("role", "document");
+        // Create the Content
+        let divModalContent = document.createElement("div");
+        divModalContent.setAttribute("class", "modal-content");
+        // Create the Header for the Content
+        let divModalHeader = document.createElement("div");
+        divModalHeader.setAttribute("class", "modal-header");
+        let hDivModalHeader = document.createElement("h5");
+        hDivModalHeader.setAttribute("class", "modal-title");
+        hDivModalHeader.setAttribute("id", "exampleModalLabel");
+        hDivModalHeader.innerHTML = "Edit Address";
+        let buttonDivModalHeader = document.createElement("button");
+        buttonDivModalHeader.setAttribute("aria-label", "Close");
+        buttonDivModalHeader.setAttribute("class", "close");
+        buttonDivModalHeader.setAttribute("data-dismiss", "modal");
+        buttonDivModalHeader.setAttribute("type", "button");
+        let spanButtonDivModalHeader = document.createElement("span");
+        spanButtonDivModalHeader.setAttribute("aria-hidden", "true");
+        spanButtonDivModalHeader.innerHTML = "×";
+        buttonDivModalHeader.append(spanButtonDivModalHeader);
+        divModalHeader.append(hDivModalHeader);
+        divModalHeader.append(buttonDivModalHeader);
+        // Create the Body for the Content
+        let divModalBody = document.createElement("div");
+        divModalBody.setAttribute("class", "modal-body");
+        divModalBody.setAttribute("id", `modal_body_${type}_${num}`);
+        // -------- Here we want to insert different forms ---------------------
+        let id_for_label_1 = `recipient-name-${type}-${num}`;
+        let id_for_label_2 = `recipient-nachname-${type}-${num}`;
+        let id_for_label_3 = `recipient-strasse-${type}-${num}`;
+        let id_for_label_4 = `recipient-plz-${type}-${num}`;
+        let id_for_label_5 = `recipient-stadt-${type}-${num}`;
+        let id_for_label_6 = `recipient-land-${type}-${num}`;
+        let text1 = "Vorname";
+        let text2 = "Nachname";
+        let text3 = "Strasse";
+        let text4 = "PLZ";
+        let text5 = "Stadt";
+        let text6 = "Land";
+        let id_for_input1 = `recipient-name-${type}-${num}`;
+        let id_for_input2 = `recipient-nachname-${type}-${num}`;
+        let id_for_input3 = `recipient-strasse-${type}-${num}`;
+        let id_for_input4 = `recipient-plz-${type}-${num}`;
+        let id_for_input5 = `recipient-stadt-${type}-${num}`;
+        let id_for_input6 = `recipient-land-${type}-${num}`;
+        let id_for_input_check = `check_private_${type}_${num}`;
+        let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${type}_${num}`;
+        // Create a form synamically
+        let form = document.createElement("form");
+        form.setAttribute("id", "input_form_contact");
+        // Create array
+        let array = [1, 2, 3, 4, 5, 6];
+        // Create 6 different divs
+        function createDivs(value) {
+          this["div" + value] = document.createElement("div");
+          this["div" + value].classList.add("form-group");
+        }
+        array.forEach(createDivs);
+        // Create 6 different labels
+        function createLabels(value) {
+          this["label" + value] = document.createElement("Label");
+          this["label" + value].classList.add("col-form-label");
+          this["label" + value].setAttribute("for", eval(`id_for_label_${value}`));
+          this["label" + value].innerHTML = eval(`text${value}`);
+        }
+        array.forEach(createLabels);
+        // Create 6 different inputs
+        function createInputs(value) {
+          this["input" + value] = document.createElement("input");
+          this["input" + value].classList.add("form-control");
+          this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
+          this["input" + value].required = true;
+          this["input" + value].setAttribute("type", "text2");
+        }
+        array.forEach(createInputs);
+        // Appned all labels and inputs:
+        function appendLabels(value) {
+            eval(`div${value}`).append(eval(`label${value}`));
+            eval(`div${value}`).append(eval(`input${value}`));
+        }
+        array.forEach(appendLabels);
+        // Create a check form (div)
+        let divCheck = document.createElement("div");
+        divCheck.classList.add("form-check");
+        let inputCheck = document.createElement("input");
+        inputCheck.classList.add("form-check-input");
+        inputCheck.setAttribute("id", id_for_input_check);
+        inputCheck.setAttribute("required", "");
+        inputCheck.setAttribute("type", "checkbox");
+        let labelCheck = document.createElement("Label");
+        labelCheck.classList.add("form-check-label");
+        labelCheck.setAttribute("for", "check");
+        labelCheck.innerHTML = "Privat";
+        divCheck.append(inputCheck);
+        divCheck.append(labelCheck);
+        // Create an "as normalo" check form (div)
+        let divCheckAsNormalo = document.createElement("div");
+        divCheckAsNormalo.classList.add("form-check");
+        let inputCheckAsNormalo = document.createElement("input");
+        inputCheckAsNormalo.classList.add("form-check-input");
+        inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+        inputCheckAsNormalo.setAttribute("required", "");
+        inputCheckAsNormalo.setAttribute("type", "checkbox");
+        let labelCheckAsNormalo = document.createElement("Label");
+        labelCheckAsNormalo.classList.add("form-check-label");
+        labelCheckAsNormalo.setAttribute("for", "check");
+        labelCheckAsNormalo.innerHTML = "As normalo";
+        divCheckAsNormalo.append(inputCheckAsNormalo);
+        divCheckAsNormalo.append(labelCheckAsNormalo);
+        // Append the checkbox "as normalo" input to the form
+        form.append(divCheckAsNormalo);
+        // Append all 6 divs to the form
+        function appendDivs(value) {
+          form.append(eval(`div${value}`));
+        }
+        array.forEach(appendDivs);
+        // Append the checkbox input to the form
+        form.append(divCheck);
+        // Append the form input to the modal body
+        divModalBody.appendChild(form);
+        //----------------------------------------------------------------------
+        // Create the Footer for the Content
+        let divModalFooter = document.createElement("div");
+        let closeButtonDivModalFooter = document.createElement("button");
+        closeButtonDivModalFooter.setAttribute("class", "btn btn-secondary");
+        closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
+        closeButtonDivModalFooter.setAttribute("type", "button");
+        closeButtonDivModalFooter.innerHTML = "Close";
+        let editButtonDivModalFooter = document.createElement("button");
+        editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
+        editButtonDivModalFooter.setAttribute("type", "button");
+        editButtonDivModalFooter.innerHTML = "Edit address";
+        divModalFooter.append(closeButtonDivModalFooter);
+        divModalFooter.append(editButtonDivModalFooter);
+        // Append the Header, the Body, and the Footer to the Content
+        divModalContent.append(divModalHeader);
+        divModalContent.append(divModalBody);
+        divModalContent.append(divModalFooter);
+        // Append the Content to the Dialog
+        divModalDialog.append(divModalContent);
+        // Append the Dialog to the Label
+        divModalLabel.append(divModalDialog);
+        // Create the delete icon
+        let aEditOrDeleteSection = document.createElement("a");
+        aEditOrDeleteSection.setAttribute("href", "");
+        let iForAEditOrDeleteSection = document.createElement("i");
+        iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
+        iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
+        aEditOrDeleteSection.append(iForAEditOrDeleteSection);
+        //------------------------------------------------------------------
 
-              let id_for_label_1 = `recipient-name-${type}-${num}`;
-              let id_for_label_2 = `recipient-nachname-${type}-${num}`;
-              let id_for_label_3 = `recipient-strasse-${type}-${num}`;
-              let id_for_label_4 = `recipient-plz-${type}-${num}`;
-              let id_for_label_5 = `recipient-stadt-${type}-${num}`;
-              let id_for_label_6 = `recipient-land-${type}-${num}`;
-              let text1 = "Vorname";
-              let text2 = "Nachname";
-              let text3 = "Strasse";
-              let text4 = "PLZ";
-              let text5 = "Stadt";
-              let text6 = "Land";
-              let id_for_input1 = `recipient-name-${type}-${num}`;
-              let id_for_input2 = `recipient-nachname-${type}-${num}`;
-              let id_for_input3 = `recipient-strasse-${type}-${num}`;
-              let id_for_input4 = `recipient-plz-${type}-${num}`;
-              let id_for_input5 = `recipient-stadt-${type}-${num}`;
-              let id_for_input6 = `recipient-land-${type}-${num}`;
-              let id_for_input_check = `check_private_${type}_${num}`;
-              let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${type}_${num}`;
+        //------------ Here we want to decide if we want to append the edit/delete section to the card-----------
+        // Append the i (edit icon) to the card
+        divCard.append(i);
+        // Append the Label to the card
+        divCard.append(divModalLabel);
+        // Append the delete icon to the card
+        divCard.append(aEditOrDeleteSection);
 
-                // Create a form synamically
-                let form = document.createElement("form");
-                form.setAttribute("id","input_form_contact");
-                // Create array
-                let array = [1,2,3,4,5,6];
-                // Create 6 different divs
-                function createDivs(value){
-                  this["div"+value] = document.createElement("div");
-                  this["div"+value].classList.add("form-group");
-                }
-                array.forEach(createDivs);
-                // Create 6 different labels
-                function createLabels(value){
-                  this["label"+value] = document.createElement("Label");
-                  this["label"+value].classList.add("col-form-label");
-                  this["label"+value].setAttribute("for",eval(`id_for_label_${value}`));
-                  this["label"+value].innerHTML = eval(`text${value}`);
-                }
-                array.forEach(createLabels);
-                // Create 6 different inputs
-                function createInputs(value){
-                  this["input"+value] = document.createElement("input");
-                  this["input"+value].classList.add("form-control");
-                  this["input"+value].setAttribute("id",eval(`id_for_input${value}`));
-                  this["input"+value].required = true;
-                  this["input"+value].setAttribute("type", "text2");
-                }
-                array.forEach(createInputs);
-                // Appned all labels and inputs:
-                function appendLabels(value){
-                  eval(`div${value}`).append(eval(`label${value}`));
-                  eval(`div${value}`).append(eval(`input${value}`));
-                }
-                array.forEach(appendLabels);
-                // Create a check form (div)
-                let divCheck = document.createElement("div");
-                divCheck.classList.add("form-check");
-                let inputCheck = document.createElement("input");
-                inputCheck.classList.add("form-check-input");
-                inputCheck.setAttribute("id", id_for_input_check);
-                inputCheck.setAttribute("required","");
-                inputCheck.setAttribute("type", "checkbox");
-                let labelCheck = document.createElement("Label");
-                labelCheck.classList.add("form-check-label");
-                labelCheck.setAttribute("for","check");
-                labelCheck.innerHTML = "Privat";
-                divCheck.append(inputCheck);
-                divCheck.append(labelCheck);
-                // Create an "as normalo" check form (div)
-                let divCheckAsNormalo = document.createElement("div");
-                divCheckAsNormalo.classList.add("form-check");
-                let inputCheckAsNormalo = document.createElement("input");
-                inputCheckAsNormalo.classList.add("form-check-input");
-                inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
-                inputCheckAsNormalo.setAttribute("required","");
-                inputCheckAsNormalo.setAttribute("type", "checkbox");
-                let labelCheckAsNormalo = document.createElement("Label");
-                labelCheckAsNormalo.classList.add("form-check-label");
-                labelCheckAsNormalo.setAttribute("for","check");
-                labelCheckAsNormalo.innerHTML = "As normalo";
-                divCheckAsNormalo.append(inputCheckAsNormalo);
-                divCheckAsNormalo.append(labelCheckAsNormalo);
-                // Append the checkbox "as normalo" input to the form
-                form.append(divCheckAsNormalo);
-                // Append all 6 divs to the form
-                function appendDivs(value){
-                  form.append(eval(`div${value}`));
-                }
-                array.forEach(appendDivs);
-                // Append the checkbox input to the form
-                form.append(divCheck);
-                // Append the form input to the modal body
-                divModalBody.appendChild(form);
-
-
-            //-------------------------------------------------------
-
-            // Create the Footer for the Content
-            let divModalFooter = document.createElement("div");
-            let closeButtonDivModalFooter = document.createElement("button");
-            closeButtonDivModalFooter.setAttribute("class", "btn btn-secondary");
-            closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
-            closeButtonDivModalFooter.setAttribute("type", "button");
-            closeButtonDivModalFooter.innerHTML = "Close";
-            let editButtonDivModalFooter = document.createElement("button");
-            editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
-            editButtonDivModalFooter.setAttribute("type", "button");
-            editButtonDivModalFooter.innerHTML = "Edit address";
-            divModalFooter.append(closeButtonDivModalFooter);
-            divModalFooter.append(editButtonDivModalFooter);
-            // Append the Header, the Body, and the Footer to the Content
-            divModalContent.append(divModalHeader);
-            divModalContent.append(divModalBody);
-            divModalContent.append(divModalFooter);
-            // Append the Content to the Dialog
-            divModalDialog.append(divModalContent);
-            // Append the Dialog to the Label
-            divModalLabel.append(divModalDialog);
-            // Create the delete icon
-            let aEditOrDeleteSection = document.createElement("a");
-            aEditOrDeleteSection.setAttribute("href", "");
-            let iForAEditOrDeleteSection = document.createElement("i");
-            iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
-            iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
-            aEditOrDeleteSection.append(iForAEditOrDeleteSection);
-            //------------------------------------------------------------------
-
-            //------------ Here we want to decide if we want to append the edit/delete section to the card-----------
-            // Append the i (edit icon) to the card
-            divCard.append(i);
-            // Append the Label to the card
-            divCard.append(divModalLabel);
-            // Append the delete icon to the card
-            divCard.append(aEditOrDeleteSection);
-
-            //------------------------------------------------------------------
-            // Find a place where to append the card
-            let element = document.getElementById(wheretoplace);
-            // Append the card there
-            element.append(divCard);
-          }
-
-          // A function to create an edit/delete section on a card
-          function addEditOrDeleteSection(){
-
-          }
-
-
-
-          function getAdminaContacts(){
-            getContactInfo('first_contact_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'private','green');
-            getContactInfo('second_contact_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange');
-          }
-
-          function getNormaloContacts(){
-            getContactInfo('first_contact_normalo',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green');
-            getContactInfo('second_contact_normalo',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange');
-          }
-
-          function getAllContactsForAdmina(){
-            getContactInfo('first_contact_all_contacts_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'private','green');
-            getContactInfo('second_contact_all_contacts_admina',admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange');
-            getContactInfo('third_contact_all_contacts_admina',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green');
-            getContactInfo('fourth_contact_all_contacts_admina',normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange');
-          }
-
-          function getAllContactsForNormalo(){
-            getCard("normalo_card_1","normalo_contact_1","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange', 'normalo_target_id_1', 'normalo', '1');
-            getCard("normalo_card_2","normalo_contact_2","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green', 'normalo_target_id_2', 'normalo', '2');
-            getCard("admina_card_1","admina_contact_1","all_list_of_addresses_normalo",admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange', 'admina_target_id_1', 'admina', '1');
-          }
-
-          // Changing pages on click:
-          function switchPage(page1,page2){
-            // Close this page
-            document.getElementById(page1).style.display = 'none';
-            // Open this page
-            document.getElementById(page2).style.display = 'block';
-          }
-
-          // login-function: when logging in, contacts and the map are loading separatly for two users:
-          function login(){
-            if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password){
-              switchPage('loginform','mainscreen-admina');
-              getAllContactsForAdmina();
-              getAdminaContacts();
-              getMap("map-admina",admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY);
-            }
-           else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password){
-              switchPage('loginform','mainscreen-normalo');
-              getAllContactsForNormalo();
-              getNormaloContacts();
-              getMap("map-normalo",normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY);
-          }
-          else{
+        //------------------------------------------------------------------
+        // Find a place where to append the card
+        let element = document.getElementById(wheretoplace);
+        // Append the card there
+        element.append(divCard);
+    }
+    // Create 4 cards on the main page
+    getCard("all_cards", admina.vorname, admina.nachname, admina.strasse, admina.plz, admina.stadt, admina.land, 'public', 'admina', '1');
+    getCard("all_cards", admina.vorname, admina.nachname, admina.strasse, admina.plz, admina.stadt, admina.land, 'private', 'admina', '2');
+    getCard("all_cards", normalo.vorname, normalo.nachname, normalo.strasse, normalo.plz, normalo.stadt, normalo.land, 'public', 'normalo', '1');
+    getCard("all_cards", normalo.vorname, normalo.nachname, normalo.strasse, normalo.plz, normalo.stadt, normalo.land, 'private', 'normalo', '2');
+    // A function to delete a card
+    function deleteCard(uniqid) {
+        let el = document.getElementById(uniqid);
+        el.remove();
+    }
+    // Changing pages on click:
+    function switchPage(page1, page2) {
+        // Close this page
+        document.getElementById(page1).style.display = 'none';
+        // Open this page
+        document.getElementById(page2).style.display = 'block';
+    }
+    // Hide something
+    function hide(element) {
+        // Hide this
+        document.getElementById(element).style.display = 'none';
+    }
+    // "show all" function
+    function showAllCardsFor(user){
+      if(user=='admina'){
+        let elems = document.querySelectorAll(`[id^='card_']`);
+        let index;
+        for (index = 0; index < elems.length; ++index) {
+            elems[index].style.display = 'block';
+        }
+      }
+      else{
+        let elems = document.querySelectorAll(`[id^='card_']`);
+        let index;
+        for (index = 0; index < elems.length; ++index) {
+            elems[index].style.display = 'block';
+        }
+        let elemsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
+        let index2;
+        for (index2 = 0; index2 < elemsToHide.length; ++index2) {
+            elemsToHide[index2].style.display = 'none';
+        }
+      }
+    }
+    // "hideAllCardsOfUser" function (hide what belongs not to me)
+    function hideAllCardsOfUser(userToHide){
+        let elems = document.querySelectorAll(`[id^='card_${userToHide}']`);
+        let index;
+        for (index = 0; index < elems.length; ++index) {
+            elems[index].style.display = 'none';;
+        }
+    }
+    // "showMine" function
+    function showMine(user){
+        let elems = document.querySelectorAll(`[id^='card_${user}']`);
+        let index;
+        for (index = 0; index < elems.length; ++index) {
+            elems[index].style.display = 'block';;
+        }
+    }
+    // login-function
+    function login() {
+        if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password) {
+            switchPage('loginform', 'mainscreen');
+            document.getElementById('admina').style.display = 'block';
+            getMap("map", admina.contactPrivateX, admina.contactPrivateY, admina.contactPublicX, admina.contactPublicY);
+            hideAllCardsOfUser('normalo');
+            showMine('admina');
+        } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
+            switchPage('loginform', 'mainscreen');
+            document.getElementById('normalo').style.display = 'block';
+            getMap("map", normalo.contactPrivateX, normalo.contactPrivateY, normalo.contactPublicX, normalo.contactPublicY);
+            hideAllCardsOfUser('admina');
+            showMine('normalo');
+        } else {
             alert("The entered username and password is wrong. Please enter the correct one.");
-            }
-          }
-
-          // TO DO:
-          function deleteCard(uniqid){
-            let el = document.getElementById(uniqid);
-            el.remove();
-          }
-
-          function deleteContact(uniqid){
-
-          }
-
-          function editCard(uniqid){
-
-          }
-
-          function editContact(uniqid, lat, long){
-
-          }
-
-          function addContactToTheMap(uniqid,lat,long){
-
-          }
-
-          function deleteContactFromTheMap(uniqid){
-
-          }
-
-        function insertForm(where_to_append,id_for_label_1,id_for_label_2,id_for_label_3,id_for_label_4,id_for_label_5,id_for_label_6,text1,text2,text3,text4,text5,text6,id_for_input1,id_for_input2,id_for_input3,id_for_input4,id_for_input5,id_for_input6,id_for_input_check,id_for_input_check_as_normalo,id){
-                // Find a place to append
-                let doc = document.getElementById(where_to_append);
-                // Create a form synamically
-                let form = document.createElement("form");
-                form.setAttribute("id","input_form_contact");
-                // Create array
-                let array = [1,2,3,4,5,6];
-                // Create 6 different divs
-                function createDivs(value){
-                  this["div"+value] = document.createElement("div");
-                  this["div"+value].classList.add("form-group");
-                }
-                array.forEach(createDivs);
-                // Create 6 different labels
-                function createLabels(value){
-                  this["label"+value] = document.createElement("Label");
-                  this["label"+value].classList.add("col-form-label");
-                  this["label"+value].setAttribute("for",eval(`id_for_label_${value}`));
-                  this["label"+value].innerHTML = eval(`text${value}`);
-                }
-                array.forEach(createLabels);
-                // Create 6 different inputs
-                function createInputs(value){
-                  this["input"+value] = document.createElement("input");
-                  this["input"+value].classList.add("form-control");
-                  this["input"+value].setAttribute("id",eval(`id_for_input${value}`));
-                  this["input"+value].required = true;
-                  this["input"+value].setAttribute("type", "text2");
-                }
-                array.forEach(createInputs);
-                // Appned all labels and inputs:
-                function appendLabels(value){
-                  eval(`div${value}`).append(eval(`label${value}`));
-                  eval(`div${value}`).append(eval(`input${value}`));
-                }
-                array.forEach(appendLabels);
-                // Create a check form (div)
-                let divCheck = document.createElement("div");
-                divCheck.classList.add("form-check");
-                let inputCheck = document.createElement("input");
-                inputCheck.classList.add("form-check-input");
-                inputCheck.setAttribute("id", id_for_input_check);
-                inputCheck.setAttribute("required","");
-                inputCheck.setAttribute("type", "checkbox");
-                let labelCheck = document.createElement("Label");
-                labelCheck.classList.add("form-check-label");
-                labelCheck.setAttribute("for","check");
-                labelCheck.innerHTML = "Privat";
-                divCheck.append(inputCheck);
-                divCheck.append(labelCheck);
-                // Create an "as normalo" check form (div)
-                let divCheckAsNormalo = document.createElement("div");
-                divCheckAsNormalo.classList.add("form-check");
-                let inputCheckAsNormalo = document.createElement("input");
-                inputCheckAsNormalo.classList.add("form-check-input");
-                inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
-                inputCheckAsNormalo.setAttribute("required","");
-                inputCheckAsNormalo.setAttribute("type", "checkbox");
-                let labelCheckAsNormalo = document.createElement("Label");
-                labelCheckAsNormalo.classList.add("form-check-label");
-                labelCheckAsNormalo.setAttribute("for","check");
-                labelCheckAsNormalo.innerHTML = "As normalo";
-                divCheckAsNormalo.append(inputCheckAsNormalo);
-                divCheckAsNormalo.append(labelCheckAsNormalo);
-                // Append the checkbox "as normalo" input to the form, but only if the form belongs to admina
-                if (id<=7) {
-                  form.append(divCheckAsNormalo);
-                }
-                // Append all 6 divs to the form
-                function appendDivs(value){
-                  form.append(eval(`div${value}`));
-                }
-                array.forEach(appendDivs);
-                // Append the checkbox input to the form
-                form.append(divCheck);
-                // Append the form input to the doc
-                doc.appendChild(form);
         }
+    }
 
-        function insertForms(value){
-          insertForm(`modal-body-${value}`,`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,"Vorname","Nachname","Strasse","PLZ","Stadt","Land",`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,`check_private_${value}`,`id_for_input_check_as_normalo_${value}`,value);
-        }
-        // How many uniq forms do we want?
-        let forms = [1,2,3,4,5,6,7,8,9,10];
-        forms.forEach(insertForms);
+    // TO DO:
 
-        //Changing backgrounds for pictures
-        function changeElement(id,city) {
-          var el = document.getElementById(id);
-          el.style.backgroundImage = `linear-gradient(
-          rgba(0, 0, 0, 0.5),
-          rgba(0, 0, 0, 0.5)
-        ),url(https://source.unsplash.com/900x900/?${city})`;
-        }
+    function editCard(uniqid) {
 
-        // changing pictures for admina's cards
-        changeElement('admina_card_2','moscow');
-        changeElement('admina_card_4','LA');
-        changeElement('admina_card_5','tokyo');
-        changeElement('admina_card_6','barcelona');
-        </script>
-    </body>
+    }
+
+    function addContactToTheMap(uniqid, lat, long) {
+
+    }
+
+    function deleteContactFromTheMap(uniqid) {
+
+    }
+    </script>
+</body>
+
 </html>
