@@ -476,12 +476,15 @@
         closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
+        let aEditButtonDivModalFooter = document.createElement("a");
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("type", "button");
         editButtonDivModalFooter.innerHTML = "Edit address";
+        aEditButtonDivModalFooter.append(editButtonDivModalFooter);
         divModalFooter.append(closeButtonDivModalFooter);
-        divModalFooter.append(editButtonDivModalFooter);
+        divModalFooter.append(aEditButtonDivModalFooter);
         // Append the Header, the Body, and the Footer to the Content
         divModalContent.append(divModalHeader);
         divModalContent.append(divModalBody);
@@ -518,6 +521,10 @@
     function deleteCard(uniqid) {
         let el = document.getElementById(uniqid);
         el.remove();
+    }
+    // A function to change a card
+    function editCard(uniqid) {
+      console.log(`editing ${uniqid}`);
     }
     // Changing pages on click:
     function switchPage(page1, page2) {
@@ -594,10 +601,6 @@
     }
 
     // TO DO:
-
-    function editCard(uniqid) {
-
-    }
 
     function addContactToTheMap(uniqid, lat, long) {
 
