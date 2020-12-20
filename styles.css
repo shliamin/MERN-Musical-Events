@@ -30,18 +30,20 @@ body {
    color:red;
 }
 
-.input_address_form{
-  padding: 16px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
-  margin: 0px 0 0;
-  border-radius: 8px;
-}
-
-input[type=text], input[type=password] {
+input[type=text1], input[type=password1] {
   width: 100%;
   padding: 10px;
   margin: 0px 0 22px 0;
+  display: inline-block;
+  background: #E7F1FE;
+  border-radius: 8px;
+  border: 1px solid #dddfe2;
+}
+
+input[type=text2], input[type=password1] {
+  width: 100%;
+  padding: 10px;
+  /*margin: 0px 0 22px 0;*/
   display: inline-block;
   background: #E7F1FE;
   border-radius: 8px;
@@ -245,6 +247,15 @@ a {
           rgba(0, 0, 0, 0.5)
         ),url(https://source.unsplash.com/900x900/?berlin);
 }
+
+#input_form_contact{
+  color: black;
+  font-weight: normal;
+  text-shadow: none;
+  font-size: 12px;
+}
+
+
 
 .card:hower{
   transform: scale(1.05);

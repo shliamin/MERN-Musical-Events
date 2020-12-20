@@ -50,7 +50,7 @@
                                             </b>
                                         </label>
                                     </label>
-                                    <input id="username" name="username" placeholder="Write your username" required="" type="text">
+                                    <input id="username" name="username" placeholder="Write your username" required="" type="text1">
                                         <label class="control-label">
                                             <label for="psw">
                                                 <b>
@@ -58,7 +58,7 @@
                                                 </b>
                                             </label>
                                         </label>
-                                        <input id="psw" name="psw" placeholder="Enter Password" required="" type="password">
+                                        <input id="psw" name="psw" placeholder="Enter Password" required="" type="password1">
                                             <button class="loginbtn" onclick="" type="submit">
                                                 Login
                                             </button>
@@ -667,11 +667,12 @@
 
           }
 
-        function insertForm(id,id_for_label_1,id_for_label_2,id_for_label_3,id_for_label_4,id_for_label_5,id_for_label_6,text1,text2,text3,text4,text5,text6,id_for_input1,id_for_input2,id_for_input3,id_for_input4,id_for_input5,id_for_input6,id_for_input_check){
+        function insertForm(where_to_append,id_for_label_1,id_for_label_2,id_for_label_3,id_for_label_4,id_for_label_5,id_for_label_6,text1,text2,text3,text4,text5,text6,id_for_input1,id_for_input2,id_for_input3,id_for_input4,id_for_input5,id_for_input6,id_for_input_check,id_for_input_check_as_normalo,id){
                 // Find a place to append
-                let doc = document.getElementById(id);
+                let doc = document.getElementById(where_to_append);
                 // Create a form synamically
                 let form = document.createElement("form");
+                form.setAttribute("id","input_form_contact");
                 // Create array
                 let array = [1,2,3,4,5,6];
                 // Create 6 different divs
@@ -694,7 +695,7 @@
                   this["input"+value].classList.add("form-control");
                   this["input"+value].setAttribute("id",eval(`id_for_input${value}`));
                   this["input"+value].required = true;
-                  this["input"+value].setAttribute("type", "text");
+                  this["input"+value].setAttribute("type", "text2");
                 }
                 array.forEach(createInputs);
                 // Appned all labels and inputs:
@@ -715,8 +716,26 @@
                 labelCheck.classList.add("form-check-label");
                 labelCheck.setAttribute("for","check");
                 labelCheck.innerHTML = "Privat";
-                inputCheck.append(labelCheck);
                 divCheck.append(inputCheck);
+                divCheck.append(labelCheck);
+                // Create an "as normalo" check form (div)
+                let divCheckAsNormalo = document.createElement("div");
+                divCheckAsNormalo.classList.add("form-check");
+                let inputCheckAsNormalo = document.createElement("input");
+                inputCheckAsNormalo.classList.add("form-check-input");
+                inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+                inputCheckAsNormalo.setAttribute("required","");
+                inputCheckAsNormalo.setAttribute("type", "checkbox");
+                let labelCheckAsNormalo = document.createElement("Label");
+                labelCheckAsNormalo.classList.add("form-check-label");
+                labelCheckAsNormalo.setAttribute("for","check");
+                labelCheckAsNormalo.innerHTML = "As normalo";
+                divCheckAsNormalo.append(inputCheckAsNormalo);
+                divCheckAsNormalo.append(labelCheckAsNormalo);
+                // Append the checkbox "as normalo" input to the form, but only if the form belongs to admina
+                if (id<=6) {
+                  form.append(divCheckAsNormalo);
+                }
                 // Append all 6 divs to the form
                 function appendDivs(value){
                   form.append(eval(`div${value}`));
@@ -729,7 +748,7 @@
         }
 
         function insertForms(value){
-          insertForm(`modal-body-${value}`,`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,"Vorname","Nachname","Strasse","PLZ","Stadt","Land",`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,`check_private_normalo_edit_${value}`);
+          insertForm(`modal-body-${value}`,`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,"Vorname","Nachname","Strasse","PLZ","Stadt","Land",`recipient-name-${value}`,`recipient-nachname-${value}`,`recipient-strasse-${value}`,`recipient-plz-${value}`,`recipient-stadt-${value}`,`recipient-land-${value}`,`check_private_${value}`,`id_for_input_check_as_normalo_${value}`,value);
         }
         // How many uniq forms do we want?
         let forms = [1,2,3,4,5,6,7,8,9,10];
