@@ -558,7 +558,7 @@
           }
 
           // A function to create a card with a contact inside, and a random background picture of a city + the edit/delete-section
-          function addCard(cardId,contactId,wheretoplace,vorname,nachname,strasse,plz,stadt,land,privateOrPublic,color, target_id_for_edit, modal_body_id){
+          function getCard(cardId,contactId,wheretoplace,vorname,nachname,strasse,plz,stadt,land,privateOrPublic,color, target_id_for_edit, type,num){
             // Create card
             let divCard = document.createElement("div");
             // Add a class for css styles
@@ -633,7 +633,107 @@
             // Create the Body for the Content
             let divModalBody = document.createElement("div");
             divModalBody.setAttribute("class", "modal-body");
-            divModalBody.setAttribute("id", modal_body_id);
+            divModalBody.setAttribute("id", `modal_body_${type}_${num}`);
+            // -------- Here we want to insert different forms -----
+
+              let id_for_label_1 = `recipient-name-${type}-${num}`;
+              let id_for_label_2 = `recipient-nachname-${type}-${num}`;
+              let id_for_label_3 = `recipient-strasse-${type}-${num}`;
+              let id_for_label_4 = `recipient-plz-${type}-${num}`;
+              let id_for_label_5 = `recipient-stadt-${type}-${num}`;
+              let id_for_label_6 = `recipient-land-${type}-${num}`;
+              let text1 = "Vorname";
+              let text2 = "Nachname";
+              let text3 = "Strasse";
+              let text4 = "PLZ";
+              let text5 = "Stadt";
+              let text6 = "Land";
+              let id_for_input1 = `recipient-name-${type}-${num}`;
+              let id_for_input2 = `recipient-nachname-${type}-${num}`;
+              let id_for_input3 = `recipient-strasse-${type}-${num}`;
+              let id_for_input4 = `recipient-plz-${type}-${num}`;
+              let id_for_input5 = `recipient-stadt-${type}-${num}`;
+              let id_for_input6 = `recipient-land-${type}-${num}`;
+              let id_for_input_check = `check_private_${type}_${num}`;
+              let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${type}_${num}`;
+
+                // Create a form synamically
+                let form = document.createElement("form");
+                form.setAttribute("id","input_form_contact");
+                // Create array
+                let array = [1,2,3,4,5,6];
+                // Create 6 different divs
+                function createDivs(value){
+                  this["div"+value] = document.createElement("div");
+                  this["div"+value].classList.add("form-group");
+                }
+                array.forEach(createDivs);
+                // Create 6 different labels
+                function createLabels(value){
+                  this["label"+value] = document.createElement("Label");
+                  this["label"+value].classList.add("col-form-label");
+                  this["label"+value].setAttribute("for",eval(`id_for_label_${value}`));
+                  this["label"+value].innerHTML = eval(`text${value}`);
+                }
+                array.forEach(createLabels);
+                // Create 6 different inputs
+                function createInputs(value){
+                  this["input"+value] = document.createElement("input");
+                  this["input"+value].classList.add("form-control");
+                  this["input"+value].setAttribute("id",eval(`id_for_input${value}`));
+                  this["input"+value].required = true;
+                  this["input"+value].setAttribute("type", "text2");
+                }
+                array.forEach(createInputs);
+                // Appned all labels and inputs:
+                function appendLabels(value){
+                  eval(`div${value}`).append(eval(`label${value}`));
+                  eval(`div${value}`).append(eval(`input${value}`));
+                }
+                array.forEach(appendLabels);
+                // Create a check form (div)
+                let divCheck = document.createElement("div");
+                divCheck.classList.add("form-check");
+                let inputCheck = document.createElement("input");
+                inputCheck.classList.add("form-check-input");
+                inputCheck.setAttribute("id", id_for_input_check);
+                inputCheck.setAttribute("required","");
+                inputCheck.setAttribute("type", "checkbox");
+                let labelCheck = document.createElement("Label");
+                labelCheck.classList.add("form-check-label");
+                labelCheck.setAttribute("for","check");
+                labelCheck.innerHTML = "Privat";
+                divCheck.append(inputCheck);
+                divCheck.append(labelCheck);
+                // Create an "as normalo" check form (div)
+                let divCheckAsNormalo = document.createElement("div");
+                divCheckAsNormalo.classList.add("form-check");
+                let inputCheckAsNormalo = document.createElement("input");
+                inputCheckAsNormalo.classList.add("form-check-input");
+                inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+                inputCheckAsNormalo.setAttribute("required","");
+                inputCheckAsNormalo.setAttribute("type", "checkbox");
+                let labelCheckAsNormalo = document.createElement("Label");
+                labelCheckAsNormalo.classList.add("form-check-label");
+                labelCheckAsNormalo.setAttribute("for","check");
+                labelCheckAsNormalo.innerHTML = "As normalo";
+                divCheckAsNormalo.append(inputCheckAsNormalo);
+                divCheckAsNormalo.append(labelCheckAsNormalo);
+                // Append the checkbox "as normalo" input to the form
+                form.append(divCheckAsNormalo);
+                // Append all 6 divs to the form
+                function appendDivs(value){
+                  form.append(eval(`div${value}`));
+                }
+                array.forEach(appendDivs);
+                // Append the checkbox input to the form
+                form.append(divCheck);
+                // Append the form input to the modal body
+                divModalBody.appendChild(form);
+
+
+            //-------------------------------------------------------
+
             // Create the Footer for the Content
             let divModalFooter = document.createElement("div");
             let closeButtonDivModalFooter = document.createElement("button");
@@ -704,9 +804,9 @@
           }
 
           function getAllContactsForNormalo(){
-            addCard("normalo_card_1","normalo_contact_1","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange', 'normalo_target_id_1', 'normalo_modal_body_id_1');
-            addCard("normalo_card_2","normalo_contact_2","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green', 'normalo_target_id_2', 'normalo_modal_body_id_2');
-            addCard("admina_card_1","admina_contact_1","all_list_of_addresses_normalo",admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange', 'admina_target_id_1', 'admina_modal_body_id_1');
+            getCard("normalo_card_1","normalo_contact_1","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'public','orange', 'normalo_target_id_1', 'normalo', '1');
+            getCard("normalo_card_2","normalo_contact_2","all_list_of_addresses_normalo",normalo.vorname,normalo.nachname,normalo.strasse,normalo.plz,normalo.stadt,normalo.land,'private','green', 'normalo_target_id_2', 'normalo', '2');
+            getCard("admina_card_1","admina_contact_1","all_list_of_addresses_normalo",admina.vorname,admina.nachname,admina.strasse,admina.plz,admina.stadt,admina.land,'public','orange', 'admina_target_id_1', 'admina', '1');
           }
 
           // Changing pages on click:
@@ -740,16 +840,6 @@
           function deleteCard(uniqid){
             let el = document.getElementById(uniqid);
             el.remove();
-          }
-
-          function Contact(vorname, nachname, strasse, plz, stadt, land){
-            this.vorname = vorname;
-            this.nachname = nachname;
-            this.strasse = strasse;
-            this.plz = plz;
-            this.stadt = stadt;
-            this.land = land;
-            this.uniqid = 0;
           }
 
           function deleteContact(uniqid){
