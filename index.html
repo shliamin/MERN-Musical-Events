@@ -326,7 +326,7 @@
           color = 'orange';
         }
         // Put on the info
-        divContact.innerHTML = `<span class="yellow-black">Vorname:</span> ${vorname}<br /> <span class="yellow-black">Nachname:</span> ${nachname}<br /> <span class="yellow-black">Strasse:</span> ${strasse}<br /> <span class="yellow-black">PLZ:</span> ${plz}<br /> <span class="yellow-black">Stadt:</span> ${stadt}<br /> <span class="yellow-black">Land:</span> ${land}<br /> <span class=${color}>${privateOrPublic}</span>`;
+        divContact.innerHTML = `<span class="yellow-black">Vorname:</span> <span id='vorname_${type}_${privateOrPublic}_${num}'>${vorname}</span><br /> <span class="yellow-black">Nachname:</span> <span id='nachname_${type}_${privateOrPublic}_${num}'>${nachname}</span><br /> <span class="yellow-black">Strasse:</span><span id='strasse_${type}_${privateOrPublic}_${num}'> ${strasse}</span><br /> <span class="yellow-black" >PLZ:</span> <span id='plz_${type}_${privateOrPublic}_${num}'>${plz}</span><br /> <span class="yellow-black" >Stadt:</span><span id='stadt_${type}_${privateOrPublic}_${num}'> ${stadt}</span><br /> <span class="yellow-black">Land:</span><span id='land_${type}_${privateOrPublic}_${num}'> ${land}</span><br /> <span class='${color}'><span id='private_or_public_${type}_${privateOrPublic}_${num}'>${privateOrPublic}</span></span>`;
         // Append contact to the card
         divCard.append(divContact);
         // ------------- Here we want to create an edit/delete section for the card-----------------------
@@ -477,7 +477,10 @@
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
         let aEditButtonDivModalFooter = document.createElement("a");
-        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}')`);
+
+
+
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','check_private_${type}_${num}','id_for_input_check_as_normalo_${type}_${num}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("type", "button");
@@ -523,8 +526,38 @@
         el.remove();
     }
     // A function to change a card
-    function editCard(uniqid) {
-      console.log(`editing ${uniqid}`);
+    function editCard(uniqid,name,surname,street,plz,city,country,privateOrPublic,asnormalo) {
+
+
+      let string = uniqid;
+      let res = string.slice(5, string.length);
+
+      let vorname = "vorname_";
+      let vornameID = vorname.concat(res);
+      let vornameEl = document.getElementById(vornameID);
+      vornameEl.innerHTML = `${document.getElementById(name).value}`;
+      let nachname = "nachname_";
+      let nachnameID = nachname.concat(res);
+      let nachnameEl = document.getElementById(nachnameID);
+      nachnameEl.innerHTML = `${document.getElementById(surname).value}`;
+      let plzEdit = "plz_";
+      let plzID = plzEdit.concat(res);
+      let plzEl = document.getElementById(plzID);
+      plzEl.innerHTML = `${document.getElementById(plz).value}`;
+      let streetEdit = "strasse_";
+      let streetID = streetEdit.concat(res);
+      let streetEl = document.getElementById(streetID);
+      streetEl.innerHTML = `${document.getElementById(street).value}`;
+      let stadt = "stadt_";
+      let stadtID = stadt.concat(res);
+      let stadtEl = document.getElementById(stadtID);
+      stadtEl.innerHTML = `${document.getElementById(city).value}`;
+      let land = "land_";
+      let landID = land.concat(res);
+      let landEl = document.getElementById(landID);
+      landEl.innerHTML = `${document.getElementById(country).value}`;
+
+
     }
     // Changing pages on click:
     function switchPage(page1, page2) {
