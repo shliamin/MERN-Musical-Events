@@ -232,11 +232,18 @@
             width: size,
             height: size,
             data: new Uint8Array(size * size * 4),
-            onAdd: function() { var canvas = document.createElement('canvas');
+            onAdd: function() {
+                var canvas = document.createElement('canvas');
                 canvas.width = this.width;
                 canvas.height = this.height;
-                this.context = canvas.getContext('2d'); },
-            render: function() { var duration = 1000; var t = (performance.now() % duration) / duration; var radius = (size / 2) * 0.3; var outerRadius = (size / 2) * 1 * t + radius; var context = this.context;
+                this.context = canvas.getContext('2d');
+            },
+            render: function() {
+                var duration = 1000;
+                var t = (performance.now() % duration) / duration;
+                var radius = (size / 2) * 0.3;
+                var outerRadius = (size / 2) * 1 * t + radius;
+                var context = this.context;
                 context.clearRect(0, 0, this.width, this.height);
                 context.beginPath();
                 context.arc(this.width / 2, this.height / 2, outerRadius, 0, Math.PI * 2);
@@ -250,7 +257,9 @@
                 context.fill();
                 context.stroke();
                 this.data = context.getImageData(0, 0, this.width, this.height).data;
-                map.triggerRepaint(); return true; }
+                map.triggerRepaint();
+                return true;
+            }
         };
         map.on('load', function() {
             map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
@@ -277,37 +286,53 @@
         let city;
         switch (randomNumber) {
             case 0:
-                city = "moscow"; break;
+                city = "moscow";
+                break;
             case 1:
-                city = "london"; break;
+                city = "london";
+                break;
             case 2:
-                city = "nyc"; break;
+                city = "nyc";
+                break;
             case 3:
-                city = "paris"; break;
+                city = "paris";
+                break;
             case 4:
-                city = "helsinki"; break;
+                city = "helsinki";
+                break;
             case 5:
-                city = "warsaw"; break;
+                city = "warsaw";
+                break;
             case 6:
-                city = "barcelona"; break;
+                city = "barcelona";
+                break;
             case 7:
-                city = "tokyo"; break;
+                city = "tokyo";
+                break;
             case 8:
-                city = "venice"; break;
+                city = "venice";
+                break;
             case 9:
-                city = "stockholm"; break;
+                city = "stockholm";
+                break;
             case 10:
-                city = "chicago"; break;
+                city = "chicago";
+                break;
             case 11:
-                city = "budapest"; break;
+                city = "budapest";
+                break;
             case 12:
-                city = "lisbon"; break;
+                city = "lisbon";
+                break;
             case 13:
-                city = "madrid"; break;
+                city = "madrid";
+                break;
             case 14:
-                city = "oslo"; break;
+                city = "oslo";
+                break;
             default:
-                city = "berlin" }
+                city = "berlin"
+        }
         // Create a background picture with gradient for better readability of the text on it using a random city name (as city)
         divCard.style.backgroundImage = `linear-gradient(
               rgba(0, 0, 0, 0.5),
@@ -321,9 +346,9 @@
         // The color could be orange for public and green for private
         let color;
         if (privateOrPublic == 'private') {
-          color = 'green';
+            color = 'green';
         } else {
-          color = 'orange';
+            color = 'orange';
         }
         // Put on the info
         divContact.innerHTML = `<span class="yellow-black">Vorname:</span> <span id='vorname_${type}_${privateOrPublic}_${num}'>${vorname}</span><br /> <span class="yellow-black">Nachname:</span> <span id='nachname_${type}_${privateOrPublic}_${num}'>${nachname}</span><br /> <span class="yellow-black">Strasse:</span><span id='strasse_${type}_${privateOrPublic}_${num}'> ${strasse}</span><br /> <span class="yellow-black" >PLZ:</span> <span id='plz_${type}_${privateOrPublic}_${num}'>${plz}</span><br /> <span class="yellow-black" >Stadt:</span><span id='stadt_${type}_${privateOrPublic}_${num}'> ${stadt}</span><br /> <span class="yellow-black">Land:</span><span id='land_${type}_${privateOrPublic}_${num}'> ${land}</span><br /> <span class='${color}'><span id='private_or_public_${type}_${privateOrPublic}_${num}'>${privateOrPublic}</span></span>`;
@@ -403,25 +428,25 @@
         let array = [1, 2, 3, 4, 5, 6];
         // Create 6 different divs
         function createDivs(value) {
-          this["div" + value] = document.createElement("div");
-          this["div" + value].classList.add("form-group");
+            this["div" + value] = document.createElement("div");
+            this["div" + value].classList.add("form-group");
         }
         array.forEach(createDivs);
         // Create 6 different labels
         function createLabels(value) {
-          this["label" + value] = document.createElement("Label");
-          this["label" + value].classList.add("col-form-label");
-          this["label" + value].setAttribute("for", eval(`id_for_label_${value}`));
-          this["label" + value].innerHTML = eval(`text${value}`);
+            this["label" + value] = document.createElement("Label");
+            this["label" + value].classList.add("col-form-label");
+            this["label" + value].setAttribute("for", eval(`id_for_label_${value}`));
+            this["label" + value].innerHTML = eval(`text${value}`);
         }
         array.forEach(createLabels);
         // Create 6 different inputs
         function createInputs(value) {
-          this["input" + value] = document.createElement("input");
-          this["input" + value].classList.add("form-control");
-          this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
-          this["input" + value].setAttribute("required", "true");
-          this["input" + value].setAttribute("type", "text2");
+            this["input" + value] = document.createElement("input");
+            this["input" + value].classList.add("form-control");
+            this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
+            this["input" + value].setAttribute("required", "true");
+            this["input" + value].setAttribute("type", "text2");
         }
         array.forEach(createInputs);
         // Appned all labels and inputs:
@@ -462,7 +487,7 @@
         form.append(divCheckAsNormalo);
         // Append all 6 divs to the form
         function appendDivs(value) {
-          form.append(eval(`div${value}`));
+            form.append(eval(`div${value}`));
         }
         array.forEach(appendDivs);
         // Append the checkbox input to the form
@@ -527,75 +552,74 @@
         el.remove();
     }
     // A function to change a card
-    function editCard(uniqid,name,surname,street,plz,city,country,privateOrPublic,asnormalo) {
-      let string = uniqid;
-      let res = string.slice(5, string.length);
-      let vorname = "vorname_";
-      let vornameID = vorname.concat(res);
-      let vornameEl = document.getElementById(vornameID);
-      vornameEl.innerHTML = `${document.getElementById(name).value}`;
-      let nachname = "nachname_";
-      let nachnameID = nachname.concat(res);
-      let nachnameEl = document.getElementById(nachnameID);
-      nachnameEl.innerHTML = `${document.getElementById(surname).value}`;
-      let plzEdit = "plz_";
-      let plzID = plzEdit.concat(res);
-      let plzEl = document.getElementById(plzID);
-      plzEl.innerHTML = `${document.getElementById(plz).value}`;
-      let streetEdit = "strasse_";
-      let streetID = streetEdit.concat(res);
-      let streetEl = document.getElementById(streetID);
-      streetEl.innerHTML = `${document.getElementById(street).value}`;
-      let stadt = "stadt_";
-      let stadtID = stadt.concat(res);
-      let stadtEl = document.getElementById(stadtID);
-      stadtEl.innerHTML = `${document.getElementById(city).value}`;
-      let land = "land_";
-      let landID = land.concat(res);
-      let landEl = document.getElementById(landID);
-      landEl.innerHTML = `${document.getElementById(country).value}`;
-      if(document.getElementById(privateOrPublic).checked == true){
-        let privacy = "private_or_public_";
-        let privacyID = privacy.concat(res);
-        let privacyEl = document.getElementById(privacyID);
-        privacyEl.innerHTML = `private`;
-        let parent = privacyEl.parentNode;
-        parent.className = "green";
-        // // And we should also change the name of the card (to hide the card from normalo than for ex.)
-        // if(document.getElementById('username').value == admina.username){
-        //   let nameUnchanged = document.getElementById(uniqid);
-        //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
-        //   console.log(nameUnchanged.id);
-        //   // let res = string.slice(5, string.length);
-        // }
-        // else{
-        //   let nameUnchanged = document.getElementById(uniqid);
-        //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
-        //   console.log(nameUnchanged.id);
-        //   // let res = string.slice(5, string.length);
-        // }
-      }
-      else{
-        let privacy = "private_or_public_";
-        let privacyID = privacy.concat(res);
-        let privacyEl = document.getElementById(privacyID);
-        privacyEl.innerHTML = `public`;
-        let parent = privacyEl.parentNode;
-        parent.className = "orange";
-        // // And we should also change the name of the card (to show the card for normalo than for ex.)
-        // if(document.getElementById('username').value == admina.username){
-        //   let nameUnchanged = document.getElementById(uniqid);
-        //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
-        //   console.log(nameUnchanged.id);
-        //   // let res = string.slice(5, string.length);
-        // }
-        // else{
-        //   let nameUnchanged = document.getElementById(uniqid);
-        //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
-        //   console.log(nameUnchanged.id);
-        //   // let res = string.slice(5, string.length);
-        // }
-      }
+    function editCard(uniqid, name, surname, street, plz, city, country, privateOrPublic, asnormalo) {
+        let string = uniqid;
+        let res = string.slice(5, string.length);
+        let vorname = "vorname_";
+        let vornameID = vorname.concat(res);
+        let vornameEl = document.getElementById(vornameID);
+        vornameEl.innerHTML = `${document.getElementById(name).value}`;
+        let nachname = "nachname_";
+        let nachnameID = nachname.concat(res);
+        let nachnameEl = document.getElementById(nachnameID);
+        nachnameEl.innerHTML = `${document.getElementById(surname).value}`;
+        let plzEdit = "plz_";
+        let plzID = plzEdit.concat(res);
+        let plzEl = document.getElementById(plzID);
+        plzEl.innerHTML = `${document.getElementById(plz).value}`;
+        let streetEdit = "strasse_";
+        let streetID = streetEdit.concat(res);
+        let streetEl = document.getElementById(streetID);
+        streetEl.innerHTML = `${document.getElementById(street).value}`;
+        let stadt = "stadt_";
+        let stadtID = stadt.concat(res);
+        let stadtEl = document.getElementById(stadtID);
+        stadtEl.innerHTML = `${document.getElementById(city).value}`;
+        let land = "land_";
+        let landID = land.concat(res);
+        let landEl = document.getElementById(landID);
+        landEl.innerHTML = `${document.getElementById(country).value}`;
+        if (document.getElementById(privateOrPublic).checked == true) {
+            let privacy = "private_or_public_";
+            let privacyID = privacy.concat(res);
+            let privacyEl = document.getElementById(privacyID);
+            privacyEl.innerHTML = `private`;
+            let parent = privacyEl.parentNode;
+            parent.className = "green";
+            // // And we should also change the name of the card (to hide the card from normalo than for ex.)
+            // if(document.getElementById('username').value == admina.username){
+            //   let nameUnchanged = document.getElementById(uniqid);
+            //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
+            //   console.log(nameUnchanged.id);
+            //   // let res = string.slice(5, string.length);
+            // }
+            // else{
+            //   let nameUnchanged = document.getElementById(uniqid);
+            //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
+            //   console.log(nameUnchanged.id);
+            //   // let res = string.slice(5, string.length);
+            // }
+        } else {
+            let privacy = "private_or_public_";
+            let privacyID = privacy.concat(res);
+            let privacyEl = document.getElementById(privacyID);
+            privacyEl.innerHTML = `public`;
+            let parent = privacyEl.parentNode;
+            parent.className = "orange";
+            // // And we should also change the name of the card (to show the card for normalo than for ex.)
+            // if(document.getElementById('username').value == admina.username){
+            //   let nameUnchanged = document.getElementById(uniqid);
+            //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
+            //   console.log(nameUnchanged.id);
+            //   // let res = string.slice(5, string.length);
+            // }
+            // else{
+            //   let nameUnchanged = document.getElementById(uniqid);
+            //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
+            //   console.log(nameUnchanged.id);
+            //   // let res = string.slice(5, string.length);
+            // }
+        }
     }
     // Changing pages on click:
     function switchPage(page1, page2) {
@@ -610,34 +634,33 @@
         document.getElementById(element).style.display = 'none';
     }
     // "show all" function
-    function showAllCardsFor(user){
-      if(user=='admina'){
-        let elems = document.querySelectorAll(`[id^='card_'], [id^='edit_icon'], [id^='delete_icon']`);
-        let index;
-        for (index = 0; index < elems.length; ++index) {
-            elems[index].style.display = 'block';
+    function showAllCardsFor(user) {
+        if (user == 'admina') {
+            let elems = document.querySelectorAll(`[id^='card_'], [id^='edit_icon'], [id^='delete_icon']`);
+            let index;
+            for (index = 0; index < elems.length; ++index) {
+                elems[index].style.display = 'block';
+            }
+        } else {
+            let elems = document.querySelectorAll(`[id^='card_']`);
+            let index;
+            for (index = 0; index < elems.length; ++index) {
+                elems[index].style.display = 'block';
+            }
+            let cardsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
+            let index2;
+            for (index2 = 0; index2 < cardsToHide.length; ++index2) {
+                cardsToHide[index2].style.display = 'none';
+            }
+            let iconsToHide = document.querySelectorAll(`[id^='edit_icon'], [id^='delete_icon']`);
+            let index3;
+            for (index3 = 0; index3 < iconsToHide.length; ++index3) {
+                iconsToHide[index3].style.display = 'none';
+            }
         }
-      }
-      else{
-        let elems = document.querySelectorAll(`[id^='card_']`);
-        let index;
-        for (index = 0; index < elems.length; ++index) {
-            elems[index].style.display = 'block';
-        }
-        let cardsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
-        let index2;
-        for (index2 = 0; index2 < cardsToHide.length; ++index2) {
-            cardsToHide[index2].style.display = 'none';
-        }
-        let iconsToHide = document.querySelectorAll(`[id^='edit_icon'], [id^='delete_icon']`);
-        let index3;
-        for (index3 = 0; index3 < iconsToHide.length; ++index3) {
-            iconsToHide[index3].style.display = 'none';
-        }
-      }
     }
     // "hideAllCardsOfUser" function (hide what belongs not to me)
-    function hideAllCardsOfUser(userToHide){
+    function hideAllCardsOfUser(userToHide) {
         let elems = document.querySelectorAll(`[id^='card_${userToHide}']`);
         let index;
         for (index = 0; index < elems.length; ++index) {
@@ -645,7 +668,7 @@
         }
     }
     // "showMine" function
-    function showMine(user){
+    function showMine(user) {
         let elems = document.querySelectorAll(`[id^='card_${user}'], [id^='edit_icon'], [id^='delete_icon']`);
         let index;
         for (index = 0; index < elems.length; ++index) {
@@ -664,7 +687,7 @@
             let checksToShow = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
             let index;
             for (index = 0; index < checksToShow.length; ++index) {
-              checksToShow[index].style.display = 'block';
+                checksToShow[index].style.display = 'block';
             }
         } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
             switchPage('loginform', 'mainscreen');
@@ -675,7 +698,7 @@
             let checksToHide = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
             let index;
             for (index = 0; index < checksToHide.length; ++index) {
-              checksToHide[index].style.display = 'none';
+                checksToHide[index].style.display = 'none';
             }
 
         } else {
@@ -685,7 +708,7 @@
 
     // TO DO:
 
-    function addNewContact(){
+    function addNewContact() {
 
     }
 
