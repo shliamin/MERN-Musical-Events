@@ -398,6 +398,7 @@
         // Create a form synamically
         let form = document.createElement("form");
         form.setAttribute("id", "input_form_contact");
+        form.setAttribute("role", "form");
         // Create array
         let array = [1, 2, 3, 4, 5, 6];
         // Create 6 different divs
@@ -419,7 +420,7 @@
           this["input" + value] = document.createElement("input");
           this["input" + value].classList.add("form-control");
           this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
-          this["input" + value].setAttribute("required", "");
+          this["input" + value].setAttribute("required", "true");
           this["input" + value].setAttribute("type", "text2");
         }
         array.forEach(createInputs);
@@ -455,8 +456,8 @@
         labelCheckAsNormalo.classList.add("form-check-label");
         labelCheckAsNormalo.setAttribute("for", "check");
         labelCheckAsNormalo.innerHTML = "As normalo";
-        divCheckAsNormalo.append(inputCheckAsNormalo);
-        divCheckAsNormalo.append(labelCheckAsNormalo);
+        // divCheckAsNormalo.append(inputCheckAsNormalo);
+        // divCheckAsNormalo.append(labelCheckAsNormalo);
         // Append the checkbox "as normalo" input to the form
         form.append(divCheckAsNormalo);
         // Append all 6 divs to the form
@@ -473,20 +474,20 @@
         let divModalFooter = document.createElement("div");
         let closeButtonDivModalFooter = document.createElement("button");
         closeButtonDivModalFooter.setAttribute("class", "btn btn-secondary");
+        closeButtonDivModalFooter.setAttribute("id", "close_button");
         closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
         let aEditButtonDivModalFooter = document.createElement("a");
-
-
-
         aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}','id_for_input_check_as_normalo_${type}_${num}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
-        editButtonDivModalFooter.setAttribute("type", "button");
+        editButtonDivModalFooter.setAttribute("id", "edit_button");
+        editButtonDivModalFooter.setAttribute("type", "submit");
+        editButtonDivModalFooter.setAttribute("onclick", "alert('Changes saved.')");
         editButtonDivModalFooter.innerHTML = "Edit address";
         aEditButtonDivModalFooter.append(editButtonDivModalFooter);
-        divModalFooter.append(closeButtonDivModalFooter);
+        // divModalFooter.append(closeButtonDivModalFooter);
         divModalFooter.append(aEditButtonDivModalFooter);
         // Append the Header, the Body, and the Footer to the Content
         divModalContent.append(divModalHeader);
@@ -527,11 +528,8 @@
     }
     // A function to change a card
     function editCard(uniqid,name,surname,street,plz,city,country,privateOrPublic,asnormalo) {
-
-
       let string = uniqid;
       let res = string.slice(5, string.length);
-
       let vorname = "vorname_";
       let vornameID = vorname.concat(res);
       let vornameEl = document.getElementById(vornameID);
@@ -556,8 +554,6 @@
       let landID = land.concat(res);
       let landEl = document.getElementById(landID);
       landEl.innerHTML = `${document.getElementById(country).value}`;
-
-
       if(document.getElementById(privateOrPublic).checked == true){
         let privacy = "private_or_public_";
         let privacyID = privacy.concat(res);
@@ -565,6 +561,19 @@
         privacyEl.innerHTML = `private`;
         let parent = privacyEl.parentNode;
         parent.className = "green";
+        // // And we should also change the name of the card (to hide the card from normalo than for ex.)
+        // if(document.getElementById('username').value == admina.username){
+        //   let nameUnchanged = document.getElementById(uniqid);
+        //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
+        //   console.log(nameUnchanged.id);
+        //   // let res = string.slice(5, string.length);
+        // }
+        // else{
+        //   let nameUnchanged = document.getElementById(uniqid);
+        //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
+        //   console.log(nameUnchanged.id);
+        //   // let res = string.slice(5, string.length);
+        // }
       }
       else{
         let privacy = "private_or_public_";
@@ -573,10 +582,20 @@
         privacyEl.innerHTML = `public`;
         let parent = privacyEl.parentNode;
         parent.className = "orange";
+        // // And we should also change the name of the card (to show the card for normalo than for ex.)
+        // if(document.getElementById('username').value == admina.username){
+        //   let nameUnchanged = document.getElementById(uniqid);
+        //   console.log(nameUnchanged.id.slice(12,19)); // returns "private" for admina
+        //   console.log(nameUnchanged.id);
+        //   // let res = string.slice(5, string.length);
+        // }
+        // else{
+        //   let nameUnchanged = document.getElementById(uniqid);
+        //   console.log(nameUnchanged.id.slice(13,20)); // returns "private" for normalo
+        //   console.log(nameUnchanged.id);
+        //   // let res = string.slice(5, string.length);
+        // }
       }
-      ;
-
-
     }
     // Changing pages on click:
     function switchPage(page1, page2) {
@@ -633,6 +652,7 @@
             elems[index].style.display = 'block';;
         }
     }
+
     // login-function
     function login() {
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password) {
@@ -664,6 +684,10 @@
     }
 
     // TO DO:
+
+    function addNewContact(){
+
+    }
 
     function addContactToTheMap(uniqid, lat, long) {
 

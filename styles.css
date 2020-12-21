@@ -27,6 +27,24 @@ body {
   border-radius: 8px;
 }
 
+#edit_button{
+  margin: 8px 0;
+  border-radius: 8px;
+  position: relative;
+  left: 370px;
+  bottom: 15px;
+}
+
+.col-form-label:before{
+  content: "* ";
+  color: red;
+}
+
+.form-check-label:before{
+  content: "* ";
+  color: red;
+}
+
 .input_form .control-label:before {
    content:"*";
    color:red;
