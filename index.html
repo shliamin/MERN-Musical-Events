@@ -207,7 +207,7 @@
     <script>
     //------------------------------ JAVA SCRIPT -------------------------------\\
     // getting objects (declaration):
-    function Cred(username, password, priX, priY, pubX, pubY, vorname_private, nachname_private, strasse_private, plz_private, stadt_private, land_private,vorname_public, nachname_public, strasse_public, plz_public, stadt_public, land_public) {
+    function Cred(username, password, priX, priY, pubX, pubY, vorname_private, nachname_private, strasse_private, plz_private, stadt_private, land_private, vorname_public, nachname_public, strasse_public, plz_public, stadt_public, land_public) {
         this.username = username;
         this.password = password;
         // Hard programmed coords(should be deleted) -> replaced (address->coords)
@@ -241,11 +241,22 @@
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
         var map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
         var size = 100,
-            pulsingDot = { width: size, height: size, data: new Uint8Array(size * size * 4), onAdd: function() { var t = document.createElement("canvas");
-                    t.width = this.width, t.height = this.height, this.context = t.getContext("2d") }, render: function() { var t = performance.now() % 1e3 / 1e3,
+            pulsingDot = {
+                width: size,
+                height: size,
+                data: new Uint8Array(size * size * 4),
+                onAdd: function() {
+                    var t = document.createElement("canvas");
+                    t.width = this.width, t.height = this.height, this.context = t.getContext("2d")
+                },
+                render: function() {
+                    var t = performance.now() % 1e3 / 1e3,
                         i = size / 2 * .3,
                         e = size / 2 * 1 * t + i,
-                        h = this.context; return h.clearRect(0, 0, this.width, this.height), h.beginPath(), h.arc(this.width / 2, this.height / 2, e, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 200, 200," + (1 - t) + ")", h.fill(), h.beginPath(), h.arc(this.width / 2, this.height / 2, i, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 100, 100, 1)", h.strokeStyle = "white", h.lineWidth = 2 + 4 * (1 - t), h.fill(), h.stroke(), this.data = h.getImageData(0, 0, this.width, this.height).data, map.triggerRepaint(), !0 } };
+                        h = this.context;
+                    return h.clearRect(0, 0, this.width, this.height), h.beginPath(), h.arc(this.width / 2, this.height / 2, e, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 200, 200," + (1 - t) + ")", h.fill(), h.beginPath(), h.arc(this.width / 2, this.height / 2, i, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 100, 100, 1)", h.strokeStyle = "white", h.lineWidth = 2 + 4 * (1 - t), h.fill(), h.stroke(), this.data = h.getImageData(0, 0, this.width, this.height).data, map.triggerRepaint(), !0
+                }
+            };
         map.on('load', function() {
             map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
             map.addSource('points', { 'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [{ 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX1}`, `${privY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX1}`, `${publY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX2}`, `${privY2}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX2}`, `${publY2}`] } }] } });
@@ -274,37 +285,53 @@
         let city;
         switch (randomNumber) {
             case 0:
-                city = "moscow"; break;
+                city = "moscow";
+                break;
             case 1:
-                city = "london"; break;
+                city = "london";
+                break;
             case 2:
-                city = "rome"; break;
+                city = "rome";
+                break;
             case 3:
-                city = "paris"; break;
+                city = "paris";
+                break;
             case 4:
-                city = "helsinki"; break;
+                city = "helsinki";
+                break;
             case 5:
-                city = "warsaw"; break;
+                city = "warsaw";
+                break;
             case 6:
-                city = "barcelona"; break;
+                city = "barcelona";
+                break;
             case 7:
-                city = "tokyo"; break;
+                city = "tokyo";
+                break;
             case 8:
-                city = "venice"; break;
+                city = "venice";
+                break;
             case 9:
-                city = "stockholm"; break;
+                city = "stockholm";
+                break;
             case 10:
-                city = "chicago"; break;
+                city = "chicago";
+                break;
             case 11:
-                city = "budapest"; break;
+                city = "budapest";
+                break;
             case 12:
-                city = "lisbon"; break;
+                city = "lisbon";
+                break;
             case 13:
-                city = "madrid"; break;
+                city = "madrid";
+                break;
             case 14:
-                city = "oslo"; break;
+                city = "oslo";
+                break;
             default:
-                city = "berlin" }
+                city = "berlin"
+        }
         // Create a background picture with gradient for better readability of the text on it using a random city name (as city)
         divCard.style.backgroundImage = `linear-gradient(
               rgba(0, 0, 0, 0.5),
@@ -442,22 +469,6 @@
         labelCheck.innerHTML = "Privat";
         divCheck.append(inputCheck);
         divCheck.append(labelCheck);
-        // Create an "as normalo" check form (div)
-        // let divCheckAsNormalo = document.createElement("div");
-        // divCheckAsNormalo.classList.add("form-check");
-        // let inputCheckAsNormalo = document.createElement("input");
-        // inputCheckAsNormalo.classList.add("form-check-input");
-        // inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
-        // inputCheckAsNormalo.setAttribute("required", "");
-        // inputCheckAsNormalo.setAttribute("type", "checkbox");
-        // let labelCheckAsNormalo = document.createElement("Label");
-        // labelCheckAsNormalo.classList.add("form-check-label");
-        // labelCheckAsNormalo.setAttribute("for", "check");
-        // labelCheckAsNormalo.innerHTML = "As normalo";
-        // divCheckAsNormalo.append(inputCheckAsNormalo);
-        // divCheckAsNormalo.append(labelCheckAsNormalo);
-        // Append the checkbox "as normalo" input to the form
-        // form.append(divCheckAsNormalo);
         // Append all 6 divs to the form
         function appendDivs(value) {
             form.append(eval(`div${value}`));
@@ -672,11 +683,10 @@
             showMine('admina');
             // If forms for admina don't exist, create it
             if (document.getElementById('input_form_contact_admina')) {
-              return true;
-            }
-            else{
-              // Create forms for adding new contacts for admina
-              createForms('admina');
+                return true;
+            } else {
+                // Create forms for adding new contacts for admina
+                createForms('admina');
             }
         } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
             switchPage('loginform', 'mainscreen');
@@ -688,11 +698,10 @@
             showMine('normalo');
             // If forms for normalo don't exist, create it
             if (document.getElementById('input_form_contact_normalo')) {
-              return true;
-            }
-            else{
-              // Create forms for adding new contacts for normalo
-              createForms('normalo');
+                return true;
+            } else {
+                // Create forms for adding new contacts for normalo
+                createForms('normalo');
             }
         } else {
             alert("The entered username and password is wrong. Please enter the correct one.");
@@ -704,7 +713,7 @@
     // create a uniq id using the next number after the cardsCounter. This function should also create an input form dynamically for a user to
     // save his data and to send it to the getCard() function than.
 
-    function addNewCard(){
+    function addNewCard() {
 
     }
 
@@ -737,6 +746,27 @@
         form.setAttribute("role", "form");
         // Create array
         let array = [1, 2, 3, 4, 5, 6];
+
+        // Create an "as normalo" check form (div), but only for admina
+
+        if (user == 'admina') {
+            let divCheckAsNormalo = document.createElement("div");
+            divCheckAsNormalo.classList.add("form-check");
+            let inputCheckAsNormalo = document.createElement("input");
+            inputCheckAsNormalo.classList.add("form-check-input");
+            inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+            inputCheckAsNormalo.setAttribute("required", "");
+            inputCheckAsNormalo.setAttribute("type", "checkbox");
+            let labelCheckAsNormalo = document.createElement("Label");
+            labelCheckAsNormalo.classList.add("form-check-label");
+            labelCheckAsNormalo.setAttribute("for", "check");
+            labelCheckAsNormalo.innerHTML = "As normalo";
+            divCheckAsNormalo.append(inputCheckAsNormalo);
+            divCheckAsNormalo.append(labelCheckAsNormalo);
+            // Append the checkbox "as normalo" input to the form
+            form.append(divCheckAsNormalo);
+        }
+
         // Create 6 different divs
         function createDivs(value) {
             this["div" + value] = document.createElement("div");
@@ -780,6 +810,7 @@
         labelCheck.innerHTML = "Privat";
         divCheck.append(inputCheck);
         divCheck.append(labelCheck);
+
         function appendDivs(value) {
             form.append(eval(`div${value}`));
         }
@@ -790,7 +821,6 @@
         let placeToAppend = document.getElementById(`modal-body-${user}`);
         placeToAppend.append(form);
     }
-
     </script>
 </body>
 
