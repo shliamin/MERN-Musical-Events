@@ -94,7 +94,7 @@
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-success" data-target="#Modal1" data-toggle="modal" data-whatever="@mdo" onclick="" type="button">
+                    <button class="btn btn-success" data-target="#Modal1" data-toggle="modal" data-whatever="@mdo" onclick="javascript:addNewCard()" type="button">
                         Add new contact
                     </button>
                 </li>
@@ -117,7 +117,7 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="modal-body" id="modal-body-1">
+                        <div class="modal-body" id="modal-body-admina">
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
@@ -173,7 +173,7 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="modal-body" id="modal-body-8">
+                        <div class="modal-body" id="modal-body-normalo">
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
@@ -497,7 +497,7 @@
         divModalLabel.append(divModalDialog);
         // Create the delete icon
         let aEditOrDeleteSection = document.createElement("a");
-        aEditOrDeleteSection.setAttribute("href", `javascript:deleteCard('card_${type}_${privateOrPublic}_${num}')`);
+        aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
         let iForAEditOrDeleteSection = document.createElement("i");
         iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
         iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
@@ -522,7 +522,7 @@
     getCard("all_cards", normalo.vorname_public, normalo.nachname_public, normalo.strasse_public, normalo.plz_public, normalo.stadt_public, normalo.land_public, 'public', 'normalo', '3');
     getCard("all_cards", normalo.vorname_private, normalo.nachname_private, normalo.strasse_private, normalo.plz_private, normalo.stadt_private, normalo.land_private, 'private', 'normalo', '4');
     // A function to delete a card
-    function deleteCard(uniqid) {
+    function deleteElement(uniqid) {
         // Find the card
         let el = document.getElementById(uniqid);
         // Remove the card
@@ -670,6 +670,14 @@
             hideAllCardsOfUser('normalo');
             // Show all admina elements
             showMine('admina');
+            // If forms for admina don't exist, create it
+            if (document.getElementById('input_form_contact_admina')) {
+              return true;
+            }
+            else{
+              // Create forms for adding new contacts for admina
+              createForms('admina');
+            }
         } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
             switchPage('loginform', 'mainscreen');
             // Show normalo banner
@@ -678,6 +686,14 @@
             hideAllCardsOfUser('admina');
             // Show all normalo elements
             showMine('normalo');
+            // If forms for normalo don't exist, create it
+            if (document.getElementById('input_form_contact_normalo')) {
+              return true;
+            }
+            else{
+              // Create forms for adding new contacts for normalo
+              createForms('normalo');
+            }
         } else {
             alert("The entered username and password is wrong. Please enter the correct one.");
         }
@@ -687,14 +703,92 @@
     // On click the "add new contact"-button the function addNewCard should check the value of the cardsCounter every time and than it should
     // create a uniq id using the next number after the cardsCounter. This function should also create an input form dynamically for a user to
     // save his data and to send it to the getCard() function than.
-    function addNewCard() {
-      //check
-      console.log(cardsCounter);
-      // create the id
-      // create the form
-      // save the data
-      // create the card with the id and user's data
-      // getCard();
+
+    function addNewCard(){
+
+    }
+
+
+    function createForms(user) {
+        // -------- Here we want to insert different forms ---------------------
+        let id_for_label_1 = `recipient-name-${user}-form`;
+        let id_for_label_2 = `recipient-nachname-${user}-form`;
+        let id_for_label_3 = `recipient-strasse-${user}-form`;
+        let id_for_label_4 = `recipient-plz-${user}-form`;
+        let id_for_label_5 = `recipient-stadt-${user}-form`;
+        let id_for_label_6 = `recipient-land-${user}-form`;
+        let text1 = "Vorname";
+        let text2 = "Nachname";
+        let text3 = "Strasse";
+        let text4 = "PLZ";
+        let text5 = "Stadt";
+        let text6 = "Land";
+        let id_for_input1 = `recipient-name-${user}-form`;
+        let id_for_input2 = `recipient-nachname-${user}-form`;
+        let id_for_input3 = `recipient-strasse-${user}-form`;
+        let id_for_input4 = `recipient-plz-${user}-form`;
+        let id_for_input5 = `recipient-stadt-${user}-form`;
+        let id_for_input6 = `recipient-land-${user}-form`;
+        let id_for_input_check = `check_private_${user}_form`;
+        let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${user}_form`;
+        // Create a form synamically
+        let form = document.createElement("form");
+        form.setAttribute("id", `input_form_contact_${user}`);
+        form.setAttribute("role", "form");
+        // Create array
+        let array = [1, 2, 3, 4, 5, 6];
+        // Create 6 different divs
+        function createDivs(value) {
+            this["div" + value] = document.createElement("div");
+            this["div" + value].classList.add("form-group");
+        }
+        array.forEach(createDivs);
+        // Create 6 different labels
+        function createLabels(value) {
+            this["label" + value] = document.createElement("Label");
+            this["label" + value].classList.add("col-form-label");
+            this["label" + value].setAttribute("for", eval(`id_for_label_${value}`));
+            this["label" + value].innerHTML = eval(`text${value}`);
+        }
+        array.forEach(createLabels);
+        // Create 6 different inputs
+        function createInputs(value) {
+            this["input" + value] = document.createElement("input");
+            this["input" + value].classList.add("form-control");
+            this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
+            this["input" + value].setAttribute("required", "true");
+            this["input" + value].setAttribute("type", "text2");
+        }
+        array.forEach(createInputs);
+        // Appned all labels and inputs:
+        function appendLabels(value) {
+            eval(`div${value}`).append(eval(`label${value}`));
+            eval(`div${value}`).append(eval(`input${value}`));
+        }
+        array.forEach(appendLabels);
+        // Create a check form (div)
+        let divCheck = document.createElement("div");
+        divCheck.classList.add("form-check");
+        let inputCheck = document.createElement("input");
+        inputCheck.classList.add("form-check-input");
+        inputCheck.setAttribute("id", id_for_input_check);
+        inputCheck.setAttribute("required", "");
+        inputCheck.setAttribute("type", "checkbox");
+        let labelCheck = document.createElement("Label");
+        labelCheck.classList.add("form-check-label");
+        labelCheck.setAttribute("for", "check");
+        labelCheck.innerHTML = "Privat";
+        divCheck.append(inputCheck);
+        divCheck.append(labelCheck);
+        function appendDivs(value) {
+            form.append(eval(`div${value}`));
+        }
+        array.forEach(appendDivs);
+        // Append the checkbox input to the form
+        form.append(divCheck);
+        // Append the form
+        let placeToAppend = document.getElementById(`modal-body-${user}`);
+        placeToAppend.append(form);
     }
 
     </script>
