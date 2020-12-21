@@ -123,7 +123,7 @@
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
                                 Close
                             </button>
-                            <button class="btn btn-primary" type="button" onclick="javascript:getCard()">
+                            <button class="btn btn-primary" type="button" onclick="javascript:addNewCard()">
                                 Add new address
                             </button>
                         </div>
@@ -179,7 +179,7 @@
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
                                 Close
                             </button>
-                            <button class="btn btn-primary" type="button" onclick="javascript:getCard()">
+                            <button class="btn btn-primary" type="button" onclick="javascript:addNewCard()">
                                 Add new address
                             </button>
                         </div>
@@ -840,6 +840,44 @@
         // Append the form
         let placeToAppend = document.getElementById(`modal-body-${user}`);
         placeToAppend.append(form);
+    }
+
+
+    function addNewCard(){
+        let user;
+        if (document.getElementById('username').value == 'admina'){
+          user = 'admina';
+        } else{
+          user = 'normalo';
+        }
+
+        // Create privacy (public or private?)
+        let privateOrPublic;
+        if (document.getElementById(`check_private_${user}_form`).checked == true){
+          privateOrPublic = 'private';
+        }else{
+          privateOrPublic = 'public';
+        }
+        // Create type (normalo or admina?)
+        let type;
+        if (document.getElementById(`id_for_input_check_as_normalo_${user}_form`).checked == true){
+          type = 'normalo';
+        }else{
+          type = 'admina';
+        }
+        // Create 6 params
+        let vorname = document.getElementById(`recipient-name-${user}-form`).value;
+        let nachname = document.getElementById(`recipient-nachname-${user}-form`).value;
+        let strasse = document.getElementById(`recipient-strasse-${user}-form`).value;
+        let plz = document.getElementById(`recipient-plz-${user}-form`).value;
+        let stadt = document.getElementById(`recipient-stadt-${user}-form`).value;
+        let land = document.getElementById(`recipient-land-${user}-form`).value;
+        // Create num
+        let num = cardsCounter + 1;
+        // Create wheretoplace
+        let wheretoplace = "all_cards";
+        // Call getCard
+        getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, privateOrPublic, type, num);
     }
     </script>
 </body>
