@@ -94,7 +94,7 @@
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-success" data-target="#Modal1" data-toggle="modal" data-whatever="@mdo" onclick="javascript:addNewCard()" type="button">
+                    <button class="btn btn-success" data-target="#Modal1" data-toggle="modal" data-whatever="@mdo" type="button">
                         Add new contact
                     </button>
                 </li>
@@ -123,7 +123,7 @@
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
                                 Close
                             </button>
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="button" onclick="javascript:getCard()">
                                 Add new address
                             </button>
                         </div>
@@ -150,7 +150,7 @@
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-success" data-target="#Modal8" data-toggle="modal" data-whatever="@mdo" onclick="" type="button">
+                    <button class="btn btn-success" data-target="#Modal8" data-toggle="modal" data-whatever="@mdo" type="button">
                         Add new contact
                     </button>
                 </li>
@@ -179,7 +179,7 @@
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">
                                 Close
                             </button>
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="button" onclick="javascript:getCard()">
                                 Add new address
                             </button>
                         </div>
@@ -191,6 +191,7 @@
         <fieldset id="info">
             <div class="content">
                 <div class="cards_main_page" id="all_cards">
+                  <!-- All cards are here -->
                 </div>
                 <div id="map">
                 </div>
@@ -575,7 +576,6 @@
             privacyEl.innerHTML = `private`;
             let parent = privacyEl.parentNode;
             parent.className = "green";
-            // TODO:
             //--------- hide card from normalo if it's private
             // whereas the function showAllCardsFor(user) hide for normalo all cards which ids contain the words 'card_admina_private', it's enough to change the cards ids
             if(document.getElementById('username').value == admina.username){
@@ -707,7 +707,7 @@
             showMine('admina');
             // If forms for admina don't exist, create it
             if (document.getElementById('input_form_contact_admina')) {
-                return true;
+                console.log(":)");
             } else {
                 // Create forms for adding new contacts for admina
                 createForms('admina');
@@ -722,7 +722,7 @@
             showMine('normalo');
             // If forms for normalo don't exist, create it
             if (document.getElementById('input_form_contact_normalo')) {
-                return true;
+                console.log(":)");
             } else {
                 // Create forms for adding new contacts for normalo
                 createForms('normalo');
@@ -736,10 +736,6 @@
     // On click the "add new contact"-button the function addNewCard should check the value of the cardsCounter every time and than it should
     // create a uniq id using the next number after the cardsCounter. This function should also create an input form dynamically for a user to
     // save his data and to send it to the getCard() function than.
-
-    function addNewCard() {
-
-    }
 
 
     function createForms(user) {
