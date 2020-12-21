@@ -84,12 +84,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap('map', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('admina')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap('map',admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -140,12 +140,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap('map', normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('normalo')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap('map',normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -211,6 +211,7 @@
         this.username = username;
         this.password = password;
         // Hard programmed coords(should be deleted) -> replaced (address->coords)
+        // TODO: covert address to real coords
         this.contactPrivateX = priX;
         this.contactPrivateY = priY;
         this.contactPublicX = pubX;
@@ -234,9 +235,11 @@
     var admina = new Cred("admina", "admina", 13.4, 52.5, 13.45, 52.5, "Angela", "Merkel", "Am Kupfergraben 6", "10117", "Berlin", "Deutschland", "Bundeskanzlerin", "der Bundesrepublik Deutschland", "Willy-Brandt-Straße 1", "10557", "Berlin", "Deutschland");
     var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "Erich", "Fromm", "Stralsunder Strasse 14", "13355", "Berlin", "Deutschland", "Western", "Philosopher", "Potsdamer Platz 1", "10785", "Berlin", "Deutschland");
     // A function to create a map
-    function getMap(param, privX1, privY1, publX1, publY1, privX2, privY2, publX2, publY2) {
+    // TODO: make it possible for getMap to take a hash of coords (dot coords actually) as an argument
+    // This function should create a dot on the map (it should actually just refresh the map with the new inputs [new coords]), or delete it
+    function getMap(privX1, privY1, publX1, publY1, privX2, privY2, publX2, publY2) {
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
-        var map = new mapboxgl.Map({ container: `${param}`, style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
+        var map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
         var size = 100,
             pulsingDot = { width: size, height: size, data: new Uint8Array(size * size * 4), onAdd: function() { var t = document.createElement("canvas");
                     t.width = this.width, t.height = this.height, this.context = t.getContext("2d") }, render: function() { var t = performance.now() % 1e3 / 1e3,
@@ -250,7 +253,8 @@
         });
     }
 
-
+    // Create a cardsCounter for counting how many cards do we have, incrementing on every function call. This is how we find out, which unique id is needed next for each new card.
+    let cardsCounter = 0;
     // A function to create a card with a contact inside, and a random background picture of a city + the edit/delete-section
     function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, privateOrPublic, type, num) {
         // Create card
@@ -318,7 +322,7 @@
         } else {
             color = 'orange';
         }
-        // Put on the info
+        // Put in the info
         divContact.innerHTML = `<span class="yellow-black">Vorname:</span> <span id='vorname_${type}_${privateOrPublic}_${num}'>${vorname}</span><br /> <span class="yellow-black">Nachname:</span> <span id='nachname_${type}_${privateOrPublic}_${num}'>${nachname}</span><br /> <span class="yellow-black">Strasse:</span><span id='strasse_${type}_${privateOrPublic}_${num}'> ${strasse}</span><br /> <span class="yellow-black" >PLZ:</span> <span id='plz_${type}_${privateOrPublic}_${num}'>${plz}</span><br /> <span class="yellow-black" >Stadt:</span><span id='stadt_${type}_${privateOrPublic}_${num}'> ${stadt}</span><br /> <span class="yellow-black">Land:</span><span id='land_${type}_${privateOrPublic}_${num}'> ${land}</span><br /> <span class='${color}'><span id='private_or_public_${type}_${privateOrPublic}_${num}'>${privateOrPublic}</span></span>`;
         // Append contact to the card
         divCard.append(divContact);
@@ -352,6 +356,7 @@
         hDivModalHeader.setAttribute("class", "modal-title");
         hDivModalHeader.setAttribute("id", "exampleModalLabel");
         hDivModalHeader.innerHTML = "Edit Address";
+        // Create close button
         let buttonDivModalHeader = document.createElement("button");
         buttonDivModalHeader.setAttribute("aria-label", "Close");
         buttonDivModalHeader.setAttribute("class", "close");
@@ -438,21 +443,21 @@
         divCheck.append(inputCheck);
         divCheck.append(labelCheck);
         // Create an "as normalo" check form (div)
-        let divCheckAsNormalo = document.createElement("div");
-        divCheckAsNormalo.classList.add("form-check");
-        let inputCheckAsNormalo = document.createElement("input");
-        inputCheckAsNormalo.classList.add("form-check-input");
-        inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
-        inputCheckAsNormalo.setAttribute("required", "");
-        inputCheckAsNormalo.setAttribute("type", "checkbox");
-        let labelCheckAsNormalo = document.createElement("Label");
-        labelCheckAsNormalo.classList.add("form-check-label");
-        labelCheckAsNormalo.setAttribute("for", "check");
-        labelCheckAsNormalo.innerHTML = "As normalo";
+        // let divCheckAsNormalo = document.createElement("div");
+        // divCheckAsNormalo.classList.add("form-check");
+        // let inputCheckAsNormalo = document.createElement("input");
+        // inputCheckAsNormalo.classList.add("form-check-input");
+        // inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+        // inputCheckAsNormalo.setAttribute("required", "");
+        // inputCheckAsNormalo.setAttribute("type", "checkbox");
+        // let labelCheckAsNormalo = document.createElement("Label");
+        // labelCheckAsNormalo.classList.add("form-check-label");
+        // labelCheckAsNormalo.setAttribute("for", "check");
+        // labelCheckAsNormalo.innerHTML = "As normalo";
         // divCheckAsNormalo.append(inputCheckAsNormalo);
         // divCheckAsNormalo.append(labelCheckAsNormalo);
         // Append the checkbox "as normalo" input to the form
-        form.append(divCheckAsNormalo);
+        // form.append(divCheckAsNormalo);
         // Append all 6 divs to the form
         function appendDivs(value) {
             form.append(eval(`div${value}`));
@@ -472,7 +477,7 @@
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
         let aEditButtonDivModalFooter = document.createElement("a");
-        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}','id_for_input_check_as_normalo_${type}_${num}')`);
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("id", "edit_button");
@@ -508,45 +513,50 @@
         let element = document.getElementById(wheretoplace);
         // Append the card there
         element.append(divCard);
+        //Increment the cardsCounter
+        cardsCounter++;
     }
     // Create 4 cards on the main page
     getCard("all_cards", admina.vorname_public, admina.nachname_public, admina.strasse_public, admina.plz_public, admina.stadt_public, admina.land_public, 'public', 'admina', '1');
     getCard("all_cards", admina.vorname_private, admina.nachname_private, admina.strasse_private, admina.plz_private, admina.stadt_private, admina.land_private, 'private', 'admina', '2');
-    getCard("all_cards", normalo.vorname_public, normalo.nachname_public, normalo.strasse_public, normalo.plz_public, normalo.stadt_public, normalo.land_public, 'public', 'normalo', '1');
-    getCard("all_cards", normalo.vorname_private, normalo.nachname_private, normalo.strasse_private, normalo.plz_private, normalo.stadt_private, normalo.land_private, 'private', 'normalo', '2');
+    getCard("all_cards", normalo.vorname_public, normalo.nachname_public, normalo.strasse_public, normalo.plz_public, normalo.stadt_public, normalo.land_public, 'public', 'normalo', '3');
+    getCard("all_cards", normalo.vorname_private, normalo.nachname_private, normalo.strasse_private, normalo.plz_private, normalo.stadt_private, normalo.land_private, 'private', 'normalo', '4');
     // A function to delete a card
     function deleteCard(uniqid) {
+        // Find the card
         let el = document.getElementById(uniqid);
+        // Remove the card
         el.remove();
     }
     // A function to change a card
-    function editCard(uniqid, name, surname, street, plz, city, country, privateOrPublic, asnormalo) {
+    // uniqid - id of the card;
+    function editCard(uniqid, name, surname, street, plz, city, country, privateOrPublic) {
         let string = uniqid;
-        let res = string.slice(5, string.length);
+        let res = string.slice(5, string.length); //{user}_{privacy}_{number}
         let vorname = "vorname_";
-        let vornameID = vorname.concat(res);
+        let vornameID = vorname.concat(res); // vorname_{user}_{privacy}_{number}
         let vornameEl = document.getElementById(vornameID);
-        vornameEl.innerHTML = `${document.getElementById(name).value}`;
+        vornameEl.innerHTML = `${document.getElementById(name).value}`; // change vorname to the name
         let nachname = "nachname_";
-        let nachnameID = nachname.concat(res);
+        let nachnameID = nachname.concat(res); // nachname_{user}_{privacy}_{number}
         let nachnameEl = document.getElementById(nachnameID);
-        nachnameEl.innerHTML = `${document.getElementById(surname).value}`;
+        nachnameEl.innerHTML = `${document.getElementById(surname).value}`; // change nachname to the surname
         let plzEdit = "plz_";
-        let plzID = plzEdit.concat(res);
+        let plzID = plzEdit.concat(res); // plz_{user}_{privacy}_{number}
         let plzEl = document.getElementById(plzID);
-        plzEl.innerHTML = `${document.getElementById(plz).value}`;
+        plzEl.innerHTML = `${document.getElementById(plz).value}`; // change plz to the plz
         let streetEdit = "strasse_";
-        let streetID = streetEdit.concat(res);
+        let streetID = streetEdit.concat(res); // strasse_{user}_{privacy}_{number}
         let streetEl = document.getElementById(streetID);
-        streetEl.innerHTML = `${document.getElementById(street).value}`;
+        streetEl.innerHTML = `${document.getElementById(street).value}`; // change strasse to the street
         let stadt = "stadt_";
-        let stadtID = stadt.concat(res);
+        let stadtID = stadt.concat(res); // stadt_{user}_{privacy}_{number}
         let stadtEl = document.getElementById(stadtID);
-        stadtEl.innerHTML = `${document.getElementById(city).value}`;
+        stadtEl.innerHTML = `${document.getElementById(city).value}`; // change stadt to the city
         let land = "land_";
-        let landID = land.concat(res);
+        let landID = land.concat(res); // land_{user}_{privacy}_{number}
         let landEl = document.getElementById(landID);
-        landEl.innerHTML = `${document.getElementById(country).value}`;
+        landEl.innerHTML = `${document.getElementById(country).value}`; // change land to the country
         if (document.getElementById(privateOrPublic).checked == true) {
             let privacy = "private_or_public_";
             let privacyID = privacy.concat(res);
@@ -554,6 +564,8 @@
             privacyEl.innerHTML = `private`;
             let parent = privacyEl.parentNode;
             parent.className = "green";
+            // TODO:
+            //--------- hide card from normalo if it;s private
             // // And we should also change the name of the card (to hide the card from normalo than for ex.)
             // if(document.getElementById('username').value == admina.username){
             //   let nameUnchanged = document.getElementById(uniqid);
@@ -589,7 +601,7 @@
             // }
         }
     }
-    // Changing pages on click:
+    // Change pages on click
     function switchPage(page1, page2) {
         // Close this page
         document.getElementById(page1).style.display = 'none';
@@ -601,25 +613,29 @@
         // Hide this
         document.getElementById(element).style.display = 'none';
     }
-    // "show all" function
+    // Show all cards section differently depends on a user
     function showAllCardsFor(user) {
         if (user == 'admina') {
+            // Show everything to admina
             let elems = document.querySelectorAll(`[id^='card_'], [id^='edit_icon'], [id^='delete_icon']`);
             let index;
             for (index = 0; index < elems.length; ++index) {
                 elems[index].style.display = 'block';
             }
         } else {
+            // Show something to normalo
             let elems = document.querySelectorAll(`[id^='card_']`);
             let index;
             for (index = 0; index < elems.length; ++index) {
                 elems[index].style.display = 'block';
             }
+            // Don't show admina's private cards to normalo
             let cardsToHide = document.querySelectorAll(`[id^='card_admina_private']`);
             let index2;
             for (index2 = 0; index2 < cardsToHide.length; ++index2) {
                 cardsToHide[index2].style.display = 'none';
             }
+            // Don't show edit/delete icons for normalo
             let iconsToHide = document.querySelectorAll(`[id^='edit_icon'], [id^='delete_icon']`);
             let index3;
             for (index3 = 0; index3 < iconsToHide.length; ++index3) {
@@ -627,7 +643,7 @@
             }
         }
     }
-    // "hideAllCardsOfUser" function (hide what belongs not to me)
+    // Hide all cards of an individual user
     function hideAllCardsOfUser(userToHide) {
         let elems = document.querySelectorAll(`[id^='card_${userToHide}']`);
         let index;
@@ -635,7 +651,7 @@
             elems[index].style.display = 'none';;
         }
     }
-    // "showMine" function
+    // Show all elements for a user
     function showMine(user) {
         let elems = document.querySelectorAll(`[id^='card_${user}'], [id^='edit_icon'], [id^='delete_icon']`);
         let index;
@@ -648,45 +664,39 @@
     function login() {
         if (document.getElementById('username').value == admina.username && document.getElementById('psw').value == admina.password) {
             switchPage('loginform', 'mainscreen');
+            // Show admina banner
             document.getElementById('admina').style.display = 'block';
-            getMap("map", admina.contactPrivateX, admina.contactPrivateY, admina.contactPublicX, admina.contactPublicY);
+            getMap(admina.contactPrivateX, admina.contactPrivateY, admina.contactPublicX, admina.contactPublicY);
             hideAllCardsOfUser('normalo');
+            // Show all admina elements
             showMine('admina');
-            let checksToShow = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
-            let index;
-            for (index = 0; index < checksToShow.length; ++index) {
-                checksToShow[index].style.display = 'block';
-            }
         } else if (document.getElementById('username').value == normalo.username && document.getElementById('psw').value == normalo.password) {
             switchPage('loginform', 'mainscreen');
+            // Show normalo banner
             document.getElementById('normalo').style.display = 'block';
-            getMap("map", normalo.contactPrivateX, normalo.contactPrivateY, normalo.contactPublicX, normalo.contactPublicY);
+            getMap(normalo.contactPrivateX, normalo.contactPrivateY, normalo.contactPublicX, normalo.contactPublicY);
             hideAllCardsOfUser('admina');
+            // Show all normalo elements
             showMine('normalo');
-            let checksToHide = document.querySelectorAll(`[id^='id_for_input_check_as_normalo_']`);
-            let index;
-            for (index = 0; index < checksToHide.length; ++index) {
-                checksToHide[index].style.display = 'none';
-            }
-
         } else {
             alert("The entered username and password is wrong. Please enter the correct one.");
         }
     }
 
     // TO DO:
-
-    function addNewContact() {
-
+    // On click the "add new contact"-button the function addNewCard should check the value of the cardsCounter every time and than it should
+    // create a uniq id using the next number after the cardsCounter. This function should also create an input form dynamically for a user to
+    // save his data and to send it to the getCard() function than.
+    function addNewCard() {
+      //check
+      console.log(cardsCounter);
+      // create the id
+      // create the form
+      // save the data
+      // create the card with the id and user's data
+      // getCard();
     }
 
-    function addContactToTheMap(uniqid, lat, long) {
-
-    }
-
-    function deleteContactFromTheMap(uniqid) {
-
-    }
     </script>
 </body>
 
