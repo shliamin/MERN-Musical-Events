@@ -610,6 +610,30 @@
             privacyEl.innerHTML = `public`;
             let parent = privacyEl.parentNode;
             parent.className = "orange";
+            if(document.getElementById('username').value == admina.username){
+              // For admina id="card_admina_private_2"
+              let cardsIdUnchanged1 = document.getElementById(uniqid).id.slice(12,19); // returns 'public' for admina
+              let cardsIdUnchanged2 = document.getElementById(uniqid).id.slice(0,12); // returns 'card_admina_' for admina
+              let cardsIdUnchanged3 = document.getElementById(uniqid).id.slice(19,document.getElementById(uniqid).id.length); // returns '_number'
+              // Let's create new id
+              let partOfStringToChange = 'public'
+              let cardsIdChanged = cardsIdUnchanged2 + partOfStringToChange + cardsIdUnchanged3;
+              // Now the card has new id with the word 'public' (not visible for normalo anymore [see showAllCards(user)])
+              document.getElementById(uniqid).id = cardsIdChanged;
+            }
+            else{
+              // For normalo
+              let cardsIdUnchanged = document.getElementById(uniqid).id.slice(13,20); // returns 'public' for normalo
+              // For admina id="card_admina_private_2"
+              let cardsIdUnchanged1 = document.getElementById(uniqid).id.slice(13,20); // returns 'public' for normalo
+              let cardsIdUnchanged2 = document.getElementById(uniqid).id.slice(0,13); // returns 'card_normalo_' for normalo
+              let cardsIdUnchanged3 = document.getElementById(uniqid).id.slice(20,document.getElementById(uniqid).id.length); // returns '_number'
+              // Let's create new id
+              let partOfStringToChange = 'public'
+              let cardsIdChanged = cardsIdUnchanged2 + partOfStringToChange + cardsIdUnchanged3;
+              // Now the card has new id with the word 'public' (not visible for normalo anymore [see showAllCards(user)])
+              document.getElementById(uniqid).id = cardsIdChanged;
+            }
         }
     }
     // Change pages on click
