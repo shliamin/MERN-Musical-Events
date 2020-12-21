@@ -393,7 +393,7 @@
         let id_for_input4 = `recipient-plz-${type}-${num}`;
         let id_for_input5 = `recipient-stadt-${type}-${num}`;
         let id_for_input6 = `recipient-land-${type}-${num}`;
-        let id_for_input_check = `check_private_${type}_${num}`;
+        let id_for_input_check = `check_private_${privateOrPublic}_${type}_${num}`;
         let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${type}_${num}`;
         // Create a form synamically
         let form = document.createElement("form");
@@ -419,7 +419,7 @@
           this["input" + value] = document.createElement("input");
           this["input" + value].classList.add("form-control");
           this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
-          this["input" + value].required = true;
+          this["input" + value].setAttribute("required", "");
           this["input" + value].setAttribute("type", "text2");
         }
         array.forEach(createInputs);
@@ -480,7 +480,7 @@
 
 
 
-        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','check_private_${type}_${num}','id_for_input_check_as_normalo_${type}_${num}')`);
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}','id_for_input_check_as_normalo_${type}_${num}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("type", "button");
@@ -556,6 +556,25 @@
       let landID = land.concat(res);
       let landEl = document.getElementById(landID);
       landEl.innerHTML = `${document.getElementById(country).value}`;
+
+
+      if(document.getElementById(privateOrPublic).checked == true){
+        let privacy = "private_or_public_";
+        let privacyID = privacy.concat(res);
+        let privacyEl = document.getElementById(privacyID);
+        privacyEl.innerHTML = `private`;
+        let parent = privacyEl.parentNode;
+        parent.className = "green";
+      }
+      else{
+        let privacy = "private_or_public_";
+        let privacyID = privacy.concat(res);
+        let privacyEl = document.getElementById(privacyID);
+        privacyEl.innerHTML = `public`;
+        let parent = privacyEl.parentNode;
+        parent.className = "orange";
+      }
+      ;
 
 
     }
