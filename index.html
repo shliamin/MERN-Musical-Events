@@ -237,37 +237,38 @@
     var admina = new Cred("admina", "admina", 13.4, 52.5, 13.45, 52.5, "Angela", "Merkel", "Am Kupfergraben 6", "10117", "Berlin", "Deutschland", "Bundeskanzlerin", "der Bundesrepublik Deutschland", "Willy-Brandt-Straße 1", "10557", "Berlin", "Deutschland");
     var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "Erich", "Fromm", "Stralsunder Strasse 14", "13355", "Berlin", "Deutschland", "Western", "Philosopher", "Potsdamer Platz 1", "10785", "Berlin", "Deutschland");
 
-
-
+    // let a;
       // A function to return the coords from a real address ex.: getCoords('Stralsunder Strasse 14', '13355', 'Berlin');
-      function getCoords(street, plz, city){
-        // var slugify = require("underscore.string/slugify");
-        // let streetSlugify = slugify(street);
-        // => ex 'hello-world'
-        // let citySlugify = slugify(city);
-        let center;
-         $.getJSON(`https://api.mapbox.com/geocoding/v5/mapbox.places/${street}_${plz}_${city}.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`, function(data) {
+      function getMap(street, plz, city){
+              fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${street}_${plz}_${city}.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`)
+        .then(response => response.json())
+        .then((data) => {
+          // console.log(data.features[0].center[0]);
+          // return data.features[0].center[0];
+          let x;
+          let y;
+          let arrayCoords = []
+          x = data.features[0].center[0];
+          y = data.features[0].center[1];
+          arrayCoords.push(x);
+          arrayCoords.push(y);
 
-        center = data.features[0].center; // returns an array of coords [x,y]
+          console.log(x);
+          console.log(y);
 
-       console.log(center);
-        });
-       return center;
-      }
+            let coords = [];
 
-    // 'coords' is an array of arrays of coords
-    // ex.: [[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]
-    function getMap(street,plz,city) {
+            coords.push(arrayCoords);
 
-        let coords = [];
-        console.log(street);
-        console.log(plz);
-        console.log(city);
-        console.log(getCoords(street,plz,city));
-        let arrayToSave = getCoords(street,plz,city);
-        console.log(arrayToSave);
-        coords.push(arrayToSave);
-        console.log(coords);
+            console.log(coords);
+        // console.log(street);
+        // console.log(plz);
+        // console.log(city);
+        // console.log(getCoords(street,plz,city));
+        // let arrayToSave = getCoords(street,plz,city);
+        // console.log(arrayToSave);
+        // coords.push(arrayToSave);
+        // console.log(coords);
 
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
 
@@ -349,7 +350,128 @@
                 .setLngLat(marker.geometry.coordinates)
                 .addTo(map);
         });
-    }
+        });
+
+      }
+
+      // const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/stralsunder_strasse_14_13355_berlin.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`);
+      // const json = await response.json();
+      // console.log(json);
+//       let a = "ab";
+
+//       const request = async (city) => {
+//     const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/stralsunder_strasse_14_13355_${city}.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`);
+//     const data = await response.json();
+//     a = data.features[0].center[0];
+//     console.log(a);
+//     // a = data.features[0].center[0];
+
+// }
+
+// request('berlin');
+
+// console.log(a);
+
+
+
+      // console.log(`a = ${a}`);
+      // let result = getCoords('stralsunder strasse 14', '13355','berlin');
+      // console.log(`result: ${result}`);
+    // 'coords' is an array of arrays of coords
+    // ex.: [[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]
+    // function getMap(street,plz,city) {
+
+    //     let coords = [];
+    //     console.log(street);
+    //     console.log(plz);
+    //     console.log(city);
+    //     console.log(getCoords(street,plz,city));
+    //     let arrayToSave = getCoords(street,plz,city);
+    //     console.log(arrayToSave);
+    //     coords.push(arrayToSave);
+    //     console.log(coords);
+
+    //     mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+
+    //     var map = new mapboxgl.Map({
+    //         container: 'map',
+    //         style: 'mapbox://styles/mapbox/light-v10',
+    //         center: [13.43, 52.50],
+    //         zoom: 11
+    //     });
+    //     let geojson = {
+    //         type: 'FeatureCollection',
+    //         features: [{
+    //                 type: 'Feature',
+    //                 geometry: {
+    //                     type: 'Point',
+    //                     coordinates: [-77.032, 38.913]
+    //                 },
+    //                 properties: {
+    //                     title: 'Mapbox',
+    //                     description: 'Washington, D.C.'
+    //                 }
+    //             },
+    //             {
+    //                 type: 'Feature',
+    //                 geometry: {
+    //                     type: 'Point',
+    //                     coordinates: [-122.414, 37.776]
+    //                 },
+    //                 properties: {
+    //                     title: 'Mapbox',
+    //                     description: 'San Francisco, California'
+    //                 }
+    //             }
+    //         ]
+    //     };
+    //     let jsonString = JSON.stringify(geojson);
+    //     let theBeginning = jsonString.slice(0, 39);
+    //     let theMainInfo = '[{"type":"Feature","geometry":{"type":"Point","coordinates":[13.4,52.5]},"properties":{"title":"Mapbox","description":"Washington, D.C."}},{"type":"Feature","geometry":{"type":"Point","coordinates":[13.45, 52.5]},"properties":{"title":"Mapbox","description":"San Francisco, California"}}]'
+    //     // Let's rewrite the main info: -------------------------------------------
+    //     let arrayOfFeaturesSTRINGBeginning = '['
+    //     let arrayOfFeaturesSTRINGEND = ']'
+    //     // let arrayOfArraysOfCoords = coords;
+    //     let amountOfFeatures = coords.length;
+    //     let list = [];
+    //     for (let i = 1; i <= amountOfFeatures; i++) {
+    //         list.push(i);
+    //     }
+    //     let featureString = '';
+
+    //     function createFeatures(value) {
+    //         let xAndY = coords[value - 1];
+    //         if (list.length <= 1) {
+    //             let featureStringCHANGED = featureString.concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":[${xAndY}]},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+    //             featureString = featureStringCHANGED;
+    //         } else {
+    //             if (value == 1) {
+    //                 let featureStringCHANGED = featureString.concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":[${xAndY}]},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+    //                 featureString = featureStringCHANGED;
+    //             } else {
+    //                 let featureStringCHANGED = featureString.concat(', ').concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":[${xAndY}]},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+    //                 featureString = featureStringCHANGED;
+    //             }
+    //         }
+    //     }
+    //     list.forEach(createFeatures);
+    //     theMainInfo = arrayOfFeaturesSTRINGBeginning.concat(featureString).concat(arrayOfFeaturesSTRINGEND);
+    //     // -------------------------------------------------------------------------
+    //     let theEnd = '}'
+    //     // Here we want to change the string
+    //     jsonString = theBeginning.concat(theMainInfo).concat(theEnd);
+    //     let geojsonModified = JSON.parse(jsonString);
+    //     // add markers to map
+    //     geojsonModified.features.forEach(function(marker) {
+    //         // create a HTML element for each feature
+    //         var el = document.createElement('div');
+    //         el.className = 'marker';
+    //         // make a marker for each feature and add to the map
+    //         new mapboxgl.Marker(el)
+    //             .setLngLat(marker.geometry.coordinates)
+    //             .addTo(map);
+    //     });
+    // }
 
     // Create a cardsCounter for counting how many cards do we have, incrementing on every function call. This is how we find out, which unique id is needed next for each new card.
     let cardsCounter = 0;
