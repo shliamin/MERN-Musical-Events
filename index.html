@@ -201,6 +201,7 @@
     <!----------------- JAVA SCRIPT (jquery,npm,bootstrap) ----------------------->
     <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
     </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
     </script>
     <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
@@ -237,9 +238,26 @@
     var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "Erich", "Fromm", "Stralsunder Strasse 14", "13355", "Berlin", "Deutschland", "Western", "Philosopher", "Potsdamer Platz 1", "10785", "Berlin", "Deutschland");
 
 
+
+      // A function to return the coords from a real address ex.: getCoords('Stralsunder Strasse 14', '13355', 'Berlin');
+      function getCoords(street, plz, city){
+        // var slugify = require("underscore.string/slugify");
+        // let streetSlugify = slugify(street);
+        // => ex 'hello-world'
+        // let citySlugify = slugify(city);
+         $.getJSON(`https://api.mapbox.com/geocoding/v5/mapbox.places/${street}_${plz}_${city}.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`, function(data) {
+
+        let center = data.features[0].center; // returns an array of coords [x,y]
+
+       console.log(center);
+       return center;
+        });
+      }
+
     // 'coords' is an array of arrays of coords
     // ex.: [[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]
     function getMap(coords) {
+
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
 
         var map = new mapboxgl.Map({
