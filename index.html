@@ -658,6 +658,9 @@
         let el = document.getElementById(uniqid);
         // Remove the card
         el.remove();
+        // TODO: should be modified (find dots on the map by index)
+        arrayOFHashesAll.pop();
+        getMap(arrayOFHashesAll);
     }
     // A function to change a card
     // uniqid - id of the card;
