@@ -84,12 +84,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap([[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]); showAllCardsFor('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap('Stralsunder Strasse 14', '13355', 'Berlin'); showAllCardsFor('admina')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap([[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap('Stralsunder Strasse 14', '13355', 'Berlin'); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -140,12 +140,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap([[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]); showAllCardsFor('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap('Stralsunder Strasse 14', '13355', 'Berlin'); showAllCardsFor('normalo')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap([[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap('Stralsunder Strasse 14', '13355', 'Berlin'); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -245,18 +245,29 @@
         // let streetSlugify = slugify(street);
         // => ex 'hello-world'
         // let citySlugify = slugify(city);
+        let center;
          $.getJSON(`https://api.mapbox.com/geocoding/v5/mapbox.places/${street}_${plz}_${city}.json?access_token=pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw`, function(data) {
 
-        let center = data.features[0].center; // returns an array of coords [x,y]
+        center = data.features[0].center; // returns an array of coords [x,y]
 
        console.log(center);
-       return center;
         });
+       return center;
       }
 
     // 'coords' is an array of arrays of coords
     // ex.: [[13.4, 52.5],[13.45, 52.5],[13.4, 52.51],[13.45, 52.51]]
-    function getMap(coords) {
+    function getMap(street,plz,city) {
+
+        let coords = [];
+        console.log(street);
+        console.log(plz);
+        console.log(city);
+        console.log(getCoords(street,plz,city));
+        let arrayToSave = getCoords(street,plz,city);
+        console.log(arrayToSave);
+        coords.push(arrayToSave);
+        console.log(coords);
 
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
 
@@ -775,12 +786,7 @@
             switchPage('loginform', 'mainscreen');
             // Show admina banner
             document.getElementById('admina').style.display = 'block';
-            getMap([
-                [13.4, 52.5],
-                [13.45, 52.5],
-                [13.4, 52.51],
-                [13.45, 52.51]
-            ]);
+            getMap('Stralsunder Strasse 14', '13355', 'Berlin');
             hideAllCardsOfUser('normalo');
             // Show all admina elements
             showMine('admina');
@@ -795,12 +801,7 @@
             switchPage('loginform', 'mainscreen');
             // Show normalo banner
             document.getElementById('normalo').style.display = 'block';
-            getMap([
-                [13.4, 52.5],
-                [13.45, 52.5],
-                [13.4, 52.51],
-                [13.45, 52.51]
-            ]);
+            getMap('Stralsunder Strasse 14', '13355', 'Berlin');
             hideAllCardsOfUser('admina');
             // Show all normalo elements
             showMine('normalo');
