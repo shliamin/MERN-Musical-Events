@@ -84,12 +84,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(); showAllCardsFor('admina')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap(admina.contactPrivateX,admina.contactPrivateY,admina.contactPublicX,admina.contactPublicY); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(); hideAllCardsOfUser('normalo'); showMine('admina')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -140,12 +140,12 @@
                     </h2>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY,admina.contactPublicX,admina.contactPublicY); showAllCardsFor('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(); showAllCardsFor('normalo')" type="button">
                         Show all contacts
                     </button>
                 </li>
                 <li>
-                    <button class="btn btn-warning" onclick="getMap(normalo.contactPrivateX,normalo.contactPrivateY,normalo.contactPublicX,normalo.contactPublicY); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
+                    <button class="btn btn-warning" onclick="getMap(); hideAllCardsOfUser('admina'); showMine('normalo')" type="button">
                         Show my contacts
                     </button>
                 </li>
@@ -238,32 +238,137 @@
     // A function to create a map
     // TODO: make it possible for getMap to take a hash of coords (dot coords actually) as an argument
     // This function should create a dot on the map (it should actually just refresh the map with the new inputs [new coords]), or delete it
-    function getMap(privX1, privY1, publX1, publY1, privX2, privY2, publX2, publY2) {
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
-        var map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
-        var size = 100,
-            pulsingDot = {
-                width: size,
-                height: size,
-                data: new Uint8Array(size * size * 4),
-                onAdd: function() {
-                    var t = document.createElement("canvas");
-                    t.width = this.width, t.height = this.height, this.context = t.getContext("2d")
-                },
-                render: function() {
-                    var t = performance.now() % 1e3 / 1e3,
-                        i = size / 2 * .3,
-                        e = size / 2 * 1 * t + i,
-                        h = this.context;
-                    return h.clearRect(0, 0, this.width, this.height), h.beginPath(), h.arc(this.width / 2, this.height / 2, e, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 200, 200," + (1 - t) + ")", h.fill(), h.beginPath(), h.arc(this.width / 2, this.height / 2, i, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 100, 100, 1)", h.strokeStyle = "white", h.lineWidth = 2 + 4 * (1 - t), h.fill(), h.stroke(), this.data = h.getImageData(0, 0, this.width, this.height).data, map.triggerRepaint(), !0
-                }
-            };
-        map.on('load', function() {
-            map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
-            map.addSource('points', { 'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [{ 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX1}`, `${privY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX1}`, `${publY1}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX2}`, `${privY2}`] } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${publX2}`, `${publY2}`] } }] } });
-            map.addLayer({ 'id': 'points', 'type': 'symbol', 'source': 'points', 'layout': { 'icon-image': 'pulsing-dot' } });
-        });
+    // function getMap(privX1, privY1, publX1, publY1, privX2, privY2, publX2, publY2) {
+    //     mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+    //     var map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v11', center: [13.43, 52.50], zoom: 11.5 });
+    //     var size = 100,
+    //         pulsingDot = {
+    //             width: size,
+    //             height: size,
+    //             data: new Uint8Array(size * size * 4),
+    //             onAdd: function() {
+    //                 var t = document.createElement("canvas");
+    //                 t.width = this.width, t.height = this.height, this.context = t.getContext("2d")
+    //             },
+    //             render: function() {
+    //                 var t = performance.now() % 1e3 / 1e3,
+    //                     i = size / 2 * .3,
+    //                     e = size / 2 * 1 * t + i,
+    //                     h = this.context;
+    //                 return h.clearRect(0, 0, this.width, this.height), h.beginPath(), h.arc(this.width / 2, this.height / 2, e, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 200, 200," + (1 - t) + ")", h.fill(), h.beginPath(), h.arc(this.width / 2, this.height / 2, i, 0, 2 * Math.PI), h.fillStyle = "rgba(255, 100, 100, 1)", h.strokeStyle = "white", h.lineWidth = 2 + 4 * (1 - t), h.fill(), h.stroke(), this.data = h.getImageData(0, 0, this.width, this.height).data, map.triggerRepaint(), !0
+    //             }
+    //         };
+
+    //     map.on('load', function() {
+    //         map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+    //         map.addSource('points', { 'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [{ 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [`${privX1}`, `${privY1}`] } }] } });
+    //         map.addLayer({ 'id': 'points', 'type': 'symbol', 'source': 'points', 'layout': { 'icon-image': 'pulsing-dot' } });
+    //     });
+    // }
+function getMap(){
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [13.43, 52.50],
+  zoom: 11
+});
+
+
+    let geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-77.032, 38.913]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'Washington, D.C.'
     }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-122.414, 37.776]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'San Francisco, California'
+    }
+  }]
+};
+
+let jsonString = JSON.stringify(geojson);
+// console.log(jsonString);
+// console.log(jsonString.slice(39, jsonString.length-1)); // returns the string with the array of features "[...]";
+// console.log(jsonString.slice(0, 39)); // returns: {"type":"FeatureCollection","features":
+
+let theBeginning = jsonString.slice(0, 39);
+let theMainInfo = '[{"type":"Feature","geometry":{"type":"Point","coordinates":[13.4,52.5]},"properties":{"title":"Mapbox","description":"Washington, D.C."}},{"type":"Feature","geometry":{"type":"Point","coordinates":[13.45, 52.5]},"properties":{"title":"Mapbox","description":"San Francisco, California"}}]'
+
+// Let's rewrite the main info: -------------------------------------------
+let arrayOfFeaturesSTRINGBeginning = '['
+let arrayOfFeaturesSTRINGEND = ']'
+
+let arrayOfArraysOfCoords = [[13.4,52.5],[13.45, 52.5],[13.45, 52.51]];
+let amountOfFeatures = arrayOfArraysOfCoords.length;
+let list = [];
+for (let i = 1; i <= amountOfFeatures; i++) {
+    list.push(i);
+}
+
+let featureString = '';
+function createFeatures(value){
+  let xAndY = arrayOfArraysOfCoords[value-1];
+  // this["feature_" + value] = `{"type":"Feature","geometry":{"type":"Point","coordinates":${xAndY}},"properties":{"title":"Mapbox","description":"feature_${value}"}}`;
+  if (list.length <=1){
+
+    featureString.concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":${xAndY}},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+  }
+  else{
+    let ad = "a";
+    featureString.concat(ad);
+    console.log(ad);
+    console.log(featureString);
+    featureString.concat(', ').concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":${xAndY}},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+    // featureString.concat(`{"type":"Feature","geometry":{"type":"Point","coordinates":${xAndY}},"properties":{"title":"Mapbox","description":"feature_${value}"}}`);
+  }
+}
+list.forEach(createFeatures);
+
+console.log(list.length);
+console.log(featureString);
+
+
+theMainInfo = arrayOfFeaturesSTRINGBeginning.concat(featureString).concat(arrayOfFeaturesSTRINGEND);
+
+// -------------------------------------------------------------------------
+
+let theEnd = '}'
+
+// Here we want to change the string
+
+jsonString = theBeginning.concat(theMainInfo).concat(theEnd);
+let geojsonModified = JSON.parse(jsonString);
+
+
+// add markers to map
+geojsonModified.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .addTo(map);
+});
+}
 
     // Create a cardsCounter for counting how many cards do we have, incrementing on every function call. This is how we find out, which unique id is needed next for each new card.
     let cardsCounter = 0;
@@ -509,6 +614,7 @@
         divModalLabel.append(divModalDialog);
         // Create the delete icon
         let aEditOrDeleteSection = document.createElement("a");
+        //TODO: change privateOrPublic dynamically
         aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
         let iForAEditOrDeleteSection = document.createElement("i");
         iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
@@ -701,7 +807,7 @@
             switchPage('loginform', 'mainscreen');
             // Show admina banner
             document.getElementById('admina').style.display = 'block';
-            getMap(admina.contactPrivateX, admina.contactPrivateY, admina.contactPublicX, admina.contactPublicY);
+            getMap();
             hideAllCardsOfUser('normalo');
             // Show all admina elements
             showMine('admina');
@@ -716,7 +822,7 @@
             switchPage('loginform', 'mainscreen');
             // Show normalo banner
             document.getElementById('normalo').style.display = 'block';
-            getMap(normalo.contactPrivateX, normalo.contactPrivateY, normalo.contactPublicX, normalo.contactPublicY);
+            getMap();
             hideAllCardsOfUser('admina');
             // Show all normalo elements
             showMine('normalo');
