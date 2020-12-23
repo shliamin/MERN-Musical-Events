@@ -391,7 +391,7 @@
         // Add a class for css styles
         divCard.className = "card";
         // We need a uniq id for the card (with connection to the contact)
-        divCard.id = `card_${type}_${privateOrPublic}_num_${num}`;
+        divCard.id = `card_${type}_${privateOrPublic}_${num}`;
         // --------We want to have a background image for the card as a picture of a random city from unspalsh.com-------
         // a function to create a random number
         function getRandomInt(max) {
@@ -606,7 +606,7 @@
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
         let aEditButtonDivModalFooter = document.createElement("a");
-        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}__num_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("id", "edit_button");
@@ -627,7 +627,7 @@
         // Create the delete icon
         let aEditOrDeleteSection = document.createElement("a");
         //TODO: change privateOrPublic dynamically
-        aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_num_${num}')`);
+        aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
         let iForAEditOrDeleteSection = document.createElement("i");
         iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
         iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
@@ -659,41 +659,41 @@
         // Remove the card
         el.remove();
 
-        let recieve = uniqid; // 'card_${type}_${privateOrPublic}_num_${num}'
+        let recieve = uniqid; // 'card_${type}_${privateOrPublic}_${num}'
 
         let wordNormalo = recieve.search("normalo");
         let wordAdmina = recieve.search("admina");
         let wordPrivate = recieve.search("private");
         let wordPublic = recieve.search("public");
-        let wordNum = recieve.search("num");
+        // let wordNum = recieve.search("num");
 
         let type;
         let privateOrPublic;
         let num;
 
         if (!(wordAdmina == -1)){ // admina
-          if (!(wordPrivate == -1)){ // 'card_admina_private_num_${num}'
+          if (!(wordPrivate == -1)){ // 'card_admina_private_${num}'
             type = recieve.slice(5,11); // admina
             privateOrPublic = recieve.slice(12,19); // private
-            num = recieve.slice(24,recieve.length); // num
+            num = recieve.slice(20,recieve.length); // num
           }
-          else{ // 'card_admina_public_num_${num}'
+          else{ // 'card_admina_public_${num}'
             type = recieve.slice(5,11); // admina
             privateOrPublic = recieve.slice(12,18); // public
-            num = recieve.slice(23,recieve.length); // num
+            num = recieve.slice(19,recieve.length); // num
           }
         }
         else{
           // normalo
-          if (!(wordPrivate == -1)){ // 'card_normalo_private_num_${num}'
+          if (!(wordPrivate == -1)){ // 'card_normalo_private_${num}'
             type = recieve.slice(5,12); // normalo
             privateOrPublic = recieve.slice(13,20); // private
-            num = recieve.slice(25,recieve.length); // num
+            num = recieve.slice(21,recieve.length); // num
           }
-          else{ // 'card_normalo_public_num_${num}'
+          else{ // 'card_normalo_public_${num}'
             type = recieve.slice(5,12); // normalo
             privateOrPublic = recieve.slice(13,19); // public
-            num = recieve.slice(24,recieve.length); // num
+            num = recieve.slice(20,recieve.length); // num
           }
         }
 
@@ -734,7 +734,94 @@
     // A function to change a card
     // uniqid - id of the card;
     function editCard(uniqid, name, surname, street, plz, city, country, privateOrPublic) {
-        let string = uniqid;
+        let string = uniqid; // 'card_${type}_${privateOrPublic}_${num}'
+
+        let wordNormalo = string.search("normalo");
+        let wordAdmina = string.search("admina");
+        let wordPrivate = string.search("private");
+        let wordPublic = string.search("public");
+        let wordNum = string.search("num");
+
+        // let type;
+        // let privateOrPublic;
+        let num;
+
+        if (!(wordAdmina == -1)){ // admina
+          if (!(wordPrivate == -1)){ // 'card_admina_private_num_${num}'
+            // type = recieve.slice(5,11); // admina
+            // privateOrPublic = recieve.slice(12,19); // private
+            num = string.slice(20,string.length); // num
+            console.log(num);
+            console.log(eval(`dataContact${num}`));
+            eval(`dataContact${num}`).street = `${document.getElementById(street).value}`;
+            eval(`dataContact${num}`).plz = `${document.getElementById(plz).value}`;
+            eval(`dataContact${num}`).city = `${document.getElementById(city).value}`;
+            console.log(eval(`dataContact${num}`));
+            if (document.getElementById('username').value == admina.username ){
+              getMap(arrayOFHashesAll);
+            }
+            else{
+              getMap(arrayOFHashesAllExceptAdminaPrivate);
+            }
+          }
+          else{ // 'card_admina_public_num_${num}'
+            // type = recieve.slice(5,11); // admina
+            // privateOrPublic = recieve.slice(12,18); // public
+            num = string.slice(19,string.length); // num
+            console.log(num);
+            console.log(eval(`dataContact${num}`));
+            eval(`dataContact${num}`).street = `${document.getElementById(street).value}`;
+            eval(`dataContact${num}`).plz = `${document.getElementById(plz).value}`;
+            eval(`dataContact${num}`).city = `${document.getElementById(city).value}`;
+            console.log(eval(`dataContact${num}`));
+            if (document.getElementById('username').value == admina.username ){
+              getMap(arrayOFHashesAll);
+            }
+            else{
+              getMap(arrayOFHashesAllExceptAdminaPrivate);
+            }
+          }
+        }
+        else{
+          // normalo
+          if (!(wordPrivate == -1)){ // 'card_normalo_private_num_${num}'
+            // type = recieve.slice(5,12); // normalo
+            // privateOrPublic = recieve.slice(13,20); // private
+            num = string.slice(21,string.length); // num
+            console.log(num);
+            console.log(eval(`dataContact${num}`));
+            eval(`dataContact${num}`).street = `${document.getElementById(street).value}`;
+            eval(`dataContact${num}`).plz = `${document.getElementById(plz).value}`;
+            eval(`dataContact${num}`).city = `${document.getElementById(city).value}`;
+            console.log(eval(`dataContact${num}`));
+            if (document.getElementById('username').value == admina.username ){
+              getMap(arrayOFHashesAll);
+            }
+            else{
+              getMap(arrayOFHashesAllExceptAdminaPrivate);
+            }
+          }
+          else{ // 'card_normalo_public_num_${num}'
+            // type = recieve.slice(5,12); // normalo
+            // privateOrPublic = recieve.slice(13,19); // public
+            num = string.slice(20,string.length); // num
+            console.log(num);
+            console.log(eval(`dataContact${num}`));
+            eval(`dataContact${num}`).street = `${document.getElementById(street).value}`;
+            eval(`dataContact${num}`).plz = `${document.getElementById(plz).value}`;
+            eval(`dataContact${num}`).city = `${document.getElementById(city).value}`;
+            console.log(eval(`dataContact${num}`));
+            if (document.getElementById('username').value == admina.username ){
+              getMap(arrayOFHashesAll);
+            }
+            else{
+              getMap(arrayOFHashesAllExceptAdminaPrivate);
+            }
+          }
+        }
+
+
+
         let res = string.slice(5, string.length); //{user}_{privacy}_{number}
         let vorname = "vorname_";
         let vornameID = vorname.concat(res); // vorname_{user}_{privacy}_{number}
