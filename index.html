@@ -276,7 +276,6 @@
 
 
       function getMap(arrayOFHashes){
-        console.log(arrayOFHashes);
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -392,7 +391,7 @@
         // Add a class for css styles
         divCard.className = "card";
         // We need a uniq id for the card (with connection to the contact)
-        divCard.id = `card_${type}_${privateOrPublic}_${num}`;
+        divCard.id = `card_${type}_${privateOrPublic}_num_${num}`;
         // --------We want to have a background image for the card as a picture of a random city from unspalsh.com-------
         // a function to create a random number
         function getRandomInt(max) {
@@ -537,7 +536,7 @@
         let id_for_input4 = `recipient-plz-${type}-${num}`;
         let id_for_input5 = `recipient-stadt-${type}-${num}`;
         let id_for_input6 = `recipient-land-${type}-${num}`;
-        let id_for_input_check = `check_private_${privateOrPublic}_${type}_${num}`;
+        let id_for_input_check = `check_private_${privateOrPublic}_${type}_num_${num}`;
         let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${type}_${num}`;
         // Create a form synamically
         let form = document.createElement("form");
@@ -607,7 +606,7 @@
         closeButtonDivModalFooter.setAttribute("type", "button");
         closeButtonDivModalFooter.innerHTML = "Close";
         let aEditButtonDivModalFooter = document.createElement("a");
-        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
+        aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}__num_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
         let editButtonDivModalFooter = document.createElement("button");
         editButtonDivModalFooter.setAttribute("class", "btn btn-primary");
         editButtonDivModalFooter.setAttribute("id", "edit_button");
@@ -628,7 +627,7 @@
         // Create the delete icon
         let aEditOrDeleteSection = document.createElement("a");
         //TODO: change privateOrPublic dynamically
-        aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
+        aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_num_${num}')`);
         let iForAEditOrDeleteSection = document.createElement("i");
         iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
         iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
@@ -654,13 +653,83 @@
     getCard("all_cards", normalo.vorname_private, normalo.nachname_private, normalo.strasse_private, normalo.plz_private, normalo.stadt_private, normalo.land_private, 'private', 'normalo', '4');
     // A function to delete a card
     function deleteElement(uniqid) {
+
         // Find the card
         let el = document.getElementById(uniqid);
         // Remove the card
         el.remove();
-        // TODO: should be modified (find dots on the map by index)
-        arrayOFHashesAll.pop();
-        getMap(arrayOFHashesAll);
+
+        let recieve = uniqid; // 'card_${type}_${privateOrPublic}_num_${num}'
+
+        let wordNormalo = recieve.search("normalo");
+        let wordAdmina = recieve.search("admina");
+        let wordPrivate = recieve.search("private");
+        let wordPublic = recieve.search("public");
+        let wordNum = recieve.search("num");
+
+        let type;
+        let privateOrPublic;
+        let num;
+
+        if (!(wordAdmina == -1)){ // admina
+          if (!(wordPrivate == -1)){ // 'card_admina_private_num_${num}'
+            type = recieve.slice(5,11); // admina
+            privateOrPublic = recieve.slice(12,19); // private
+            num = recieve.slice(24,recieve.length); // num
+          }
+          else{ // 'card_admina_public_num_${num}'
+            type = recieve.slice(5,11); // admina
+            privateOrPublic = recieve.slice(12,18); // public
+            num = recieve.slice(23,recieve.length); // num
+          }
+        }
+        else{
+          // normalo
+          if (!(wordPrivate == -1)){ // 'card_normalo_private_num_${num}'
+            type = recieve.slice(5,12); // normalo
+            privateOrPublic = recieve.slice(13,20); // private
+            num = recieve.slice(25,recieve.length); // num
+          }
+          else{ // 'card_normalo_public_num_${num}'
+            type = recieve.slice(5,12); // normalo
+            privateOrPublic = recieve.slice(13,19); // public
+            num = recieve.slice(24,recieve.length); // num
+          }
+        }
+
+
+        let user;
+        if (document.getElementById('username').value == 'admina') {
+            user = 'admina';
+        } else {
+            user = 'normalo';
+        }
+
+
+        if (user == 'normalo'){
+          arrayOFHashesNormalo.pop(eval(`dataContact${num}`));
+          arrayOFHashesAll.pop(eval(`dataContact${num}`));
+          arrayOFHashesAllExceptAdminaPrivate.pop(eval(`dataContact${num}`));
+          getMap(arrayOFHashesAllExceptAdminaPrivate);
+        }else{
+           if (type == 'normalo'){
+          arrayOFHashesNormalo.pop(eval(`dataContact${num}`));
+          arrayOFHashesAll.pop(eval(`dataContact${num}`));
+          getMap(arrayOFHashesAll);
+          }else{
+            if(privateOrPublic == 'private'){
+              arrayOFHashesAdmina.pop(eval(`dataContact${num}`));
+               arrayOFHashesAll.pop(eval(`dataContact${num}`));
+                getMap(arrayOFHashesAll);
+            }
+            else{
+              arrayOFHashesAdmina.pop(eval(`dataContact${num}`));
+              arrayOFHashesAll.pop(eval(`dataContact${num}`));
+              arrayOFHashesAllExceptAdminaPrivate.pop(eval(`dataContact${num}`));
+              getMap(arrayOFHashesAll);
+            }
+          }
+        }
     }
     // A function to change a card
     // uniqid - id of the card;
@@ -995,38 +1064,39 @@
         getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, privateOrPublic, type, num);
 
         // let coolNumber = cardsCounter + 1
+        this["dataContact"+num] = {};
+        // let dataContact = {};
+        this["dataContact"+num]["street"] = strasse;
+        this["dataContact"+num]["plz"] = plz;
+        this["dataContact"+num]["city"] = stadt;
 
-        let dataContact = {};
-        dataContact["street"] = strasse;
-        dataContact["plz"] = plz;
-        dataContact["city"] = stadt;
-
-        console.log(dataContact["street"]);
+        // console.log(this["dataContact"+num]["street"]);
         if (user == 'normalo'){
-          arrayOFHashesNormalo.push(dataContact);
-          arrayOFHashesAll.push(dataContact);
-          // getMap(arrayOFHashesAll);
+          arrayOFHashesNormalo.push(this["dataContact"+num]);
+          arrayOFHashesAll.push(this["dataContact"+num]);
+          arrayOFHashesAllExceptAdminaPrivate.push(this["dataContact"+num]);
+          getMap(arrayOFHashesAllExceptAdminaPrivate);
         }else{
            if (type == 'normalo'){
-          arrayOFHashesNormalo.push(dataContact);
-          arrayOFHashesAll.push(dataContact);
-          // getMap(arrayOFHashesAll);
+          arrayOFHashesNormalo.push(this["dataContact"+num]);
+          arrayOFHashesAll.push(this["dataContact"+num]);
+          getMap(arrayOFHashesAll);
           }else{
             if(privateOrPublic == 'private'){
-              arrayOFHashesAdmina.push(dataContact);
-               arrayOFHashesAll.push(dataContact);
-              // getMap(arrayOFHashesAllExceptAdminaPrivate);
+              arrayOFHashesAdmina.push(this["dataContact"+num]);
+               arrayOFHashesAll.push(this["dataContact"+num]);
+                getMap(arrayOFHashesAll);
             }
             else{
-              arrayOFHashesAdmina.push(dataContact);
-              arrayOFHashesAll.push(dataContact);
-              arrayOFHashesAllExceptAdminaPrivate.push(dataContact);
-              // getMap(arrayOFHashesAll);
+              arrayOFHashesAdmina.push(this["dataContact"+num]);
+              arrayOFHashesAll.push(this["dataContact"+num]);
+              arrayOFHashesAllExceptAdminaPrivate.push(this["dataContact"+num]);
+              getMap(arrayOFHashesAll);
             }
           }
         }
-        getMap(arrayOFHashesAll);
-        console.log(arrayOFHashesAll);
+        // getMap(arrayOFHashesAll);
+        // console.log(arrayOFHashesAll);
 
     }
     </script>
