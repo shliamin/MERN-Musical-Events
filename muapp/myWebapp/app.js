@@ -64,9 +64,9 @@ app.use('/users', usersRouter);
 app.use(express.static(__dirname + '/public'));
 app.use('/stylesheets', express.static(__dirname + 'public/stylesheets'));
 
-app.get('/adviz', function (req, res) {
-  res.sendFile(__dirname + '/public/login-page.html');
-})
+// app.get('/adviz', function (req, res) {
+//   res.sendFile(__dirname + '/public/login-page.html');
+// })
 
 
 // -------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ app.use(session({
 
 const redirectLogin = (req,res, next) => {
   if (!req.session.userId){
-    res.redirect('/login')
+    res.redirect('/adviz')
   } else{
     next()
   }
@@ -142,7 +142,7 @@ app.get('/', (req, res) => {
       <button>Logout</button>
     </form>
     `: `
-      <a href='/login'>Login </a>
+      <a href='/adviz'>Login to the Adviz </a>
     `}
   `)
 
@@ -169,11 +169,11 @@ app.get('/home', redirectLogin, (req, res) => {
 //   const { user } = res.locals
 // })
 
-app.get('/login', redirectHome, (req, res) => {
+app.get('/adviz', redirectHome, (req, res) => {
 
   res.send(`
     <h1> Login </h1>
-    <form method = 'post' action = '/login'>
+    <form method = 'post' action = '/adviz'>
       <input type='name' placeholder= 'Name' name='name' required />
       <input type='password' placeholder= 'Password' name='password'  required />
       <input type = 'submit' />
@@ -195,7 +195,7 @@ app.get('/login', redirectHome, (req, res) => {
 
 // })
 
-app.post('/login', redirectHome, (req, res) => {
+app.post('/adviz', redirectHome, (req, res) => {
   const { name, password} = req.body;
   console.log(name);
   console.log(req.body);
@@ -212,7 +212,7 @@ app.post('/login', redirectHome, (req, res) => {
   }
 
   console.log('not found');
-  res.redirect('/login');
+  res.redirect('/adviz');
 })
 
 // app.post('/register', redirectHome, (req, res) => {
@@ -247,7 +247,7 @@ app.post('/logout', redirectLogin, (req, res) => {
     }
 
     res.clearCookie(SESS_NAME)
-    res.redirect('/login')
+    res.redirect('/adviz')
   })
 })
 
