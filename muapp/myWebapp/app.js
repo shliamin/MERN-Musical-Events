@@ -17,6 +17,13 @@ const users = [
     { id: 1, name: 'admina', password: 'admina' },
     { id: 2, name: 'normalo', password: 'normalo' }
 ]
+
+let contacts = [
+    { id: 1, name: 'Angela', surname: 'Merkel', street: 'Am Kupfergraben 6', plz: '10117', city: 'Berlin', country: 'Germany', privacy: true, creator: 'admina' },
+    { id: 2, name: 'Bundeskanzlerin', surname: 'der Bundesrepublik Deutschland', street: 'Willy-Brandt-Strasse 1', plz: '10557', city: 'Berlin', country: 'Germany', privacy: false, creator: 'admina' },
+    { id: 3, name: 'Erich', surname: 'Fromm', street: 'Stralsunder Strasse 14', plz: '13355', city: 'Berlin', country: 'Germany', privacy: true, creator: 'normalo' },
+    { id: 4, name: 'Western', surname: 'Philosopher', street: 'Potsdamer Platz 1', plz: '10785', city: 'Berlin', country: 'Germany', privacy: false, creator: 'normalo'}
+]
 // ________________________________________________________________________________________________________
 
 
@@ -135,14 +142,18 @@ app.get('/', (req, res) => {
     const { userId } = req.session
 
     res.send(`
-    <h1> Welcome to the Adviz, the web-app made by Dhimal Sameer & Shliamin Efim. </h1>
+    <body style ='background: #1B2428;'>
+    <h1 style = "color: #ffffff; text-align: center, font-family: 'Lato', sans-serif; font-size: 54px; font-weight: 300; line-height: 58px; margin: 0 0 58px;"> Welcome to the Adviz, <br/>
+    the web-app made by <br/>
+    Dhimal Sameer & Shliamin Efim </h1>
     ${userId ? `
-      <a href='/home'>Home </a>
+      <a href='/home' style = "color: #adb7bd; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; text-indent: 30px; margin: 0;">Home </a>
     <form method = 'post' action = '/logout'>
       <button>Logout</button>
     </form>
     `: `
-      <a href='/adviz'>Login to the Adviz </a>
+      <a href='/adviz' style ="color: #adb7bd; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; text-indent: 30px; margin: 0;">Login to the Adviz </a>
+      </body>
     `}
   `)
 
@@ -278,16 +289,49 @@ app.post('/adviz', redirectHome, (req, res) => {
 
 app.get('/adviz/login', redirectHome, (req, res) => {
 
-    res.send(`
+            res.send(`
+   <!DOCTYPE html>
+    <html>
+
+    <head>
+    <title>
+        AdViz API
+    </title>
+    <link href="#" rel="shortcut icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </link>
+    </head>
+    <body>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xs-12 col-md-10 col-lg-6">
           <div class="input_form">
             <form method = 'post' action = '/adviz/login'>
-            <h1> Login </h1>
+            <h1> Login <span style="color:red;">(API)</span> </h1>
             <hr>
-
-
               <label class="control-label">
                                 <label for="Username">
                                     <b>
@@ -315,6 +359,8 @@ app.get('/adviz/login', redirectHome, (req, res) => {
         </div>
       </div>
     </div>
+    </body>
+    </html>
     `)
 })
 
@@ -408,6 +454,10 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+app.get("*", function (req, res) {
+    res.render("Error_page");
 });
 
 module.exports = app;
