@@ -63,6 +63,10 @@ h2 {
     color: red;
 }
 
+.form-check-label {
+  /*margin: 6px 0 22px 0;*/
+}
+
 .input_form .control-label:before {
     content: "*";
     color: red;
@@ -91,7 +95,12 @@ input[type=password1] {
 }
 
 .form-check {
-    margin: 6px 0 22px 0;
+    margin: 3px 0 22px 0;
+    padding-left: 0rem;
+}
+
+.form-check-label{
+  padding-left: 0.2rem;
 }
 
 input[type=text]:focus,

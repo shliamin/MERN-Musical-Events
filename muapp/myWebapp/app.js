@@ -9,7 +9,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-const expressLayouts = require('express-ejs-layouts');
+// const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
@@ -17,7 +17,7 @@ var usersRouter = require('./routes/users');
 
 
 const Contact = require('./models/contact');
-
+const User = require('./models/user');
 const { Seeder } = require('mongo-seeding');
 
 
@@ -59,8 +59,8 @@ app.use(bodyParser.json());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('layout', 'layouts/layout');
-app.use(expressLayouts);
+// app.set('layout', 'layouts/layout');
+// app.use(expressLayouts);
 app.use(express.static('public'));
 
 
@@ -235,20 +235,21 @@ app.get('/home', redirectLogin, (req, res) => {
                         Hello, ${user.name}!
                     </h2>
                 </li>
-                <li>
-                    <button class="btn btn-warning" onclick="getMap(arrayOFHashesAll); showAllCardsFor('admina')" type="button">
-                        Show all contacts
-                    </button>
+                <li>${user.name == 'admina' ? `<form method = 'get' action = '/adviz/contacts'>
+                      <input type="submit" value="Show all contacts" class="btn btn-warning"/>
+                    </form>` : `<form method = 'get' action = '/adviz/contacts/normaloall'>
+                      <input type="submit" value="Show all contacts" class="btn btn-warning"/>
+                    </form>` }
                 </li>
                 <li>
-                    <form method = 'post' action = '/adviz/contacts'>
-                      <input type="submit" name="upvote" value="Show my contacts"  class="btn btn-warning"/>
+                    <form method = 'get' action = '/adviz/contacts/${user.name}'>
+                      <input type="submit" value="Show my contacts" class="btn btn-warning"/>
                     </form>
                 </li>
                 <li>
-                    <button class="btn btn-success" data-target="#Modal1" data-toggle="modal" data-whatever="@mdo" type="button">
-                        Add new contact
-                    </button>
+                    <form method = 'get' action = '/adviz/form/${user.name}'>
+                      <input type="submit" value="Add new contact" class="btn btn-success"/>
+                    </form>
                 </li>
                 <li class="nav-item">
                 <form method = 'post' action = '/logout'>
@@ -289,6 +290,14 @@ app.get('/home', redirectLogin, (req, res) => {
                 <div id="map">
                 </div>
             </div>
+             <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
+    <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+    </script>
+    <script>
             </body>
     </html>
     `)
@@ -578,16 +587,306 @@ app.get('/adviz/contacts/:param', (req, res) => {
     var contactsOfUser = contacts.filter(contact => contact.creator === req.params.param);
     if(!contactsOfUser) return res.status(404).send('There are no contacts for this user');
     res.send(contactsOfUser);
-  } else{
+  } else if (req.params.param == 'normaloall') {
+    var allcontactsOfNormalo = contacts.filter(contact => contact.privacy === false || contact.creator === 'normalo');
+    if(!allcontactsOfNormalo) return res.status(404).send('There are no contacts for this user');
+    res.send(allcontactsOfNormalo);
+  }else{
       let contact = contacts.find(contact => contact.id === parseInt(req.params.param));
       if(!contact) return res.status(404).send('There are no contacts with a given id');
       res.send(contact);
   }
 });
 
+app.get('/adviz/form/:param', (req, res) => {
+
+ if (req.params.param == 'admina' ){
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+    <title>
+        AdViz
+    </title>
+    <link href="#" rel="shortcut icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </link>
+    </head>
+    <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-10 col-lg-6">
+          <div class="input_form">
+            <form method = 'post' action = '/adviz/contacts'>
+            <h1> Add new contact</h1>
+            <hr>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-form" id="creator" name="creator">
+                              <label class="form-check-label" for="creator">As normalo</label>
+                            </div>
+
+              <label class="control-label">
+                                <label for="name">
+                                    <b>
+                                        Name:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="name" name="name" placeholder="Name" required type="text1">
+                            <label class="control-label">
+                                <label for="surname">
+                                    <b>
+                                        Nachname:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="surname" name="surname" placeholder="Nachname" required type="text1">
+                            <label class="control-label">
+                                <label for="street">
+                                    <b>
+                                        Strasse:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="street" name="street" placeholder="Strasse" required type="text1">
+                            <label class="control-label">
+                                <label for="plz">
+                                    <b>
+                                        PLZ:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="plz" name="plz" placeholder="PLZ" required type="text1">
+                            <label class="control-label">
+                                <label for="city">
+                                    <b>
+                                        Stadt:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="city" name="city" placeholder="Stadt" required type="text1">
+
+
+                            <label class="control-label">
+                                <label for="country">
+                                    <b>
+                                        Land:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="country" name="country" placeholder="Land" required type="text1">
+
+
+                            <div class="form-check">
+                              <input name="privacy" type="checkbox" class="form-check-form" id="privacy" >
+                              <label class="form-check-label" for="privacy">Privat</label>
+                            </div>
+
+                            <button class="loginbtn" type="submit">
+                                Add
+                            </button>
+
+                            </input>
+                            </input>
+            </hr>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    </html>
+  `)
+} else{
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+    <title>
+        AdViz
+    </title>
+    <link href="#" rel="shortcut icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </link>
+    </head>
+    <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-10 col-lg-6">
+          <div class="input_form">
+            <form method = 'post' action = '/adviz/contacts'>
+            <h1> Add new contact</h1>
+            <hr>
+
+
+              <label class="control-label">
+                                <label for="name">
+                                    <b>
+                                        Name:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="name" name="name" placeholder="Name" required type="text1">
+                            <label class="control-label">
+                                <label for="surname">
+                                    <b>
+                                        Nachname:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="surname" name="surname" placeholder="Nachname" required type="text1">
+                            <label class="control-label">
+                                <label for="street">
+                                    <b>
+                                        Strasse:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="street" name="street" placeholder="Strasse" required type="text1">
+                            <label class="control-label">
+                                <label for="plz">
+                                    <b>
+                                        PLZ:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="plz" name="plz" placeholder="PLZ" required type="text1">
+                            <label class="control-label">
+                                <label for="city">
+                                    <b>
+                                        Stadt:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="city" name="city" placeholder="Stadt" required type="text1">
+                            <label class="control-label">
+                                <label for="country">
+                                    <b>
+                                        Land:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="country" name="country" placeholder="Land" required type="text1">
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-form" id="privacy" name = "privacy">
+                              <label class="form-check-label" for="privacy">Privat</label>
+                            </div>
+
+
+                            <button class="loginbtn" type="submit">
+                                Add
+                            </button>
+
+
+
+
+
+                            </input>
+
+
+                            </input>
+            </hr>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    </html>
+  `)
+
+}
+});
+
 app.post('/adviz/contacts', (req,res) => {
 
+  // const { privacy } = req.body.privacy;
+
+  // let privacy = false;
+  // if (req.body.privacy == 'on'){
+  //   privacy = true;
+  // } else{
+  //   privacy = false;
+  // }
+
+  //  let creator = 'admina';
+  // if (req.body.creator == 'on'){
+  //   creator = 'normalo';
+  // } else{
+  //   creator = 'admina';
+  // }
+
   const { error } = validateContact(req.body); //result.error
+
+  const usr = users.find(user => user.id === req.session.userId);
+  console.log(usr.name);
+
+  let privacy = false;
+  if (req.body.privacy == 'on'){
+    privacy = true;
+  } else{
+    privacy = false;
+  }
+
+  let creator = 'admina';
+if(usr.name == 'admina'){
+    if (req.body.creator == 'on'){
+      creator = 'normalo';
+    } else{
+      creator = 'admina';
+    }
+}else {
+   creator = 'normalo';
+}
+
 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -612,8 +911,8 @@ app.post('/adviz/contacts', (req,res) => {
     plz: req.body.plz,
     city: req.body.city,
     country: req.body.country,
-    privacy: req.body.privacy,
-    creator: req.body.creator
+    privacy: privacy,
+    creator: creator
   }
   // contact.save(); // DB
   contacts.push(contact);
@@ -664,8 +963,8 @@ function validateContact(contact) {
     plz: Joi.string().required(),
     city: Joi.string().required(),
     country: Joi.string().required(),
-    privacy: Joi.boolean().required(),
-    creator: Joi.string().required()
+    privacy: Joi.string(),
+    creator: Joi.string()
   };
   return Joi.validate(contact, schema);
 }
@@ -932,6 +1231,110 @@ let cardsCounter = 0;
         element.append(divCard);
         //Increment the cardsCounter
         cardsCounter++;
+    }
+
+    function createForms(user) {
+        // -------- Here we want to insert different forms ---------------------
+        let id_for_label_1 = `recipient-name-${user}-form`;
+        let id_for_label_2 = `recipient-nachname-${user}-form`;
+        let id_for_label_3 = `recipient-strasse-${user}-form`;
+        let id_for_label_4 = `recipient-plz-${user}-form`;
+        let id_for_label_5 = `recipient-stadt-${user}-form`;
+        let id_for_label_6 = `recipient-land-${user}-form`;
+        let text1 = "Vorname";
+        let text2 = "Nachname";
+        let text3 = "Strasse";
+        let text4 = "PLZ";
+        let text5 = "Stadt";
+        let text6 = "Land";
+        let id_for_input1 = `recipient-name-${user}-form`;
+        let id_for_input2 = `recipient-nachname-${user}-form`;
+        let id_for_input3 = `recipient-strasse-${user}-form`;
+        let id_for_input4 = `recipient-plz-${user}-form`;
+        let id_for_input5 = `recipient-stadt-${user}-form`;
+        let id_for_input6 = `recipient-land-${user}-form`;
+        let id_for_input_check = `check_private_${user}_form`;
+        let id_for_input_check_as_normalo = `id_for_input_check_as_normalo_${user}_form`;
+        // Create a form synamically
+        let form = document.createElement("form");
+        form.setAttribute("id", `input_form_contact_${user}`);
+        form.setAttribute("role", "form");
+        // Create array
+        let array = [1, 2, 3, 4, 5, 6];
+
+        // Create an "as normalo" check form (div), but only for admina
+
+        if (user == 'admina') {
+            let divCheckAsNormalo = document.createElement("div");
+            divCheckAsNormalo.classList.add("form-check");
+            let inputCheckAsNormalo = document.createElement("input");
+            inputCheckAsNormalo.classList.add("form-check-input");
+            inputCheckAsNormalo.setAttribute("id", id_for_input_check_as_normalo);
+            inputCheckAsNormalo.setAttribute("required", "");
+            inputCheckAsNormalo.setAttribute("type", "checkbox");
+            let labelCheckAsNormalo = document.createElement("Label");
+            labelCheckAsNormalo.classList.add("form-check-label");
+            labelCheckAsNormalo.setAttribute("for", "check");
+            labelCheckAsNormalo.innerHTML = "As normalo";
+            divCheckAsNormalo.append(inputCheckAsNormalo);
+            divCheckAsNormalo.append(labelCheckAsNormalo);
+            // Append the checkbox "as normalo" input to the form
+            form.append(divCheckAsNormalo);
+        }
+
+        // Create 6 different divs
+        function createDivs(value) {
+            this["div" + value] = document.createElement("div");
+            this["div" + value].classList.add("form-group");
+        }
+        array.forEach(createDivs);
+        // Create 6 different labels
+        function createLabels(value) {
+            this["label" + value] = document.createElement("Label");
+            this["label" + value].classList.add("col-form-label");
+            this["label" + value].setAttribute("for", eval(`id_for_label_${value}`));
+            this["label" + value].innerHTML = eval(`text${value}`);
+        }
+        array.forEach(createLabels);
+        // Create 6 different inputs
+        function createInputs(value) {
+            this["input" + value] = document.createElement("input");
+            this["input" + value].classList.add("form-control");
+            this["input" + value].setAttribute("id", eval(`id_for_input${value}`));
+            this["input" + value].setAttribute("required", "true");
+            this["input" + value].setAttribute("type", "text2");
+        }
+        array.forEach(createInputs);
+        // Appned all labels and inputs:
+        function appendLabels(value) {
+            eval(`div${value}`).append(eval(`label${value}`));
+            eval(`div${value}`).append(eval(`input${value}`));
+        }
+        array.forEach(appendLabels);
+        // Create a check form (div)
+        let divCheck = document.createElement("div");
+        divCheck.classList.add("form-check");
+        let inputCheck = document.createElement("input");
+        inputCheck.classList.add("form-check-input");
+        inputCheck.setAttribute("id", id_for_input_check);
+        inputCheck.setAttribute("required", "");
+        inputCheck.setAttribute("type", "checkbox");
+        let labelCheck = document.createElement("Label");
+        labelCheck.classList.add("form-check-label");
+        labelCheck.setAttribute("for", "check");
+        labelCheck.innerHTML = "Privat";
+        divCheck.append(inputCheck);
+        divCheck.append(labelCheck);
+
+        function appendDivs(value) {
+            form.append(eval(`div${value}`));
+        }
+        array.forEach(appendDivs);
+        // Append the checkbox input to the form
+        form.append(divCheck);
+        // Append the form
+        let placeToAppend = document.getElementById(`modal-body-${user}`);
+        placeToAppend.append(form);
     }
 
 // -------------------------------------------------------------------------------
