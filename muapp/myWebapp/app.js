@@ -466,7 +466,6 @@ app.post('/adviz/contacts', (req,res) => {
 
   if (error) return res.status(400).send(error.details[0].message);
 
-
   let contact = {
     id: contacts.length + 1,
     name: req.body.name,
@@ -518,7 +517,9 @@ function validateContact(contact) {
     street: Joi.string().required(),
     plz: Joi.string().required(),
     city: Joi.string().required(),
-    country: Joi.string().required()
+    country: Joi.string().required(),
+    privacy: Joi.boolean().required(),
+    creator: Joi.string().required()
   };
   return Joi.validate(contact, schema);
 }
