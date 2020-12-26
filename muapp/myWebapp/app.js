@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+const Joi = require('joi');
 var express = require('express');
 var session = require('express-session'); // for session
 var path = require('path');
@@ -437,6 +438,91 @@ app.post('/logout', redirectLogin, (req, res) => {
     })
 })
 
+app.get('/adviz/contacts', (req, res) => {
+  res.send(contacts);
+});
+
+// app.get('/adviz/contacts/:creator', (req, res) => {
+//   var contactsOfUser = contacts.filter(contact => contact.creator === req.params.creator);
+//   if(!contactsOfUser) res.status(404).send('There are no contacts for this user');
+//   res.send(contactsOfUser);
+// });
+
+app.get('/adviz/contacts/:param', (req, res) => {
+  if (req.params.param == 'admina' || req.params.param == 'normalo' ){
+    var contactsOfUser = contacts.filter(contact => contact.creator === req.params.param);
+    if(!contactsOfUser) return res.status(404).send('There are no contacts for this user');
+    res.send(contactsOfUser);
+  } else{
+      let contact = contacts.find(contact => contact.id === parseInt(req.params.param));
+      if(!contact) return res.status(404).send('There are no contacts with a given id');
+      res.send(contact);
+  }
+});
+
+app.post('/adviz/contacts', (req,res) => {
+
+  const { error } = validateContact(req.body); //result.error
+
+  if (error) return res.status(400).send(error.details[0].message);
+
+
+  let contact = {
+    id: contacts.length + 1,
+    name: req.body.name,
+    surname: req.body.surname,
+    street: req.body.street,
+    plz: req.body.plz,
+    city: req.body.city,
+    country: req.body.country,
+    privacy: req.body.privacy,
+    creator: req.body.creator
+  }
+  contacts.push(contact);
+  res.status(201);
+  res.send(contact);
+});
+
+app.put('/adviz/contacts/:id', (req,res) => {
+  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+  if(!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+  const { error } = validateContact(req.body); //result.error
+
+  if (error) return res.status(400).send(error.details[0].message);
+
+  contact.name = req.body.name;
+  contact.surname = req.body.surname;
+  contact.street = req.body.street;
+  contact.plz = req.body.plz;
+  contact.city = req.body.city;
+  contact.country = req.body.country;
+
+  res.send(contact);
+});
+
+app.delete('/adviz/contacts/:id', (req,res) => {
+  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+  if(!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+  const index = contacts.indexOf(contact);
+  contacts.splice(index, 1);
+
+  res.send(contact);
+});
+
+function validateContact(contact) {
+  const schema = {
+    name: Joi.string().required(),
+    surname: Joi.string().required(),
+    street: Joi.string().required(),
+    plz: Joi.string().required(),
+    city: Joi.string().required(),
+    country: Joi.string().required()
+  };
+  return Joi.validate(contact, schema);
+}
+
 // -------------------------------------------------------------------------------
 
 
@@ -455,6 +541,8 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+
 
 app.get("*", function (req, res) {
     res.render("Error_page");
