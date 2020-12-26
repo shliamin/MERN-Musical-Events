@@ -18,6 +18,8 @@ var usersRouter = require('./routes/users');
 
 const Contact = require('./models/contact');
 
+const { Seeder } = require('mongo-seeding');
+
 
 // ----------------------------- Let's creaate a store for users ------------------------------------
 
@@ -555,6 +557,13 @@ app.post('/logout', redirectLogin, (req, res) => {
 })
 
 app.get('/adviz/contacts', (req, res) => {
+  // Contact.find().then(document => {
+    // res.status(200).json({
+  //     message: "Contact fetched successfully!",
+  //     contacts: documents
+  //   });
+  // }); // find on DB
+
   res.send(contacts);
 });
 
@@ -606,7 +615,7 @@ app.post('/adviz/contacts', (req,res) => {
     privacy: req.body.privacy,
     creator: req.body.creator
   }
-  contact.save();
+  // contact.save(); // DB
   contacts.push(contact);
   res.status(201);
   res.send(contact);
@@ -638,6 +647,13 @@ app.delete('/adviz/contacts/:id', (req,res) => {
   contacts.splice(index, 1);
 
   res.send(contact);
+
+
+  // DB:
+  // Contact.deleteOne({_id: req.params.id}).then(result => {
+  //   console.log(result);
+  //   res.status(200).json({message: "Post deleted!"});
+  // });
 });
 
 function validateContact(contact) {
