@@ -29,19 +29,19 @@ const users = [
     { id: 2, name: 'normalo', password: 'normalo' }
 ]
 
-let contacts = [
-    { id: 1, name: 'Angela', surname: 'Merkel', street: 'Am Kupfergraben 6', plz: '10117', city: 'Berlin', country: 'Germany', privacy: true, creator: 'admina' },
-    { id: 2, name: 'Bundeskanzlerin', surname: 'der Bundesrepublik Deutschland', street: 'Willy-Brandt-Strasse 1', plz: '10557', city: 'Berlin', country: 'Germany', privacy: false, creator: 'admina' },
-    { id: 3, name: 'Erich', surname: 'Fromm', street: 'Stralsunder Strasse 14', plz: '13355', city: 'Berlin', country: 'Germany', privacy: true, creator: 'normalo' },
-    { id: 4, name: 'Western', surname: 'Philosopher', street: 'Potsdamer Platz 1', plz: '10785', city: 'Berlin', country: 'Germany', privacy: false, creator: 'normalo'}
-]
+// let contacts = [
+//     { id: 1, name: 'Angela', surname: 'Merkel', street: 'Am Kupfergraben 6', plz: '10117', city: 'Berlin', country: 'Germany', privacy: true, creator: 'admina' },
+//     { id: 2, name: 'Bundeskanzlerin', surname: 'der Bundesrepublik Deutschland', street: 'Willy-Brandt-Strasse 1', plz: '10557', city: 'Berlin', country: 'Germany', privacy: false, creator: 'admina' },
+//     { id: 3, name: 'Erich', surname: 'Fromm', street: 'Stralsunder Strasse 14', plz: '13355', city: 'Berlin', country: 'Germany', privacy: true, creator: 'normalo' },
+//     { id: 4, name: 'Western', surname: 'Philosopher', street: 'Potsdamer Platz 1', plz: '10785', city: 'Berlin', country: 'Germany', privacy: false, creator: 'normalo'}
+// ]
 // ________________________________________________________________________________________________________
 
 
 var app = express();
 // create application/json parser
 // parse application/x-www-form-urlencoded
-mongoose.connect("mongodb+srv://Efim:m8ZFB7qi2eif3mk@cluster0.of3bb.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://Efim:m8ZFB7qi2eif3mk@cluster0.of3bb.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
     console.log('Connected to database!');
   })
@@ -566,7 +566,43 @@ app.get('/adviz/contacts', (req, res) => {
   //   });
   // }); // find on DB
 
-  res.send(contacts);
+  // res.send(contacts);
+  Contact.find()
+      .exec()
+      .then( docs => {
+        console.log(docs);
+        // if(docs.length >= 0){
+          res.status(200).json(docs);
+        // }else{
+        //   res.status(404).json({
+        //     message: 'No entries found'
+        //   });
+        // }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });
+});
+
+app.patch('/adviz/contacts/:id', (req,res,next) =>{
+  const id = req.params.id;
+  const updateOps = {};
+  for (const ops of req.body){
+    updateOps[ops.propName] = ops.value;
+  }
+  Contact.update({ _id: id}, { $set: updateOps})
+  .exec()
+  .then(result => {
+    console.log(result);
+    res.status(200).json(result);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).json({
+      error: err
+    })
+  });
 });
 
 
@@ -608,13 +644,27 @@ app.get('/adviz/contacts', (req, res) => {
 // });
 
 app.post('/delete-contact/:id', (req,res, next) => {
-  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
-     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+  // let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     // if (!contact) return res.status(404).send('The contact with the given ID is not found.');
 
-     const index = contacts.indexOf(contact);
-     contacts.splice(index, 1);
+     // const index = contacts.indexOf(contact);
+     // contacts.splice(index, 1);
 
-     res.redirect('/home');
+     // res.redirect('/home');
+
+      const id = req.params.id;
+     Contact.remove({_id: id})
+     .exec()
+     .then( result => {
+      res.redirect('/home');
+     })
+     .catch( err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+     });
+
 
 });
 
@@ -640,18 +690,67 @@ app.post('/edit-contact/:id', (req,res,next) =>{
 
 app.get('/adviz/contacts/:param', (req, res) => {
   if (req.params.param == 'admina' || req.params.param == 'normalo' ){
-    var contactsOfUser = contacts.filter(contact => contact.creator === req.params.param);
-    if(!contactsOfUser) return res.status(404).send('There are no contacts for this user');
-    res.send(contactsOfUser);
+    // var contactsOfUser = contacts.filter(contact => contact.creator === req.params.param);
+    // if(!contactsOfUser) return res.status(404).send('There are no contacts for this user');
+    // res.send(contactsOfUser);
+
+
+     Contact.find({ creator: req.params.param })
+      .exec()
+      .then( doc => {
+        console.log("From database", doc);
+        if (doc){
+          res.status(200).json(doc);
+        } else{
+          res.status(404).json({message: 'No valid entry found for provided name'});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });
+
+
   } else if (req.params.param == 'normaloall') {
-    var allcontactsOfNormalo = contacts.filter(contact => contact.privacy === false || contact.creator === 'normalo');
-    if(!allcontactsOfNormalo) return res.status(404).send('There are no contacts for this user');
-    res.send(allcontactsOfNormalo);
+    // var allcontactsOfNormalo = contacts.filter(contact => contact.privacy === false || contact.creator === 'normalo');
+    // if(!allcontactsOfNormalo) return res.status(404).send('There are no contacts for this user');
+    // res.send(allcontactsOfNormalo);
+
+
+    Contact.find({ $or: [{creator: 'normalo' }, {privacy: false}]})
+      .exec()
+      .then( doc => {
+        console.log("From database", doc);
+        if (doc){
+          res.status(200).json(doc);
+        } else{
+          res.status(404).json({message: 'No valid entry found for provided request'});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });
   }else{
-      let contact = contacts.find(contact => contact.id === parseInt(req.params.param));
-      if(!contact) return res.status(404).send('There are no contacts with a given id');
-      res.send(contact);
-  }
+      // let contact = contacts.find(contact => contact.id === parseInt(req.params.param));
+      // if(!contact) return res.status(404).send('There are no contacts with a given id');
+      // res.send(contact);
+      const param = req.params.param
+      Contact.findById(param)
+      .exec()
+      .then( doc => {
+        console.log("From database", doc);
+        if (doc){
+          res.status(200).json(doc);
+        } else{
+          res.status(404).json({message: 'No valid entry found for provided id'});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });
+      }
 });
 
 app.get('/adviz/form/:param', (req, res) => {
@@ -1048,9 +1147,9 @@ app.post('/adviz/contacts', (req,res) => {
 
  if (req.session.userId) {
 
-      console.log(req.session);
+      // console.log(req.session);
      const usr = users.find(user => user.id === req.session.userId);
-     console.log(usr.name);
+     // console.log(usr.name);
 
      let privacy = false;
      if (req.body.privacy == 'on') {
@@ -1077,6 +1176,37 @@ app.post('/adviz/contacts', (req,res) => {
      if (error) return res.status(400).send(error.details[0].message);
 
 
+
+     const contact = new Contact({
+      _id: new mongoose.Types.ObjectId(), //automatically created uniq id
+      name: req.body.name,
+       surname: req.body.surname,
+       street: req.body.street,
+       plz: req.body.plz,
+       city: req.body.city,
+       country: req.body.country,
+       privacy: privacy,
+       creator: creator
+     });
+
+     contact
+      .save()
+      .then(result =>{
+      console.log(result);
+      res.status(201).json({
+      message: "Handling POST requests to /products",
+      createdContact: result
+      });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+     res.redirect('/home');
+
+
      // DB______________________________________-
      // let contact = new Contact({
      //   name: req.body.name,
@@ -1089,23 +1219,20 @@ app.post('/adviz/contacts', (req,res) => {
      //   creator: req.body.creator
      // });
 
-     let contact = {
-         id: contacts.length + 1,
-         name: req.body.name,
-         surname: req.body.surname,
-         street: req.body.street,
-         plz: req.body.plz,
-         city: req.body.city,
-         country: req.body.country,
-         privacy: privacy,
-         creator: creator
-     }
-     // contact.save(); // DB
-     contacts.push(contact);
-     res.status(201);
+     // let contact = {
+     //     id: contacts.length + 1,
+     //     name: req.body.name,
+     //     surname: req.body.surname,
+     //     street: req.body.street,
+     //     plz: req.body.plz,
+     //     city: req.body.city,
+     //     country: req.body.country,
+     //     privacy: privacy,
+     //     creator: creator
+     // }
+
+     // contacts.push(contact);
      // res.send(contact);
-     res.redirect('/home');
-     console.log('buy');
  } else {
      console.log("There is no session id.");
  }
@@ -1131,13 +1258,13 @@ app.post('/adviz/contacts', (req,res) => {
  });
 
  app.delete('/adviz/contacts/:id', (req, res) => {
-     let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
-     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+     // let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     // if (!contact) return res.status(404).send('The contact with the given ID is not found.');
 
-     const index = contacts.indexOf(contact);
-     contacts.splice(index, 1);
+     // const index = contacts.indexOf(contact);
+     // contacts.splice(index, 1);
 
-     res.send(contact);
+     // res.send(contact);
      // res.redirect('/home');
 
 
@@ -1146,6 +1273,18 @@ app.post('/adviz/contacts', (req,res) => {
      //   console.log(result);
      //   res.status(200).json({message: "Post deleted!"});
      // });
+      const id = req.params.id;
+     Contact.remove({_id: id})
+     .exec()
+     .then( result => {
+      res.status(200).json(result);
+     })
+     .catch( err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+     });
  });
 
 function validateContact(contact) {

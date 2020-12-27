@@ -923,7 +923,8 @@ function setCards(forUser) {
             } else {
                 privacy = 'private';
             }
-            getCard("all_cards", data[i].name, data[i].surname, data[i].street, data[i].plz, data[i].city, data[i].country, privacy, data[i].creator, data[i].id);
+            console.log(data[i].id);
+            getCard("all_cards", data[i].name, data[i].surname, data[i].street, data[i].plz, data[i].city, data[i].country, privacy, data[i].creator, data[i]._id);
         }
     });
   }else{
@@ -935,7 +936,7 @@ function setCards(forUser) {
             } else {
                 privacy = 'private';
             } if(data[i].creator == 'normalo' || data[i].privacy == false){
-              getCard("all_cards", data[i].name, data[i].surname, data[i].street, data[i].plz, data[i].city, data[i].country, privacy, data[i].creator, data[i].id);
+              getCard("all_cards", data[i].name, data[i].surname, data[i].street, data[i].plz, data[i].city, data[i].country, privacy, data[i].creator, data[i]._id);
             }
         }
     });
