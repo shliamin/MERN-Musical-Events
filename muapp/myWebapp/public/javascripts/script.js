@@ -86,12 +86,38 @@ function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, pri
     divCard.append(divContact);
     // ------------- Here we want to create an edit/delete section for the card-----------------------
     // Create the i section
-    let i = document.createElement("i");
-    i.className = "far fa-edit fa-2x";
-    i.setAttribute("data-target", `#target_id_${type}_${num}`);
-    i.setAttribute("data-toggle", "modal");
-    i.setAttribute("data-whatever", "@mdo");
-    i.setAttribute("id", "edit_icon");
+
+
+
+    // let i = document.createElement("i");
+    // i.className = "far fa-edit fa-2x";
+    // i.setAttribute("data-target", `#target_id_${type}_${num}`);
+    // i.setAttribute("data-toggle", "modal");
+    // i.setAttribute("data-whatever", "@mdo");
+    // i.setAttribute("id", "edit_icon");
+
+    // --------------------------------
+
+
+     let i = document.createElement('form');
+      i.setAttribute('method', 'get');
+      i.setAttribute('action', `/adviz/form/${num}`);
+
+
+
+    let iButton = document.createElement("input");
+    iButton.setAttribute("type", "submit");
+    iButton.setAttribute("class", "btn btn-warning");
+    iButton.setAttribute("value", "Edit");
+    iButton.setAttribute("id", "edit_icon");
+    i.append(iButton);
+
+
+    // -----------------------------------
+
+
+
+
     // Create the Label
     let divModalLabel = document.createElement("div");
     divModalLabel.setAttribute("aria-hidden", "true");
@@ -218,6 +244,9 @@ function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, pri
     closeButtonDivModalFooter.setAttribute("data-dismiss", "modal");
     closeButtonDivModalFooter.setAttribute("type", "button");
     closeButtonDivModalFooter.innerHTML = "Close";
+
+
+
     let aEditButtonDivModalFooter = document.createElement("a");
     aEditButtonDivModalFooter.setAttribute("href", `javascript:editCard('card_${type}_${privateOrPublic}_${num}','recipient-name-${type}-${num}', 'recipient-nachname-${type}-${num}','recipient-strasse-${type}-${num}','recipient-plz-${type}-${num}','recipient-stadt-${type}-${num}','recipient-land-${type}-${num}','${id_for_input_check}')`);
     let editButtonDivModalFooter = document.createElement("button");
@@ -227,6 +256,17 @@ function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, pri
     editButtonDivModalFooter.setAttribute("onclick", "alert('Changes saved.')");
     editButtonDivModalFooter.innerHTML = "Edit address";
     aEditButtonDivModalFooter.append(editButtonDivModalFooter);
+
+
+// ----------------------------------------------
+
+
+
+    // __________________________________
+
+
+
+
     // divModalFooter.append(closeButtonDivModalFooter);
     divModalFooter.append(aEditButtonDivModalFooter);
     // Append the Header, the Body, and the Footer to the Content
@@ -237,14 +277,36 @@ function getCard(wheretoplace, vorname, nachname, strasse, plz, stadt, land, pri
     divModalDialog.append(divModalContent);
     // Append the Dialog to the Label
     divModalLabel.append(divModalDialog);
+
+
+
     // Create the delete icon
-    let aEditOrDeleteSection = document.createElement("a");
-    //TODO: change privateOrPublic dynamically
-    aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
-    let iForAEditOrDeleteSection = document.createElement("i");
-    iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
+    // let aEditOrDeleteSection = document.createElement("a");
+    // //TODO: change privateOrPublic dynamically
+    // aEditOrDeleteSection.setAttribute("href", `javascript:deleteElement('card_${type}_${privateOrPublic}_${num}')`);
+    // let iForAEditOrDeleteSection = document.createElement("i");
+    // iForAEditOrDeleteSection.setAttribute("class", "far fa-trash-alt fa-2x");
+    // iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
+    // aEditOrDeleteSection.append(iForAEditOrDeleteSection);
+
+    let aEditOrDeleteSection = document.createElement('form');
+    aEditOrDeleteSection.setAttribute('method', 'POST');
+    aEditOrDeleteSection.setAttribute('action', `/delete-contact/${num}`);
+
+
+
+    let iForAEditOrDeleteSection = document.createElement("input");
+    iForAEditOrDeleteSection.setAttribute("type", "submit");
+    iForAEditOrDeleteSection.setAttribute("class", "btn btn-danger");
+    iForAEditOrDeleteSection.setAttribute("value", "Delete");
     iForAEditOrDeleteSection.setAttribute("id", "delete_icon");
     aEditOrDeleteSection.append(iForAEditOrDeleteSection);
+
+    // <form method='get' action='/adviz/form/admina'>
+    //             <input type="submit" value="Add new contact" class="btn btn-success" />
+    //         </form>
+
+
     //------------------------------------------------------------------
     // Append the i (edit icon) to the card
     divCard.append(i);

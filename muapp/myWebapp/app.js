@@ -607,6 +607,37 @@ app.get('/adviz/contacts', (req, res) => {
 //   res.send(contactsOfUser);
 // });
 
+app.post('/delete-contact/:id', (req,res, next) => {
+  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+     const index = contacts.indexOf(contact);
+     contacts.splice(index, 1);
+
+     res.redirect('/home');
+
+});
+
+app.post('/edit-contact/:id', (req,res,next) =>{
+
+     let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+     const { error } = validateContact(req.body); //result.error
+
+     if (error) return res.status(400).send(error.details[0].message);
+
+     contact.name = req.body.name;
+     contact.surname = req.body.surname;
+     contact.street = req.body.street;
+     contact.plz = req.body.plz;
+     contact.city = req.body.city;
+     contact.country = req.body.country;
+
+     res.redirect('/home');
+
+});
+
 app.get('/adviz/contacts/:param', (req, res) => {
   if (req.params.param == 'admina' || req.params.param == 'normalo' ){
     var contactsOfUser = contacts.filter(contact => contact.creator === req.params.param);
@@ -746,7 +777,7 @@ app.get('/adviz/form/:param', (req, res) => {
     </body>
     </html>
   `)
-} else{
+} else if (req.params.param == 'normalo' ){
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -868,7 +899,128 @@ app.get('/adviz/form/:param', (req, res) => {
     </html>
   `)
 
-}
+} else{
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+    <title>
+        AdViz
+    </title>
+    <link href="#" rel="shortcut icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </link>
+    </head>
+    <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-10 col-lg-6">
+          <div class="input_form">
+            <form method = 'post' action = '/edit-contact/${req.params.param}'>
+            <h1> Edit the contact</h1>
+            <hr>
+
+
+              <label class="control-label">
+                                <label for="name">
+                                    <b>
+                                        Name:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="name" name="name" placeholder="Name" required type="text1">
+                            <label class="control-label">
+                                <label for="surname">
+                                    <b>
+                                        Nachname:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="surname" name="surname" placeholder="Nachname" required type="text1">
+                            <label class="control-label">
+                                <label for="street">
+                                    <b>
+                                        Strasse:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="street" name="street" placeholder="Strasse" required type="text1">
+                            <label class="control-label">
+                                <label for="plz">
+                                    <b>
+                                        PLZ:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="plz" name="plz" placeholder="PLZ" required type="text1">
+                            <label class="control-label">
+                                <label for="city">
+                                    <b>
+                                        Stadt:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="city" name="city" placeholder="Stadt" required type="text1">
+                            <label class="control-label">
+                                <label for="country">
+                                    <b>
+                                        Land:
+                                    </b>
+                                </label>
+                            </label>
+                            <input id="country" name="country" placeholder="Land" required type="text1">
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-form" id="privacy" name = "privacy">
+                              <label class="form-check-label" for="privacy">Privat</label>
+                            </div>
+
+
+                            <button class="loginbtn" type="submit">
+                                Add
+                            </button>
+
+
+
+
+
+                            </input>
+
+
+                            </input>
+            </hr>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    </html>
+  `)
+  }
 });
 
 app.post('/adviz/contacts', (req,res) => {
@@ -986,6 +1138,7 @@ app.post('/adviz/contacts', (req,res) => {
      contacts.splice(index, 1);
 
      res.send(contact);
+     // res.redirect('/home');
 
 
      // DB:
