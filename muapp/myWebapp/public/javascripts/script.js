@@ -433,70 +433,114 @@ function editCard(uniqid, name, surname, street, plz, city, country, privateOrPu
     }
 }
 
-function Cred(username, password, priX, priY, pubX, pubY, vorname_private, nachname_private, strasse_private, plz_private, stadt_private, land_private, vorname_public, nachname_public, strasse_public, plz_public, stadt_public, land_public) {
-    this.username = username;
-    this.password = password;
-    // Hard programmed coords(should be deleted) -> replaced (address->coords)
-    // TODO: covert address to real coords
-    this.contactPrivateX = priX;
-    this.contactPrivateY = priY;
-    this.contactPublicX = pubX;
-    this.contactPublicY = pubY;
-    // ----------- Private adrdess -------------
-    this.vorname_private = vorname_private;
-    this.nachname_private = nachname_private;
-    this.strasse_private = strasse_private;
-    this.plz_private = plz_private;
-    this.stadt_private = stadt_private;
-    this.land_private = land_private;
-    // ----------- Public address -------------
-    this.vorname_public = vorname_public;
-    this.nachname_public = nachname_public;
-    this.strasse_public = strasse_public;
-    this.plz_public = plz_public;
-    this.stadt_public = stadt_public;
-    this.land_public = land_public;
+// ----------------------------------------------------------------------------------------------------------
+function User(username,password){
+  this.username = username;
+  this.password = password;
 }
-// creating two objects:
-var admina = new Cred("admina", "admina", 13.4, 52.5, 13.45, 52.5, "Angela", "Merkel", "Am Kupfergraben 6", "10117", "Berlin", "Deutschland", "Bundeskanzlerin", "der Bundesrepublik Deutschland", "Willy-Brandt-Straße 1", "10557", "Berlin", "Deutschland");
-var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "Erich", "Fromm", "Stralsunder Strasse 14", "13355", "Berlin", "Deutschland", "Western", "Philosopher", "Potsdamer Platz 1", "10785", "Berlin", "Deutschland");
 
+let admina = new User('admina', 'admina');
+let normalo = new User('normalo', 'normalo');
 
-let dataContact1 = {};
-dataContact1["street"] = normalo.strasse_private;
-dataContact1["plz"] = normalo.plz_private;
-dataContact1["city"] = normalo.stadt_private;
-let dataContact2 = {};
-dataContact2["street"] = admina.strasse_private;
-dataContact2["plz"] = admina.plz_private;
-dataContact2["city"] = admina.stadt_private;
-let dataContact3 = {};
-dataContact3["street"] = admina.strasse_public;
-dataContact3["plz"] = admina.plz_public;
-dataContact3["city"] = admina.stadt_public;
-let dataContact4 = {};
-dataContact4["street"] = normalo.strasse_public;
-dataContact4["plz"] = normalo.plz_public;
-dataContact4["city"] = normalo.stadt_public;
-
+function Contact(id,name,surname,street,plz,city,country,privacy,creator){
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.street = street;
+    this.plz = plz;
+    this.city = city;
+    this.country = country;
+    this.privacy = privacy;
+    this.creator = creator;
+}
 
 let arrayOFHashesAdmina = [];
-arrayOFHashesAdmina.push(dataContact2);
-arrayOFHashesAdmina.push(dataContact3);
 let arrayOFHashesNormalo = [];
-arrayOFHashesNormalo.push(dataContact1);
-arrayOFHashesNormalo.push(dataContact4);
 let arrayOFHashesAll = [];
-arrayOFHashesAll.push(dataContact1);
-arrayOFHashesAll.push(dataContact2);
-arrayOFHashesAll.push(dataContact3);
-arrayOFHashesAll.push(dataContact4);
 let arrayOFHashesAllExceptAdminaPrivate = [];
-arrayOFHashesAllExceptAdminaPrivate.push(dataContact1);
-arrayOFHashesAllExceptAdminaPrivate.push(dataContact3);
-arrayOFHashesAllExceptAdminaPrivate.push(dataContact4);
+
+function setContacts() {
+    fetch(`http://localhost:3000/adviz/contacts`).then(response => response.json()).then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            let privacy = 'private';
+            if (data[i].privacy == false) {
+                privacy = 'public';
+            } else {
+                privacy = 'private';
+            }
+            contact = {};
+            contact[`${i}`] = new Contact(data[i].id,data[i].name,data[i].surname,data[i].street,data[i].plz,data[i].city,data[i].country,data[i].privacy,data[i].creator);
+            arrayOFHashesAll.push(contact[`${i}`]);
+        }
+    });
+    fetch(`http://localhost:3000/adviz/contacts/admina`).then(response => response.json()).then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            let privacy = 'private';
+            if (data[i].privacy == false) {
+                privacy = 'public';
+            } else {
+                privacy = 'private';
+            }
+            contact = {};
+            contact[`${i}`] = new Contact(data[i].id,data[i].name,data[i].surname,data[i].street,data[i].plz,data[i].city,data[i].country,data[i].privacy,data[i].creator);
+            arrayOFHashesAdmina.push(contact[`${i}`]);
+        }
+    });
+     fetch(`http://localhost:3000/adviz/contacts/normalo`).then(response => response.json()).then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            let privacy = 'private';
+            if (data[i].privacy == false) {
+                privacy = 'public';
+            } else {
+                privacy = 'private';
+            }
+            contact = {};
+            contact[`${i}`] = new Contact(data[i].id,data[i].name,data[i].surname,data[i].street,data[i].plz,data[i].city,data[i].country,data[i].privacy,data[i].creator);
+            arrayOFHashesNormalo.push(contact[`${i}`]);
+        }
+    });
+      fetch(`http://localhost:3000/adviz/contacts/normaloall`).then(response => response.json()).then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            let privacy = 'private';
+            if (data[i].privacy == false) {
+                privacy = 'public';
+            } else {
+                privacy = 'private';
+            }
+            contact = {};
+            contact[`${i}`] = new Contact(data[i].id,data[i].name,data[i].surname,data[i].street,data[i].plz,data[i].city,data[i].country,data[i].privacy,data[i].creator);
+            arrayOFHashesAllExceptAdminaPrivate.push(contact[`${i}`]);
+        }
+    });
+}
 
 
+
+
+
+// let contact1 = new Contact(1,"Angela","Merkel","Am Kupfergraben 6","10117","Berlin","Deutschland",true,'admina');
+// let contact2 = new Contact(2,"Bundeskanzlerin","der Bundesrepublik Deutschland","Willy-Brandt-Straße 1","10557","Berlin","Deutschland",false,'admina');
+// let contact3 = new Contact(3,"Erich","Fromm","Stralsunder Strasse 14","13355","Berlin","Deutschland",true,'normalo');
+// let contact4 = new Contact(4,"Western","Philosopher","Potsdamer Platz 1","10785","Berlin","Deutschland",false,'normalo');
+
+// let arrayOFHashesAdmina = [];
+// let arrayOFHashesNormalo = [];
+// let arrayOFHashesAll = [];
+// let arrayOFHashesAllExceptAdminaPrivate = [];
+
+// arrayOFHashesAdmina.push(contact1);
+// arrayOFHashesAdmina.push(contact2);
+// arrayOFHashesNormalo.push(contact3);
+// arrayOFHashesNormalo.push(contact4);
+// arrayOFHashesAll.push(contact1);
+// arrayOFHashesAll.push(contact2);
+// arrayOFHashesAll.push(contact3);
+// arrayOFHashesAll.push(contact4);
+// arrayOFHashesAllExceptAdminaPrivate.push(contact2);
+// arrayOFHashesAllExceptAdminaPrivate.push(contact3);
+// arrayOFHashesAllExceptAdminaPrivate.push(contact4);
+
+// ----------------------------------------------------------------------------------------------------------------------------
 function getMap(arrayOFHashes) {
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2hsaWFtaW4iLCJhIjoiY2p6cmNla2F6MTNqajNkcjFzY2lrdTMzdiJ9.SUeVEhR4ZI4uGmuntCQpEw';
     var map = new mapboxgl.Map({
@@ -807,7 +851,7 @@ function showMine(user) {
 
 let cardsCounter = 0;
 
-function setContacts(forUser) {
+function setCards(forUser) {
   if(forUser == 'admina'){
     fetch(`http://localhost:3000/adviz/contacts`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {

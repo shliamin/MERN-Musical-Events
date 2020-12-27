@@ -41,7 +41,7 @@ let contacts = [
 var app = express();
 // create application/json parser
 // parse application/x-www-form-urlencoded
-mongoose.connect("mongodb+srv://Efim:m8ZFB7qi2eif3mk@cluster0.of3bb.mongodb.net/test?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://Efim:m8ZFB7qi2eif3mk@cluster0.of3bb.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
     console.log('Connected to database!');
   })
@@ -59,7 +59,7 @@ app.use(bodyParser.json());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-// app.set('layout', 'layouts/layout');
+app.set('layout', 'layouts/layout');
 // app.use(expressLayouts);
 app.use(express.static('public'));
 
@@ -188,11 +188,11 @@ app.get('/', (req, res) => {
 
 })
 
-var engine = require('consolidate');
+// var engine = require('consolidate');
 
-app.set('views', __dirname + '/views');
-app.engine('html', engine.mustache);
-app.set('view engine', 'html');
+// app.set('views', __dirname + '/views');
+// app.engine('html', engine.mustache);
+// app.set('view engine', 'html');
 
 
 app.get('/home', redirectLogin, (req, res) => {
@@ -571,34 +571,34 @@ app.get('/adviz/contacts', (req, res) => {
 
 
 
-app.get('/adviz/users/admina', (req,res) => {
-  const user = users.find(user => user.name === 'admina' && user.password === 'admina')
-  res.status(200).json({
-                name: user.name
-              })
-});
+// app.get('/adviz/users/admina', (req,res) => {
+//   const user = users.find(user => user.name === 'admina' && user.password === 'admina')
+//   res.status(200).json({
+//                 name: user.name
+//               })
+// });
 
-app.get('/adviz/users/normalo', (req,res) => {
-  const user = users.find(user => user.name === 'normalo' && user.password === 'normalo')
-  res.status(200).json({
-                name: user.name
-              })
-});
-
-
+// app.get('/adviz/users/normalo', (req,res) => {
+//   const user = users.find(user => user.name === 'normalo' && user.password === 'normalo')
+//   res.status(200).json({
+//                 name: user.name
+//               })
+// });
 
 
-function createAllCards(){
-for (var i = 0; i < contacts.length; i++) {
-    let priv;
-    if(contacts[i].privacy == false){
-      priv = 'public';
-    }else{
-      priv = 'private';
-    }
-    getCard("all_cards", contacts[i].name, contacts[i].surname, contacts[i].street, contacts[i].plz, contacts[i].city, contacts[i].country, priv, contacts[i].creator, contacts[i].id);
-  }
-}
+
+
+// function createAllCards(){
+// for (var i = 0; i < contacts.length; i++) {
+//     let priv;
+//     if(contacts[i].privacy == false){
+//       priv = 'public';
+//     }else{
+//       priv = 'private';
+//     }
+//     getCard("all_cards", contacts[i].name, contacts[i].surname, contacts[i].street, contacts[i].plz, contacts[i].city, contacts[i].country, priv, contacts[i].creator, contacts[i].id);
+//   }
+// }
 
 
 // app.get('/adviz/contacts/:creator', (req, res) => {
@@ -889,96 +889,111 @@ app.post('/adviz/contacts', (req,res) => {
   //   creator = 'admina';
   // }
 
-  const { error } = validateContact(req.body); //result.error
-
-  const usr = users.find(user => user.id === req.session.userId);
-  console.log(usr.name);
-
-  let privacy = false;
-  if (req.body.privacy == 'on'){
-    privacy = true;
-  } else{
-    privacy = false;
-  }
-
-  let creator = 'admina';
-if(usr.name == 'admina'){
-    if (req.body.creator == 'on'){
-      creator = 'normalo';
-    } else{
-      creator = 'admina';
-    }
-}else {
-   creator = 'normalo';
-}
-
-
-  if (error) return res.status(400).send(error.details[0].message);
-
-
-  // DB______________________________________-
-  // let contact = new Contact({
-  //   name: req.body.name,
-  //   surname: req.body.surname,
-  //   street: req.body.street,
-  //   plz: req.body.plz,
-  //   city: req.body.city,
-  //   country: req.body.country,
-  //   privacy: req.body.privacy,
-  //   creator: req.body.creator
-  // });
-
-  let contact = {
-    id: contacts.length + 1,
-    name: req.body.name,
-    surname: req.body.surname,
-    street: req.body.street,
-    plz: req.body.plz,
-    city: req.body.city,
-    country: req.body.country,
-    privacy: privacy,
-    creator: creator
-  }
-  // contact.save(); // DB
-  contacts.push(contact);
-  res.status(201);
-  res.send(contact);
-});
-
-app.put('/adviz/contacts/:id', (req,res) => {
-  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
-  if(!contact) return res.status(404).send('The contact with the given ID is not found.');
 
   const { error } = validateContact(req.body); //result.error
 
-  if (error) return res.status(400).send(error.details[0].message);
+ // console.log(users.find(user => user.id === ));
 
-  contact.name = req.body.name;
-  contact.surname = req.body.surname;
-  contact.street = req.body.street;
-  contact.plz = req.body.plz;
-  contact.city = req.body.city;
-  contact.country = req.body.country;
+ if (req.session.userId) {
 
-  res.send(contact);
-});
+      console.log(req.session);
+     const usr = users.find(user => user.id === req.session.userId);
+     console.log(usr.name);
 
-app.delete('/adviz/contacts/:id', (req,res) => {
-  let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
-  if(!contact) return res.status(404).send('The contact with the given ID is not found.');
+     let privacy = false;
+     if (req.body.privacy == 'on') {
+         privacy = true;
+     } else {
+         privacy = false;
+     }
 
-  const index = contacts.indexOf(contact);
-  contacts.splice(index, 1);
-
-  res.send(contact);
+     let creator = 'admina';
 
 
-  // DB:
-  // Contact.deleteOne({_id: req.params.id}).then(result => {
-  //   console.log(result);
-  //   res.status(200).json({message: "Post deleted!"});
-  // });
-});
+     if (usr.name == 'admina') {
+
+
+         if (req.body.creator == 'on') {
+             creator = 'normalo';
+         } else {
+             creator = 'admina';
+         }
+     } else {
+         creator = 'normalo';
+     }
+
+     if (error) return res.status(400).send(error.details[0].message);
+
+
+     // DB______________________________________-
+     // let contact = new Contact({
+     //   name: req.body.name,
+     //   surname: req.body.surname,
+     //   street: req.body.street,
+     //   plz: req.body.plz,
+     //   city: req.body.city,
+     //   country: req.body.country,
+     //   privacy: req.body.privacy,
+     //   creator: req.body.creator
+     // });
+
+     let contact = {
+         id: contacts.length + 1,
+         name: req.body.name,
+         surname: req.body.surname,
+         street: req.body.street,
+         plz: req.body.plz,
+         city: req.body.city,
+         country: req.body.country,
+         privacy: privacy,
+         creator: creator
+     }
+     // contact.save(); // DB
+     contacts.push(contact);
+     res.status(201);
+     // res.send(contact);
+     res.redirect('/home');
+     console.log('buy');
+ } else {
+     console.log("There is no session id.");
+ }
+ // res.redirect('/home');
+ });
+
+ app.put('/adviz/contacts/:id', (req, res) => {
+     let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+     const { error } = validateContact(req.body); //result.error
+
+     if (error) return res.status(400).send(error.details[0].message);
+
+     contact.name = req.body.name;
+     contact.surname = req.body.surname;
+     contact.street = req.body.street;
+     contact.plz = req.body.plz;
+     contact.city = req.body.city;
+     contact.country = req.body.country;
+
+     res.send(contact);
+ });
+
+ app.delete('/adviz/contacts/:id', (req, res) => {
+     let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+
+     const index = contacts.indexOf(contact);
+     contacts.splice(index, 1);
+
+     res.send(contact);
+
+
+     // DB:
+     // Contact.deleteOne({_id: req.params.id}).then(result => {
+     //   console.log(result);
+     //   res.status(200).json({message: "Post deleted!"});
+     // });
+ });
 
 function validateContact(contact) {
   const schema = {
@@ -988,7 +1003,7 @@ function validateContact(contact) {
     plz: Joi.string().required(),
     city: Joi.string().required(),
     country: Joi.string().required(),
-    privacy: Joi.string(),
+    privacy: Joi.boolean(),
     creator: Joi.string()
   };
   return Joi.validate(contact, schema);
@@ -1016,8 +1031,8 @@ app.use(function(err, req, res, next) {
 
 
 
-app.get("*", function (req, res) {
-    res.render("Error_page");
+app.get("/*", function (req, res) {
+    res.render('error');
 });
 
 module.exports = app;
