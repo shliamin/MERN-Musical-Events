@@ -670,21 +670,45 @@ app.post('/delete-contact/:id', (req,res, next) => {
 
 app.post('/edit-contact/:id', (req,res,next) =>{
 
-     let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
-     if (!contact) return res.status(404).send('The contact with the given ID is not found.');
+     // let contact = contacts.find(contact => contact.id === parseInt(req.params.id));
+     // if (!contact) return res.status(404).send('The contact with the given ID is not found.');
 
-     const { error } = validateContact(req.body); //result.error
+     // const { error } = validateContact(req.body); //result.error
 
-     if (error) return res.status(400).send(error.details[0].message);
+     // if (error) return res.status(400).send(error.details[0].message);
 
-     contact.name = req.body.name;
-     contact.surname = req.body.surname;
-     contact.street = req.body.street;
-     contact.plz = req.body.plz;
-     contact.city = req.body.city;
-     contact.country = req.body.country;
+     // contact.name = req.body.name;
+     // contact.surname = req.body.surname;
+     // contact.street = req.body.street;
+     // contact.plz = req.body.plz;
+     // contact.city = req.body.city;
+     // contact.country = req.body.country;
 
-     res.redirect('/home');
+     // res.redirect('/home');
+
+     // [
+    // {"propName": "name", "value": "Efim"}]
+    console.log(req.body);
+
+      const id = req.params.id;
+      // const updateOps = {};
+      // for (const ops of req.body){
+      //   updateOps[ops.propName] = ops.value;
+      // }
+      let privacy = false;
+      if (req.body.privacy == true ){ privacy = true;}
+      Contact.update({ _id: id}, { $set: {name: req.body.name, surname: req.body.surname, street: req.body.street, plz: req.body.plz, city: req.body.city, country: req.body.country, privacy: privacy}})
+      .exec()
+      .then(result => {
+        console.log(result);
+        res.redirect('/home');
+      })
+      .catch(err =>{
+        console.log(err);
+        res.status(500).json({
+          error: err
+        })
+      });
 
 });
 
@@ -1099,7 +1123,7 @@ app.get('/adviz/form/:param', (req, res) => {
 
 
                             <button class="loginbtn" type="submit">
-                                Add
+                                Edit
                             </button>
 
 
@@ -1295,7 +1319,7 @@ function validateContact(contact) {
     plz: Joi.string().required(),
     city: Joi.string().required(),
     country: Joi.string().required(),
-    privacy: Joi.boolean(),
+    privacy: Joi.string(),
     creator: Joi.string()
   };
   return Joi.validate(contact, schema);
