@@ -21,6 +21,31 @@ const User = require('./models/user');
 const { Seeder } = require('mongo-seeding');
 
 
+
+// 1
+// const config = {
+//   database: {
+//     host: '127.0.0.1',
+//     port: 27017,
+//     name: 'test',
+//   },
+//   dropDatabase: true,
+// };
+
+// // 2
+// const seeder = new Seeder(config);
+
+// //3
+// seeder
+//   .import(collections)
+//   .then(() => {
+//     // Do whatever you want after successful import
+//   })
+//   .catch(err => {
+//     // Handle errors
+//   });
+
+
 // ----------------------------- Let's creaate a store for users ------------------------------------
 
 // TODO: DB (Mongo or Postgres)
@@ -29,13 +54,57 @@ const users = [
     { id: 2, name: 'normalo', password: 'normalo' }
 ]
 
-// let contacts = [
-//     { id: 1, name: 'Angela', surname: 'Merkel', street: 'Am Kupfergraben 6', plz: '10117', city: 'Berlin', country: 'Germany', privacy: true, creator: 'admina' },
-//     { id: 2, name: 'Bundeskanzlerin', surname: 'der Bundesrepublik Deutschland', street: 'Willy-Brandt-Strasse 1', plz: '10557', city: 'Berlin', country: 'Germany', privacy: false, creator: 'admina' },
-//     { id: 3, name: 'Erich', surname: 'Fromm', street: 'Stralsunder Strasse 14', plz: '13355', city: 'Berlin', country: 'Germany', privacy: true, creator: 'normalo' },
-//     { id: 4, name: 'Western', surname: 'Philosopher', street: 'Potsdamer Platz 1', plz: '10785', city: 'Berlin', country: 'Germany', privacy: false, creator: 'normalo'}
-// ]
-// ________________________________________________________________________________________________________
+
+
+
+ // if(!(admina)){
+ //     admina
+ // const admina = new User({
+ //      _id: new mongoose.Types.ObjectId(), //automatically created uniq id
+ //      name: 'admina',
+ //      password: 'admina',
+ //      isAdmin: true
+ //     });
+
+ // const normalo = new User({
+ //      _id: new mongoose.Types.ObjectId(), //automatically created uniq id
+ //      name: 'normalo',
+ //      password: 'normalo',
+ //      isAdmin: false
+ //     });
+
+ //      .save()
+ //      .then(result =>{
+ //      console.log(result);
+ //      res.status(201).json({
+ //      message: "Handling POST requests to /products",
+ //      createdContact: result
+ //      });
+ //      })
+ //      .catch(err => {
+ //        console.log(err);
+ //        res.status(500).json({
+ //          error: err
+ //        });
+ //      });
+
+ //      normalo
+ //      .save()
+ //      .then(result =>{
+ //      console.log(result);
+ //      res.status(201).json({
+ //      message: "Handling POST requests to /products",
+ //      createdContact: result
+ //      });
+ //      })
+ //      .catch(err => {
+ //        console.log(err);
+ //        res.status(500).json({
+ //          error: err
+ //        });
+ //      });
+ // }
+
 
 
 var app = express();
@@ -1146,23 +1215,30 @@ app.get('/adviz/form/:param', (req, res) => {
   }
 });
 
+app.post('/adviz/users', (req, res) =>{
+  const user = new User({
+      _id: new mongoose.Types.ObjectId(), //automatically created uniq id
+      name: req.body.name,
+      password: req.body.password,
+      isAdmin: req.body.isAdmin
+     });
+
+     user
+      .save()
+      .then(result =>{
+      console.log(result);
+      res.send(result);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+
+})
+
 app.post('/adviz/contacts', (req,res) => {
-
-  // const { privacy } = req.body.privacy;
-
-  // let privacy = false;
-  // if (req.body.privacy == 'on'){
-  //   privacy = true;
-  // } else{
-  //   privacy = false;
-  // }
-
-  //  let creator = 'admina';
-  // if (req.body.creator == 'on'){
-  //   creator = 'normalo';
-  // } else{
-  //   creator = 'admina';
-  // }
 
 
   const { error } = validateContact(req.body); //result.error
@@ -1173,6 +1249,8 @@ app.post('/adviz/contacts', (req,res) => {
 
       // console.log(req.session);
      const usr = users.find(user => user.id === req.session.userId);
+
+     // const usr = User.find({ _id: req.session.userId }).exec();
      // console.log(usr.name);
 
      let privacy = false;
@@ -1230,33 +1308,6 @@ app.post('/adviz/contacts', (req,res) => {
       });
      res.redirect('/home');
 
-
-     // DB______________________________________-
-     // let contact = new Contact({
-     //   name: req.body.name,
-     //   surname: req.body.surname,
-     //   street: req.body.street,
-     //   plz: req.body.plz,
-     //   city: req.body.city,
-     //   country: req.body.country,
-     //   privacy: req.body.privacy,
-     //   creator: req.body.creator
-     // });
-
-     // let contact = {
-     //     id: contacts.length + 1,
-     //     name: req.body.name,
-     //     surname: req.body.surname,
-     //     street: req.body.street,
-     //     plz: req.body.plz,
-     //     city: req.body.city,
-     //     country: req.body.country,
-     //     privacy: privacy,
-     //     creator: creator
-     // }
-
-     // contacts.push(contact);
-     // res.send(contact);
  } else {
      console.log("There is no session id.");
  }
