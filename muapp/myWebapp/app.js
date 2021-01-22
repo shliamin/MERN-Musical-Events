@@ -551,7 +551,8 @@ app.get('/adviz/login', redirectHome, (req, res) => {
                                     </b>
                                 </label>
                             </label>
-                            <input id="psw" name="Password" placeholder="Password" required="" type="password">
+
+                           <input id="psw" name="password" placeholder="Password" required type="password1">
 
                             <button class="loginbtn" type="submit">
                                 Login
