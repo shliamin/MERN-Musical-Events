@@ -528,16 +528,7 @@ app.get('/adviz/login', redirectHome, (req, res) => {
     </link>
     </head>
     <body>
-        <script>
-            function myFunction() {    //password visibility
-          var x = document.getElementById("psw");
-          if (x.type === "password") {
-            x.type = "text";
-          } else {
-            x.type = "password";
-          }
-        }
-        </script>
+
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xs-12 col-md-10 col-lg-6">
@@ -561,8 +552,7 @@ app.get('/adviz/login', redirectHome, (req, res) => {
                                 </label>
                             </label>
                             <input id="psw" name="Password" placeholder="Password" required="" type="password">
-                                <input type="checkbox"  onclick="myFunction()">Show Password
-                                    </input>
+
                             <button class="loginbtn" type="submit">
                                 Login
                             </button>
