@@ -60,6 +60,17 @@
         this.stadt_public = stadt_public;
         this.land_public = land_public;
     }
+
+        function myFunction() {    //password visibility
+          var x = document.getElementById("psw");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        
+   
     // creating two objects:
     var admina = new Cred("admina", "admina", 13.4, 52.5, 13.45, 52.5, "Angela", "Merkel", "Am Kupfergraben 6", "10117", "Berlin", "Deutschland", "Bundeskanzlerin", "der Bundesrepublik Deutschland", "Willy-Brandt-Straße 1", "10557", "Berlin", "Deutschland");
     var normalo = new Cred("normalo", "normalo", 13.4, 52.51, 13.45, 52.51, "Erich", "Fromm", "Stralsunder Strasse 14", "13355", "Berlin", "Deutschland", "Western", "Philosopher", "Potsdamer Platz 1", "10785", "Berlin", "Deutschland");
@@ -118,18 +129,20 @@
                                 </label>
                             </label>
                             <input id="username" name="username" placeholder="Write your username" required="" type="text1">
-                            <label class="control-label">
-                                <label for="psw">
-                                    <b>
-                                        Password:
-                                    </b>
+                                <label class="control-label">
+                                    <label for="psw">
+                                        <b>
+                                            Password:
+                                        </b>
+                                    </label>
                                 </label>
-                            </label>
-                            <input id="psw" name="psw" placeholder="Enter Password" required="" type="password1">
-                            <button class="loginbtn" onclick="" type="submit">
-                                Login
-                            </button>
-                            </input>
+                                <input id="psw" name="psw" placeholder="Enter Password" required="" type="password">
+                                    <input type="checkbox"  onclick="myFunction()">Show Password
+                                    </input>
+                                    <button class="loginbtn" onclick="" type="submit"> 
+                                        Login
+                                    </button>
+                                </input>
                             </input>
                             </hr>
                         </form>
