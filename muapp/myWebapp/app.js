@@ -466,6 +466,7 @@ app.post('/adviz', redirectHome, (req, res) => {
 
 
     if (name && password) { //TODO: validation
+
         const user = users.find(user => user.name === name && user.password === password) // TODO: hash
 
         if (user) {
@@ -1250,8 +1251,8 @@ app.post('/adviz/contacts', (req,res) => {
       // console.log(req.session);
      const usr = users.find(user => user.id === req.session.userId);
 
-     // const usr = User.find({ _id: req.session.userId }).exec();
-     // console.log(usr.name);
+     // const usr2 = User.find({ _id: req.session.userId });
+     // console.log(`Efim has found: ${usr2}`);
 
      let privacy = false;
      if (req.body.privacy == 'on') {
