@@ -73,29 +73,26 @@
 
 
 import React, {useState} from 'react';
-import GoalList from './Components/GoalList';
-import NewGoal from './Components/NewGoal'
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+
+import Users from './users/pages/Users';
+import NewContact from './contacts/pages/NewContact';
 
 const App = () => {
-  const [courseGoals, setCourseGoals] = useState([
-    {id: 'cg1', text: 'Finish the Course'},
-    {id: 'cg2', text: 'Learn all topics'},
-    {id: 'cg3', text: 'Help other students'}
-  ]);
+  return <Router>
+    <Switch>
+    <Route path="/" exact>
+    <Users/>
 
-  const appNewGoalHandler = (newGoal) => {
-    // setCourseGoals(courseGoals.concat(newGoal));
-    setCourseGoals((prevCourseGoals) => {
-      return prevCourseGoals.concat(newGoal);
-    });
+    </Route>
+    <Route path="/contacts/new" exact>
+    <NewContact/>
+
+    </Route>
+    <Redirect to ="/" />
+    </Switch>
+  </Router>;
   };
-  // return React.createElement('h1', {}, 'Hi, this is React!');
-  // or alternative JSX syntax:
-  return <div className="course-goals">
-    <h2>Course Goals</h2>
-    <NewGoal onAddGoal={appNewGoalHandler}/>
-    <GoalList goals={courseGoals}/>
-  </div>;
-};
+
 
 export default App;
