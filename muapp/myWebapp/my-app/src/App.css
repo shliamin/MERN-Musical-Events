@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -35,4 +35,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+.course-goals h2 {
+  text-align: center;
+
+}
+
+.goal-list {
+  list-style: none;
+  margin: 2rem;
+  padding: 0;
+}
+
+.goal-list li {
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  padding: 1rem;
 }
