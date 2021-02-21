@@ -78,6 +78,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import Users from './users/pages/Users';
 import NewContact from './contacts/pages/NewContact';
 import UserContacts from './contacts/pages/UserContacts';
+import UpdateContact from './contacts/pages/UpdateContact';
 import MainNavigation from  './shared/components/Navigation/MainNavigation';
 
 const App = () => {
@@ -94,6 +95,9 @@ const App = () => {
             </Route>
             <Route path="/contacts/new" exact>
               <NewContact/>
+            </Route>
+            <Route path="/contacts/:contactId">
+              <UpdateContact />
             </Route>
             <Redirect to ="/" />
           </Switch>
