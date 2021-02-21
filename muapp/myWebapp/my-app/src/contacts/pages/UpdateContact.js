@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { useParams} from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -35,11 +35,13 @@ const DUMMY_CONTACTS = [
 ];
 
 const UpdateContact = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const contactId = useParams().contactId;
+
 
   const identifiedContact = DUMMY_CONTACTS.find(p => p.id === contactId);
 
-  const [formState, inputHandler] = useForm({
+  const [formState, inputHandler, setFormData] = useForm({
     title: {
       value: identifiedContact.title,
       isValid: true
@@ -49,6 +51,23 @@ const UpdateContact = () => {
       isValid: true
     }
   }, true);
+
+
+
+  useEffect(() => {
+    setFormData({
+    title: {
+      value: identifiedContact.title,
+      isValid: true
+    },
+    description: {
+      value: identifiedContact.description,
+      isValid: true
+    }
+  }, true);
+    setIsLoading(false);
+  }, [setFormData, identifiedContact]);
+
 
   const contactUpdateSubmitHandler = event => {
     event.preventDefault();
@@ -62,7 +81,17 @@ const UpdateContact = () => {
     </div>
     );
   }
-  return <form className="place-form" onSubmit={contactUpdateSubmitHandler}>
+
+  if (isLoading){
+    return (
+    <div className="center">
+      <h2>Loading...</h2>
+    </div>
+    );
+  }
+
+  return (
+    <form className="place-form" onSubmit={contactUpdateSubmitHandler}>
     <Input
     id="title"
     element="input"
@@ -88,6 +117,7 @@ const UpdateContact = () => {
       UPDATE CONTACT
     </Button>
   </form>
+  );
 };
 
 export default UpdateContact;
