@@ -4,6 +4,7 @@ import { useParams} from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import {VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../../shared/util/validators';
+import {useForm} from '../../shared/hooks/form-hook';
 import './ContactForm.css';
 
 const DUMMY_CONTACTS = [
@@ -38,6 +39,22 @@ const UpdateContact = () => {
 
   const identifiedContact = DUMMY_CONTACTS.find(p => p.id === contactId);
 
+  const [formState, inputHandler] = useForm({
+    title: {
+      value: identifiedContact.title,
+      isValid: true
+    },
+    description: {
+      value: identifiedContact.description,
+      isValid: true
+    }
+  }, true);
+
+  const contactUpdateSubmitHandler = event => {
+    event.preventDefault();
+    console.log(formState.inputs);
+  };
+
   if (!identifiedContact){
     return (
     <div className="center">
@@ -45,7 +62,7 @@ const UpdateContact = () => {
     </div>
     );
   }
-  return <form className="place-form">
+  return <form className="place-form" onSubmit={contactUpdateSubmitHandler}>
     <Input
     id="title"
     element="input"
@@ -53,9 +70,9 @@ const UpdateContact = () => {
     label="Title"
     validators={[VALIDATOR_REQUIRE()]}
     errorText="Please enter a valid title."
-    onInput={()=>{}}
-    value={identifiedContact.title}
-    valid={true}
+    onInput={inputHandler}
+    initialValue={formState.inputs.title.value}
+    initialValid={formState.inputs.title.isValid}
     />
     <Input
     id="description"
@@ -63,11 +80,11 @@ const UpdateContact = () => {
     label="Description"
     validators={[VALIDATOR_MINLENGTH(5)]}
     errorText="Please enter a valid description (min. 5 characters)."
-    onInput={()=>{}}
-    value={identifiedContact.description}
-    valid={true}
+    onInput={inputHandler}
+    initialValue={formState.inputs.description.value}
+    initialValid={formState.inputs.description.isValid}
     />
-    <Button type="submit" disabled={true}>
+    <Button type="submit" disabled={!formState.isValid}>
       UPDATE CONTACT
     </Button>
   </form>
