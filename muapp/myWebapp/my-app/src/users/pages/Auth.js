@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import Input from '../../shared/components/FormElements/Input';
@@ -8,7 +8,9 @@ import {useForm} from '../../shared/hooks/form-hook';
 import './Auth.css';
 
 const Auth = () => {
-const [formState, inputHandler] = useForm({
+const [isLoginMode, setIsLoginMode] = useState(true);
+
+const [formState, inputHandler, setFormData] = useForm({
   login: {
     value: '',
     isValid: false
@@ -19,6 +21,27 @@ const [formState, inputHandler] = useForm({
   }
 }, false);
 
+const switchModeHandler = () => {
+  if (!isLoginMode) {
+    setFormData(
+    {
+      ...formState.inputs,
+      name: undefined
+    },
+    formState.inputs.login.isValid && formState.inputs.password.isValid
+    );
+  } else {
+    setFormData({
+      ...formState.inputs,
+      name: {
+        value: '',
+        isValid: false
+      }
+    }, false);
+  }
+  setIsLoginMode(prevMode => !prevMode);
+};
+
 const authSubmitHandler = event => {
   event.preventDefault();
   console.log(formState.inputs);
@@ -28,6 +51,17 @@ const authSubmitHandler = event => {
   <h2>Login Required</h2>
   <hr />
   <form onSubmit={authSubmitHandler}>
+    {!isLoginMode &&  (
+      <Input
+      elemnt="input"
+    id="name"
+    type="text"
+    label="Your Name"
+    validators={[VALIDATOR_REQUIRE()]}
+    errorText="Please enter a name."
+    onInput={inputHandler}
+    />
+    )}
     <Input
     element="input"
     id="login"
@@ -46,8 +80,13 @@ const authSubmitHandler = event => {
     errorText="Please enter a valid password."
     onInput={inputHandler}
     />
-    <Button type="submit" disabled={!formState.isValid}>LOGIN</Button>
+    <Button type="submit" disabled={!formState.isValid}>
+    {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+    </Button>
   </form>
+  <Button inverse onClick={switchModeHandler}>
+  SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+  </Button>
   </Card>;
 };
 
