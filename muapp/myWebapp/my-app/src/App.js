@@ -22,15 +22,12 @@ const App = () => {
     setIsLoggedIn(false);
   }, []);
 
-  return (
-    <AuthContext.Provider
-    value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
-    >
-    <Router>
-      <MainNavigation />
-        <main >
-          <Switch>
-            <Route path="/" exact>
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
+      <Switch>
+      <Route path="/" exact>
               <Users />
             </Route>
             <Route path="/:userId/contacts" exact>
@@ -42,11 +39,34 @@ const App = () => {
             <Route path="/contacts/:contactId">
               <UpdateContact />
             </Route>
+            <Redirect to="/"/>
+      </Switch>
+    );
+  } else {
+    routes = (
+      <Switch>
+      <Route path="/" exact>
+              <Users />
+            </Route>
+            <Route path="/:userId/contacts" exact>
+              <UserContacts />
+            </Route>
             <Route path="/auth">
               <Auth />
             </Route>
-            <Redirect to ="/" />
-          </Switch>
+            <Redirect to="/auth"/>
+      </Switch>
+    );
+  }
+
+  return (
+    <AuthContext.Provider
+    value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
+    >
+    <Router>
+      <MainNavigation />
+        <main >
+            {routes}
         </main>
     </Router>
     </AuthContext.Provider>
