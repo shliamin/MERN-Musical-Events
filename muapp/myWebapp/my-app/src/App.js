@@ -79,6 +79,7 @@ import Users from './users/pages/Users';
 import NewContact from './contacts/pages/NewContact';
 import UserContacts from './contacts/pages/UserContacts';
 import UpdateContact from './contacts/pages/UpdateContact';
+import Auth from './users/pages/Auth';
 import MainNavigation from  './shared/components/Navigation/MainNavigation';
 
 const App = () => {
@@ -98,6 +99,9 @@ const App = () => {
             </Route>
             <Route path="/contacts/:contactId">
               <UpdateContact />
+            </Route>
+            <Route path="/auth">
+              <Auth />
             </Route>
             <Redirect to ="/" />
           </Switch>
