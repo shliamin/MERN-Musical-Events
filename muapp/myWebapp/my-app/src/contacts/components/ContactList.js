@@ -2,7 +2,9 @@ import React from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import ContactItem from './ContactItem';
+import Button from '../../shared/components/FormElements/Button';
 import './ContactList.css';
+
 
 const ContactList = props => {
   if (props.items.length === 0){
@@ -10,7 +12,7 @@ const ContactList = props => {
       <div className="place-list center">
       <Card>
         <h2>No contacts found. Maybe create one?</h2>
-        <button>Share Contact</button>
+        <Button to="/contacts/new">Share Contact</Button>
       </Card>
     </div>
     );

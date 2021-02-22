@@ -3,6 +3,7 @@ import { useParams} from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import Card from '../../shared/components/UIElements/Card';
 import {VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../../shared/util/validators';
 import {useForm} from '../../shared/hooks/form-hook';
 import './ContactForm.css';
@@ -22,7 +23,7 @@ const DUMMY_CONTACTS = [
   },
   {
     id: 'p2',
-    title: 'Empire State Building',
+    title: 'Emp. State Building',
     description: 'One of the most famous skyscrapers in the world',
     imageUrl: 'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     address: '20 W 34th St, New York, NY 10001',
@@ -39,32 +40,34 @@ const UpdateContact = () => {
   const contactId = useParams().contactId;
 
 
-  const identifiedContact = DUMMY_CONTACTS.find(p => p.id === contactId);
 
   const [formState, inputHandler, setFormData] = useForm({
     title: {
-      value: identifiedContact.title,
+      value: '',
       isValid: true
     },
     description: {
-      value: identifiedContact.description,
+      value: '',
       isValid: true
     }
   }, true);
 
 
+  const identifiedContact = DUMMY_CONTACTS.find(p => p.id === contactId);
 
   useEffect(() => {
-    setFormData({
-    title: {
-      value: identifiedContact.title,
-      isValid: true
-    },
-    description: {
-      value: identifiedContact.description,
-      isValid: true
+    if(identifiedContact){
+      setFormData({
+        title: {
+          value: identifiedContact.title,
+          isValid: true
+        },
+        description: {
+          value: identifiedContact.description,
+          isValid: true
+        }
+      }, true);
     }
-  }, true);
     setIsLoading(false);
   }, [setFormData, identifiedContact]);
 
@@ -77,7 +80,9 @@ const UpdateContact = () => {
   if (!identifiedContact){
     return (
     <div className="center">
-      <h2>Could not find contact!</h2>
+      <Card>
+        <h2>Could not find contact!</h2>
+      </Card>
     </div>
     );
   }
