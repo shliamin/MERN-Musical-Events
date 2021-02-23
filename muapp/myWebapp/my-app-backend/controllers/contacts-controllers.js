@@ -33,20 +33,20 @@ const getContactById = (req,res,next)=>{
 // function getContactById() {...}
 // const getContactById = function() {...}
 
-const getContactByUserId = (req,res,next) =>{
+const getContactsByUserId = (req,res,next) =>{
   const userId = req.params.uid;
 
-  const contact = DUMMY_CONTACTS.find(c => {
+  const contacts = DUMMY_CONTACTS.filter(c => {
     return c.creator === userId;
   });
 
-  if(!contact) {
+  if(!contacts || contacts.length === 0) {
     return next(
-      new HttpError('Could not find a contact for the provided user id.', 404)
+      new HttpError('Could not find contacts for the provided user id.', 404)
     );
   }
 
-  res.json({contact});
+  res.json({contacts});
 };
 
 const createContact = (req, res, next) => {
@@ -86,7 +86,7 @@ const deleteContact = (req,res,next) => {
 };
 
 exports.getContactById = getContactById;
-exports.getContactByUserId = getContactByUserId;
+exports.getContactsByUserId = getContactsByUserId;
 exports.createContact = createContact;
 exports.updateContact = updateContact;
 exports.deleteContact = deleteContact;
