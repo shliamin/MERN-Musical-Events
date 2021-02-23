@@ -17,9 +17,17 @@ const DUMMY_CONTACTS = [
 
 router.get('/:cid', (req,res,next)=>{
   const contactId = req.params.cid; // {cid: 'p1'}
+
   const contact = DUMMY_CONTACTS.find(c => {
     return c.id === contactId;
   });
+
+  if(!contact) {
+    const error = new Error('Could not find a place for the provided id.');
+    error.code = 404;
+    throw error;
+  }
+
   res.json({contact}); // => {contact} => {contact: contact}
 });
 
@@ -29,6 +37,12 @@ router.get('/user/:uid', (req,res,next) =>{
   const contact = DUMMY_CONTACTS.find(c => {
     return c.creator === userId;
   });
+
+  if(!contact) {
+    const error = new Error('Could not find a place for the provided user id.');
+    error.code = 404;
+    return next(error);
+  }
 
   res.json({contact});
 });
