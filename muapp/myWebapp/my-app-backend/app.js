@@ -5,6 +5,6 @@ const contactsRoutes = require('./routes/contacts-routes');
 
 const app = express();
 
-app.use(contactsRoutes);
+app.use('/api/contacts', contactsRoutes); // => /api/contatcs/...
 
 app.listen(5000);
