@@ -2,7 +2,7 @@ const { uuid } = require('uuidv4');
 
 const HttpError = require('../models/http-error');
 
-const DUMMY_CONTACTS = [
+let DUMMY_CONTACTS = [
 {
   id: 'p1',
   title: 'Empire State Building',
@@ -24,7 +24,7 @@ const getContactById = (req,res,next)=>{
   });
 
   if(!contact) {
-    throw new HttpError('Could not find a place for the provided id.', 404);
+    throw new HttpError('Could not find a contact for the provided id.', 404);
   }
 
   res.json({contact}); // => {contact} => {contact: contact}
@@ -42,7 +42,7 @@ const getContactByUserId = (req,res,next) =>{
 
   if(!contact) {
     return next(
-      new HttpError('Could not find a place for the provided user id.', 404)
+      new HttpError('Could not find a contact for the provided user id.', 404)
     );
   }
 
@@ -79,7 +79,11 @@ const updateContact = (req,res,next) => {
   res.status(200).json({contact: updatedContact});
 };
 
-const deleteContact = (req,res,next) => {};
+const deleteContact = (req,res,next) => {
+  const contactId = req.params.cid;
+  DUMMY_CONTACTS = DUMMY_CONTACTS.filter(c => c.id !== contactId);
+  res.status(200).json({message: 'Deleted contact.'});
+};
 
 exports.getContactById = getContactById;
 exports.getContactByUserId = getContactByUserId;
