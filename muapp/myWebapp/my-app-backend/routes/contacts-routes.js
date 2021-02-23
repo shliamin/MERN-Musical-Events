@@ -23,7 +23,10 @@ router.post(
   contactsControllers.createContact
   );
 
-router.patch('/:cid', contactsControllers.updateContact);
+router.patch('/:cid', [
+  check('title').not().isEmpty(),
+  check('description').isLength({min:5})
+  ], contactsControllers.updateContact);
 
 router.delete('/:cid', contactsControllers.deleteContact);
 

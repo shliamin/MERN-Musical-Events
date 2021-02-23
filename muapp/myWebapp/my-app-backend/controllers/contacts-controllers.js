@@ -53,7 +53,6 @@ const getContactsByUserId = (req,res,next) =>{
 const createContact = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
-    console.log(errors);
     throw new HttpError('Invalid inputs passed, please check your data.', 422);
   }
 
@@ -73,6 +72,11 @@ const createContact = (req, res, next) => {
 };
 
 const updateContact = (req,res,next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()){
+    throw new HttpError('Invalid inputs passed, please check your data.', 422);
+  }
+
   const { title, description} = req.body;
   const contactId = req.params.cid;
 
@@ -88,6 +92,9 @@ const updateContact = (req,res,next) => {
 
 const deleteContact = (req,res,next) => {
   const contactId = req.params.cid;
+  if (!DUMMY_CONTACTS.find(c => c.id ===  contactId)) {
+    throw new HttpError('Could not find a contact for that id.', 404);
+  }
   DUMMY_CONTACTS = DUMMY_CONTACTS.filter(c => c.id !== contactId);
   res.status(200).json({message: 'Deleted contact.'});
 };
