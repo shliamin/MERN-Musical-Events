@@ -2,6 +2,7 @@ const { uuid } = require('uuidv4');
 const {validationResult} = require('express-validator');
 
 const HttpError = require('../models/http-error');
+const getCoordsForAddress = require('../util/location');
 
 let DUMMY_CONTACTS = [
 {
@@ -50,13 +51,21 @@ const getContactsByUserId = (req,res,next) =>{
   res.json({contacts});
 };
 
-const createContact = (req, res, next) => {
+const createContact = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
-    throw new HttpError('Invalid inputs passed, please check your data.', 422);
+    return next(new HttpError('Invalid inputs passed, please check your data.', 422));
   }
 
-  const { title, description, coordinates, address, creator} = req.body;
+  const { title, description, address, creator} = req.body;
+
+  let coordinates;
+  try{
+    coordinates = await getCoordsForAddress(address);
+  } catch (error) {
+    return next(error);
+  }
+
   const createdContact = {
     id: uuid(),
     title,
