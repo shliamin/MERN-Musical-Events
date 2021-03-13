@@ -1,9 +1,11 @@
 const { uuid } = require('uuidv4');
 const {validationResult} = require('express-validator');
+const mongoose = require('mongoose');
 
 const HttpError = require('../models/http-error');
 const getCoordsForAddress = require('../util/location');
 const Contact = require('../models/contact');
+const User = require('../models/user');
 
 let DUMMY_CONTACTS = [
 {
@@ -90,8 +92,33 @@ const createContact = async (req, res, next) => {
     creator
   });
 
+  let user;
+
   try{
-    await createdContact.save();
+    user = await User.findById(creator);
+
+  }catch (err){
+    const error = new HttpError(
+      'Creating contactfailed, please try again.',
+      500
+    );
+    return next(error);
+  }
+
+  if (!user){
+    const error = new HttpError('Could not find user for provided id', 404);
+    return next(error);
+  }
+
+  console.log(user);
+
+  try{
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await createdContact.save({ session: sess});
+    user.contacts.push(createdContact);
+    await user.save({session: sess});
+    await sess.commitTransaction();
   } catch(err){
     const error = new HttpError(
       'Creating contact failed, please try again.',
