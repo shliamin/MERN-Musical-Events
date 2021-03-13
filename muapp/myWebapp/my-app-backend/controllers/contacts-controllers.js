@@ -3,6 +3,7 @@ const {validationResult} = require('express-validator');
 
 const HttpError = require('../models/http-error');
 const getCoordsForAddress = require('../util/location');
+const Contact = require('../models/contact');
 
 let DUMMY_CONTACTS = [
 {
@@ -66,16 +67,24 @@ const createContact = async (req, res, next) => {
     return next(error);
   }
 
-  const createdContact = {
-    id: uuid(),
+  const createdContact = new Contact({
     title,
     description,
-    location: coordinates,
     address,
+    location: coordinates,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Empire_State_Building_%28aerial_view%29.jpg/400px-Empire_State_Building_%28aerial_view%29.jpg',
     creator
-  };
+  });
 
-  DUMMY_CONTACTS.push(createdContact);
+  try{
+    await createdContact.save();
+  } catch(err){
+    const error = new HttpError(
+      'Creating contact failed, please try again.',
+      500
+    );
+    return next(error);
+  }
 
   res.status(201).json({contact: createdContact});
 };
