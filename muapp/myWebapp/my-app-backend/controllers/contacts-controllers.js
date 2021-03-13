@@ -7,22 +7,9 @@ const getCoordsForAddress = require('../util/location');
 const Contact = require('../models/contact');
 const User = require('../models/user');
 
-let DUMMY_CONTACTS = [
-{
-  id: 'p1',
-  title: 'Empire State Building',
-  description: 'One of the most famous sky scrapers in the world!',
-  location: {
-    lat: 40.7485574,
-    lng: -73.9871516
-  },
-  address: '20 W 34th St, New York, NY 10001',
-  creator: 'u1'
-}];
-
 
 const getContactById = async (req,res,next)=>{
-  const contactId = req.params.cid; // {cid: 'p1'}
+  const contactId = req.params.cid;
 
   let contact;
   try{
@@ -39,11 +26,8 @@ const getContactById = async (req,res,next)=>{
     return next(error);
   }
 
-  res.json({contact: contact.toObject({getters: true})}); // => {contact} => {contact: contact}
+  res.json({contact: contact.toObject({getters: true})});
 };
-
-// function getContactById() {...}
-// const getContactById = function() {...}
 
 const getContactsByUserId = async (req,res,next) =>{
   const userId = req.params.uid;
