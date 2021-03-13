@@ -19,18 +19,25 @@ let DUMMY_CONTACTS = [
 }];
 
 
-const getContactById = (req,res,next)=>{
+const getContactById = async (req,res,next)=>{
   const contactId = req.params.cid; // {cid: 'p1'}
 
-  const contact = DUMMY_CONTACTS.find(c => {
-    return c.id === contactId;
-  });
-
-  if(!contact) {
-    throw new HttpError('Could not find a contact for the provided id.', 404);
+  let contact;
+  try{
+    contact = await Contact.findById(contactId);
+  } catch (err){
+    const error = new HttpError(
+      'Something went wrong, could not find a contact.', 500
+    );
+    return next(error);
   }
 
-  res.json({contact}); // => {contact} => {contact: contact}
+  if(!contact) {
+    const error = new HttpError('Could not find a contact for the provided id.', 404);
+    return next(error);
+  }
+
+  res.json({contact: contact.toObject({getters: true})}); // => {contact} => {contact: contact}
 };
 
 // function getContactById() {...}
