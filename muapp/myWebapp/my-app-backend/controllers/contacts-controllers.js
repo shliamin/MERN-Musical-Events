@@ -103,7 +103,7 @@ const createContact = async (req, res, next) => {
   res.status(201).json({contact: createdContact});
 };
 
-const updateContact = (req,res,next) => {
+const updateContact = async (req,res,next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
     throw new HttpError('Invalid inputs passed, please check your data.', 422);
@@ -112,14 +112,29 @@ const updateContact = (req,res,next) => {
   const { title, description} = req.body;
   const contactId = req.params.cid;
 
-  const updatedContact = { ...DUMMY_CONTACTS.find(c => c.id === contactId)};
-  const contactIndex = DUMMY_CONTACTS.findIndex(c => c.id === contactId);
-  updatedContact.title = title;
-  updatedContact.description = description;
+  let contact;
+  try{
+    contact = await Contact.findById(contactId);
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update contact.', 500
+    );
+    return next(error);
+  }
 
-  DUMMY_CONTACTS[contactIndex] = updatedContact;
+  contact.title = title;
+  contact.description = description;
 
-  res.status(200).json({contact: updatedContact});
+  try {
+    await contact.save();
+  } catch (err){
+    const error = new HttpError(
+      'Something went wrong, could not update contact.', 500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({contact: contact.toObject({getters: true})});
 };
 
 const deleteContact = (req,res,next) => {
