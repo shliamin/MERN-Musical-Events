@@ -171,7 +171,7 @@ const deleteContact = async (req,res,next) => {
 
   let contact;
   try{
-    contact = await Contact.findById(contactId);
+    contact = await Contact.findById(contactId).populate('creator');
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not delete contact',
@@ -180,8 +180,18 @@ const deleteContact = async (req,res,next) => {
     return next(error);
   }
 
+  if(!contact){
+    const error = new HttpError('Could not find contact for this id.', 404);
+    return next(error);
+  }
+
   try {
-    await contact.remove();
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await contact.remove({session: sess});
+    contact.creator.contacts.pull(contact);
+    await contact.creator.save({session: sess});
+    await sess.commitTransaction();
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not delete contact',
