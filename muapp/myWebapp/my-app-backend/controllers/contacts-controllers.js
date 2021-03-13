@@ -137,12 +137,30 @@ const updateContact = async (req,res,next) => {
   res.status(200).json({contact: contact.toObject({getters: true})});
 };
 
-const deleteContact = (req,res,next) => {
+const deleteContact = async (req,res,next) => {
   const contactId = req.params.cid;
-  if (!DUMMY_CONTACTS.find(c => c.id ===  contactId)) {
-    throw new HttpError('Could not find a contact for that id.', 404);
+
+  let contact;
+  try{
+    contact = await Contact.findById(contactId);
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not delete contact',
+      500
+    );
+    return next(error);
   }
-  DUMMY_CONTACTS = DUMMY_CONTACTS.filter(c => c.id !== contactId);
+
+  try {
+    await contact.remove();
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not delete contact',
+      500
+    );
+    return next(error);
+  }
+
   res.status(200).json({message: 'Deleted contact.'});
 };
 
