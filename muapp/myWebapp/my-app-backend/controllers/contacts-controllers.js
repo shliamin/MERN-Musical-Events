@@ -106,7 +106,9 @@ const createContact = async (req, res, next) => {
 const updateContact = async (req,res,next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
-    throw new HttpError('Invalid inputs passed, please check your data.', 422);
+    return next (
+      HttpError('Invalid inputs passed, please check your data.', 422)
+    );
   }
 
   const { title, description} = req.body;
