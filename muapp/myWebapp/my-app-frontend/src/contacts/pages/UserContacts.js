@@ -1,40 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams} from 'react-router-dom';
 
 import ContactList from '../components/ContactList';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import { useHttpClient} from '../../shared/hooks/http-hook';
 
-
-const DUMMY_CONTACTS = [
-  {
-    id: 'c1',
-    title: 'Empire State Building',
-    description: 'One of the most famous skyscrapers in the world',
-    imageUrl: 'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    address: '20 W 34th St, New York, NY 10001',
-    location: {
-      lat: 40.7484405,
-      lng: -73.9878584
-    },
-    creator: 'u1'
-  },
-  {
-    id: 'c2',
-    title: 'Empire State Building',
-    description: 'One of the most famous skyscrapers in the world',
-    imageUrl: 'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    address: '20 W 34th St, New York, NY 10001',
-    location: {
-      lat: 40.7484405,
-      lng: -73.9878584
-    },
-    creator: 'u2'
-  }
-];
 
 const UserContacts = () => {
+  const [loadedContacts, setLoadedContacts] = useState();
+  const {isLoading, error, sendRequest, clearError} = useHttpClient();
+
   const userId = useParams().userId;
-  const loadedContacts = DUMMY_CONTACTS.filter(contact => contact.creator === userId);
-  return <ContactList items={loadedContacts}/>;
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/contacts/user/${userId}`
+        );
+        setLoadedContacts(responseData.contacts);
+      } catch (err) {}
+    };
+    fetchContacts();
+  }, [sendRequest, userId]);
+
+  return (
+    <React.Fragment>
+      <ErrorModal error = {error} onClear = {clearError} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedContacts && <ContactList items={loadedContacts}/>}
+    </React.Fragment>
+  );
 };
 
 export default UserContacts;
