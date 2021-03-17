@@ -50,7 +50,7 @@ const signup = async (req, res, next) => {
     email,
     image: 'https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg',
     password,
-    places: []
+    contacts: []
   });
 
   try {
@@ -75,7 +75,7 @@ const login = async (req, res, next) => {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
     const error = new HttpError(
-      'Loggin in failed, please try again later.',
+      'Loggin is failed, please try again later.',
       500
     );
     return next(error);
@@ -89,7 +89,10 @@ const login = async (req, res, next) => {
     return next(error);
   }
 
-  res.json({ message: 'Logged in!' });
+  res.json({
+    message: 'Logged in!',
+    user: existingUser.toObject({getters: true})
+  });
 };
 
 exports.getUsers = getUsers;

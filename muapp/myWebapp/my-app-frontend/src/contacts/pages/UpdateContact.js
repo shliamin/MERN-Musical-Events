@@ -4,7 +4,10 @@ import { useParams} from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import Card from '../../shared/components/UIElements/Card';
-import {VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../../shared/util/validators';
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_MINLENGTH
+} from '../../shared/util/validators';
 import {useForm} from '../../shared/hooks/form-hook';
 import './ContactForm.css';
 
@@ -39,8 +42,6 @@ const UpdateContact = () => {
   const [isLoading, setIsLoading] = useState(true);
   const contactId = useParams().contactId;
 
-
-
   const [formState, inputHandler, setFormData] = useForm({
     title: {
       value: '',
@@ -53,7 +54,7 @@ const UpdateContact = () => {
   }, true);
 
 
-  const identifiedContact = DUMMY_CONTACTS.find(p => p.id === contactId);
+  const identifiedContact = DUMMY_CONTACTS.find(c => c.id === contactId);
 
   useEffect(() => {
     if(identifiedContact){
@@ -96,7 +97,7 @@ const UpdateContact = () => {
   }
 
   return (
-    <form className="place-form" onSubmit={contactUpdateSubmitHandler}>
+    <form className="contact-form" onSubmit={contactUpdateSubmitHandler}>
     <Input
     id="title"
     element="input"

@@ -6,7 +6,7 @@ import ContactList from '../components/ContactList';
 
 const DUMMY_CONTACTS = [
   {
-    id: 'p1',
+    id: 'c1',
     title: 'Empire State Building',
     description: 'One of the most famous skyscrapers in the world',
     imageUrl: 'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -18,7 +18,7 @@ const DUMMY_CONTACTS = [
     creator: 'u1'
   },
   {
-    id: 'p2',
+    id: 'c2',
     title: 'Empire State Building',
     description: 'One of the most famous skyscrapers in the world',
     imageUrl: 'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',

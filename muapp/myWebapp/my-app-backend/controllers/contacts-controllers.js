@@ -32,9 +32,9 @@ const getContactById = async (req,res,next)=>{
 const getContactsByUserId = async (req,res,next) =>{
   const userId = req.params.uid;
 
-  let contacts;
+  let userWithContacts;
   try {
-    contacts = await Contact.find({creator: userId});
+    userWithContacts = await User.findById(userId).populate('contacts');
   } catch(err){
     const error = new HttpError(
       'Fetching contacts failed, please try again later',
@@ -43,19 +43,21 @@ const getContactsByUserId = async (req,res,next) =>{
     return next(error);
   }
 
-  if(!contacts || contacts.length === 0) {
+  if(!userWithContacts|| userWithContacts.contacts.length === 0) {
     return next(
       new HttpError('Could not find contacts for the provided user id.', 404)
     );
   }
 
-  res.json({contacts: contacts.map(contact => contact.toObject({getters: true}))});
+  res.json({contacts: userWithContacts.contacts.map(contact => contact.toObject({getters: true}))});
 };
 
 const createContact = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
-    return next(new HttpError('Invalid inputs passed, please check your data.', 422));
+    return next(
+    new HttpError('Invalid inputs passed, please check your data.', 422)
+    );
   }
 
   const { title, description, address, creator} = req.body;
@@ -83,7 +85,7 @@ const createContact = async (req, res, next) => {
 
   }catch (err){
     const error = new HttpError(
-      'Creating contactfailed, please try again.',
+      'Creating contact failed, please try again.',
       500
     );
     return next(error);
@@ -118,7 +120,7 @@ const updateContact = async (req,res,next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
     return next (
-      HttpError('Invalid inputs passed, please check your data.', 422)
+      new HttpError('Invalid inputs passed, please check your data.', 422)
     );
   }
 
