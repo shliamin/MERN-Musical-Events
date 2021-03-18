@@ -79,11 +79,11 @@ const ContactItem = props => {
     </div>
     <div className="place-item__actions">
       <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
-      {auth.isLoggedIn && (
+      {auth.userId === props.creatorId && (
               <Button to={`/contacts/${props.id}`}>EDIT</Button>
             )}
 
-            {auth.isLoggedIn && (
+            {auth.userId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
                 DELETE
               </Button>
