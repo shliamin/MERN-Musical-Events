@@ -4,7 +4,7 @@ import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import Map from '../../shared/components/UIElements/Map';
-import {AuthContext} from '../../shared/components/context/auth-context';
+import {AuthContext} from '../../shared/context/auth-context';
 import './ContactItem.css';
 
 const ContactItem = props => {
@@ -68,12 +68,19 @@ const ContactItem = props => {
     </div>
     <div className="place-item__actions">
       <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
-      {auth.isLoggedIn && (<Button to={`/contacts/${props.id}`}>EDIT</Button>)}
-      {auth.isLoggedIn && (<Button danger onClick={showDeleteWarningHandler}>DELETE</Button>)}
-    </div>
-    </Card>
-  </li>
-  </React.Fragment>
+      {auth.isLoggedIn && (
+              <Button to={`/contacts/${props.id}`}>EDIT</Button>
+            )}
+
+            {auth.isLoggedIn && (
+              <Button danger onClick={showDeleteWarningHandler}>
+                DELETE
+              </Button>
+            )}
+          </div>
+        </Card>
+      </li>
+    </React.Fragment>
   );
 };
 
