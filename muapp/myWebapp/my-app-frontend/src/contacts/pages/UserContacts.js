@@ -25,15 +25,21 @@ const UserContacts = () => {
     fetchContacts();
   }, [sendRequest, userId]);
 
+  const contactDeletedHandler = (deletedContactId) => {
+    setLoadedContacts(prevContacts => prevContacts.filter(contact => contact.id !== deletedContactId));
+  };
+
   return (
     <React.Fragment>
-      <ErrorModal error = {error} onClear = {clearError} />
+      <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedContacts && <ContactList items={loadedContacts}/>}
+      {!isLoading && loadedContacts && (
+        <ContactList items={loadedContacts} onDeleteContact={contactDeletedHandler} />
+      )}
     </React.Fragment>
   );
 };

@@ -29,6 +29,7 @@ const ContactList = props => {
       address={contact.address}
       creatorId={contact.creator}
       coordinates ={contact.location}
+      onDelete={props.onDeleteContact}
       />
     ))}
   </ul>;
