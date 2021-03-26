@@ -180,7 +180,7 @@ app.get('/test', function(req, res) {
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
 const {
-    PORT = 3000,
+    PORT = 3001,
         NODE_ENV = 'development',
 
         SESS_NAME = 'sid',

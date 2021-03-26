@@ -522,7 +522,7 @@ let arrayOFHashesAll = [];
 let arrayOFHashesAllExceptAdminaPrivate = [];
 
 function setContacts() {
-    fetch(`http://localhost:3000/adviz/contacts`).then(response => response.json()).then((data) => {
+    fetch(`http://localhost:3001/adviz/contacts`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
@@ -535,7 +535,7 @@ function setContacts() {
             arrayOFHashesAll.push(contact[`${i}`]);
         }
     });
-    fetch(`http://localhost:3000/adviz/contacts/admina`).then(response => response.json()).then((data) => {
+    fetch(`http://localhost:3001/adviz/contacts/admina`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
@@ -548,7 +548,7 @@ function setContacts() {
             arrayOFHashesAdmina.push(contact[`${i}`]);
         }
     });
-     fetch(`http://localhost:3000/adviz/contacts/normalo`).then(response => response.json()).then((data) => {
+     fetch(`http://localhost:3001/adviz/contacts/normalo`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
@@ -561,7 +561,7 @@ function setContacts() {
             arrayOFHashesNormalo.push(contact[`${i}`]);
         }
     });
-      fetch(`http://localhost:3000/adviz/contacts/normaloall`).then(response => response.json()).then((data) => {
+      fetch(`http://localhost:3001/adviz/contacts/normaloall`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
@@ -915,7 +915,7 @@ let cardsCounter = 0;
 
 function setCards(forUser) {
   if(forUser == 'admina'){
-    fetch(`http://localhost:3000/adviz/contacts`).then(response => response.json()).then((data) => {
+    fetch(`http://localhost:3001/adviz/contacts`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
@@ -928,7 +928,7 @@ function setCards(forUser) {
         }
     });
   }else{
-    fetch(`http://localhost:3000/adviz/contacts`).then(response => response.json()).then((data) => {
+    fetch(`http://localhost:3001/adviz/contacts`).then(response => response.json()).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let privacy = 'private';
             if (data[i].privacy == false) {
