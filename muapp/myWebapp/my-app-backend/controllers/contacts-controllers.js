@@ -74,7 +74,7 @@ const createContact = async (req, res, next) => {
     description,
     address,
     location: coordinates,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Empire_State_Building_%28aerial_view%29.jpg/400px-Empire_State_Building_%28aerial_view%29.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Address_book_1.jpg',
     creator
   });
 
