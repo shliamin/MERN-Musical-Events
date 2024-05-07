@@ -14,7 +14,7 @@ This project is a MERN stack application developed for the Web Application. It f
 ## Setup
 To run this project locally:
 ```bash
-git clone https://github.com/shliamin/WAD-WS2021-Efim/muapp
+git clone https://github.com/shliamin/MERN-Musical-Events/muapp
 cd muapp
 npm install
 npm start
