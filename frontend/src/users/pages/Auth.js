@@ -11,14 +11,14 @@ import {
   VALIDATOR_REQUIRE
 } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
-import { useHttpClient} from '../../shared/hooks/http-hook';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './Auth.css';
 
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const {isLoading, error, sendRequest, clearError} = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -62,9 +62,9 @@ const Auth = () => {
     event.preventDefault();
 
     if (isLoginMode) {
-      try{
+      try {
         const responseData = await sendRequest(
-          '${process.env.REACT_APP_BACKEND_URL}/users/login',
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -75,24 +75,24 @@ const Auth = () => {
           }
         );
         auth.login(responseData.user.id);
-      } catch(err){}
+      } catch (err) { }
     } else {
       try {
         const responseData = await sendRequest(
-          '${process.env.REACT_APP_BACKEND_URL}/users/signup',
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           'POST',
           JSON.stringify({
             name: formState.inputs.name.value,
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
           }),
-           {
+          {
             'Content-Type': 'application/json'
           }
         );
 
         auth.login(responseData.user.id);
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
