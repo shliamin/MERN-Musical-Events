@@ -13,44 +13,47 @@ MERN-Musical-Events/
   │   │   ├── index.html      <- Main HTML file, React mounts here
   │   │   │── favicon.ico     <- Icon for browser tabs and bookmarks
   │   │   │── manifest.json   <- PWA settings, metadata for the app
-  │   │   │── robots.txt      <- Instructs search engines on indexing rules
+  │   │   └── robots.txt      <- Instructs search engines on indexing rules
   │   ├── src/
   │   │   ├── contacts/       <- Components related to contacts management
   │   │   ├── shared/         <- Shared components or utilities
   │   │   ├── users/          <- Components related to user management
-  │   │   ├── App.js          <- Main component, organizes application structure
+  │   │   ├── App.js          <- *Main component, organizes application structure
   │   │   ├── index.js        <- Entry point, renders App component
-  │   │   ├── index.css       <- Global CSS styles for the app
+  │   │   └── index.css       <- Global CSS styles for the app
   │   ├── .gitignore          <- Specifies files and directories to ignore in frontend
   │   ├── package.json        <- Manages project dependencies and scripts
   │   ├── README.md           <- Provides information about the frontend
   ├── backend/
   │   ├── src/
   │   │   ├── controllers/
-  │   │   │   ├── userController.js
-  │   │   │   └── contactController.js
+  │   │   │   ├── contacts-controllers.js     <- Manages contact-related functions
+  │   │   │   └── users-controllers.js        <- Handles user-related logic
   │   │   ├── routes/
-  │   │   │   ├── index.js
-  │   │   │   ├── users.js
-  │   │   │   └── contacts.js
+  │   │   │   ├── index.js                    <- Combines and exports all routes
+  │   │   │   ├── users-routes.js             <- User-related routes
+  │   │   │   └── contacts-routes.js          <- Contact-related routes
   │   │   ├── models/
-  │   │   │   ├── user.js
-  │   │   │   └── contact.js
+  │   │   │   ├── user.js                     <- Defines user schema
+  │   │   │   └── contact.js                  <- Defines contact schema
+  │   │   ├── utils/
+  │   │   │   ├── http-errors.js              <- Custom HTTP error handling
+  │   │   │   └── location.js                 <- Handles geolocation logic
   │   │   ├── config/
-  │   │   │   └── db.js
+  │   │   │   └── db.js                       <- Establishes & manages the db connection
   │   │   ├── views/
-  │   │   │   └── error.jade
-  │   │   ├── app.js
-  │   ├── .gitignore
-  │   ├── package.json
-  │   ├── Procfile
-  │   ├── .env
-  │   ├── README.md
+  │   │   │   └── error.pug                   <- Template for rendering error pages
+  │   │   ├── app.js                          <- *Main server file
+  │   ├── .gitignore                          <- Ignore specified files in backend
+  │   ├── package.json                        <- Project dependencies and scripts
+  │   ├── Procfile                            <- Heroku deployment instructions
+  │   ├── .env                                <- Securely stores environment variables
+  │   ├── README.md                           <- Backend documentation
   ├── .gitignore
   ├── README.md
 ```
 
-## ```.gitignore``` File
+## The main ```.gitignore``` File
 
 The ```.gitignore``` file is used to specify which files and directories should be ignored by Git. This helps to keep the repository clean and free of unnecessary files. Below is an explanation of a comprehensive ```.gitignore``` file tailored for a MERN stack application:
 
