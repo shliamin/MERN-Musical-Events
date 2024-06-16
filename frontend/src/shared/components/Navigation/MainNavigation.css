@@ -24,10 +24,13 @@
 
 .main-navigation__title h1 {
   font-size: 1.5rem; /* smaller size for the main title */
+  margin: 0; /* remove margin */
 }
 
 .main-navigation__title h2 {
   font-size: 1rem; /* smaller size for the subtitle */
+  margin: 0; /* remove margin */
+  padding-top: 0.5rem; /* reduce space between h1 and h2 */
 }
 
 .main-navigation__title a {
@@ -54,11 +57,11 @@
   }
 
   .main-navigation__title h1 {
-    font-size: 2rem; /* slightly larger on desktop */
+    font-size: 1.7rem; /* slightly larger on desktop */
   }
 
   .main-navigation__title h2 {
-    font-size: 1.2rem; /* slightly larger on desktop */
+    font-size: 1rem; /* slightly larger on desktop */
   }
 
 
