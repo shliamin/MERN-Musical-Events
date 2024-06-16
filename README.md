@@ -40,7 +40,7 @@ my-mern-app/
   │   ├── README.md
   ├── .gitignore
   ├── README.md
-
+```
 
 ## ```.gitignore``` File
 
