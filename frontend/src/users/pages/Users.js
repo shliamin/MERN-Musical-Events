@@ -13,7 +13,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          '/api/users'
+          '/users'
         );
         setLoadedUsers(responseData.users);
       } catch (err) {
