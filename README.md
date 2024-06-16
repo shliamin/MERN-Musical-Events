@@ -5,7 +5,7 @@ This repository contains the project, a full-stack application built with the ME
 ## Project Structure
 
 ```plaintext
-my-mern-app/
+MERN-Musical-Events/
   ├── frontend/
   │   ├── public/
   │   │   ├── index.html
