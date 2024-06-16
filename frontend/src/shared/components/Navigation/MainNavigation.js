@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link} from 'react-router-dom';
 
 import MainHeader from './MainHeader';
 import NavLinks from './NavLinks';
 import SideDrawer from './SideDrawer';
-import Backdrop from '../UIElements/Backdrop';  // Import Backdrop component
+import Backdrop from '../UIElements/Backdrop';
 import './MainNavigation.css';
 
 const MainNavigation = props => {
@@ -20,8 +20,8 @@ const MainNavigation = props => {
 
   return (
     <React.Fragment>
-      {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
-      <SideDrawer show={drawerIsOpen} onClick={closeDrawer}>
+      {drawerIsOpen && <Backdrop onClick={closeDrawer}/>}
+      <SideDrawer show={drawerIsOpen}>
         <nav className="main-navigation__drawer-nav">
           <NavLinks />
         </nav>
@@ -34,7 +34,7 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">Your Contacts</Link>
+          <Link to = "/">Your contacts</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />
