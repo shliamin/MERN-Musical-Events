@@ -29,8 +29,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/contacts', contactsRoutes);
-app.use('/api/users', usersRoutes);
+app.use('/contacts', contactsRoutes);
+app.use('/users', usersRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
