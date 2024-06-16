@@ -9,6 +9,9 @@ MERN-Musical-Events/
   ├── frontend/
   │   ├── public/
   │   │   ├── index.html
+  │   │   │── favicon.ico
+  │   │   │── manifest.json
+  │   │   │── robots.txt
   │   ├── src/
   │   │   ├── components/
   │   │   ├── App.js
