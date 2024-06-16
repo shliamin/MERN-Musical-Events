@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; /* Add relative positioning */
+  z-index: 100; /* Ensure map has a lower z-index */
 }
 
 .all-contacts__list {
