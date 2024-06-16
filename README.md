@@ -2,8 +2,11 @@
 
 ### Efim Shliamin
 
-This repository contains a full-stack application built with the MERN stack (MongoDB, Express, React, Node.js). The application is designed for managing musical event data.
+This repository contains a full-stack application built with the MERN stack (MongoDB, Express, React, Node.js). The application is designed for managing musical event data using geocoding.
 
+![demo3](images/demo3.png)
+<img src="images/demo1.png" alt="Demo 1" width="500"/>
+<img src="images/demo2.png" alt="Demo 2" width="500"/>
 
 ![idea2](images/idea2.png)
 ![idea3](images/idea3.png)
