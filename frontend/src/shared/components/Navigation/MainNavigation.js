@@ -36,7 +36,7 @@ const MainNavigation = props => {
         <h1 className="main-navigation__title">
           MERN Musical Events
         </h1>
-        <h2>Efim Shliamin</h2>
+        <a>Efim Shliamin</a>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>

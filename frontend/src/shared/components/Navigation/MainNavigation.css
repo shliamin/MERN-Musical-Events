@@ -23,7 +23,7 @@
 }
 
 .main-navigation__title h1 {
-  font-size: 1rem; /* smaller size for the main title */
+  font-size: 0.5rem; /* smaller size for the main title */
 }
 
 .main-navigation__title a {
