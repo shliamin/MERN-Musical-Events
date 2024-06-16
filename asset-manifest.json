@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/MERN-Musical-Events/static/css/main.64d2235e.css",
-    "main.js": "/MERN-Musical-Events/static/js/main.6035f7f5.js",
+    "main.js": "/MERN-Musical-Events/static/js/main.45656e77.js",
     "static/media/red-pin.png": "/MERN-Musical-Events/static/media/red-pin.d1d5ff99f264c4f1b8fb.png",
     "index.html": "/MERN-Musical-Events/index.html",
     "main.64d2235e.css.map": "/MERN-Musical-Events/static/css/main.64d2235e.css.map",
-    "main.6035f7f5.js.map": "/MERN-Musical-Events/static/js/main.6035f7f5.js.map"
+    "main.45656e77.js.map": "/MERN-Musical-Events/static/js/main.45656e77.js.map"
   },
   "entrypoints": [
     "static/css/main.64d2235e.css",
-    "static/js/main.6035f7f5.js"
+    "static/js/main.45656e77.js"
   ]
 }
