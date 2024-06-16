@@ -8,6 +8,7 @@
   justify-content: space-around;
   margin-right: 2rem;
   cursor: pointer;
+  z-index: 200; /* Ensure the menu button is on top */
 }
 
 .main-navigation__menu-btn span {
@@ -32,6 +33,7 @@
 
 .main-navigation__drawer-nav {
   height: 100%;
+  z-index: 200; /* Ensure the drawer navigation is on top */
 }
 
 @media (min-width: 768px) {
