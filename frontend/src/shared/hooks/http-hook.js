@@ -1,31 +1,32 @@
-import {useState, useCallback, useRef, useEffect} from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
+
+const API_URL = 'https://mernmusicalevents-backend-eb829391a9c7.herokuapp.com/';  // Replace with your actual Heroku app URL
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error,setError] = useState();
+  const [error, setError] = useState();
 
   const activeHttpRequests = useRef([]);
 
-  const sendRequest = useCallback (
-    async ( url, method= 'GET', body = null, headers ={}) => {
-    setIsLoading(true);
-    const httpAbortCtrl = new AbortController();
-    activeHttpRequests.current.push(httpAbortCtrl);
+  const sendRequest = useCallback(
+    async (url, method = 'GET', body = null, headers = {}) => {
+      setIsLoading(true);
+      const httpAbortCtrl = new AbortController();
+      activeHttpRequests.current.push(httpAbortCtrl);
 
-    try{
-    const response = await fetch(url, {
-      method,
-      body,
-      headers,
-      signal: httpAbortCtrl.signal
-    });
+      try {
+        const response = await fetch(`${API_URL}${url}`, {
+          method,
+          body,
+          headers,
+          signal: httpAbortCtrl.signal,
+        });
 
-    const responseData = await response.json();
+        const responseData = await response.json();
 
-
-      activeHttpRequests.current = activeHttpRequests.current.filter(
-        reqCtrl => reqCtrl !== httpAbortCtrl
-      );
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          reqCtrl => reqCtrl !== httpAbortCtrl
+        );
 
         if (!response.ok) {
           throw new Error(responseData.message);
@@ -38,18 +39,19 @@ export const useHttpClient = () => {
         setIsLoading(false);
         throw err;
       }
-
-  }, []);
+    },
+    []
+  );
 
   const clearError = () => {
     setError(null);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     return () => {
       activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort());
     };
-  },[]);
+  }, []);
 
-  return { isLoading, error, sendRequest, clearError};
+  return { isLoading, error, sendRequest, clearError };
 };

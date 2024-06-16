@@ -8,7 +8,6 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 
-
 const icon = new L.Icon({
   iconUrl: require('../../shared/assets/red-pin.png'),
   iconSize: [25, 41],
@@ -18,13 +17,13 @@ const icon = new L.Icon({
 });
 
 const AllContacts = () => {
-  const { isLoading, sendRequest, clearError } = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedContacts, setLoadedContacts] = useState([]);
 
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const responseData = await sendRequest('http://localhost:5001/api/contacts');
+        const responseData = await sendRequest('/contacts');
         setLoadedContacts(responseData.contacts);
       } catch (err) {}
     };
@@ -33,7 +32,7 @@ const AllContacts = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal onClear={clearError} />
+      <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />

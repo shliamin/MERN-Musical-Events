@@ -14,6 +14,11 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Root route for basic testing
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
