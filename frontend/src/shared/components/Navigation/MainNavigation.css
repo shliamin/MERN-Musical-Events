@@ -11,15 +11,6 @@
   z-index: 200; /* Ensure the menu button is on top */
 }
 
-.main-navigation__title h1 {
-  font-size: 1rem; /* smaller size for the main title */
-}
-
-.main-navigation__title h2 {
-  font-size: 0.5rem; /* smaller size for the subtitle */
-  margin: 0; /* remove default margin */
-}
-
 .main-navigation__menu-btn span {
   display: block;
   width: 3rem;
@@ -29,6 +20,10 @@
 
 .main-navigation__title {
   color: white;
+}
+
+.main-navigation__title h1 {
+  font-size: 1rem; /* smaller size for the main title */
 }
 
 .main-navigation__title a {
@@ -58,7 +53,5 @@
     font-size: 1rem; /* slightly larger on desktop */
   }
 
-  .main-navigation__title h2 {
-    font-size: 0.7rem; /* slightly larger on desktop */
-  }
+
 }

@@ -34,11 +34,9 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">
-            <h1>MERN Musical Events</h1>
-            <p>Efim Shliamin</p>
-          </Link>
+          MERN Musical Events
         </h1>
+        <h2>Efim Shliamin</h2>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>
