@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import Backdrop from './Backdrop';  // Import the Backdrop component
+import Backdrop from 'src/shared/components/UIElements/Backdrop.js';  // Import the Backdrop component
 import './SideDrawer.css';
 
 const SideDrawer = props => {
