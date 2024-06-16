@@ -1,29 +1,27 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
-import './Map.css'
+import './Map.css';
 
-const Map = props => {
+const Map = (props) => {
+  const { center, zoom } = props;
 
-  const mapRef = useRef();
-  const {center,zoom} = props;
-
-  useEffect(()=> {
-    const map = new window.google.maps.Map(mapRef.current, {
-    center: center,
-    zoom: zoom
+  const markerIcon = new L.Icon({
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
   });
 
-  new window.google.maps.Marker({position: center, map: map});
-  }, [center,zoom]);
-
-
-
   return (
-  <div
-  ref={mapRef}
-  className={`map ${props.className}`}
-  style={props.style}
-  ></div>
+    <MapContainer center={center} zoom={zoom} className={`map ${props.className}`} style={props.style}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <Marker position={center} icon={markerIcon} />
+    </MapContainer>
   );
 };
 

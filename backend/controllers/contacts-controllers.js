@@ -2,7 +2,7 @@ const { uuid } = require('uuidv4');
 const {validationResult} = require('express-validator');
 const mongoose = require('mongoose');
 
-const HttpError = require('../models/http-error');
+const HttpError = require('../util/http-errors');
 const getCoordsForAddress = require('../util/location');
 const Contact = require('../models/contact');
 const User = require('../models/user');
@@ -189,6 +189,21 @@ const deleteContact = async (req,res,next) => {
   res.status(200).json({message: 'Deleted contact.'});
 };
 
+const getAllContacts = async (req, res, next) => {
+  let contacts;
+  try {
+    contacts = await Contact.find({});
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching contacts failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+  res.json({ contacts: contacts.map(contact => contact.toObject({ getters: true })) });
+};
+
+exports.getAllContacts = getAllContacts;
 exports.getContactById = getContactById;
 exports.getContactsByUserId = getContactsByUserId;
 exports.createContact = createContact;

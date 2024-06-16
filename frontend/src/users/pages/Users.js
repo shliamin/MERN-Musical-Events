@@ -3,21 +3,22 @@ import React, { useEffect, useState } from 'react';
 import UsersList from '../components/UsersList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import { useHttpClient} from '../../shared/hooks/http-hook';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 const Users = () => {
-  const {isLoading, error, sendRequest, clearError} = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedUsers, setLoadedUsers] = useState();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users'
+          'http://localhost:5001/api/users'
         );
-
         setLoadedUsers(responseData.users);
-      } catch (err) {}
+      } catch (err) {
+        // An error will be handled in useHttpClient
+      }
     };
     fetchUsers();
   }, [sendRequest]);
@@ -31,6 +32,11 @@ const Users = () => {
         </div>
       )}
       {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
+      {!isLoading && !loadedUsers && !error && (
+        <div className="center">
+          <p>No users found.</p>
+        </div>
+      )}
     </React.Fragment>
   );
 };

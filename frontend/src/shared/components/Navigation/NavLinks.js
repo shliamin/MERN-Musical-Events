@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import {AuthContext} from '../../context/auth-context';
+import { AuthContext } from '../../context/auth-context';
 import './NavLinks.css';
 
 const NavLinks = props => {
@@ -12,28 +12,31 @@ const NavLinks = props => {
       <li>
         <NavLink to="/" exact>ALL USERS</NavLink>
       </li>
+      <li>
+        <NavLink to="/contacts" exact>ALL CONTACTS</NavLink>
+      </li>
       {auth.isLoggedIn && (
         <li>
-        <NavLink to={`/${auth.userId}/contacts`}>MY CONTACTS</NavLink>
-      </li>
+          <NavLink to={`/${auth.userId}/contacts`}>MY CONTACTS</NavLink>
+        </li>
       )}
       {auth.isLoggedIn && (
         <li>
-        <NavLink to="/contacts/new">ADD CONTACT</NavLink>
+          <NavLink to="/contacts/new">ADD CONTACT</NavLink>
         </li>
       )}
       {!auth.isLoggedIn && (
         <li>
-        <NavLink to="/auth">AUTHENTICATE</NavLink>
-      </li>
+          <NavLink to="/auth">AUTHENTICATE</NavLink>
+        </li>
       )}
       {auth.isLoggedIn && (
         <li>
-        <button onClick={auth.logout}>LOGOUT</button>
+          <button onClick={auth.logout}>LOGOUT</button>
         </li>
       )}
     </ul>
-    );
+  );
 };
 
 export default NavLinks;

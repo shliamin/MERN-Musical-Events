@@ -7,11 +7,4 @@ class HttpError extends Error {
   }
 }
 
-const createHttpError = (message, statusCode) => {
-  return new HttpError(message, statusCode);
-};
-
-module.exports = {
-  HttpError,
-  createHttpError,
-};
+module.exports = HttpError;

@@ -17,7 +17,7 @@ const UserContacts = () => {
     const fetchContacts = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/contacts/user/${userId}`
+          `http://localhost:5001/api/contacts/user/${userId}`
         );
         setLoadedContacts(responseData.contacts);
       } catch (err) {}

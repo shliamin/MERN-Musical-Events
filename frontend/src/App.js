@@ -1,14 +1,14 @@
-
-import React, {useState, useCallback} from 'react';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Users from './users/pages/Users';
 import NewContact from './contacts/pages/NewContact';
 import UserContacts from './contacts/pages/UserContacts';
 import UpdateContact from './contacts/pages/UpdateContact';
 import Auth from './users/pages/Auth';
-import MainNavigation from  './shared/components/Navigation/MainNavigation';
-import { AuthContext} from './shared/context/auth-context';
+import AllContacts from './contacts/pages/AllContacts'; // Импортируйте новый компонент
+import MainNavigation from './shared/components/Navigation/MainNavigation';
+import { AuthContext } from './shared/context/auth-context';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,6 +32,9 @@ const App = () => {
         <Route path="/" exact>
           <Users />
         </Route>
+        <Route path="/contacts" exact>
+          <AllContacts />
+        </Route>
         <Route path="/:userId/contacts" exact>
           <UserContacts />
         </Route>
@@ -50,13 +53,16 @@ const App = () => {
         <Route path="/" exact>
           <Users />
         </Route>
+        <Route path="/contacts" exact>
+          <AllContacts />
+        </Route>
         <Route path="/:userId/contacts" exact>
           <UserContacts />
         </Route>
         <Route path="/auth">
           <Auth />
         </Route>
-        <Redirect to="/auth" />
+        <Redirect to="/contacts" />
       </Switch>
     );
   }

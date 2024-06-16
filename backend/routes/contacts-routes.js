@@ -9,6 +9,8 @@ router.get('/:cid', contactsControllers.getContactById);
 
 router.get('/user/:uid', contactsControllers.getContactsByUserId);
 
+router.get('/', contactsControllers.getAllContacts);
+
 router.post(
   '/',
   [
