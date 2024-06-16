@@ -1,5 +1,7 @@
 # MERN Musical Events Application
 
+### Efim Shliamin
+
 This repository contains the project, a full-stack application built with the MERN stack (MongoDB, Express, React, Node.js). The application is designed for managing musical event data.
 
 ## Project Structure
