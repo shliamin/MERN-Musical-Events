@@ -11,6 +11,16 @@
   z-index: 200; /* Ensure the menu button is on top */
 }
 
+.main-navigation__title h1 {
+  font-size: 1.5rem; /* smaller size for the main title */
+  margin: 0.5rem 0; /* to give some space around the text */
+}
+
+.main-navigation__title h2 {
+  font-size: 1rem; /* smaller size for the subtitle */
+  margin: 0; /* remove default margin */
+}
+
 .main-navigation__menu-btn span {
   display: block;
   width: 3rem;
@@ -43,5 +53,13 @@
 
   .main-navigation__header-nav {
     display: block;
+  }
+
+  .main-navigation__title h1 {
+    font-size: 2rem; /* slightly larger on desktop */
+  }
+
+  .main-navigation__title h2 {
+    font-size: 1.2rem; /* slightly larger on desktop */
   }
 }
