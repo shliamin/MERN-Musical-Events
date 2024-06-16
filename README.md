@@ -7,7 +7,7 @@ This repository contains a full-stack application built with the MERN stack (Mon
 
 ![idea2](images/idea2.png)
 ![idea3](images/idea3.png)
-<img src="images/idea1.png" alt="Idea 1" width="300"/>
+<img src="images/idea1.png" alt="Idea 1" width="500"/>
 
 ## Project Structure
 
