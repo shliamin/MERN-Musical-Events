@@ -12,8 +12,7 @@ export const useHttpClient = () => {
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
 
-      const fullUrl = `${process.env.REACT_APP_BACKEND_URL}${url.startsWith('/') ? '' : '/'}${url}`;
-
+      const fullUrl = `${process.env.REACT_APP_BACKEND_URL}${url.startsWith('/') ? url : `/${url}`}`;
       try {
         const response = await fetch(fullUrl, {
           method,
