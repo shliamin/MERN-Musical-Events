@@ -4,6 +4,11 @@
 
 This repository contains a full-stack application built with the MERN stack (MongoDB, Express, React, Node.js). The application is designed for managing musical event data.
 
+![idea1](images/idea1.jpg)
+![idea2](images/idea2.jpg)
+![idea3](images/idea3.jpg)
+
+
 ## Project Structure
 
 ```plaintext
