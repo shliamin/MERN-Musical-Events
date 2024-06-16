@@ -48,11 +48,3 @@ The frontend application provides the following features:
 ## Leaflet Integration
 
 The application uses Leaflet to display maps and mark locations of musical events. Ensure you have configured the map settings and API keys if necessary.
-
-## Contributing
-
-Feel free to open issues or submit pull requests for improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License.
