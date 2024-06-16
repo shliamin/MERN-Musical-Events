@@ -2,28 +2,13 @@
   width: 3rem;
   height: 3rem;
   background: transparent;
-  border: 1px solid #ccc;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin-right: 2rem;
   cursor: pointer;
   z-index: 200; /* Ensure the menu button is on top */
-}
-
-button {
-  background-color: transparent;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: background-color 0.3s, transform 0.3s;
 }
 
 .main-navigation__menu-btn span {
@@ -38,11 +23,11 @@ button {
 }
 
 .main-navigation__title h1 {
-  font-size: 0.5rem; /* smaller size for the main title */
+  font-size: 1.5rem; /* smaller size for the main title */
 }
 
 .main-navigation__title h2 {
-  font-size: 0.2rem; /* smaller size for the subtitle */
+  font-size: 1rem; /* smaller size for the subtitle */
 }
 
 .main-navigation__title a {
@@ -69,11 +54,11 @@ button {
   }
 
   .main-navigation__title h1 {
-    font-size: 0.3rem; /* slightly larger on desktop */
+    font-size: 2rem; /* slightly larger on desktop */
   }
 
   .main-navigation__title h2 {
-    font-size: 0.1rem; /* slightly larger on desktop */
+    font-size: 1.2rem; /* slightly larger on desktop */
   }
 
 
