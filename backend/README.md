@@ -44,7 +44,7 @@ This backend application is part of the MERN-Musical-Events project. It provides
 
 ## Usage
 
-The backend server will run on `http://localhost:5001`. It provides the following API endpoints:
+The backend server provides the following API endpoints:
 
 ### Users
 
