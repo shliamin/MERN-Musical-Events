@@ -8,20 +8,20 @@ This repository contains the project, a full-stack application built with the ME
 MERN-Musical-Events/
   ├── frontend/
   │   ├── public/
-  │   │   ├── index.html
-  │   │   │── favicon.ico
-  │   │   │── manifest.json
-  │   │   │── robots.txt
+  │   │   ├── index.html      <- Main HTML file, React mounts here
+  │   │   │── favicon.ico     <- Icon for browser tabs and bookmarks
+  │   │   │── manifest.json   <- PWA settings, metadata for the app
+  │   │   │── robots.txt      <- Instructs search engines on indexing rules
   │   ├── src/
-  │   │   ├── contacts/
-  │   │   ├── shared/
-  │   │   ├── users/  
-  │   │   ├── App.js
-  │   │   ├── index.js
-  │   │   ├── index.css
-  │   ├── .gitignore
-  │   ├── package.json
-  │   ├── README.md
+  │   │   ├── contacts/       <- Components related to contacts management
+  │   │   ├── shared/         <- Shared components or utilities
+  │   │   ├── users/          <- Components related to user management
+  │   │   ├── App.js          <- Main component, organizes application structure
+  │   │   ├── index.js        <- Entry point, renders App component
+  │   │   ├── index.css       <- Global CSS styles for the app
+  │   ├── .gitignore          <- Specifies files and directories to ignore
+  │   ├── package.json        <- Manages project dependencies and scripts
+  │   ├── README.md           <- Provides information about the frontend
   ├── backend/
   │   ├── src/
   │   │   ├── controllers/
