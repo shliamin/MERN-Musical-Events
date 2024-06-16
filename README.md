@@ -13,9 +13,12 @@ MERN-Musical-Events/
   │   │   │── manifest.json
   │   │   │── robots.txt
   │   ├── src/
-  │   │   ├── components/
+  │   │   ├── contacts/
+  │   │   ├── shared/
+  │   │   ├── users/  
   │   │   ├── App.js
   │   │   ├── index.js
+  │   │   ├── index.css
   │   ├── .gitignore
   │   ├── package.json
   │   ├── README.md
