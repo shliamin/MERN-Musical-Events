@@ -21,7 +21,7 @@ MERN-Musical-Events/
   │   │   ├── App.js          <- Main component, organizes application structure
   │   │   ├── index.js        <- Entry point, renders App component
   │   │   ├── index.css       <- Global CSS styles for the app
-  │   ├── .gitignore          <- Specifies files and directories to ignore
+  │   ├── .gitignore          <- Specifies files and directories to ignore in frontend
   │   ├── package.json        <- Manages project dependencies and scripts
   │   ├── README.md           <- Provides information about the frontend
   ├── backend/
