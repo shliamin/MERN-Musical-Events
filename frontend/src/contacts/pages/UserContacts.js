@@ -17,7 +17,7 @@ const UserContacts = () => {
     const fetchContacts = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5001/api/contacts/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/contacts/user/${userId}`
         );
         setLoadedContacts(responseData.contacts);
       } catch (err) {}

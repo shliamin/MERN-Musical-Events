@@ -40,7 +40,7 @@ const NewContact = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        'http://localhost:5001/api/contacts',
+        `${process.env.REACT_APP_BACKEND_URL}/api/contacts`,
         'POST',
         JSON.stringify({
         title: formState.inputs.title.value,

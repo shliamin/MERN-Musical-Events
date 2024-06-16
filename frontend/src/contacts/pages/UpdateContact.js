@@ -37,7 +37,7 @@ const UpdateContact = () => {
   useEffect(()=>{
     const fetchContact = async () =>  {
       try{
-        const responseData = await sendRequest(`http://localhost:5001/api/contacts/${contactId}`);
+        const responseData = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/api/contacts/${contactId}`);
         setLoadedContact(responseData.contact);
         setFormData({
         title: {
@@ -58,7 +58,7 @@ const UpdateContact = () => {
   const contactUpdateSubmitHandler = async event => {
     event.preventDefault();
     try{
-      await sendRequest(`http://localhost:5001/api/contacts/${contactId}`, 'PATCH', JSON.stringify({
+      await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/api/contacts/${contactId}`, 'PATCH', JSON.stringify({
         title: formState.inputs.title.value,
         description: formState.inputs.description.value
       }), {

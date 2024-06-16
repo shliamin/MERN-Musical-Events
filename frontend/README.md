@@ -29,7 +29,7 @@ This frontend application is part of the MERN-Musical-Events project. It provide
 
 3. Create a `.env` file in the `frontend` directory with your API endpoint:
     ```env
-    REACT_APP_BACKEND_URL=http://localhost:5001/api
+    REACT_APP_BACKEND_URL=InsertYourAPI
     ```
 
 4. Start the development server:
@@ -39,7 +39,7 @@ This frontend application is part of the MERN-Musical-Events project. It provide
 
 ## Usage
 
-The frontend application will run on `http://localhost:3000`. It provides the following features:
+The frontend application provides the following features:
 
 - **User Authentication**: Sign up and login.
 - **User Contacts**: View, add, update, and delete musical event contacts.

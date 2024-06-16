@@ -31,7 +31,7 @@ const ContactItem = props => {
   const confirmDeleteHandler = async () => {
     setShowConfirmModal(false);
     try{
-      await sendRequest(`http://localhost:5001/api/contacts/${props.id}`, 'DELETE');
+      await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/api/contacts/${props.id}`, 'DELETE');
       props.onDelete(props.id);
     } catch (err){
 
