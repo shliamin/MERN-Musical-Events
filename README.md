@@ -40,7 +40,7 @@ MERN-Musical-Events/
   │   │   │   ├── http-errors.js              <- Custom HTTP error handling
   │   │   │   └── location.js                 <- Handles geolocation logic
   │   │   ├── config/
-  │   │   │   └── db.js                       <- Establishes & manages the db connection
+  │   │   │   └── db.js                       <- Establishes, manages the db connection
   │   │   ├── views/
   │   │   │   └── error.pug                   <- Template for rendering error pages
   │   │   ├── app.js                          <- *Main server file
