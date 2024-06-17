@@ -4,9 +4,20 @@
 
 This repository contains a full-stack application built with the MERN stack (MongoDB, Express, React, Node.js). The application is designed for managing musical event data using geocoding.
 
-![demo3](images/demo3.png)
-<img src="images/demo1.png" alt="Demo 1" width="500"/>
-<img src="images/demo2.png" alt="Demo 2" width="500"/>
+Users can log in or register and then create their own unique music event with a real address:
+<p align="center">
+  <img src="images/Demo 1.png" alt="Demo 1" width="700"/>
+</p>
+
+All addresses appear on the map and can be viewed:
+<p align="center">
+  <img src="images/Demo 2.png" alt="Demo 2" width="700"/>
+</p>
+
+Addresses can be easily edited:
+<p align="center">
+  <img src="images/Demo 3.png" alt="Demo 3" width="700"/>
+</p>
 
 ![idea2](images/idea2.png)
 ![idea3](images/idea3.png)
