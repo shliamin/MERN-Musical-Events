@@ -12,7 +12,8 @@ export const useHttpClient = () => {
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
 
-      const fullUrl = `${process.env.REACT_APP_BACKEND_URL}${url.startsWith('/') ? url : `/${url}`}`;
+      // Prepend backend URL only if the URL is relative
+      const fullUrl = url.startsWith('http') ? url : `${process.env.REACT_APP_BACKEND_URL}${url.startsWith('/') ? url : `/${url}`}`;
       try {
         const response = await fetch(fullUrl, {
           method,
